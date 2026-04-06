@@ -1,0 +1,32 @@
+---
+name: agentganggang
+description: Use AgentGangGang as a compare-first MCP workspace during OpenCode sessions.
+---
+
+# AgentGangGang
+
+Use this skill when one prompt should be compared across multiple AI chat tabs
+without leaving the current OpenCode coding loop.
+
+## Smallest useful flow
+
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+
+## Preferred full flow
+
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+4. `agentganggang.analyze_compare`
+5. `agentganggang.run_workflow`
+6. `agentganggang.get_workflow_run`
+7. `agentganggang.list_workflow_runs`
+8. `agentganggang.resume_workflow`
+
+## Boundary
+
+- AgentGangGang stays the browser-side compare workspace.
+- OpenCode stays the outer coding loop.
+- This skill does not turn AgentGangGang into generic browser automation.
