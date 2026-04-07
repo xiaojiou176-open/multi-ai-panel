@@ -38,12 +38,14 @@ const DEFAULT_TARGET_MODELS: ModelName[] = ['ChatGPT'];
 const DEFAULT_CDP_URL = 'http://127.0.0.1:9336';
 const DEFAULT_PROBE_WAIT_MS = 750;
 const DEFAULT_ATTACH_CONNECT_TIMEOUT_MS = 30_000;
+const DEFAULT_EXTENSION_IDENTITY_TIMEOUT_MS = 1_500;
 const CLONE_RETRY_CODES = new Set(['ENOENT', 'EBUSY', 'EPERM']);
 const CLONE_RETRY_ATTEMPTS = 4;
 const CLONE_RETRY_DELAY_MS = 80;
 const AGENTGANGGANG_EXTENSION_NAME = 'AgentGangGang';
 const AGENTGANGGANG_OPTIONS_PAGE = 'settings.html';
 const AGENTGANGGANG_SIDE_PANEL_PATH = 'index.html';
+const AGENTGANGGANG_WORKER_LOADER_PATH = 'service-worker-loader.js';
 
 type AttachMode = 'browser' | 'persistent';
 type AttachModeResolved = 'browser' | 'persistent';
@@ -337,32 +339,63 @@ export const isAgentGangGangManifestIdentity = (
   snapshot.optionsPage === AGENTGANGGANG_OPTIONS_PAGE &&
   snapshot.sidePanelDefaultPath === AGENTGANGGANG_SIDE_PANEL_PATH;
 
-const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
-  if (!worker.url().startsWith('chrome-extension://')) {
-    return null;
-  }
-
+const parseExtensionRuntimeFromUrl = (candidateUrl: string) => {
   try {
-    const snapshot = await worker.evaluate<AgentGangGangExtensionIdentitySnapshot>(() => ({
-      ...(() => {
-        const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
-        return {
-          runtimeId: extensionRuntime.chrome?.runtime?.id ?? null,
-          manifestName: extensionRuntime.chrome?.runtime?.getManifest?.().name ?? null,
-          optionsPage: extensionRuntime.chrome?.runtime?.getManifest?.().options_page ?? null,
-          sidePanelDefaultPath:
-            extensionRuntime.chrome?.runtime?.getManifest?.().side_panel?.default_path ?? null,
-        };
-      })(),
-    }));
-
-    if (!isAgentGangGangManifestIdentity(snapshot)) {
+    const parsed = new URL(candidateUrl);
+    if (parsed.protocol !== 'chrome-extension:' || parsed.hostname.length === 0) {
       return null;
     }
 
     return {
+      runtimeId: parsed.hostname,
+      path: parsed.pathname.replace(/^\//, ''),
+    };
+  } catch {
+    return null;
+  }
+};
+
+const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
+  const workerUrl = worker.url();
+  const workerRuntime = parseExtensionRuntimeFromUrl(workerUrl);
+
+  if (!workerRuntime) {
+    return null;
+  }
+
+  try {
+    const snapshot = await Promise.race([
+      worker.evaluate<AgentGangGangExtensionIdentitySnapshot>(() => ({
+        ...(() => {
+          const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
+          return {
+            runtimeId: extensionRuntime.chrome?.runtime?.id ?? null,
+            manifestName: extensionRuntime.chrome?.runtime?.getManifest?.().name ?? null,
+            optionsPage: extensionRuntime.chrome?.runtime?.getManifest?.().options_page ?? null,
+            sidePanelDefaultPath:
+              extensionRuntime.chrome?.runtime?.getManifest?.().side_panel?.default_path ?? null,
+          };
+        })(),
+      })),
+      new Promise<null>((resolve) =>
+        setTimeout(() => resolve(null), DEFAULT_EXTENSION_IDENTITY_TIMEOUT_MS)
+      ),
+    ]);
+
+    if (!isAgentGangGangManifestIdentity(snapshot)) {
+      if (workerRuntime.path !== AGENTGANGGANG_WORKER_LOADER_PATH) {
+        return null;
+      }
+
+      return {
+        runtimeId: workerRuntime.runtimeId,
+        workerUrl,
+      };
+    }
+
+    return {
       runtimeId: snapshot.runtimeId,
-      workerUrl: worker.url(),
+      workerUrl,
     };
   } catch {
     return null;
@@ -375,20 +408,25 @@ const inspectAgentGangGangPageIdentity = async (page: Page) => {
   }
 
   try {
-    const snapshot = await page.evaluate<AgentGangGangExtensionPageSnapshot>(() => ({
-      ...(() => {
-        const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
-        return {
-          runtimeId: extensionRuntime.chrome?.runtime?.id ?? null,
-          manifestName: extensionRuntime.chrome?.runtime?.getManifest?.().name ?? null,
-          optionsPage: extensionRuntime.chrome?.runtime?.getManifest?.().options_page ?? null,
-          sidePanelDefaultPath:
-            extensionRuntime.chrome?.runtime?.getManifest?.().side_panel?.default_path ?? null,
-          href: location.href,
-          localType: typeof extensionRuntime.chrome?.storage?.local,
-        };
-      })(),
-    }));
+    const snapshot = await Promise.race([
+      page.evaluate<AgentGangGangExtensionPageSnapshot>(() => ({
+        ...(() => {
+          const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
+          return {
+            runtimeId: extensionRuntime.chrome?.runtime?.id ?? null,
+            manifestName: extensionRuntime.chrome?.runtime?.getManifest?.().name ?? null,
+            optionsPage: extensionRuntime.chrome?.runtime?.getManifest?.().options_page ?? null,
+            sidePanelDefaultPath:
+              extensionRuntime.chrome?.runtime?.getManifest?.().side_panel?.default_path ?? null,
+            href: location.href,
+            localType: typeof extensionRuntime.chrome?.storage?.local,
+          };
+        })(),
+      })),
+      new Promise<null>((resolve) =>
+        setTimeout(() => resolve(null), DEFAULT_EXTENSION_IDENTITY_TIMEOUT_MS)
+      ),
+    ]);
 
     if (
       !isAgentGangGangManifestIdentity(snapshot) ||
@@ -408,15 +446,15 @@ const inspectAgentGangGangPageIdentity = async (page: Page) => {
 };
 
 export const findAgentGangGangExtensionId = async (context: BrowserContext) => {
-  for (const worker of context.serviceWorkers()) {
-    const identity = await inspectAgentGangGangWorkerIdentity(worker);
+  for (const page of context.pages()) {
+    const identity = await inspectAgentGangGangPageIdentity(page);
     if (identity) {
       return identity.runtimeId;
     }
   }
 
-  for (const page of context.pages()) {
-    const identity = await inspectAgentGangGangPageIdentity(page);
+  for (const worker of context.serviceWorkers()) {
+    const identity = await inspectAgentGangGangWorkerIdentity(worker);
     if (identity) {
       return identity.runtimeId;
     }

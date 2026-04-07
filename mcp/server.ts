@@ -194,7 +194,7 @@ export const registerAgentGangGangMcpSurface = (
     {
       title: 'AgentGangGang builder support matrix',
       description:
-        'Machine-readable truth for current supported, partial, starter-kit-only, and planned AgentGangGang builder and consumer bindings.',
+        'Machine-readable truth for current supported, partial, public-bundle-ready, and planned AgentGangGang builder and consumer bindings.',
       mimeType: 'application/json',
     },
     async () => ({

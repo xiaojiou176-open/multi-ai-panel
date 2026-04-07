@@ -26,6 +26,7 @@ data/
 tmp/
 artifacts/
 *.local
+/agentganggang-*.tgz
 .env
 .env.*
 *.njsproj
