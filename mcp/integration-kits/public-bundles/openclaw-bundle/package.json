@@ -3,6 +3,23 @@
   "version": "0.2.2",
   "license": "MIT",
   "description": "AgentGangGang OpenClaw MCP bundle packet with registry snippets, placement hints, and compare-first smoke notes.",
+  "keywords": [
+    "agentganggang",
+    "openclaw",
+    "mcp",
+    "bundle",
+    "compare-first",
+    "local-first"
+  ],
+  "homepage": "https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaojiou176-open/agentganggang.git",
+    "directory": "mcp/integration-kits/public-bundles/openclaw-bundle"
+  },
+  "bugs": {
+    "url": "https://github.com/xiaojiou176-open/agentganggang/issues"
+  },
   "files": [
     ".codex-plugin",
     "openclaw.agentganggang.json",

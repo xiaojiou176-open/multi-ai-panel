@@ -4,6 +4,23 @@
   "type": "module",
   "license": "MIT",
   "description": "AgentGangGang bootstrap plugin for OpenCode plus a compare-first MCP packet.",
+  "keywords": [
+    "agentganggang",
+    "opencode",
+    "mcp",
+    "plugin",
+    "compare-first",
+    "local-first"
+  ],
+  "homepage": "https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/opencode-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaojiou176-open/agentganggang.git",
+    "directory": "mcp/integration-kits/public-bundles/opencode-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/xiaojiou176-open/agentganggang/issues"
+  },
   "dependencies": {
     "@opencode-ai/plugin": "*"
   },
