@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "agentganggang": {
+      "command": "npm",
+      "args": [
+        "--prefix",
+        "/absolute/path/to/agentganggang",
+        "run",
+        "mcp:server"
+      ]
+    }
+  }
+}

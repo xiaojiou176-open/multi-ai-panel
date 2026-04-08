@@ -1,25 +1,43 @@
 ---
 name: agentganggang-compare-workflows
-description: Use this public skill when you want AgentGangGang's compare-first browser workflow through the local MCP sidecar without overclaiming a hosted relay or a live marketplace listing.
-version: 1.0.0
+description: Teach an agent to install AgentGangGang's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
+version: 1.1.0
+triggers:
+  - agentganggang
+  - agentganggang
+  - agentganggang
+  - compare-first
+  - agentganggang
 ---
 
 # AgentGangGang Compare Workflows
 
-## Purpose
+Teach the agent how to install, connect, and use AgentGangGang as a
+compare-first browser workspace.
 
-Help a host, plugin registry, or collaborator consume AgentGangGang as a
-compare-first browser workspace without rewriting it into a hosted AI platform.
+## Use this skill when
 
-## Keep this identity first
+- the user wants to compare the same prompt across multiple already-open AI chat tabs
+- the host can run a local MCP server
+- the user wants one inspectable compare artifact before broader automation
 
-- Browser-native compare workspace first
-- Local MCP sidecar for builder lanes second
-- No hosted relay
-- No public HTTP API
-- No “already listed everywhere” claim
+## What this package teaches
 
-## Preferred flow
+- how to wire the local AgentGangGang MCP sidecar into a host
+- which MCP tools are safe and useful first
+- how to move from readiness checks to a real compare turn
+- how to keep the workflow grounded in a browser-native compare product
+
+## Start here
+
+1. Read [references/INSTALL.md](references/INSTALL.md)
+2. Load the right host config from:
+   - [references/OPENHANDS_MCP_CONFIG.json](references/OPENHANDS_MCP_CONFIG.json)
+   - [references/OPENCLAW_MCP_CONFIG.json](references/OPENCLAW_MCP_CONFIG.json)
+3. Skim the tool surface in [references/CAPABILITIES.md](references/CAPABILITIES.md)
+4. Run the demo from [references/DEMO.md](references/DEMO.md)
+
+## Recommended workflow
 
 1. `agentganggang.bridge_status`
 2. `agentganggang.check_readiness`
@@ -27,16 +45,24 @@ compare-first browser workspace without rewriting it into a hosted AI platform.
 4. `agentganggang.analyze_compare`
 5. `agentganggang.run_workflow`
 
-## Proof path
+## Suggested first prompt
 
-1. Install the latest release zip
-2. Run one real compare from the side panel
-3. Verify the MCP sidecar can read readiness and compare state
-4. Keep the first success path local and inspectable
+Use AgentGangGang to compare the prompt below across the ready ChatGPT and
+Gemini tabs. Start with `agentganggang.bridge_status` and
+`agentganggang.check_readiness`. If fewer than two model tabs are ready,
+stop and tell me exactly which login or tab-prep step is missing. If two or
+more tabs are ready, run `agentganggang.compare` and summarize the most
+important wording differences.
 
-## Truth language
+## Success checks
 
-- Good: "repo-owned public skill packet"
-- Good: "compare-first local MCP workflow skill"
-- Forbidden: "officially listed skill" without fresh host-side read-back
-- Forbidden: "hosted AgentGangGang platform"
+- the host can launch the MCP server from the provided config
+- `bridge_status` confirms the local bridge is reachable
+- `check_readiness` identifies which tabs are ready
+- `compare` produces a real session/turn artifact the agent can inspect
+
+## Boundaries
+
+- AgentGangGang stays a local browser workflow, not a hosted service
+- the MCP sidecar supports compare workflows; it does not replace the extension
+- keep claims grounded in the actual tool surface documented in this package
