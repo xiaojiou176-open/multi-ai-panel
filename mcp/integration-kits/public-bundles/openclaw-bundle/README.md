@@ -13,6 +13,7 @@ It is meant for:
 - `openclaw.agentganggang.json`
 - `mcp.servers.json`
 - `openclaw.mcp.set.sh`
+- `manifest.json`
 - `.codex-plugin/plugin.json`
 - `skills/agentganggang/SKILL.md`
 - `SMOKE.md`

@@ -1,0 +1,28 @@
+schema_version: 1
+kind: agentganggang_plugin_packet
+id: agentganggang-opencode-plugin
+name: AgentGangGang OpenCode Plugin Packet
+description: Repo-owned OpenCode plugin packet for the AgentGangGang local MCP sidecar.
+version: "0.2.2"
+license: MIT
+homepage: https://xiaojiou176-open.github.io/agentganggang/
+repository: https://github.com/xiaojiou176-open/agentganggang
+supportTier: public_bundle_ready_unverified_host_lane
+publicationStatus: repo_owned_packet_not_published
+install:
+  shape: npm_plugin_packet
+  host: OpenCode
+  placement: Publish the package later or copy the local opencode.jsonc packet into a project-root OpenCode config.
+smoke:
+  guide: SMOKE.md
+  smallest_useful_flow:
+    - agentganggang.bridge_status
+    - agentganggang.check_readiness
+    - agentganggang.compare
+capabilities:
+  - compare
+  - readiness
+  - retry_failed
+  - export_compare
+  - analyze_compare
+  - workflow_followthrough

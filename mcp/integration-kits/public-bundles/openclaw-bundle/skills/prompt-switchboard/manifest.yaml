@@ -1,0 +1,40 @@
+schemaVersion: "1.0.0"
+kind: skill_packet
+id: agentganggang-openclaw-skill
+name: agentganggang
+description: Use AgentGangGang as a compare-first local MCP workspace during OpenClaw sessions.
+version: "0.2.2"
+license: MIT
+homepage: https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle
+repository:
+  type: git
+  url: git+https://github.com/xiaojiou176-open/agentganggang.git
+  directory: mcp/integration-kits/public-bundles/openclaw-bundle
+supportTier: public_bundle_ready_unverified_host_lane
+publicationStatus: embedded_skill_only_not_independently_published
+host: OpenClaw
+placement:
+  relativePath: skills/agentganggang/SKILL.md
+  discoveryRoots:
+    - skills/<name>/SKILL.md
+capabilities:
+  - agentganggang.bridge_status
+  - agentganggang.check_readiness
+  - agentganggang.compare
+  - agentganggang.analyze_compare
+  - agentganggang.run_workflow
+  - agentganggang.get_workflow_run
+  - agentganggang.list_workflow_runs
+  - agentganggang.resume_workflow
+smoke:
+  path: ../../SMOKE.md
+  minimalFlow:
+    - agentganggang.bridge_status
+    - agentganggang.check_readiness
+    - agentganggang.compare
+  preferredFlow:
+    - agentganggang.analyze_compare
+    - agentganggang.run_workflow
+    - agentganggang.get_workflow_run
+    - agentganggang.list_workflow_runs
+    - agentganggang.resume_workflow

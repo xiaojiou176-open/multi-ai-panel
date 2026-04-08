@@ -8,7 +8,7 @@ import {
   BRIDGE_HEADER_EXTENSION_ID,
   BRIDGE_HEADER_KEY,
   createBridgeBaseUrl,
-  AGENTGANGGANG_BRIDGE_HOST,
+  resolveBridgeHost,
 } from '../src/bridge/protocol.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,8 +24,9 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const getFreePort = async () =>
   new Promise<number>((resolve, reject) => {
+    const bridgeHost = resolveBridgeHost(process.env);
     const server = createServer();
-    server.listen(0, AGENTGANGGANG_BRIDGE_HOST, () => {
+    server.listen(0, bridgeHost, () => {
       const address = server.address();
       if (!address || typeof address === 'string') {
         server.close();
@@ -182,7 +183,9 @@ const createMockWorkflowResumeResult = (args: Record<string, unknown>) => {
         startedAt: timestamp,
         finishedAt: timestamp,
         output:
-          args.externalUpdate && typeof args.externalUpdate === 'object' && 'output' in args.externalUpdate
+          args.externalUpdate &&
+          typeof args.externalUpdate === 'object' &&
+          'output' in args.externalUpdate
             ? args.externalUpdate.output
             : {
                 type: 'compare',
@@ -358,8 +361,9 @@ const requireStructuredToolEnvelope = (
 };
 
 async function main() {
+  const bridgeHost = resolveBridgeHost(process.env);
   const bridgePort = await getFreePort();
-  const bridgeBaseUrl = createBridgeBaseUrl(AGENTGANGGANG_BRIDGE_HOST, bridgePort);
+  const bridgeBaseUrl = createBridgeBaseUrl(bridgeHost, bridgePort);
   const client = new Client({
     name: 'agentganggang-mcp-smoke',
     version: packageJson.version,
@@ -505,16 +509,16 @@ async function main() {
     }
   }
 
-const requiredResources = [
-  'agentganggang://sessions/current',
-  'agentganggang://models/readiness',
-  'agentganggang://models/catalog',
-  'agentganggang://analysis/providers',
-  'agentganggang://workflows/templates',
-  'agentganggang://builder/support-matrix',
-  'agentganggang://builder/public-distribution',
-  'agentganggang://sites/capabilities',
-];
+  const requiredResources = [
+    'agentganggang://sessions/current',
+    'agentganggang://models/readiness',
+    'agentganggang://models/catalog',
+    'agentganggang://analysis/providers',
+    'agentganggang://workflows/templates',
+    'agentganggang://builder/support-matrix',
+    'agentganggang://builder/public-distribution',
+    'agentganggang://sites/capabilities',
+  ];
 
   for (const resourceUri of requiredResources) {
     if (!resourceUris.includes(resourceUri)) {

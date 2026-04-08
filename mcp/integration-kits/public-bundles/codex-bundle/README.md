@@ -11,6 +11,7 @@ It is meant for:
 
 - `.codex-plugin/plugin.json`
 - `.mcp.json`
+- `manifest.json`
 - `skills/agentganggang/SKILL.md`
 - `SMOKE.md`
 

@@ -6,9 +6,9 @@ import {
   BridgeBootstrapRequestSchema,
   BridgeCommandEnvelopeSchema,
   BridgeCommandResultSchema,
-  AGENTGANGGANG_BRIDGE_HOST,
-  AGENTGANGGANG_BRIDGE_PORT,
   AGENTGANGGANG_BRIDGE_VERSION,
+  resolveBridgeHost,
+  resolveBridgePort,
 } from '../src/bridge/protocol.js';
 import type {
   BridgeCommandArgsMap,
@@ -50,6 +50,7 @@ const sendEmpty = (response: ServerResponse, statusCode = 204) => {
 };
 
 export class AgentGangGangBridgeServer {
+  private readonly host: string;
   private readonly port: number;
   private readonly pendingCommands = new Map<string, PendingCommand>();
   private readonly queuedCommands: BridgeCommandEnvelope[] = [];
@@ -64,14 +65,15 @@ export class AgentGangGangBridgeServer {
     readiness: {},
   };
 
-  constructor(port = Number(process.env.AGENTGANGGANG_BRIDGE_PORT || AGENTGANGGANG_BRIDGE_PORT)) {
+  constructor(port = resolveBridgePort(process.env), host = resolveBridgeHost(process.env)) {
+    this.host = host;
     this.port = port;
   }
 
   async start() {
     await new Promise<void>((resolve, reject) => {
       this.server.once('error', reject);
-      this.server.listen(this.port, AGENTGANGGANG_BRIDGE_HOST, () => {
+      this.server.listen(this.port, this.host, () => {
         this.server.off('error', reject);
         resolve();
       });
@@ -102,6 +104,10 @@ export class AgentGangGangBridgeServer {
 
   getPort() {
     return this.port;
+  }
+
+  getHost() {
+    return this.host;
   }
 
   async dispatchCommand<TCommand extends BridgeCommandName>(
@@ -277,9 +283,9 @@ export class AgentGangGangBridgeServer {
 
     return Boolean(
       this.extensionId &&
-        this.bridgeKey &&
-        extensionId === this.extensionId &&
-        bridgeKey === this.bridgeKey
+      this.bridgeKey &&
+      extensionId === this.extensionId &&
+      bridgeKey === this.bridgeKey
     );
   }
 }
