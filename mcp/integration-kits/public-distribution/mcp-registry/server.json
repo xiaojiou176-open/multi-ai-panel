@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.xiaojiou176-open/agentganggang-mcp",
+  "title": "AgentGangGang MCP Sidecar",
+  "description": "Local compare-first MCP sidecar for AgentGangGang browser workflows across ChatGPT, Gemini, Perplexity, Qwen, and Grok.",
+  "repository": {
+    "url": "https://github.com/xiaojiou176-open/agentganggang",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/xiaojiou176-open/agentganggang/blob/main/docs/mcp-coding-agents.html",
+  "version": "0.2.2"
+}
