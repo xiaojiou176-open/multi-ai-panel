@@ -1,7 +1,7 @@
 ---
 name: agentganggang-compare-workflows
 description: Teach an agent to install AgentGangGang's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
-version: 1.1.0
+version: 1.1.1
 triggers:
   - agentganggang
   - agentganggang
