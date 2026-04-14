@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgentGangGang Docker MCP sidecar</title>
+    <title>AgentGangGang Docker integration</title>
     <meta
       name="description"
-      content="Run the local AgentGangGang MCP sidecar in Docker without pretending the compare-first browser product became a hosted service."
+      content="Run the AgentGangGang Docker integration without pretending the compare-first browser product became a hosted service."
     />
     <link
       rel="canonical"
-      href="https://xiaojiou176-open.github.io/agentganggang/mcp-docker-sidecar.html"
+      href="https://xiaojiou176-open.github.io/agentganggang/docker-integration.html"
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="AgentGangGang Docker MCP sidecar" />
+    <meta property="og:title" content="AgentGangGang Docker integration" />
     <meta
       property="og:description"
-      content="Containerized local MCP sidecar for AgentGangGang builder flows. The browser extension still runs on the host, and no hosted compare service is claimed."
+      content="Containerized AgentGangGang integration for builder flows. The browser extension still runs on the host, and no hosted compare service is claimed."
     />
     <meta
       property="og:image"
@@ -191,12 +191,12 @@
       </nav>
 
       <main class="card">
-        <span class="chip">Docker sidecar</span>
-        <h1>Containerize the local MCP sidecar, not the whole compare-first product.</h1>
+        <span class="chip">Docker wrapper</span>
+        <h1>Containerize the MCP integration process, not the whole compare-first product.</h1>
         <p>
-          This Docker entry wraps the local AgentGangGang MCP sidecar so builder-facing flows
-          can launch it from a container. The browser extension still runs on the host machine, and
-          AgentGangGang does not turn into a hosted compare service here.
+          This Docker entry wraps the repo-owned AgentGangGang MCP server so coding-host
+          workflows can launch it from a container. The browser extension still runs on the host
+          machine, and AgentGangGang does not turn into a hosted compare service here.
         </p>
         <h2 style="margin-top: 24px">What it is</h2>
         <ul>
@@ -220,7 +220,7 @@ docker run --rm -i -p 48123:48123 agentganggang-mcp server</code></pre>
         </p>
         <p>
           Full operator notes live in <code>docker/README.md</code>. The short truthful split is:
-          containerized sidecar now, external listing later.
+          containerized MCP path now, external listing later.
         </p>
         <p>
           Current public Glama pages verify a server catalog and connector surfaces, but this repo
