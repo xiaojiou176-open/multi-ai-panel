@@ -1,10 +1,10 @@
-# AgentGangGang MCP Registry Submission Pack
+# MultiAiPanel MCP Registry Submission Pack
 
 This folder keeps the repo-owned submission materials for the official MCP
 Registry lane.
 
-In plain language: AgentGangGang already ships a real local MCP sidecar.
-The official MCP Registry already returns a live AgentGangGang MCP entry for the same local sidecar install surface.
+In plain language: MultiAiPanel already ships a real local MCP sidecar.
+The official MCP Registry already returns a live MultiAiPanel MCP entry for the same local sidecar install surface.
 The repo still stays extension-first and mixed-surface: the browser extension is
 the main product doorway, and this registry packet is only one companion lane
 for the MCP sidecar.

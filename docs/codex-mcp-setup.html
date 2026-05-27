@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgentGangGang for Codex</title>
+    <title>MultiAiPanel for Codex</title>
     <meta
       name="description"
-      content="Set up AgentGangGang for Codex with a compare-first MCP flow, public bundle packet, placement hints, and a truthful support boundary."
+      content="Set up MultiAiPanel for Codex with a compare-first MCP flow, public bundle packet, placement hints, and a truthful support boundary."
     />
     <link
       rel="canonical"
-      href="https://xiaojiou176-open.github.io/AgentGangGang/codex-mcp-setup.html"
+      href="https://xiaojiou176-open.github.io/multi-ai-panel/codex-mcp-setup.html"
     />
     <style>
       :root { color-scheme: light; --bg:#fffaf6; --ink:#0f172a; --muted:#475569; --line:rgba(251,113,133,.16); --panel:rgba(255,255,255,.9); --shadow:0 24px 64px rgba(15,23,42,.08); --brand-a:#d946ef; --brand-b:#f43f5e; --brand-c:#f59e0b; }
@@ -41,21 +41,21 @@
     <div class="shell">
       <nav class="nav">
         <div class="wordmark">
-          <img src="./assets/agentganggang-nav-icon.svg" alt="AgentGangGang logo" width="32" height="32" />
-          <span>AgentGangGang</span>
+          <img src="./assets/multi-ai-panel-nav-icon.svg" alt="MultiAiPanel logo" width="32" height="32" />
+          <span>MultiAiPanel</span>
         </div>
         <div class="actions">
           <a class="nav-link" href="./mcp-host-packets.html">Host packets</a>
           <a class="nav-link" href="./mcp-starter-kits.html">Starter kits</a>
           <a class="nav-link" href="./public-distribution-matrix.html">Distribution matrix</a>
-          <a class="cta" href="https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/codex-bundle">Open Codex bundle</a>
+          <a class="cta" href="https://github.com/xiaojiou176-open/multi-ai-panel/tree/main/mcp/integration-kits/public-bundles/codex-bundle">Open Codex bundle</a>
         </div>
       </nav>
       <main class="card">
         <span class="chip">Codex packet</span>
-        <h1>Use AgentGangGang with Codex through the strongest current repo-owned host lane.</h1>
+        <h1>Use MultiAiPanel with Codex through the strongest current repo-owned host lane.</h1>
         <p>
-          Codex is still a config-first MCP surface, not an official AgentGangGang marketplace
+          Codex is still a config-first MCP surface, not an official MultiAiPanel marketplace
           listing. This packet keeps the public install shape honest: repo-owned MCP server, compare-first
           flow, Codex config snippet, and a bundle-ready archive you can pack today.
         </p>
@@ -71,9 +71,9 @@
           <div class="subcard">
             <h2>Support class</h2>
             <ul>
-              <li>Strongest repo-specific AgentGangGang host binding today</li>
+              <li>Strongest repo-specific MultiAiPanel host binding today</li>
               <li>Official surface verified: Codex MCP docs and local config flow</li>
-              <li>No official AgentGangGang marketplace listing verified from current official Codex docs</li>
+              <li>No official MultiAiPanel marketplace listing verified from current official Codex docs</li>
             </ul>
           </div>
           <div class="subcard">
@@ -93,21 +93,21 @@
           Paste the MCP block into the Codex MCP server section inside your <code>config.toml</code>.
           Keep the repository path explicit so the MCP server can launch from the right clone.
         </p>
-        <pre>[mcp_servers.agentganggang]
+        <pre>[mcp_servers.multi-ai-panel]
 command = "npm"
 args = ["run", "mcp:server"]
-cwd = "/absolute/path/to/AgentGangGang"</pre>
+cwd = "/absolute/path/to/MultiAiPanel"</pre>
       </section>
       <section class="card">
         <h2>Smallest useful smoke</h2>
         <ol>
-          <li><code>agentganggang.bridge_status</code></li>
-          <li><code>agentganggang.check_readiness</code></li>
-          <li><code>agentganggang.compare</code></li>
+          <li><code>multi-ai-panel.bridge_status</code></li>
+          <li><code>multi-ai-panel.check_readiness</code></li>
+          <li><code>multi-ai-panel.compare</code></li>
         </ol>
         <p>
-          Preferred full flow: add <code>agentganggang.analyze_compare</code>, then
-          <code>agentganggang.run_workflow</code>, then inspect or continue with
+          Preferred full flow: add <code>multi-ai-panel.analyze_compare</code>, then
+          <code>multi-ai-panel.run_workflow</code>, then inspect or continue with
           <code>get_workflow_run</code>, <code>list_workflow_runs</code>, and
           <code>resume_workflow</code>.
         </p>
@@ -118,7 +118,7 @@ cwd = "/absolute/path/to/AgentGangGang"</pre>
           <li>Public bundle shipped now: <code>mcp/integration-kits/public-bundles/codex-bundle/</code></li>
           <li>Packable artifact path: run <code>npm run release:host-kits</code></li>
           <li>Official listing status: not claimed, not verified, not published</li>
-          <li>AgentGangGang remains compare-first and browser-native. It does not become a hosted relay, SDK, or generic automation shell in this packet.</li>
+          <li>MultiAiPanel remains compare-first and browser-native. It does not become a hosted relay, SDK, or generic automation shell in this packet.</li>
         </ul>
       </section>
     </div>

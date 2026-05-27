@@ -1,15 +1,15 @@
-# AgentGangGang starter kit for Codex MCP configuration.
+# MultiAiPanel starter kit for Codex MCP configuration.
 # Copy the block you need into your own Codex config.toml and adjust the
 # absolute repository path if your clone lives elsewhere.
 
-[mcp_servers.agentganggang]
+[mcp_servers.multi-ai-panel]
 command = "npm"
 args = ["run", "mcp:server"]
-cwd = "/absolute/path/to/AgentGangGang"
+cwd = "/absolute/path/to/MultiAiPanel"
 
 # Suggested first calls after the server is attached:
-# 1. agentganggang.bridge_status
-# 2. agentganggang.check_readiness
-# 3. agentganggang.compare
-# 4. agentganggang.analyze_compare
-# 5. agentganggang.run_workflow
+# 1. multi-ai-panel.bridge_status
+# 2. multi-ai-panel.check_readiness
+# 3. multi-ai-panel.compare
+# 4. multi-ai-panel.analyze_compare
+# 5. multi-ai-panel.run_workflow

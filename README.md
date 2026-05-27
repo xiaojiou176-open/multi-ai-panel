@@ -2,16 +2,16 @@
   <img src="https://em-content.zobj.net/source/apple/391/performing-arts_1f3ad.png" width="120" alt="performing arts" />
 </p>
 
-<h1 align="center">AgentGangGang</h1>
+<h1 align="center">MultiAiPanel</h1>
 
 <p align="center">
   <strong>five AIs in one sidebar, one conversation, one ⌘+K</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/xiaojiou176-open/AgentGangGang/stargazers"><img src="https://img.shields.io/github/stars/xiaojiou176-open/AgentGangGang?style=flat&color=yellow" alt="Stars"></a>
-  <a href="https://github.com/xiaojiou176-open/AgentGangGang/commits/main"><img src="https://img.shields.io/github/last-commit/xiaojiou176-open/AgentGangGang?style=flat" alt="Last Commit"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/xiaojiou176-open/AgentGangGang?style=flat" alt="License"></a>
+  <a href="https://github.com/xiaojiou176-open/multi-ai-panel/stargazers"><img src="https://img.shields.io/github/stars/xiaojiou176-open/multi-ai-panel?style=flat&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/xiaojiou176-open/multi-ai-panel/commits/main"><img src="https://img.shields.io/github/last-commit/xiaojiou176-open/multi-ai-panel?style=flat" alt="Last Commit"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/xiaojiou176-open/multi-ai-panel?style=flat" alt="License"></a>
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 ---
 
-AgentGangGang is a Chrome side panel that hosts every major AI side-by-side. One prompt, every model, side-by-side answers, no tab juggling.
+MultiAiPanel is a Chrome side panel that hosts every major AI side-by-side. One prompt, every model, side-by-side answers, no tab juggling.
 
 ```
 ┌──────────────────────────────────────┐
@@ -43,7 +43,7 @@ AgentGangGang is a Chrome side panel that hosts every major AI side-by-side. One
 |---|---|
 | `sidepanel` | All your AIs in one Chrome panel. Hot-swap, compare, fork. |
 | `⌘+K compare mode` | Send the same prompt to N agents. See answers next to each other. |
-| `mcp bridge` | AgentGangGang doubles as an MCP server for downstream agents. |
+| `mcp bridge` | MultiAiPanel doubles as an MCP server for downstream agents. |
 | `public skills` | Drop into Claude/Codex/OpenClaw. Spawn the gang on demand. |
 
 > [!IMPORTANT]
@@ -52,14 +52,14 @@ AgentGangGang is a Chrome side panel that hosts every major AI side-by-side. One
 ## Install
 
 ```bash
-git clone https://github.com/xiaojiou176-open/AgentGangGang.git
-cd AgentGangGang
+git clone https://github.com/xiaojiou176-open/multi-ai-panel.git
+cd MultiAiPanel
 # follow the per-stack quickstart in INSTALL.md or docs/
 ```
 
 Three commands. No `curl | sh`. No login. Read what you run.
 
-Install break? Open your favorite agent and say *"Read AGENTS.md and bootstrap AgentGangGang for me."* Agent fix own brain. Long version: [`docs/`](./docs/).
+Install break? Open your favorite agent and say *"Read AGENTS.md and bootstrap MultiAiPanel for me."* Agent fix own brain. Long version: [`docs/`](./docs/).
 
 ## How It Work
 
@@ -68,7 +68,7 @@ The repo is seven layers — exactly the seven commits in `git log`. New work go
 | Layer | What |
 |---|---|
 | `chore: scaffold` | License, governance, hygiene gates, CI scaffolding. |
-| `feat(core)` | The primary engine. The reason AgentGangGang exists. |
+| `feat(core)` | The primary engine. The reason MultiAiPanel exists. |
 | `feat(modules)` | Packages, adapters, services, plugins. The second floor. |
 | `feat(contracts)` | Schemas, configs, public boundaries. Other code talks here. |
 | `test:` | Receipts. Everything in this layer must run. |
@@ -79,13 +79,13 @@ The repo is seven layers — exactly the seven commits in `git log`. New work go
 
 ## Ecosystem
 
-AgentGangGang lives in the ***Me family**: three personal tools. command-style names, stupid-simple jobs.
+MultiAiPanel lives in the ***Me family**: three personal tools. command-style names, stupid-simple jobs.
 
 | Repo | What |
 |---|---|
 | [**BeamMe**](https://github.com/xiaojiou176-open/BeamMe) | beam your agent config to any planet |
 | [**BrewMe**](https://github.com/xiaojiou176-open/BrewMe) | wake up, news already brewed |
-| [**AgentGangGang**](https://github.com/xiaojiou176-open/AgentGangGang) *(you here)* | five AIs in one sidebar |
+| [**MultiAiPanel**](https://github.com/xiaojiou176-open/multi-ai-panel) *(you here)* | five AIs in one sidebar |
 
 Cross-family taste:
 [**BeamMe**](https://github.com/xiaojiou176-open/BeamMe) ·
@@ -95,9 +95,9 @@ Cross-family taste:
 
 ## Star This Repo
 
-If AgentGangGang saves you a click, an hour, or a headache — star costs zero. Fair trade. ⭐
+If MultiAiPanel saves you a click, an hour, or a headache — star costs zero. Fair trade. ⭐
 
-[![Star History Chart](https://api.star-history.com/svg?repos=xiaojiou176-open/AgentGangGang&type=Date)](https://star-history.com/#xiaojiou176-open/AgentGangGang&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=xiaojiou176-open/multi-ai-panel&type=Date)](https://star-history.com/#xiaojiou176-open/multi-ai-panel&Date)
 
 ## Also by Yifeng[Terry] Yu
 

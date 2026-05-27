@@ -308,7 +308,7 @@ export const runOperatorServer = async (options: OperatorOptions = {}) =>
       cwd: repoRoot,
       env: {
         ...process.env,
-        AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
+        MULTI_AI_PANEL_BRIDGE_PORT: String(bridgePort),
       },
       stdio: 'inherit',
     });
@@ -348,8 +348,8 @@ const runTsxScript = async (scriptPath: string, args: string[] = [], env?: NodeJ
 
 const createLiveCommandEnv = (bridgePort: number) => ({
   ...process.env,
-  AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
-  AGENTGANGGANG_LIVE: process.env.AGENTGANGGANG_LIVE || '1',
+  MULTI_AI_PANEL_BRIDGE_PORT: String(bridgePort),
+  MULTI_AI_PANEL_LIVE: process.env.MULTI_AI_PANEL_LIVE || '1',
 });
 
 const runJsonTsxScript = async (
@@ -362,7 +362,7 @@ const runJsonTsxScript = async (
   const bridgePort = resolveOperatorBridgePort(options.bridgePort);
   const result = await runTsxScript(scriptPath, args, {
     ...process.env,
-    AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
+    MULTI_AI_PANEL_BRIDGE_PORT: String(bridgePort),
     ...envOverrides,
   });
 
@@ -500,7 +500,7 @@ const probeBridgeHealth = async (options: OperatorOptions) => {
 const createMcpClient = async (options: OperatorOptions) => {
   const bridgePort = resolveOperatorBridgePort(options.bridgePort);
   const client = new Client({
-    name: 'agentganggang-local-operator',
+    name: 'multi-ai-panel-local-operator',
     version: packageJson.version,
   });
 
@@ -511,7 +511,7 @@ const createMcpClient = async (options: OperatorOptions) => {
     cwd: repoRoot,
     env: {
       ...process.env,
-      AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
+      MULTI_AI_PANEL_BRIDGE_PORT: String(bridgePort),
     },
   });
 
@@ -530,7 +530,7 @@ const readJsonResource = async (uri: string, options: OperatorOptions) => {
 
   try {
     const bridgeStatus = await session.client.callTool({
-      name: 'agentganggang.bridge_status',
+      name: 'multi-ai-panel.bridge_status',
       arguments: {},
     });
     const resource = await session.client.readResource({ uri });
@@ -584,7 +584,7 @@ const listWorkflowRuns = async (options: OperatorOptions) => {
       'workflow-list',
       'bridge_http',
       'workflow_bridge_not_connected',
-      'workflow-list requires a live AgentGangGang bridge connection before the MCP tool can read workflow state.',
+      'workflow-list requires a live MultiAiPanel bridge connection before the MCP tool can read workflow state.',
       bridgeHealth,
       options
     );
@@ -594,7 +594,7 @@ const listWorkflowRuns = async (options: OperatorOptions) => {
 
   try {
     const toolResult = await session.client.callTool({
-      name: 'agentganggang.list_workflow_runs',
+      name: 'multi-ai-panel.list_workflow_runs',
       arguments: {},
     });
 
@@ -655,7 +655,7 @@ const getWorkflowRun = async (options: OperatorOptions) => {
       'workflow-get',
       'bridge_http',
       'workflow_bridge_not_connected',
-      'workflow-get requires a live AgentGangGang bridge connection before the MCP tool can read workflow state.',
+      'workflow-get requires a live MultiAiPanel bridge connection before the MCP tool can read workflow state.',
       bridgeHealth,
       options
     );
@@ -665,7 +665,7 @@ const getWorkflowRun = async (options: OperatorOptions) => {
 
   try {
     const toolResult = await session.client.callTool({
-      name: 'agentganggang.get_workflow_run',
+      name: 'multi-ai-panel.get_workflow_run',
       arguments: {
         runId: options.runId,
       },
@@ -731,7 +731,7 @@ const resumeWorkflowRun = async (options: OperatorOptions) => {
       'workflow-resume',
       'bridge_http',
       'workflow_bridge_not_connected',
-      'workflow-resume requires a live AgentGangGang bridge connection before the MCP tool can resume workflow state.',
+      'workflow-resume requires a live MultiAiPanel bridge connection before the MCP tool can resume workflow state.',
       bridgeHealth,
       options
     );
@@ -741,7 +741,7 @@ const resumeWorkflowRun = async (options: OperatorOptions) => {
 
   try {
     const toolResult = await session.client.callTool({
-      name: 'agentganggang.resume_workflow',
+      name: 'multi-ai-panel.resume_workflow',
       arguments: {
         runId: options.runId,
         externalUpdate: options.externalUpdate,
@@ -803,7 +803,7 @@ export const runOperatorCommand = async (
     case 'bridge-status':
       return createToolTemplateResult(
         command,
-        'agentganggang.bridge_status',
+        'multi-ai-panel.bridge_status',
         {},
         [
           'Use this through Codex, Claude Code, or another MCP-capable local agent after the local sidecar is attached.',
@@ -812,7 +812,7 @@ export const runOperatorCommand = async (
         options
       );
     case 'support-matrix':
-      return readJsonResource('agentganggang://builder/support-matrix', options);
+      return readJsonResource('multi-ai-panel://builder/support-matrix', options);
     case 'smoke':
       return runJsonTsxScript(command, path.resolve(__dirname, 'smoke.ts'), [], options);
     case 'status':
@@ -849,11 +849,11 @@ export const runOperatorCommand = async (
         options
       );
     case 'readiness':
-      return readJsonResource('agentganggang://models/readiness', options);
+      return readJsonResource('multi-ai-panel://models/readiness', options);
     case 'workflow-run':
       return createToolTemplateResult(
         command,
-        'agentganggang.run_workflow',
+        'multi-ai-panel.run_workflow',
         {
           workflowId: 'compare-analyze-follow-up',
           sessionId: options.sessionId ?? 'session-1',

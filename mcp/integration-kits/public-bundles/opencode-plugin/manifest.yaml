@@ -1,12 +1,12 @@
 schema_version: 1
-kind: agentganggang_plugin_packet
-id: agentganggang-opencode-plugin
-name: AgentGangGang OpenCode Plugin Packet
-description: Repo-owned OpenCode plugin packet for the AgentGangGang local MCP sidecar.
+kind: multi-ai-panel_plugin_packet
+id: multi-ai-panel-opencode-plugin
+name: MultiAiPanel OpenCode Plugin Packet
+description: Repo-owned OpenCode plugin packet for the MultiAiPanel local MCP sidecar.
 version: "0.2.2"
 license: MIT
-homepage: https://xiaojiou176-open.github.io/AgentGangGang/
-repository: https://github.com/xiaojiou176-open/AgentGangGang
+homepage: https://xiaojiou176-open.github.io/multi-ai-panel/
+repository: https://github.com/xiaojiou176-open/multi-ai-panel
 supportTier: public_bundle_ready_unverified_host_lane
 publicationStatus: repo_owned_packet_not_published
 install:
@@ -16,9 +16,9 @@ install:
 smoke:
   guide: SMOKE.md
   smallest_useful_flow:
-    - agentganggang.bridge_status
-    - agentganggang.check_readiness
-    - agentganggang.compare
+    - multi-ai-panel.bridge_status
+    - multi-ai-panel.check_readiness
+    - multi-ai-panel.compare
 capabilities:
   - compare
   - readiness

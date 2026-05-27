@@ -6,7 +6,7 @@ import {
   BridgeCommandEnvelopeSchema,
   BridgeCommandResultSchema,
   createBridgeBaseUrl,
-  AGENTGANGGANG_BRIDGE_VERSION,
+  MULTI_AI_PANEL_BRIDGE_VERSION,
   type BridgeCommandEnvelope,
 } from '../bridge/protocol';
 import { Logger, toErrorMessage } from '../utils/logger';
@@ -65,7 +65,7 @@ export const startMcpBridgeClient = ({
         },
         body: JSON.stringify({
           ...(await captureBridgeStateSnapshot()),
-          bridgeVersion: AGENTGANGGANG_BRIDGE_VERSION,
+          bridgeVersion: MULTI_AI_PANEL_BRIDGE_VERSION,
         }),
       });
     } catch {

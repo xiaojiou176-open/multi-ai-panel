@@ -4,7 +4,7 @@ import path from 'node:path';
 import { getModelConfig } from '../../src/utils/modelConfig';
 import { withExistingExtensionTarget } from '../../scripts/verify/live-extension-target';
 import {
-  waitForAgentGangGangExtensionId,
+  waitForMultiAiPanelExtensionId,
   resolveLiveProbeConfig,
   scoreLiveSiteCandidateSnapshot,
   withLiveProbeContext,
@@ -12,9 +12,9 @@ import {
 import { resolveBrowserProfile } from '../../scripts/shared/runtime-governance.mjs';
 import { getSiteCapability } from '../../src/utils/siteCapabilityMatrix';
 
-const LIVE_FLAG = process.env.AGENTGANGGANG_LIVE === '1';
+const LIVE_FLAG = process.env.MULTI_AI_PANEL_LIVE === '1';
 const browserProfile = resolveBrowserProfile();
-const ATTACH_MODE = process.env.AGENTGANGGANG_LIVE_ATTACH_MODE || 'browser';
+const ATTACH_MODE = process.env.MULTI_AI_PANEL_LIVE_ATTACH_MODE || 'browser';
 const EXTENSION_ID_CACHE_PATH = path.resolve(
   process.cwd(),
   '.runtime-cache',
@@ -22,21 +22,21 @@ const EXTENSION_ID_CACHE_PATH = path.resolve(
 );
 
 const TARGET_MODELS = (
-  process.env.AGENTGANGGANG_LIVE_MODELS || 'ChatGPT'
+  process.env.MULTI_AI_PANEL_LIVE_MODELS || 'ChatGPT'
 )
   .split(',')
   .map((value) => value.trim())
   .filter(Boolean);
 const ALLOWED_FAILURES = new Set(
-  (process.env.AGENTGANGGANG_EXPECT_FAILURES || '')
+  (process.env.MULTI_AI_PANEL_EXPECT_FAILURES || '')
     .split(',')
     .map((value) => value.trim())
     .filter(Boolean)
 );
 const PROMPT =
-  process.env.AGENTGANGGANG_LIVE_PROMPT ||
+  process.env.MULTI_AI_PANEL_LIVE_PROMPT ||
   'Summarize the value of deterministic testing in one sentence.';
-const TERMINAL_TIMEOUT_MS = Number(process.env.AGENTGANGGANG_LIVE_TIMEOUT_MS || '90000');
+const TERMINAL_TIMEOUT_MS = Number(process.env.MULTI_AI_PANEL_LIVE_TIMEOUT_MS || '90000');
 const CHATGPT_HOSTNAMES = getModelConfig('ChatGPT').hostnames;
 const CHATGPT_CHALLENGE_PATTERN = /cloudflare|verifying|cdn-cgi\/challenge-platform/i;
 
@@ -255,7 +255,7 @@ const unwrapSubstrateResult = <T>(payload: { ok?: boolean; result?: T } | T | nu
 test.describe('live smoke', () => {
   test.skip(
     !LIVE_FLAG,
-    'Live smoke requires AGENTGANGGANG_LIVE=1 and the real Google Chrome profile env vars; login-state-sensitive runs do not fall back to a shared Chromium Default profile.'
+    'Live smoke requires MULTI_AI_PANEL_LIVE=1 and the real Google Chrome profile env vars; login-state-sensitive runs do not fall back to a shared Chromium Default profile.'
   );
 
   test('drives the extension against real logged-in tabs', async () => {
@@ -263,7 +263,7 @@ test.describe('live smoke', () => {
 
     if (browserProfile.blockers.length > 0) {
       throw new Error(
-        `AgentGangGang live smoke requires an explicit real Google Chrome profile lane before execution. ${browserProfile.blockers.join(' ')}`
+        `MultiAiPanel live smoke requires an explicit real Google Chrome profile lane before execution. ${browserProfile.blockers.join(' ')}`
       );
     }
 
@@ -277,21 +277,21 @@ test.describe('live smoke', () => {
         const chatGptSessionState = await inspectChatGptSessionState(context);
         if (CHATGPT_CHALLENGE_PATTERN.test(chatGptSessionState.bodyPreview)) {
           throw new Error(
-            `AgentGangGang live smoke found ChatGPT challenge-gated in the active browser profile: ${JSON.stringify(chatGptSessionState)}`
+            `MultiAiPanel live smoke found ChatGPT challenge-gated in the active browser profile: ${JSON.stringify(chatGptSessionState)}`
           );
         }
         if (chatGptSessionState.loginButtons.length > 0) {
           throw new Error(
-            `AgentGangGang live smoke found ChatGPT still login-gated in the active real browser profile: ${JSON.stringify(chatGptSessionState)}`
+            `MultiAiPanel live smoke found ChatGPT still login-gated in the active real browser profile: ${JSON.stringify(chatGptSessionState)}`
           );
         }
 
         await ensureModelTabsOpen(context, TARGET_MODELS);
-        const extensionId = await waitForAgentGangGangExtensionId(context, 10_000);
+        const extensionId = await waitForMultiAiPanelExtensionId(context, 10_000);
         if (!extensionId) {
           const cachedExtensionId = readCachedExtensionId();
           throw new Error(
-            `AgentGangGang live smoke could not detect a repo-owned extension runtime after opening the target model tabs. Cached extension id: ${cachedExtensionId ?? 'none'}. This usually means the current browser lane surfaced the site but not the AgentGangGang extension runtime.`
+            `MultiAiPanel live smoke could not detect a repo-owned extension runtime after opening the target model tabs. Cached extension id: ${cachedExtensionId ?? 'none'}. This usually means the current browser lane surfaced the site but not the MultiAiPanel extension runtime.`
           );
         }
         persistExtensionId(extensionId);
@@ -320,7 +320,7 @@ test.describe('live smoke', () => {
               }>(buildEnsureReadyModelTabExpression(model, openUrl, hostnames));
               if (!tabSeedResult.readyTabId) {
                 throw new Error(
-                  `AgentGangGang live smoke could not seed a ready ${model} tab in the current browser lane: ${JSON.stringify(tabSeedResult)}`
+                  `MultiAiPanel live smoke could not seed a ready ${model} tab in the current browser lane: ${JSON.stringify(tabSeedResult)}`
                 );
               }
             }
@@ -335,7 +335,7 @@ test.describe('live smoke', () => {
             );
             if (!primaryReport?.ready) {
               throw new Error(
-                `AgentGangGang live smoke still sees ${primaryModel} as not ready: ${JSON.stringify(primaryReport)}`
+                `MultiAiPanel live smoke still sees ${primaryModel} as not ready: ${JSON.stringify(primaryReport)}`
               );
             }
 
@@ -358,7 +358,7 @@ test.describe('live smoke', () => {
 
             if (!compareOutcome?.turnId || !compareOutcome.sessionId) {
               throw new Error(
-                `AgentGangGang live smoke could not start a compare turn: ${JSON.stringify(compareEnvelope)}`
+                `MultiAiPanel live smoke could not start a compare turn: ${JSON.stringify(compareEnvelope)}`
               );
             }
 
@@ -400,7 +400,7 @@ test.describe('live smoke', () => {
             const activeTurn = sessionState?.turns?.find((entry) => entry.id === compareOutcome.turnId);
             if (!activeTurn) {
               throw new Error(
-                `AgentGangGang live smoke lost the active compare turn: ${JSON.stringify(sessionEnvelope)}`
+                `MultiAiPanel live smoke lost the active compare turn: ${JSON.stringify(sessionEnvelope)}`
               );
             }
 
@@ -429,7 +429,7 @@ test.describe('live smoke', () => {
 
         if (!extensionPage) {
           throw new Error(
-            `AgentGangGang live smoke could not find a live extension page for ${extensionId} in persistent mode.`
+            `MultiAiPanel live smoke could not find a live extension page for ${extensionId} in persistent mode.`
           );
         }
 
@@ -456,7 +456,7 @@ test.describe('live smoke', () => {
         );
         if (!primaryReport?.ready) {
           throw new Error(
-            `AgentGangGang live smoke still sees ${primaryModel} as not ready: ${JSON.stringify(primaryReport)}`
+            `MultiAiPanel live smoke still sees ${primaryModel} as not ready: ${JSON.stringify(primaryReport)}`
           );
         }
 
@@ -486,7 +486,7 @@ test.describe('live smoke', () => {
 
         if (!compareOutcome?.turnId || !compareOutcome.sessionId) {
           throw new Error(
-            `AgentGangGang live smoke could not start a compare turn: ${JSON.stringify(compareEnvelope)}`
+            `MultiAiPanel live smoke could not start a compare turn: ${JSON.stringify(compareEnvelope)}`
           );
         }
 
@@ -531,7 +531,7 @@ test.describe('live smoke', () => {
 
     if (blockers.length > 0 || !result) {
       throw new Error(
-        `AgentGangGang live smoke could not establish a live browser context: ${blockers.join(' ')}`
+        `MultiAiPanel live smoke could not establish a live browser context: ${blockers.join(' ')}`
       );
     }
   });

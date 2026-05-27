@@ -18,7 +18,7 @@ export const buildCompareAnalysisPrompt = (request: CompareAnalysisRequest) => {
     .join('\n\n---\n\n');
 
   return [
-    'You are analyzing a AgentGangGang compare turn.',
+    'You are analyzing a MultiAiPanel compare turn.',
     'Return strict JSON with these keys:',
     'consensusSummary: short paragraph about where the completed answers agree.',
     'disagreementSummary: short paragraph about where the answers meaningfully diverge.',

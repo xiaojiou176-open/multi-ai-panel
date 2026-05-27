@@ -40,7 +40,7 @@ const inspectBootstrapConflicts = () => {
     blockers:
       relevantLines.length > 0
         ? [
-            'Close every real Google Chrome process that may still be holding the source or target browser roots before bootstrapping the isolated AgentGangGang browser root.',
+            'Close every real Google Chrome process that may still be holding the source or target browser roots before bootstrapping the isolated MultiAiPanel browser root.',
           ]
         : [],
     sample: relevantLines.slice(0, 8),
@@ -56,7 +56,7 @@ if (bootstrapConflicts.blockers.length > 0) {
     `${JSON.stringify(
       {
         ok: false,
-        mode: 'agentganggang_live_bootstrap_profile',
+        mode: 'multi-ai-panel_live_bootstrap_profile',
         blockers: bootstrapConflicts.blockers,
         bootstrapConflicts: {
           sourceUserDataDir: bootstrapConflicts.sourceProfile.userDataDir,
@@ -80,7 +80,7 @@ process.stdout.write(
   `${JSON.stringify(
     {
       ok: result.ok,
-      mode: 'agentganggang_live_bootstrap_profile',
+      mode: 'multi-ai-panel_live_bootstrap_profile',
       alreadyBootstrapped: result.alreadyBootstrapped,
       sourceUserDataDir: result.sourceProfile.userDataDir,
       sourceProfileName: result.sourceProfile.profileName,

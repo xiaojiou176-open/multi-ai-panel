@@ -131,7 +131,7 @@ function App() {
       label: t('app.workspacePulse.waitLabel', 'Readiness is still settling'),
       body: t(
         'app.workspacePulse.waitBody',
-        'AgentGangGang is still checking or waiting for model tabs to finish loading. Re-check once the pages settle.'
+        'MultiAiPanel is still checking or waiting for model tabs to finish loading. Re-check once the pages settle.'
       ),
     };
   }, [currentPromptCount, readinessSummary, selectedModels.length, t]);
@@ -324,7 +324,7 @@ function App() {
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <h1 className="bg-gradient-to-r from-fuchsia-700 via-rose-600 to-amber-500 bg-clip-text text-lg font-semibold tracking-tight text-transparent">
-                      AgentGangGang
+                      MultiAiPanel
                     </h1>
                     <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-700">
                       {t('app.trust', 'Local-first')}

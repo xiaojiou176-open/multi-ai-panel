@@ -12,19 +12,19 @@ const tempFramesDir = path.join(repoRoot, '.runtime-cache', 'marketing-frames');
 const MARKETING_BROWSER_LAUNCH_TIMEOUT_MS = 300_000;
 const useHeadlessMarketingBrowser = process.env.MARKETING_BROWSER_HEADLESS === '1';
 const generatedAssets = [
-  'agentganggang-hero.png',
-  'agentganggang-compare-detail.png',
-  'agentganggang-workflow-panel.png',
-  'agentganggang-analyst-panel.png',
-  'agentganggang-builder-surface.png',
-  'agentganggang-settings.png',
-  'agentganggang-demo.gif',
-  'agentganggang-social-preview.png',
+  'multi-ai-panel-hero.png',
+  'multi-ai-panel-compare-detail.png',
+  'multi-ai-panel-workflow-panel.png',
+  'multi-ai-panel-analyst-panel.png',
+  'multi-ai-panel-builder-surface.png',
+  'multi-ai-panel-settings.png',
+  'multi-ai-panel-demo.gif',
+  'multi-ai-panel-social-preview.png',
 ];
 const staticFrontdoorAssets = [
-  'agentganggang-before-after.svg',
-  'agentganggang-workflow.svg',
-  'agentganggang-nav-icon.svg',
+  'multi-ai-panel-before-after.svg',
+  'multi-ai-panel-workflow.svg',
+  'multi-ai-panel-nav-icon.svg',
 ];
 const publicFrontdoorAssets = [...generatedAssets, ...staticFrontdoorAssets];
 
@@ -138,7 +138,7 @@ const buildHeroPresentationState = () => ({
           'Gemini leans builder-facing, while Perplexity is stricter about trust-boundary language.',
         recommendedAnswerModel: 'Gemini',
         recommendationReason:
-          'Gemini frames the builder lane clearly without turning AgentGangGang into a platform story.',
+          'Gemini frames the builder lane clearly without turning MultiAiPanel into a platform story.',
         nextQuestion: 'Which next-step workflow cue should we put in the front door first?',
         synthesisDraft:
           'Lead with compare-first proof, make the workflow panel visible, and keep Codex / Claude Code inside the governed MCP lane.',
@@ -205,7 +205,7 @@ const buildGifStates = () => {
               {
                 id: 'pending-user',
                 role: 'user',
-                text: 'Give me a punchy launch tagline for AgentGangGang.',
+                text: 'Give me a punchy launch tagline for MultiAiPanel.',
                 timestamp: baseTimestamp,
                 turnId: 'gif-turn-1',
                 requestId: 'gif-request-1',
@@ -427,11 +427,11 @@ const buildGifStates = () => {
 };
 
 const seedExtensionState = async (page, localState) => {
-  await page.getByText('AgentGangGang', { exact: true }).waitFor();
+  await page.getByText('MultiAiPanel', { exact: true }).waitFor();
   await page.evaluate(async (payload) => {
     const hook = window.__agentGangGang;
     if (!hook?.replaceSessions) {
-      throw new Error('missing agentganggang diagnostic hook');
+      throw new Error('missing multi-ai-panel diagnostic hook');
     }
 
     await hook.replaceSessions(payload.sessions, payload.currentSessionId);
@@ -780,7 +780,7 @@ const createSocialPreview = async (context) => {
       </head>
       <body>
         <section class="panel copy">
-          <span class="eyebrow">AgentGangGang</span>
+          <span class="eyebrow">MultiAiPanel</span>
           <h1>Ask once. Compare AI answers side by side.</h1>
           <p>Line up ChatGPT, Gemini, Perplexity, Qwen, and Grok from one local browser side panel instead of bouncing between tabs.</p>
           <div class="chips">
@@ -863,7 +863,7 @@ const createSocialPreview = async (context) => {
   `);
 
   await socialPage.screenshot({
-    path: path.join(outputDir, 'agentganggang-social-preview.png'),
+    path: path.join(outputDir, 'multi-ai-panel-social-preview.png'),
   });
   await socialPage.close();
 };
@@ -914,28 +914,28 @@ const main = async () => {
     await heroPage.getByText('Next compare seed is ready').waitFor();
 
     await heroPage.screenshot({
-      path: path.join(outputDir, 'agentganggang-hero.png'),
+      path: path.join(outputDir, 'multi-ai-panel-hero.png'),
     });
 
     await heroPage
       .locator('[data-testid="compare-turn-0"]')
-      .screenshot({ path: path.join(outputDir, 'agentganggang-compare-detail.png') });
+      .screenshot({ path: path.join(outputDir, 'multi-ai-panel-compare-detail.png') });
     await heroPage
       .getByTestId('workflow-panel-hero-turn-1')
-      .screenshot({ path: path.join(outputDir, 'agentganggang-workflow-panel.png') });
+      .screenshot({ path: path.join(outputDir, 'multi-ai-panel-workflow-panel.png') });
     await heroPage
       .getByTestId('compare-analyst-panel-hero-turn-1')
-      .screenshot({ path: path.join(outputDir, 'agentganggang-analyst-panel.png') });
+      .screenshot({ path: path.join(outputDir, 'multi-ai-panel-analyst-panel.png') });
 
     await heroPage.goto(`${extensionPrefix}/index.html`, { waitUntil: 'domcontentloaded' });
-    await heroPage.getByText('AgentGangGang', { exact: true }).waitFor();
+    await heroPage.getByText('MultiAiPanel', { exact: true }).waitFor();
     await heroPage.evaluate(() => {
       window.__agentGangGang?.openSettings?.();
     });
     await heroPage.getByTestId('settings-panel').waitFor();
     await heroPage
       .locator('[data-testid="settings-panel"]')
-      .screenshot({ path: path.join(outputDir, 'agentganggang-settings.png') });
+      .screenshot({ path: path.join(outputDir, 'multi-ai-panel-settings.png') });
     await heroPage.close();
 
     const builderPage = await context.newPage();
@@ -949,7 +949,7 @@ const main = async () => {
     await builderPage
       .locator('section.card')
       .filter({ has: operatorHelperHeading })
-      .screenshot({ path: path.join(outputDir, 'agentganggang-builder-surface.png') });
+      .screenshot({ path: path.join(outputDir, 'multi-ai-panel-builder-surface.png') });
     await builderPage.close();
 
     const gifPage = await context.newPage();
@@ -995,7 +995,7 @@ const main = async () => {
       palettePath,
       '-lavfi',
       'fps=1,scale=1440:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5',
-      path.join(outputDir, 'agentganggang-demo.gif'),
+      path.join(outputDir, 'multi-ai-panel-demo.gif'),
     ]);
 
     await createSocialPreview(context);

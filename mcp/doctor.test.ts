@@ -63,8 +63,8 @@ describe('mcp/doctor entry runner', () => {
   it('resolves the bridge base URL from environment overrides', () => {
     expect(
       resolveDoctorContext({
-        AGENTGANGGANG_BRIDGE_HOST: '0.0.0.0',
-        AGENTGANGGANG_BRIDGE_PORT: '49111',
+        MULTI_AI_PANEL_BRIDGE_HOST: '0.0.0.0',
+        MULTI_AI_PANEL_BRIDGE_PORT: '49111',
       })
     ).toEqual({
       bridgeBaseUrl: 'http://0.0.0.0:49111',

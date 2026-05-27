@@ -1,18 +1,18 @@
 ---
-name: agentganggang-compare-workflows
-description: Teach an agent to install AgentGangGang's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
+name: multi-ai-panel-compare-workflows
+description: Teach an agent to install MultiAiPanel's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
 version: 1.1.1
 triggers:
-  - agentganggang
-  - agentganggang
-  - agentganggang
+  - multi-ai-panel
+  - multi-ai-panel
+  - multi-ai-panel
   - compare-first
-  - AgentGangGang
+  - MultiAiPanel
 ---
 
-# AgentGangGang Compare Workflows
+# MultiAiPanel Compare Workflows
 
-Teach the agent how to install, connect, and use AgentGangGang as a
+Teach the agent how to install, connect, and use MultiAiPanel as a
 compare-first browser workspace.
 
 ## Use this skill when
@@ -23,7 +23,7 @@ compare-first browser workspace.
 
 ## What this package teaches
 
-- how to wire the local AgentGangGang MCP sidecar into a host
+- how to wire the local MultiAiPanel MCP sidecar into a host
 - which MCP tools are safe and useful first
 - how to move from readiness checks to a real compare turn
 - how to keep the workflow grounded in a browser-native compare product
@@ -39,19 +39,19 @@ compare-first browser workspace.
 
 ## Recommended workflow
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
-4. `agentganggang.analyze_compare`
-5. `agentganggang.run_workflow`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
+4. `multi-ai-panel.analyze_compare`
+5. `multi-ai-panel.run_workflow`
 
 ## Suggested first prompt
 
-Use AgentGangGang to compare the prompt below across the ready ChatGPT and
-Gemini tabs. Start with `agentganggang.bridge_status` and
-`agentganggang.check_readiness`. If fewer than two model tabs are ready,
+Use MultiAiPanel to compare the prompt below across the ready ChatGPT and
+Gemini tabs. Start with `multi-ai-panel.bridge_status` and
+`multi-ai-panel.check_readiness`. If fewer than two model tabs are ready,
 stop and tell me exactly which login or tab-prep step is missing. If two or
-more tabs are ready, run `agentganggang.compare` and summarize the most
+more tabs are ready, run `multi-ai-panel.compare` and summarize the most
 important wording differences.
 
 ## Success checks
@@ -63,6 +63,6 @@ important wording differences.
 
 ## Boundaries
 
-- AgentGangGang stays a local browser workflow, not a hosted service
+- MultiAiPanel stays a local browser workflow, not a hosted service
 - the MCP sidecar supports compare workflows; it does not replace the extension
 - keep claims grounded in the actual tool surface documented in this package

@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgentGangGang for OpenCode</title>
+    <title>MultiAiPanel for OpenCode</title>
     <meta
       name="description"
-      content="Use AgentGangGang with OpenCode through a public MCP packet, honest support boundaries, and a publish-ready OpenCode plugin scaffold."
+      content="Use MultiAiPanel with OpenCode through a public MCP packet, honest support boundaries, and a publish-ready OpenCode plugin scaffold."
     />
     <link
       rel="canonical"
-      href="https://xiaojiou176-open.github.io/AgentGangGang/opencode-mcp-setup.html"
+      href="https://xiaojiou176-open.github.io/multi-ai-panel/opencode-mcp-setup.html"
     />
     <style>
       :root { color-scheme: light; --bg:#fffaf6; --ink:#0f172a; --muted:#475569; --line:rgba(251,113,133,.16); --panel:rgba(255,255,255,.9); --shadow:0 24px 64px rgba(15,23,42,.08); --brand-a:#d946ef; --brand-b:#f43f5e; --brand-c:#f59e0b; }
@@ -41,19 +41,19 @@
     <div class="shell">
       <nav class="nav">
         <div class="wordmark">
-          <img src="./assets/agentganggang-nav-icon.svg" alt="AgentGangGang logo" width="32" height="32" />
-          <span>AgentGangGang</span>
+          <img src="./assets/multi-ai-panel-nav-icon.svg" alt="MultiAiPanel logo" width="32" height="32" />
+          <span>MultiAiPanel</span>
         </div>
         <div class="actions">
           <a class="nav-link" href="./mcp-host-packets.html">Host packets</a>
           <a class="nav-link" href="./mcp-starter-kits.html">Starter kits</a>
           <a class="nav-link" href="./public-distribution-matrix.html">Distribution matrix</a>
-          <a class="cta" href="https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/opencode-plugin">Open OpenCode bundle</a>
+          <a class="cta" href="https://github.com/xiaojiou176-open/multi-ai-panel/tree/main/mcp/integration-kits/public-bundles/opencode-plugin">Open OpenCode bundle</a>
         </div>
       </nav>
       <main class="card">
         <span class="chip">OpenCode packet</span>
-        <h1>Use AgentGangGang with OpenCode through a public packet without overclaiming a published plugin.</h1>
+        <h1>Use MultiAiPanel with OpenCode through a public packet without overclaiming a published plugin.</h1>
         <p>
           OpenCode already ships an official plugin surface and project-root config model. Prompt
           Switchboard now adds a public-bundle-ready OpenCode packet in this repo: MCP config, a
@@ -97,14 +97,14 @@
         </p>
         <pre>{
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["agentganggang-opencode-plugin"],
+  "plugin": ["multi-ai-panel-opencode-plugin"],
   "mcp": {
-    "agentganggang": {
+    "multi-ai-panel": {
       "type": "local",
       "command": [
         "npm",
         "--prefix",
-        "/absolute/path/to/AgentGangGang",
+        "/absolute/path/to/MultiAiPanel",
         "run",
         "mcp:server"
       ],
@@ -116,9 +116,9 @@
       <section class="card">
         <h2>Smallest useful smoke</h2>
         <ol>
-          <li><code>agentganggang.bridge_status</code></li>
-          <li><code>agentganggang.check_readiness</code></li>
-          <li><code>agentganggang.compare</code></li>
+          <li><code>multi-ai-panel.bridge_status</code></li>
+          <li><code>multi-ai-panel.check_readiness</code></li>
+          <li><code>multi-ai-panel.compare</code></li>
         </ol>
         <p>
           If you install the plugin scaffold locally, use the bundled helper tool to print the same
@@ -132,7 +132,7 @@
           <li>Packable artifact path: run <code>npm run release:host-kits</code></li>
           <li>Official surface exists: OpenCode npm plugin flow</li>
           <li>Current repo truth: package scaffold present, npm publish still external</li>
-          <li>AgentGangGang still stays compare-first and browser-native. This packet does not turn it into a hosted relay, SDK, or generic automation platform.</li>
+          <li>MultiAiPanel still stays compare-first and browser-native. This packet does not turn it into a hosted relay, SDK, or generic automation platform.</li>
         </ul>
       </section>
       <section class="card">
@@ -142,7 +142,7 @@
           <li>Choose the owner-controlled npm package name and namespace for the OpenCode plugin package.</li>
           <li>Publish <code>mcp/integration-kits/public-bundles/opencode-plugin/</code> to npm.</li>
           <li>Install it through the official OpenCode plugin flow and verify one compare-first smoke path.</li>
-          <li>Only after the package URL and install proof exist should you update public docs to claim AgentGangGang is publicly published for OpenCode.</li>
+          <li>Only after the package URL and install proof exist should you update public docs to claim MultiAiPanel is publicly published for OpenCode.</li>
         </ol>
       </section>
     </div>

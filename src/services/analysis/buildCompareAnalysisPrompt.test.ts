@@ -26,7 +26,7 @@ describe('buildCompareAnalysisPrompt', () => {
       ],
     });
 
-    expect(prompt).toContain('You are analyzing a AgentGangGang compare turn.');
+    expect(prompt).toContain('You are analyzing a MultiAiPanel compare turn.');
     expect(prompt).toContain('Return strict JSON with these keys:');
     expect(prompt).toContain('Original prompt:\nCompare these answers.');
     expect(prompt).toContain('Requested models: ChatGPT, Gemini');

@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 
-const repo = 'xiaojiou176-open/AgentGangGang';
+const repo = 'xiaojiou176-open/MultiAiPanel';
 
 function runGh(args) {
   try {

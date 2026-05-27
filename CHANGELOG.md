@@ -91,7 +91,7 @@ different version story.
 - Strengthened the front-door copy and metadata around the product category:
   local-first AI compare workspace, browser side panel, and no hosted relay.
 - Added repo-side alias readiness metadata so future `.ai` or campaign domains
-  can redirect into the canonical AgentGangGang homepage without forcing a
+  can redirect into the canonical MultiAiPanel homepage without forcing a
   primary brand rename inside the repository.
 - Upgraded the MCP doctor output from a static note to a real bridge-health
   report that distinguishes \"bridge not running\" from \"bridge running but
@@ -159,7 +159,7 @@ different version story.
 - Third-party and redistribution note for release review and public consumers.
 - Release-preparation checklist and store listing guidance.
 - Host-side verification script and fixed release-baseline command.
-- AgentGangGang brand icon asset for manifest and HTML entrypoints.
+- MultiAiPanel brand icon asset for manifest and HTML entrypoints.
 - Compare-first sidepanel view with per-model status cards.
 - Turn-aware message metadata for compare grouping and delivery state tracking.
 - Brand guard, selector drift contract tests, and opt-in live smoke
@@ -181,9 +181,9 @@ different version story.
   discussions-enabled front surface.
 - Release baseline now cleans transient runtime artifacts before and after
   verification and E2E execution.
-- Public-facing product name aligned to `AgentGangGang`.
-- Package name aligned to `AgentGangGang`.
-- Placeholder Vite icon references replaced with AgentGangGang branding
+- Public-facing product name aligned to `MultiAiPanel`.
+- Package name aligned to `MultiAiPanel`.
+- Placeholder Vite icon references replaced with MultiAiPanel branding
   assets.
 - Extension and package version target advanced to `0.2.0`.
 - Contributor-facing build output, documentation, and gate surfaces now treat

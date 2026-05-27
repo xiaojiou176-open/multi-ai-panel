@@ -26,7 +26,7 @@ data/
 tmp/
 artifacts/
 *.local
-/agentganggang-*.tgz
+/multi-ai-panel-*.tgz
 .env
 .env.*
 *.njsproj
@@ -62,3 +62,15 @@ yarn-error.log*
 .claude/sessions/
 **/rollout-*.jsonl
 **/session-*.jsonl
+
+# Common secret files (patch 2026-05-27)
+*.key
+*.pem
+id_rsa
+id_ed25519
+*.p12
+*.pfx
+
+
+# .archive/ 全部 ignore（5/27 v3 加固）
+.archive/

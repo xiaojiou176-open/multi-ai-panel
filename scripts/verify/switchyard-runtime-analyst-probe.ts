@@ -15,7 +15,7 @@ const parseOption = (flag: string) => {
 const model = (parseOption('--model') ?? 'Gemini') as ModelName;
 const prompt =
   parseOption('--prompt') ??
-  'Reply with exactly AGENTGANGGANG_RUNTIME_OK and nothing else.';
+  'Reply with exactly MULTI_AI_PANEL_RUNTIME_OK and nothing else.';
 
 const result = await runSwitchyardCompareAnalysis({
   analystModel: model,
@@ -25,7 +25,7 @@ const result = await runSwitchyardCompareAnalysis({
 console.log(
   JSON.stringify(
     {
-      surface: 'agentganggang-switchyard-runtime-probe',
+      surface: 'multi-ai-panel-switchyard-runtime-probe',
       model,
       prompt,
       result,

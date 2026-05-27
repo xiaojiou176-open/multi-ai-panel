@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "agentganggang": {
+    "multi-ai-panel": {
       "command": "npm",
       "args": ["run", "mcp:server"],
-      "cwd": "/absolute/path/to/AgentGangGang"
+      "cwd": "/absolute/path/to/MultiAiPanel"
     }
   }
 }

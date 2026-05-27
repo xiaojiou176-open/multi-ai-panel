@@ -8,7 +8,7 @@ import { BRIDGE_COMMAND_NAMES, type BridgeStateSnapshot } from '../src/bridge/pr
 import { WorkflowExternalUpdateSchema } from '../src/substrate/api/index.js';
 import { SITE_CAPABILITY_MATRIX } from '../src/utils/siteCapabilityMatrix.js';
 import { MCP_ANALYSIS_PROVIDER_CATALOG } from './analysisCatalog.js';
-import { AgentGangGangBridgeServer } from './bridgeServer.js';
+import { MultiAiPanelBridgeServer } from './bridgeServer.js';
 import { MCP_MODEL_CATALOG } from './modelCatalog.js';
 import { MCP_WORKFLOW_TEMPLATE_CATALOG } from './workflowCatalog.js';
 
@@ -58,11 +58,11 @@ const asToolResult = (label: string, payload: Record<string, unknown>) => ({
 
 type RegisterableMcpServer = Pick<McpServer, 'registerResource' | 'registerTool'>;
 type BridgeRuntime = Pick<
-  AgentGangGangBridgeServer,
+  MultiAiPanelBridgeServer,
   'dispatchCommand' | 'getPort' | 'getState' | 'start' | 'close'
 >;
 type ServerLifecycleBridge = Pick<
-  AgentGangGangBridgeServer,
+  MultiAiPanelBridgeServer,
   'getHost' | 'getPort' | 'start' | 'close'
 >;
 type ConnectableMcpServer = Pick<McpServer, 'connect'>;
@@ -74,7 +74,7 @@ type ServerRunOptions = {
   writeError?: (...args: unknown[]) => void;
 };
 
-export const registerAgentGangGangMcpSurface = (
+export const registerMultiAiPanelMcpSurface = (
   mcpServer: RegisterableMcpServer,
   bridgeServer: BridgeRuntime
 ) => {
@@ -94,17 +94,17 @@ export const registerAgentGangGangMcpSurface = (
     );
 
   mcpServer.registerResource(
-    'agentganggang-current-session',
-    'agentganggang://sessions/current',
+    'multi-ai-panel-current-session',
+    'multi-ai-panel://sessions/current',
     {
-      title: 'Current AgentGangGang session',
-      description: 'Latest cached snapshot of the current AgentGangGang session.',
+      title: 'Current MultiAiPanel session',
+      description: 'Latest cached snapshot of the current MultiAiPanel session.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://sessions/current',
+          uri: 'multi-ai-panel://sessions/current',
           mimeType: 'application/json',
           text: JSON.stringify(requireState().currentSession, null, 2),
         },
@@ -113,17 +113,17 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-readiness',
-    'agentganggang://models/readiness',
+    'multi-ai-panel-readiness',
+    'multi-ai-panel://models/readiness',
     {
-      title: 'AgentGangGang readiness snapshot',
+      title: 'MultiAiPanel readiness snapshot',
       description: 'Latest cached per-model readiness snapshot from the extension bridge.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://models/readiness',
+          uri: 'multi-ai-panel://models/readiness',
           mimeType: 'application/json',
           text: JSON.stringify(requireState().readiness, null, 2),
         },
@@ -132,17 +132,17 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-model-catalog',
-    'agentganggang://models/catalog',
+    'multi-ai-panel-model-catalog',
+    'multi-ai-panel://models/catalog',
     {
-      title: 'AgentGangGang model catalog',
+      title: 'MultiAiPanel model catalog',
       description: 'Supported model names, labels, hostnames, and open URLs.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://models/catalog',
+          uri: 'multi-ai-panel://models/catalog',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_MODEL_CATALOG, null, 2),
         },
@@ -151,10 +151,10 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-analysis-providers',
-    'agentganggang://analysis/providers',
+    'multi-ai-panel-analysis-providers',
+    'multi-ai-panel://analysis/providers',
     {
-      title: 'AgentGangGang analysis provider catalog',
+      title: 'MultiAiPanel analysis provider catalog',
       description:
         'Structured analysis-lane truth for browser-session and local Switchyard runtime execution surfaces.',
       mimeType: 'application/json',
@@ -162,7 +162,7 @@ export const registerAgentGangGangMcpSurface = (
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://analysis/providers',
+          uri: 'multi-ai-panel://analysis/providers',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_ANALYSIS_PROVIDER_CATALOG, null, 2),
         },
@@ -171,18 +171,18 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-workflow-templates',
-    'agentganggang://workflows/templates',
+    'multi-ai-panel-workflow-templates',
+    'multi-ai-panel://workflows/templates',
     {
-      title: 'AgentGangGang workflow template catalog',
+      title: 'MultiAiPanel workflow template catalog',
       description:
-        'Structured builder-facing catalog for the built-in AgentGangGang workflow templates and their durability boundaries.',
+        'Structured builder-facing catalog for the built-in MultiAiPanel workflow templates and their durability boundaries.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://workflows/templates',
+          uri: 'multi-ai-panel://workflows/templates',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_WORKFLOW_TEMPLATE_CATALOG, null, 2),
         },
@@ -191,18 +191,18 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-builder-support-matrix',
-    'agentganggang://builder/support-matrix',
+    'multi-ai-panel-builder-support-matrix',
+    'multi-ai-panel://builder/support-matrix',
     {
-      title: 'AgentGangGang builder support matrix',
+      title: 'MultiAiPanel builder support matrix',
       description:
-        'Machine-readable truth for current supported, partial, public-bundle-ready, and planned AgentGangGang builder and consumer bindings.',
+        'Machine-readable truth for current supported, partial, public-bundle-ready, and planned MultiAiPanel builder and consumer bindings.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://builder/support-matrix',
+          uri: 'multi-ai-panel://builder/support-matrix',
           mimeType: 'application/json',
           text: JSON.stringify(builderSupportMatrix, null, 2),
         },
@@ -211,10 +211,10 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-public-distribution-matrix',
-    'agentganggang://builder/public-distribution',
+    'multi-ai-panel-public-distribution-matrix',
+    'multi-ai-panel://builder/public-distribution',
     {
-      title: 'AgentGangGang public distribution matrix',
+      title: 'MultiAiPanel public distribution matrix',
       description:
         'Machine-readable truth for public builder bundles, official host surfaces, and current marketplace or registry claim boundaries.',
       mimeType: 'application/json',
@@ -222,7 +222,7 @@ export const registerAgentGangGangMcpSurface = (
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://builder/public-distribution',
+          uri: 'multi-ai-panel://builder/public-distribution',
           mimeType: 'application/json',
           text: JSON.stringify(publicDistributionMatrix, null, 2),
         },
@@ -231,18 +231,18 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'agentganggang-site-capabilities',
-    'agentganggang://sites/capabilities',
+    'multi-ai-panel-site-capabilities',
+    'multi-ai-panel://sites/capabilities',
     {
-      title: 'AgentGangGang site capability matrix',
+      title: 'MultiAiPanel site capability matrix',
       description:
-        'Machine-readable per-site DOM, readiness, compare-path, and private-API-boundary notes for supported AgentGangGang sites.',
+        'Machine-readable per-site DOM, readiness, compare-path, and private-API-boundary notes for supported MultiAiPanel sites.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'agentganggang://sites/capabilities',
+          uri: 'multi-ai-panel://sites/capabilities',
           mimeType: 'application/json',
           text: JSON.stringify(SITE_CAPABILITY_MATRIX, null, 2),
         },
@@ -251,9 +251,9 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.check_readiness',
+    'multi-ai-panel.check_readiness',
     {
-      description: 'Check readiness for selected AgentGangGang model tabs.',
+      description: 'Check readiness for selected MultiAiPanel model tabs.',
       inputSchema: {
         models: z.array(z.enum(['ChatGPT', 'Gemini', 'Perplexity', 'Qwen', 'Grok'])).optional(),
       },
@@ -261,16 +261,16 @@ export const registerAgentGangGangMcpSurface = (
     },
     async ({ models }) =>
       callBridge(
-        'AgentGangGang readiness check result',
+        'MultiAiPanel readiness check result',
         BRIDGE_COMMAND_NAMES.CHECK_READINESS,
         { models }
       )
   );
 
   mcpServer.registerTool(
-    'agentganggang.open_model_tabs',
+    'multi-ai-panel.open_model_tabs',
     {
-      description: 'Open or reuse supported model tabs inside AgentGangGang.',
+      description: 'Open or reuse supported model tabs inside MultiAiPanel.',
       inputSchema: {
         models: z.array(z.enum(['ChatGPT', 'Gemini', 'Perplexity', 'Qwen', 'Grok'])).optional(),
       },
@@ -278,17 +278,17 @@ export const registerAgentGangGangMcpSurface = (
     },
     async ({ models }) =>
       callBridge(
-        'AgentGangGang opened the requested model tabs',
+        'MultiAiPanel opened the requested model tabs',
         BRIDGE_COMMAND_NAMES.OPEN_MODEL_TABS,
         { models }
       )
   );
 
   mcpServer.registerTool(
-    'agentganggang.compare',
+    'multi-ai-panel.compare',
     {
       description:
-        'Run one AgentGangGang compare turn, persist it into session history, and fan the prompt out to ready model tabs.',
+        'Run one MultiAiPanel compare turn, persist it into session history, and fan the prompt out to ready model tabs.',
       inputSchema: {
         prompt: z.string().min(1),
         sessionId: z.string().optional(),
@@ -297,7 +297,7 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ prompt, sessionId, models }) =>
-      callBridge('AgentGangGang compare run queued', BRIDGE_COMMAND_NAMES.COMPARE, {
+      callBridge('MultiAiPanel compare run queued', BRIDGE_COMMAND_NAMES.COMPARE, {
         prompt,
         sessionId,
         models,
@@ -305,10 +305,10 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.retry_failed',
+    'multi-ai-panel.retry_failed',
     {
       description:
-        'Retry failed models from an existing AgentGangGang compare turn without replaying successful ones.',
+        'Retry failed models from an existing MultiAiPanel compare turn without replaying successful ones.',
       inputSchema: {
         turnId: z.string().min(1),
         sessionId: z.string().optional(),
@@ -317,7 +317,7 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId, models }) =>
-      callBridge('AgentGangGang retry run queued', BRIDGE_COMMAND_NAMES.RETRY_FAILED, {
+      callBridge('MultiAiPanel retry run queued', BRIDGE_COMMAND_NAMES.RETRY_FAILED, {
         turnId,
         sessionId,
         models,
@@ -325,10 +325,10 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.get_session',
+    'multi-ai-panel.get_session',
     {
       description:
-        'Fetch a persisted AgentGangGang session snapshot, including compare turns and current model statuses.',
+        'Fetch a persisted MultiAiPanel session snapshot, including compare turns and current model statuses.',
       inputSchema: {
         sessionId: z.string().optional(),
         includeMessages: z.boolean().optional(),
@@ -336,29 +336,29 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ sessionId, includeMessages }) =>
-      callBridge('AgentGangGang session snapshot', BRIDGE_COMMAND_NAMES.GET_SESSION, {
+      callBridge('MultiAiPanel session snapshot', BRIDGE_COMMAND_NAMES.GET_SESSION, {
         sessionId,
         includeMessages,
       })
   );
 
   mcpServer.registerTool(
-    'agentganggang.list_sessions',
+    'multi-ai-panel.list_sessions',
     {
-      description: 'List recent AgentGangGang sessions from local extension storage.',
+      description: 'List recent MultiAiPanel sessions from local extension storage.',
       inputSchema: {
         limit: z.number().int().positive().max(50).optional(),
       },
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ limit }) =>
-      callBridge('AgentGangGang session list', BRIDGE_COMMAND_NAMES.LIST_SESSIONS, {
+      callBridge('MultiAiPanel session list', BRIDGE_COMMAND_NAMES.LIST_SESSIONS, {
         limit,
       })
   );
 
   mcpServer.registerTool(
-    'agentganggang.export_compare',
+    'multi-ai-panel.export_compare',
     {
       description: 'Export one compare turn as Markdown or as a compact local-first share summary.',
       inputSchema: {
@@ -369,7 +369,7 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId, format }) =>
-      callBridge('AgentGangGang compare export', BRIDGE_COMMAND_NAMES.EXPORT_COMPARE, {
+      callBridge('MultiAiPanel compare export', BRIDGE_COMMAND_NAMES.EXPORT_COMPARE, {
         turnId,
         sessionId,
         format,
@@ -377,7 +377,7 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.analyze_compare',
+    'multi-ai-panel.analyze_compare',
     {
       description:
         'Run the current AI Compare Analyst lane for the latest or requested compare turn.',
@@ -388,17 +388,17 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId }) =>
-      callBridge('AgentGangGang AI compare analysis', BRIDGE_COMMAND_NAMES.ANALYZE_COMPARE, {
+      callBridge('MultiAiPanel AI compare analysis', BRIDGE_COMMAND_NAMES.ANALYZE_COMPARE, {
         turnId,
         sessionId,
       })
   );
 
   mcpServer.registerTool(
-    'agentganggang.run_workflow',
+    'multi-ai-panel.run_workflow',
     {
       description:
-        'Start the built-in linear AgentGangGang workflow template (`compare-analyze-follow-up`) inside the governed local substrate.',
+        'Start the built-in linear MultiAiPanel workflow template (`compare-analyze-follow-up`) inside the governed local substrate.',
       inputSchema: {
         workflowId: z.string().min(1),
         sessionId: z.string().optional(),
@@ -408,7 +408,7 @@ export const registerAgentGangGangMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ workflowId, sessionId, turnId, input }) =>
-      callBridge('AgentGangGang workflow run result', BRIDGE_COMMAND_NAMES.RUN_WORKFLOW, {
+      callBridge('MultiAiPanel workflow run result', BRIDGE_COMMAND_NAMES.RUN_WORKFLOW, {
         workflowId,
         sessionId,
         turnId,
@@ -417,26 +417,26 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.list_workflow_runs',
+    'multi-ai-panel.list_workflow_runs',
     {
       description:
-        'List recent session-scoped AgentGangGang workflow snapshots for builder-side recovery or inspection.',
+        'List recent session-scoped MultiAiPanel workflow snapshots for builder-side recovery or inspection.',
       inputSchema: {
         limit: z.number().int().positive().max(50).optional(),
       },
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ limit }) =>
-      callBridge('AgentGangGang workflow run list', BRIDGE_COMMAND_NAMES.LIST_WORKFLOW_RUNS, {
+      callBridge('MultiAiPanel workflow run list', BRIDGE_COMMAND_NAMES.LIST_WORKFLOW_RUNS, {
         limit,
       })
   );
 
   mcpServer.registerTool(
-    'agentganggang.get_workflow_run',
+    'multi-ai-panel.get_workflow_run',
     {
       description:
-        'Fetch the latest session-scoped snapshot for one AgentGangGang workflow run.',
+        'Fetch the latest session-scoped snapshot for one MultiAiPanel workflow run.',
       inputSchema: {
         runId: z.string().min(1),
       },
@@ -444,17 +444,17 @@ export const registerAgentGangGangMcpSurface = (
     },
     async ({ runId }) =>
       callBridge(
-        'AgentGangGang workflow run snapshot',
+        'MultiAiPanel workflow run snapshot',
         BRIDGE_COMMAND_NAMES.GET_WORKFLOW_RUN,
         { runId }
       )
   );
 
   mcpServer.registerTool(
-    'agentganggang.resume_workflow',
+    'multi-ai-panel.resume_workflow',
     {
       description:
-        'Resume one session-scoped AgentGangGang workflow run after supplying the external step result it was waiting for.',
+        'Resume one session-scoped MultiAiPanel workflow run after supplying the external step result it was waiting for.',
       inputSchema: {
         runId: z.string().min(1),
         externalUpdate: WorkflowExternalUpdateSchema.optional(),
@@ -463,7 +463,7 @@ export const registerAgentGangGangMcpSurface = (
     },
     async ({ runId, externalUpdate }) =>
       callBridge(
-        'AgentGangGang workflow resume result',
+        'MultiAiPanel workflow resume result',
         BRIDGE_COMMAND_NAMES.RESUME_WORKFLOW,
         {
           runId,
@@ -473,15 +473,15 @@ export const registerAgentGangGangMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'agentganggang.bridge_status',
+    'multi-ai-panel.bridge_status',
     {
       description:
-        'Report whether the local AgentGangGang extension bridge is connected to this MCP sidecar.',
+        'Report whether the local MultiAiPanel extension bridge is connected to this MCP sidecar.',
       inputSchema: {},
       outputSchema: BridgeStatusSchema,
     },
     async () =>
-      asToolResult('AgentGangGang bridge status', {
+      asToolResult('MultiAiPanel bridge status', {
         connected: Boolean(requireState().extensionId),
         extensionId: requireState().extensionId ?? null,
         lastSeenAt: requireState().lastSeenAt ?? null,
@@ -490,14 +490,14 @@ export const registerAgentGangGangMcpSurface = (
   );
 };
 
-export const createAgentGangGangMcpRuntime = () => {
-  const bridgeServer = new AgentGangGangBridgeServer();
+export const createMultiAiPanelMcpRuntime = () => {
+  const bridgeServer = new MultiAiPanelBridgeServer();
   const mcpServer = new McpServer({
-    name: 'agentganggang',
+    name: 'multi-ai-panel',
     version: packageJson.version,
   });
 
-  registerAgentGangGangMcpSurface(mcpServer, bridgeServer);
+  registerMultiAiPanelMcpSurface(mcpServer, bridgeServer);
 
   return {
     bridgeServer,
@@ -513,7 +513,7 @@ const resolveServerRuntime = (options: ServerRunOptions = {}) => {
     };
   }
 
-  return createAgentGangGangMcpRuntime();
+  return createMultiAiPanelMcpRuntime();
 };
 
 export async function runServerMain(options: ServerRunOptions = {}) {
@@ -526,7 +526,7 @@ export async function runServerMain(options: ServerRunOptions = {}) {
     const transport = createTransport();
     await mcpServer.connect(transport as never);
     writeError(
-      `AgentGangGang MCP sidecar listening on stdio with loopback bridge http://${bridgeServer.getHost()}:${bridgeServer.getPort()}`
+      `MultiAiPanel MCP sidecar listening on stdio with loopback bridge http://${bridgeServer.getHost()}:${bridgeServer.getPort()}`
     );
   } catch (error) {
     await bridgeServer.close().catch(() => undefined);
@@ -540,7 +540,7 @@ export async function runServerCli(options: ServerRunOptions = {}) {
   try {
     await runServerMain(options);
   } catch (error) {
-    writeError('AgentGangGang MCP server failed to start:', error);
+    writeError('MultiAiPanel MCP server failed to start:', error);
     (options.exit ?? process.exit)(1);
   }
 }

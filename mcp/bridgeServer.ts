@@ -6,7 +6,7 @@ import {
   BridgeBootstrapRequestSchema,
   BridgeCommandEnvelopeSchema,
   BridgeCommandResultSchema,
-  AGENTGANGGANG_BRIDGE_VERSION,
+  MULTI_AI_PANEL_BRIDGE_VERSION,
   resolveBridgeHost,
   resolveBridgePort,
 } from '../src/bridge/protocol.js';
@@ -49,7 +49,7 @@ const sendEmpty = (response: ServerResponse, statusCode = 204) => {
   response.end();
 };
 
-export class AgentGangGangBridgeServer {
+export class MultiAiPanelBridgeServer {
   private readonly host: string;
   private readonly port: number;
   private readonly pendingCommands = new Map<string, PendingCommand>();
@@ -117,7 +117,7 @@ export class AgentGangGangBridgeServer {
   ): Promise<BridgeCommandResult> {
     if (!this.bridgeKey || !this.extensionId) {
       throw new Error(
-        'AgentGangGang bridge is not connected yet. Open the extension so it can bootstrap the local bridge.'
+        'MultiAiPanel bridge is not connected yet. Open the extension so it can bootstrap the local bridge.'
       );
     }
 
@@ -177,7 +177,7 @@ export class AgentGangGangBridgeServer {
           ok: true,
           bridgeKey: this.bridgeKey,
           pollIntervalMs: 30_000,
-          bridgeVersion: AGENTGANGGANG_BRIDGE_VERSION,
+          bridgeVersion: MULTI_AI_PANEL_BRIDGE_VERSION,
         });
         return;
       }

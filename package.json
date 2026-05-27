@@ -1,19 +1,19 @@
 {
-  "name": "agentganggang",
+  "name": "multi-ai-panel",
   "private": true,
   "version": "0.2.2",
   "license": "MIT",
   "description": "Compare-first, browser-native AI compare workspace for ChatGPT, Gemini, Perplexity, Qwen, and Grok, with governed coding-agent integrations for Codex and Claude Code browser workflows.",
-  "homepage": "https://xiaojiou176-open.github.io/AgentGangGang/",
+  "homepage": "https://xiaojiou176-open.github.io/multi-ai-panel/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git"
+    "url": "git+https://github.com/xiaojiou176-open/multi-ai-panel.git"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
+    "url": "https://github.com/xiaojiou176-open/multi-ai-panel/issues"
   },
   "keywords": [
-    "agentganggang",
+    "multi-ai-panel",
     "browser-extension",
     "chrome-extension",
     "side-panel",

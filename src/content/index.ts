@@ -178,7 +178,7 @@ async function handleExecutePrompt(payload: ExecutePromptPayload) {
         requestId: payload.requestId,
         turnId: payload.turnId,
         text: i18n.t('runtime.contentPromptDriveFailed', {
-          defaultValue: 'AgentGangGang could not drive {{model}} on this page.',
+          defaultValue: 'MultiAiPanel could not drive {{model}} on this page.',
           model: payload.model,
         }),
         isComplete: true,
@@ -218,7 +218,7 @@ async function handleExecuteCompareAnalysis(
       errorCode: 'runtime_error',
       errorMessage: i18n.t(
         'runtime.contentScraperMissing',
-        'AgentGangGang could not find an active scraper for this page.'
+        'MultiAiPanel could not find an active scraper for this page.'
       ),
     });
     return;
@@ -276,7 +276,7 @@ async function handleExecuteCompareAnalysis(
       completedAt: Date.now(),
       errorCode: 'runtime_error',
       errorMessage: i18n.t('runtime.contentAnalysisDriveFailed', {
-        defaultValue: 'AgentGangGang could not drive {{model}} on this page for AI analysis.',
+        defaultValue: 'MultiAiPanel could not drive {{model}} on this page for AI analysis.',
         model: payload.model,
       }),
       data: {

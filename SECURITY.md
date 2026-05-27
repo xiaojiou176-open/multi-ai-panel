@@ -8,7 +8,7 @@ default branch first.
 This repository contains browser extension code, DOM automation logic for
 supported third-party AI websites, and optional remote selector update support.
 
-AgentGangGang keeps the trust boundary local-first: it relies on the
+MultiAiPanel keeps the trust boundary local-first: it relies on the
 user's existing browser sessions and does not add a hosted relay service in
 front of those supported sites.
 

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const AGENTGANGGANG_API_SUBSTRATE = 'agentganggang.substrate' as const;
-export const AGENTGANGGANG_API_VERSION = 'v1' as const;
+export const MULTI_AI_PANEL_API_SUBSTRATE = 'multi-ai-panel.substrate' as const;
+export const MULTI_AI_PANEL_API_VERSION = 'v1' as const;
 
 export const SUBSTRATE_ACTION_NAMES = {
   CHECK_READINESS: 'check_readiness',
@@ -549,16 +549,16 @@ export type SubstrateActionSuccessPayloadMap = {
 
 const CommandEnvelopeBaseSchema = z
   .object({
-    substrate: z.literal(AGENTGANGGANG_API_SUBSTRATE),
-    version: z.literal(AGENTGANGGANG_API_VERSION),
+    substrate: z.literal(MULTI_AI_PANEL_API_SUBSTRATE),
+    version: z.literal(MULTI_AI_PANEL_API_VERSION),
     id: NonEmptyStringSchema,
   })
   .strict();
 
 const ResultEnvelopeBaseSchema = z
   .object({
-    substrate: z.literal(AGENTGANGGANG_API_SUBSTRATE),
-    version: z.literal(AGENTGANGGANG_API_VERSION),
+    substrate: z.literal(MULTI_AI_PANEL_API_SUBSTRATE),
+    version: z.literal(MULTI_AI_PANEL_API_VERSION),
     id: NonEmptyStringSchema,
     ok: z.boolean(),
   })
@@ -702,14 +702,14 @@ export const SubstrateApiResultEnvelopeSchema = z.union([
   SubstrateApiFailureEnvelopeSchema,
 ]);
 
-export type SubstrateApiVersion = typeof AGENTGANGGANG_API_VERSION;
+export type SubstrateApiVersion = typeof MULTI_AI_PANEL_API_VERSION;
 export type SubstrateApiCommandEnvelope = z.infer<typeof SubstrateApiCommandEnvelopeSchema>;
 export type SubstrateApiSuccessEnvelope = z.infer<typeof SubstrateApiSuccessEnvelopeSchema>;
 export type SubstrateApiFailureEnvelope = z.infer<typeof SubstrateApiFailureEnvelopeSchema>;
 export type SubstrateApiResultEnvelope = z.infer<typeof SubstrateApiResultEnvelopeSchema>;
 
 type CommandLike<TAction extends SubstrateActionName> = {
-  substrate?: typeof AGENTGANGGANG_API_SUBSTRATE;
+  substrate?: typeof MULTI_AI_PANEL_API_SUBSTRATE;
   version?: SubstrateApiVersion;
   id: string;
   action: TAction;
@@ -732,8 +732,8 @@ export const createSubstrateApiSuccess = <TAction extends SubstrateActionName>(
   result: SubstrateActionSuccessPayloadMap[TAction]
 ) =>
   SubstrateApiSuccessEnvelopeSchema.parse({
-    substrate: command.substrate ?? AGENTGANGGANG_API_SUBSTRATE,
-    version: command.version ?? AGENTGANGGANG_API_VERSION,
+    substrate: command.substrate ?? MULTI_AI_PANEL_API_SUBSTRATE,
+    version: command.version ?? MULTI_AI_PANEL_API_VERSION,
     id: command.id,
     action: command.action,
     ok: true,
@@ -745,8 +745,8 @@ export const createSubstrateApiFailure = <TAction extends SubstrateActionName>(
   error: SubstrateApiError
 ) =>
   SubstrateApiFailureEnvelopeSchema.parse({
-    substrate: command.substrate ?? AGENTGANGGANG_API_SUBSTRATE,
-    version: command.version ?? AGENTGANGGANG_API_VERSION,
+    substrate: command.substrate ?? MULTI_AI_PANEL_API_SUBSTRATE,
+    version: command.version ?? MULTI_AI_PANEL_API_VERSION,
     id: command.id,
     action: command.action,
     ok: false,
@@ -785,7 +785,7 @@ const createCompatibleSuccessSchema = <TAction extends SubstrateActionName>(
 ) =>
   z
     .object({
-      version: z.literal(AGENTGANGGANG_API_VERSION),
+      version: z.literal(MULTI_AI_PANEL_API_VERSION),
       action: z.literal(action),
       ok: z.literal(true),
       data: schema,
@@ -795,7 +795,7 @@ const createCompatibleSuccessSchema = <TAction extends SubstrateActionName>(
 const createCompatibleFailureSchema = <TAction extends SubstrateActionName>(action: TAction) =>
   z
     .object({
-      version: z.literal(AGENTGANGGANG_API_VERSION),
+      version: z.literal(MULTI_AI_PANEL_API_VERSION),
       action: z.literal(action),
       ok: z.literal(false),
       error: SubstrateApiErrorSchema,
@@ -894,7 +894,7 @@ export const createSubstrateSuccess = <TAction extends SubstrateActionName>(
   data: SubstrateActionSuccessPayloadMap[TAction]
 ) =>
   SubstrateActionOutcomeSchemas[action].parse({
-    version: AGENTGANGGANG_API_VERSION,
+    version: MULTI_AI_PANEL_API_VERSION,
     action,
     ok: true,
     data,
@@ -905,7 +905,7 @@ export const createSubstrateError = <TAction extends SubstrateActionName>(
   error: SubstrateApiError
 ) =>
   SubstrateActionOutcomeSchemas[action].parse({
-    version: AGENTGANGGANG_API_VERSION,
+    version: MULTI_AI_PANEL_API_VERSION,
     action,
     ok: false,
     error,

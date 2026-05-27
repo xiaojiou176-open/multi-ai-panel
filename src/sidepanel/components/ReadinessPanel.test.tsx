@@ -47,7 +47,7 @@ describe('ReadinessPanel', () => {
 
     fireEvent.click(getByRole('button', { name: 'Review repair steps' }));
     expect(
-      getByText(/AgentGangGang found the page, but could not confirm the send controls/)
+      getByText(/MultiAiPanel found the page, but could not confirm the send controls/)
     ).toBeInTheDocument();
     expect(getByText(/Remote selector cache/)).toBeInTheDocument();
     expect(getByTestId('readiness-repair-Gemini')).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe('ReadinessPanel', () => {
     );
 
     expect(
-      getAllByText('Selected models look ready, or AgentGangGang is checking them now.')[0]
+      getAllByText('Selected models look ready, or MultiAiPanel is checking them now.')[0]
     ).toBeInTheDocument();
     expect(getAllByText('Loading').length).toBeGreaterThan(0);
     expect(getByRole('button', { name: 'Review repair steps' })).toBeInTheDocument();
@@ -167,7 +167,7 @@ describe('ReadinessPanel', () => {
 
     fireEvent.click(getByRole('button', { name: 'Supported sites' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/AgentGangGang/supported-sites.html',
+      'https://xiaojiou176-open.github.io/multi-ai-panel/supported-sites.html',
       '_blank',
       'noopener,noreferrer'
     );

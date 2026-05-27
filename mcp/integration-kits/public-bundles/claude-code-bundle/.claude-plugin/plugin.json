@@ -1,7 +1,7 @@
 {
-  "name": "agentganggang-claude-code-bundle",
+  "name": "multi-ai-panel-claude-code-bundle",
   "version": "0.2.2",
-  "title": "AgentGangGang for Claude Code",
-  "description": "Compare-first AgentGangGang MCP bundle for Claude Code sessions.",
-  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang"
+  "title": "MultiAiPanel for Claude Code",
+  "description": "Compare-first MultiAiPanel MCP bundle for Claude Code sessions.",
+  "homepage": "https://github.com/xiaojiou176-open/multi-ai-panel"
 }

@@ -27,7 +27,7 @@ const probe = await collectLiveProbe(config);
 const diagnosis = probe.readyToProbe
   ? buildLiveDiagnosis(probe)
   : {
-      mode: 'agentganggang_live_diagnose',
+      mode: 'multi-ai-panel_live_diagnose',
       generatedAt: new Date().toISOString(),
       status: 'blocked',
       blockers: probe.blockers.map((message) => ({
@@ -86,7 +86,7 @@ const captureDeepText = async (page: import('@playwright/test').Page) =>
   });
 
 const summaryLines = [
-  '# AgentGangGang live support bundle',
+  '# MultiAiPanel live support bundle',
   '',
   `- generatedAt: ${probe.generatedAt}`,
   `- status: ${diagnosis.status}`,
@@ -248,7 +248,7 @@ process.stdout.write(
   `${JSON.stringify(
     {
       ok: true,
-      mode: 'agentganggang_live_support_bundle',
+      mode: 'multi-ai-panel_live_support_bundle',
       bundleDir,
       diagnosisStatus: diagnosis.status,
       blockerCount: diagnosis.blockers.length,

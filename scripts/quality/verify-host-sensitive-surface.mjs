@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { findOutputSurfaceFindingsWithContext } from './sensitive-surface-rules.mjs';
 
-const repo = 'xiaojiou176-open/AgentGangGang';
+const repo = 'xiaojiou176-open/MultiAiPanel';
 const findings = [];
 const scanGaps = [];
 
@@ -212,7 +212,7 @@ for (const release of loadArrayEndpoint('releases', `repos/${repo}/releases?per_
     addTextFindings('release-asset', assetLabel, assetResult.data.toString('utf8'), asset.name);
 
     if (asset.name.endsWith('.zip') || asset.name.endsWith('.tgz') || asset.name.endsWith('.tar.gz')) {
-      const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-host-scan-'));
+      const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'multi-ai-panel-host-scan-'));
       const archivePath = path.join(tempRoot, asset.name);
       fs.writeFileSync(archivePath, assetResult.data);
       try {
@@ -270,7 +270,7 @@ for (const artifact of artifacts) {
     continue;
   }
 
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-actions-artifact-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'multi-ai-panel-actions-artifact-'));
   try {
     execFileSync(
       'gh',

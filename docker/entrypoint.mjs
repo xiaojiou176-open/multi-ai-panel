@@ -21,7 +21,7 @@ if (rawCommand === 'server') {
 } else if (operatorCommands.has(rawCommand)) {
   commandTuple = ['npm', ['run', 'mcp:operator', '--', rawCommand]];
 } else {
-  process.stdout.write(`AgentGangGang Docker sidecar entrypoint
+  process.stdout.write(`MultiAiPanel Docker sidecar entrypoint
 
 Usage:
   help            Print this help message.

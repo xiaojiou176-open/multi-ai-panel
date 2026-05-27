@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-# AgentGangGang public bundle packet for OpenClaw.
+# MultiAiPanel public bundle packet for OpenClaw.
 # This stays on the official `openclaw mcp set <name> <json>` path.
 
-openclaw mcp set agentganggang "$(cat <<'JSON'
+openclaw mcp set multi-ai-panel "$(cat <<'JSON'
 {
   \"command\": \"npm\",
   \"args\": [
     \"--prefix\",
-    \"/absolute/path/to/AgentGangGang\",
+    \"/absolute/path/to/MultiAiPanel\",
     \"run\",
     \"mcp:server\"
   ]

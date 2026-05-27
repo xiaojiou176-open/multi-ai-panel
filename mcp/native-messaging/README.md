@@ -1,6 +1,6 @@
 # Native Messaging Scaffold
 
-AgentGangGang does **not** ship Chrome Native Messaging as the active
+MultiAiPanel does **not** ship Chrome Native Messaging as the active
 runtime transport in this release.
 
 The shipped path today is:

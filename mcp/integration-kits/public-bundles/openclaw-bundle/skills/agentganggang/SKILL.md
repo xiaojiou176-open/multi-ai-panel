@@ -1,32 +1,32 @@
 ---
-name: agentganggang
-description: Use AgentGangGang as a compare-first local MCP workspace during OpenClaw sessions.
+name: multi-ai-panel
+description: Use MultiAiPanel as a compare-first local MCP workspace during OpenClaw sessions.
 ---
 
-# AgentGangGang
+# MultiAiPanel
 
 Use this skill when OpenClaw should compare one prompt across multiple
-supported AI chat tabs through the local AgentGangGang MCP surface.
+supported AI chat tabs through the local MultiAiPanel MCP surface.
 
 ## Smallest useful flow
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
 
 ## Preferred full flow
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
-4. `agentganggang.analyze_compare`
-5. `agentganggang.run_workflow`
-6. `agentganggang.get_workflow_run`
-7. `agentganggang.list_workflow_runs`
-8. `agentganggang.resume_workflow`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
+4. `multi-ai-panel.analyze_compare`
+5. `multi-ai-panel.run_workflow`
+6. `multi-ai-panel.get_workflow_run`
+7. `multi-ai-panel.list_workflow_runs`
+8. `multi-ai-panel.resume_workflow`
 
 ## Boundary
 
-- AgentGangGang remains the compare-first browser workspace.
+- MultiAiPanel remains the compare-first browser workspace.
 - OpenClaw remains the outer shell.
-- This bundle assumes OpenClaw already knows how to launch the local AgentGangGang MCP server.
+- This bundle assumes OpenClaw already knows how to launch the local MultiAiPanel MCP server.

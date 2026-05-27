@@ -225,14 +225,14 @@ describe('StorageService', () => {
 
   it('should get and save agentGangGangGroupId', async () => {
     sessionGetMock().mockResolvedValue({ agentGangGangGroupId: 99 });
-    const id = await StorageService.getAgentGangGangGroupId();
+    const id = await StorageService.getMultiAiPanelGroupId();
     expect(id).toBe(99);
 
-    await StorageService.saveAgentGangGangGroupId(100);
+    await StorageService.saveMultiAiPanelGroupId(100);
     expect(chrome.storage.session.set).toHaveBeenCalledWith({ agentGangGangGroupId: 100 });
 
     sessionGetMock().mockResolvedValue({ agentGangGangGroupId: 'bad' });
-    const invalid = await StorageService.getAgentGangGangGroupId();
+    const invalid = await StorageService.getMultiAiPanelGroupId();
     expect(invalid).toBeNull();
   });
 
@@ -419,7 +419,7 @@ describe('StorageService', () => {
     await expect(StorageService.getTabs()).resolves.toEqual({});
 
     sessionGetMock().mockResolvedValue({});
-    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBeNull();
+    await expect(StorageService.getMultiAiPanelGroupId()).resolves.toBeNull();
   });
 
   it('should persist transient session storage values and recover from session storage errors', async () => {
@@ -427,16 +427,16 @@ describe('StorageService', () => {
     await expect(StorageService.getTabs()).resolves.toEqual({ ChatGPT: 123 });
 
     sessionGetMock().mockResolvedValueOnce({ agentGangGangGroupId: 42 });
-    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBe(42);
+    await expect(StorageService.getMultiAiPanelGroupId()).resolves.toBe(42);
 
     await expect(StorageService.saveTabs({ Gemini: 456 })).resolves.toBeUndefined();
-    await expect(StorageService.saveAgentGangGangGroupId(7)).resolves.toBeUndefined();
+    await expect(StorageService.saveMultiAiPanelGroupId(7)).resolves.toBeUndefined();
 
     sessionGetMock().mockRejectedValueOnce(new Error('boom'));
-    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBeNull();
+    await expect(StorageService.getMultiAiPanelGroupId()).resolves.toBeNull();
 
     sessionSetMock().mockRejectedValueOnce(new Error('boom'));
-    await expect(StorageService.saveAgentGangGangGroupId(9)).resolves.toBeUndefined();
+    await expect(StorageService.saveMultiAiPanelGroupId(9)).resolves.toBeUndefined();
   });
 
   it('swallows tab cache write failures from session storage', async () => {

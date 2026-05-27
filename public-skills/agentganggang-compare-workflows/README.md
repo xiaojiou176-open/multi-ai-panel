@@ -1,6 +1,6 @@
-# AgentGangGang Compare Workflows Public Skill
+# MultiAiPanel Compare Workflows Public Skill
 
-This folder is the public, self-contained skill packet for AgentGangGang.
+This folder is the public, self-contained skill packet for MultiAiPanel.
 It is meant to travel into host skill registries without forcing the reviewer to
 read the whole source repository first.
 
@@ -15,7 +15,7 @@ the skill package itself:
 
 - how to install the local MCP sidecar
 - how to wire that MCP server into OpenHands or OpenClaw
-- what MCP tools AgentGangGang exposes
+- what MCP tools MultiAiPanel exposes
 - what a good first compare workflow looks like in practice
 
 ## What this packet includes

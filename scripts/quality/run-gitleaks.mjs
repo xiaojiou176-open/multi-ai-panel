@@ -47,7 +47,7 @@ const buildRepoSurfaceMirror = () => {
     );
   }
 
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-gitleaks-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'multi-ai-panel-gitleaks-'));
   const files = gitLsFiles.stdout.split('\0').filter(Boolean);
 
   for (const relPath of files) {

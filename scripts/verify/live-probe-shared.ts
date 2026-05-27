@@ -42,10 +42,10 @@ const DEFAULT_EXTENSION_IDENTITY_TIMEOUT_MS = 1_500;
 const CLONE_RETRY_CODES = new Set(['ENOENT', 'EBUSY', 'EPERM']);
 const CLONE_RETRY_ATTEMPTS = 4;
 const CLONE_RETRY_DELAY_MS = 80;
-const AGENTGANGGANG_EXTENSION_NAME = 'AgentGangGang';
-const AGENTGANGGANG_OPTIONS_PAGE = 'settings.html';
-const AGENTGANGGANG_SIDE_PANEL_PATH = 'index.html';
-const AGENTGANGGANG_WORKER_LOADER_PATH = 'service-worker-loader.js';
+const MULTI_AI_PANEL_EXTENSION_NAME = 'MultiAiPanel';
+const MULTI_AI_PANEL_OPTIONS_PAGE = 'settings.html';
+const MULTI_AI_PANEL_SIDE_PANEL_PATH = 'index.html';
+const MULTI_AI_PANEL_WORKER_LOADER_PATH = 'service-worker-loader.js';
 
 type AttachMode = 'browser' | 'persistent';
 type AttachModeResolved = 'browser' | 'persistent';
@@ -128,7 +128,7 @@ export interface LiveExtensionProbeResult {
 }
 
 export interface LiveProbeResult {
-  mode: 'agentganggang_live_site_probe';
+  mode: 'multi-ai-panel_live_site_probe';
   generatedAt: string;
   readyToProbe: boolean;
   blockers: string[];
@@ -138,7 +138,7 @@ export interface LiveProbeResult {
 }
 
 export interface LiveDiagnosisResult {
-  mode: 'agentganggang_live_diagnose';
+  mode: 'multi-ai-panel_live_diagnose';
   generatedAt: string;
   status: 'ready_for_compare' | 'blocked';
   blockers: Array<{
@@ -159,14 +159,14 @@ interface LiveSiteCandidateSnapshot {
   hasStopControl: boolean;
 }
 
-interface AgentGangGangExtensionIdentitySnapshot {
+interface MultiAiPanelExtensionIdentitySnapshot {
   runtimeId: string | null;
   manifestName: string | null;
   optionsPage: string | null;
   sidePanelDefaultPath: string | null;
 }
 
-interface AgentGangGangExtensionPageSnapshot extends AgentGangGangExtensionIdentitySnapshot {
+interface MultiAiPanelExtensionPageSnapshot extends MultiAiPanelExtensionIdentitySnapshot {
   href: string;
   localType: string;
 }
@@ -206,14 +206,14 @@ const probeCdpReady = (targetUrl: string) =>
   });
 
 const resolveExtensionPath = () => {
-  if (process.env.AGENTGANGGANG_EXTENSION_PATH) {
-    return path.resolve(process.env.AGENTGANGGANG_EXTENSION_PATH);
+  if (process.env.MULTI_AI_PANEL_EXTENSION_PATH) {
+    return path.resolve(process.env.MULTI_AI_PANEL_EXTENSION_PATH);
   }
   return path.resolve(process.cwd(), 'dist');
 };
 
 const parseTargetModels = (): ModelName[] => {
-  const raw = process.env.AGENTGANGGANG_LIVE_MODELS;
+  const raw = process.env.MULTI_AI_PANEL_LIVE_MODELS;
   if (!raw) {
     return [...DEFAULT_TARGET_MODELS];
   }
@@ -239,16 +239,16 @@ export const resolveLiveProbeConfig = (): LiveProbeConfig => ({
   ...(() => {
     const browserProfile = resolveBrowserProfile();
     const attachModeRequested =
-      (process.env.AGENTGANGGANG_LIVE_ATTACH_MODE as AttachMode | undefined) || 'browser';
+      (process.env.MULTI_AI_PANEL_LIVE_ATTACH_MODE as AttachMode | undefined) || 'browser';
     const browserChannel =
-      process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL ||
+      process.env.MULTI_AI_PANEL_LIVE_BROWSER_CHANNEL ||
       resolveDefaultBrowserChannel(attachModeRequested);
     const browserExecutable = resolveBrowserExecutablePath({
       ...process.env,
-      AGENTGANGGANG_LIVE_BROWSER_CHANNEL: browserChannel,
+      MULTI_AI_PANEL_LIVE_BROWSER_CHANNEL: browserChannel,
     });
     return {
-      liveFlag: process.env.AGENTGANGGANG_LIVE === '1',
+      liveFlag: process.env.MULTI_AI_PANEL_LIVE === '1',
       userDataDir: browserProfile.userDataDir,
       isPersistentBrowserRoot: browserProfile.isPersistentBrowserRoot,
       profileDirectory: browserProfile.profileDirectory || '',
@@ -260,13 +260,13 @@ export const resolveLiveProbeConfig = (): LiveProbeConfig => ({
       browserExecutableResolutionSource: browserExecutable.resolutionSource,
       browserExecutableBlockers: browserExecutable.blockers,
       attachModeRequested,
-      cdpUrl: process.env.AGENTGANGGANG_LIVE_CDP_URL || DEFAULT_CDP_URL,
+      cdpUrl: process.env.MULTI_AI_PANEL_LIVE_CDP_URL || DEFAULT_CDP_URL,
       extensionPath: resolveExtensionPath(),
-      cloneProfile: process.env.AGENTGANGGANG_CLONE_PROFILE === '1',
-      keepLiveClone: process.env.AGENTGANGGANG_KEEP_LIVE_CLONE === '1',
-      openMissingTabs: process.env.AGENTGANGGANG_LIVE_OPEN_MISSING_TABS === '1',
+      cloneProfile: process.env.MULTI_AI_PANEL_CLONE_PROFILE === '1',
+      keepLiveClone: process.env.MULTI_AI_PANEL_KEEP_LIVE_CLONE === '1',
+      openMissingTabs: process.env.MULTI_AI_PANEL_LIVE_OPEN_MISSING_TABS === '1',
       probeWaitMs: Number(
-        process.env.AGENTGANGGANG_LIVE_PROBE_WAIT_MS || DEFAULT_PROBE_WAIT_MS
+        process.env.MULTI_AI_PANEL_LIVE_PROBE_WAIT_MS || DEFAULT_PROBE_WAIT_MS
       ),
       targetModels: parseTargetModels(),
     };
@@ -283,7 +283,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
     config.attachModeRequested === 'browser' ? 'browser' : 'persistent';
 
   if (!config.liveFlag) {
-    blockers.push('AGENTGANGGANG_LIVE=1 is required.');
+    blockers.push('MULTI_AI_PANEL_LIVE=1 is required.');
   }
   blockers.push(...config.profileBlockers);
   blockers.push(...config.browserExecutableBlockers);
@@ -294,7 +294,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
   }
   if (attachModeResolved === 'persistent' && config.browserChannel === 'chrome') {
     blockers.push(
-      'AGENTGANGGANG_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use chromium or the attachable browser helper.'
+      'MULTI_AI_PANEL_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use chromium or the attachable browser helper.'
     );
   }
   if (
@@ -303,7 +303,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
     config.isPersistentBrowserRoot
   ) {
     blockers.push(
-      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use AGENTGANGGANG_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
+      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use MULTI_AI_PANEL_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
     );
   }
   if (config.attachModeRequested === 'browser' && !cdpReachable) {
@@ -330,14 +330,14 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
   };
 };
 
-export const isAgentGangGangManifestIdentity = (
-  snapshot: AgentGangGangExtensionIdentitySnapshot | null | undefined
-): snapshot is AgentGangGangExtensionIdentitySnapshot & { runtimeId: string } =>
+export const isMultiAiPanelManifestIdentity = (
+  snapshot: MultiAiPanelExtensionIdentitySnapshot | null | undefined
+): snapshot is MultiAiPanelExtensionIdentitySnapshot & { runtimeId: string } =>
   typeof snapshot?.runtimeId === 'string' &&
   snapshot.runtimeId.length > 0 &&
-  snapshot.manifestName === AGENTGANGGANG_EXTENSION_NAME &&
-  snapshot.optionsPage === AGENTGANGGANG_OPTIONS_PAGE &&
-  snapshot.sidePanelDefaultPath === AGENTGANGGANG_SIDE_PANEL_PATH;
+  snapshot.manifestName === MULTI_AI_PANEL_EXTENSION_NAME &&
+  snapshot.optionsPage === MULTI_AI_PANEL_OPTIONS_PAGE &&
+  snapshot.sidePanelDefaultPath === MULTI_AI_PANEL_SIDE_PANEL_PATH;
 
 const parseExtensionRuntimeFromUrl = (candidateUrl: string) => {
   try {
@@ -355,7 +355,7 @@ const parseExtensionRuntimeFromUrl = (candidateUrl: string) => {
   }
 };
 
-const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
+const inspectMultiAiPanelWorkerIdentity = async (worker: PlaywrightWorker) => {
   const workerUrl = worker.url();
   const workerRuntime = parseExtensionRuntimeFromUrl(workerUrl);
 
@@ -365,7 +365,7 @@ const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
 
   try {
     const snapshot = await Promise.race([
-      worker.evaluate<AgentGangGangExtensionIdentitySnapshot>(() => ({
+      worker.evaluate<MultiAiPanelExtensionIdentitySnapshot>(() => ({
         ...(() => {
           const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
           return {
@@ -382,8 +382,8 @@ const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
       ),
     ]);
 
-    if (!isAgentGangGangManifestIdentity(snapshot)) {
-      if (workerRuntime.path !== AGENTGANGGANG_WORKER_LOADER_PATH) {
+    if (!isMultiAiPanelManifestIdentity(snapshot)) {
+      if (workerRuntime.path !== MULTI_AI_PANEL_WORKER_LOADER_PATH) {
         return null;
       }
 
@@ -402,14 +402,14 @@ const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
   }
 };
 
-const inspectAgentGangGangPageIdentity = async (page: Page) => {
+const inspectMultiAiPanelPageIdentity = async (page: Page) => {
   if (!page.url().startsWith('chrome-extension://')) {
     return null;
   }
 
   try {
     const snapshot = await Promise.race([
-      page.evaluate<AgentGangGangExtensionPageSnapshot>(() => ({
+      page.evaluate<MultiAiPanelExtensionPageSnapshot>(() => ({
         ...(() => {
           const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
           return {
@@ -429,7 +429,7 @@ const inspectAgentGangGangPageIdentity = async (page: Page) => {
     ]);
 
     if (
-      !isAgentGangGangManifestIdentity(snapshot) ||
+      !isMultiAiPanelManifestIdentity(snapshot) ||
       snapshot.localType !== 'object' ||
       !snapshot.href.startsWith(`chrome-extension://${snapshot.runtimeId}/`)
     ) {
@@ -445,16 +445,16 @@ const inspectAgentGangGangPageIdentity = async (page: Page) => {
   }
 };
 
-export const findAgentGangGangExtensionId = async (context: BrowserContext) => {
+export const findMultiAiPanelExtensionId = async (context: BrowserContext) => {
   for (const page of context.pages()) {
-    const identity = await inspectAgentGangGangPageIdentity(page);
+    const identity = await inspectMultiAiPanelPageIdentity(page);
     if (identity) {
       return identity.runtimeId;
     }
   }
 
   for (const worker of context.serviceWorkers()) {
-    const identity = await inspectAgentGangGangWorkerIdentity(worker);
+    const identity = await inspectMultiAiPanelWorkerIdentity(worker);
     if (identity) {
       return identity.runtimeId;
     }
@@ -463,7 +463,7 @@ export const findAgentGangGangExtensionId = async (context: BrowserContext) => {
   return null;
 };
 
-export const waitForAgentGangGangExtensionId = async (
+export const waitForMultiAiPanelExtensionId = async (
   context: BrowserContext,
   timeoutMs = 30_000,
   intervalMs = 250
@@ -471,7 +471,7 @@ export const waitForAgentGangGangExtensionId = async (
   const startedAt = Date.now();
 
   while (Date.now() - startedAt < timeoutMs) {
-    const runtimeId = await findAgentGangGangExtensionId(context);
+    const runtimeId = await findMultiAiPanelExtensionId(context);
     if (runtimeId) {
       return runtimeId;
     }
@@ -489,10 +489,10 @@ export const classifyExtensionSurfaceProbeFailure = (error: unknown): string => 
   }
 
   if (/Target page, context or browser has been closed/i.test(message)) {
-    return 'The extension page closed before AgentGangGang could finish the live probe. Reopen the AgentGangGang side panel or extension page in the current browser, then rerun the probe.';
+    return 'The extension page closed before MultiAiPanel could finish the live probe. Reopen the MultiAiPanel side panel or extension page in the current browser, then rerun the probe.';
   }
 
-  return `AgentGangGang could not inspect the extension page during live probing: ${message}`;
+  return `MultiAiPanel could not inspect the extension page during live probing: ${message}`;
 };
 
 const resolveExtensionId = async (
@@ -500,7 +500,7 @@ const resolveExtensionId = async (
   attachModeResolved: AttachModeResolved
 ) => {
   void attachModeResolved;
-  return await findAgentGangGangExtensionId(context);
+  return await findMultiAiPanelExtensionId(context);
 };
 
 const classifyProbeLaunchFailure = (error: unknown, effectiveRun: LiveProbeEffectiveRun) => {
@@ -515,10 +515,10 @@ const classifyProbeLaunchFailure = (error: unknown, effectiveRun: LiveProbeEffec
   }
 
   if (/Target page, context or browser has been closed|SIGTRAP/i.test(message)) {
-    return `The browser process closed before AgentGangGang could inspect the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}). Prefer the attach helper or a cleaner Chromium-compatible profile source.`;
+    return `The browser process closed before MultiAiPanel could inspect the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}). Prefer the attach helper or a cleaner Chromium-compatible profile source.`;
   }
 
-  return `AgentGangGang could not open the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}): ${message}`;
+  return `MultiAiPanel could not open the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}): ${message}`;
 };
 
 const isRepoOwnedTempClone = (targetPath: string) => {
@@ -535,7 +535,7 @@ const cleanupPersistentClone = (tempRoot: string | null, keepLiveClone: boolean)
   }
   if (keepLiveClone) {
     console.log(
-      `[test:live:probe] preserved repo-owned temp clone at ${sanitizePathForReport(tempRoot)} because AGENTGANGGANG_KEEP_LIVE_CLONE=1`
+      `[test:live:probe] preserved repo-owned temp clone at ${sanitizePathForReport(tempRoot)} because MULTI_AI_PANEL_KEEP_LIVE_CLONE=1`
     );
     return;
   }
@@ -761,7 +761,7 @@ const inspectExtensionRuntimeEvidence = async (
   modelPages: Array<{ model: ModelName; page: Page }>
 ) => {
   const serviceWorkerIdentities = (
-    await Promise.all(context.serviceWorkers().map((worker) => inspectAgentGangGangWorkerIdentity(worker)))
+    await Promise.all(context.serviceWorkers().map((worker) => inspectMultiAiPanelWorkerIdentity(worker)))
   ).filter((identity): identity is NonNullable<typeof identity> => Boolean(identity));
   const serviceWorkerUrls = serviceWorkerIdentities.map((identity) => identity.workerUrl);
   const contentScriptContexts = await inspectContentScriptContexts(context, modelPages);
@@ -894,7 +894,7 @@ const inspectExtensionSurface = async (
         hasCheckingIndicator: false,
         bodyPreview: '',
         errorMessage:
-          'AgentGangGang did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a AgentGangGang content-script context.',
+          'MultiAiPanel did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a MultiAiPanel content-script context.',
       };
     }
     return null;
@@ -917,7 +917,7 @@ const inspectExtensionSurface = async (
       hasCheckingIndicator: false,
       bodyPreview: '',
       errorMessage:
-        'AgentGangGang did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a AgentGangGang content-script context. Any extension page targets in this lane should be treated as blocked shells, not proof that the extension is active.',
+        'MultiAiPanel did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a MultiAiPanel content-script context. Any extension page targets in this lane should be treated as blocked shells, not proof that the extension is active.',
     };
   }
 
@@ -1037,7 +1037,7 @@ export const withLiveProbeContext = async <T>(
   pruneExternalRepoCache();
   const { blockers, effectiveRun } = await resolveLiveProbeBlockers(config);
   const attachConnectTimeoutMs = Number(
-    process.env.AGENTGANGGANG_LIVE_ATTACH_CONNECT_TIMEOUT_MS ||
+    process.env.MULTI_AI_PANEL_LIVE_ATTACH_CONNECT_TIMEOUT_MS ||
       DEFAULT_ATTACH_CONNECT_TIMEOUT_MS
   );
   if (blockers.length > 0) {
@@ -1153,7 +1153,7 @@ export const collectLiveProbe = async (
   );
 
   return {
-    mode: 'agentganggang_live_site_probe',
+    mode: 'multi-ai-panel_live_site_probe',
     generatedAt: new Date().toISOString(),
     readyToProbe: blockers.length === 0,
     blockers,
@@ -1222,13 +1222,13 @@ export const buildLiveDiagnosis = (probe: LiveProbeResult): LiveDiagnosisResult 
       );
     } else {
       nextActions.add(
-        'Keep the current attach browser open, reopen the AgentGangGang side panel or extension page manually if needed, then rerun the live probe.'
+        'Keep the current attach browser open, reopen the MultiAiPanel side panel or extension page manually if needed, then rerun the live probe.'
       );
     }
   }
 
   return {
-    mode: 'agentganggang_live_diagnose',
+    mode: 'multi-ai-panel_live_diagnose',
     generatedAt: new Date().toISOString(),
     status: blockers.length === 0 ? 'ready_for_compare' : 'blocked',
     blockers,

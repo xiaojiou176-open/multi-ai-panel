@@ -2,7 +2,7 @@
   "command": "npm",
   "args": [
     "--prefix",
-    "/absolute/path/to/AgentGangGang",
+    "/absolute/path/to/MultiAiPanel",
     "run",
     "mcp:server"
   ]

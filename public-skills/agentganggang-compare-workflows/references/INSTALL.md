@@ -1,28 +1,28 @@
-# Install and Connect AgentGangGang MCP
+# Install and Connect MultiAiPanel MCP
 
 This guide avoids private paths and keeps the install loop portable.
 
 ## What you need
 
-- a local clone of `https://github.com/xiaojiou176-open/AgentGangGang`
+- a local clone of `https://github.com/xiaojiou176-open/multi-ai-panel`
 - Node.js and npm
-- the AgentGangGang browser extension installed and able to reach its side panel
+- the MultiAiPanel browser extension installed and able to reach its side panel
 - at least two supported AI chat tabs signed in and open
 
 ## 1. Clone and install the repo
 
 ```bash
-git clone https://github.com/xiaojiou176-open/AgentGangGang.git
-cd AgentGangGang
+git clone https://github.com/xiaojiou176-open/multi-ai-panel.git
+cd MultiAiPanel
 npm install
 ```
 
 ## 2. Make the MCP server launchable
 
-AgentGangGang exposes its MCP server through the repo-owned script:
+MultiAiPanel exposes its MCP server through the repo-owned script:
 
 ```bash
-npm --prefix /absolute/path/to/AgentGangGang run mcp:server
+npm --prefix /absolute/path/to/MultiAiPanel run mcp:server
 ```
 
 You do not need to invent a new wrapper. Reuse that command in your host config.
@@ -41,9 +41,9 @@ into your OpenClaw MCP configuration.
 
 Once the host can see the server, run this tool sequence:
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
 
 If that loop works, the host wiring is good enough for a real compare-first
 workflow.

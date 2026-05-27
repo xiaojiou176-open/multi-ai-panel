@@ -2569,7 +2569,7 @@ describe('Store', () => {
       status: ANALYSIS_STATUSES.ERROR,
       provider: ANALYSIS_PROVIDER_IDS.BROWSER_SESSION,
       model: 'ChatGPT',
-      errorMessage: 'AgentGangGang could not start the browser-session analysis run.',
+      errorMessage: 'MultiAiPanel could not start the browser-session analysis run.',
     });
   });
 
@@ -2989,7 +2989,7 @@ describe('Store', () => {
 
       if (payload?.type === MSG_TYPES.EXECUTE_SUBSTRATE_ACTION && payload.payload?.action === 'run_workflow') {
         return Promise.resolve({
-          substrate: 'agentganggang.substrate',
+          substrate: 'multi-ai-panel.substrate',
           version: 'v1',
           id: 'wf-1',
           action: 'run_workflow',
@@ -3006,7 +3006,7 @@ describe('Store', () => {
 
       if (payload?.type === MSG_TYPES.EXECUTE_SUBSTRATE_ACTION && payload.payload?.action === 'get_workflow_run') {
         return Promise.resolve({
-          substrate: 'agentganggang.substrate',
+          substrate: 'multi-ai-panel.substrate',
           version: 'v1',
           id: 'wf-2',
           action: 'get_workflow_run',
@@ -3131,7 +3131,7 @@ describe('Store', () => {
 
       if (payload?.type === MSG_TYPES.EXECUTE_SUBSTRATE_ACTION && payload.payload?.action === 'run_workflow') {
         return Promise.resolve({
-          substrate: 'agentganggang.substrate',
+          substrate: 'multi-ai-panel.substrate',
           version: 'v1',
           id: 'wf-1',
           action: 'run_workflow',
@@ -3158,7 +3158,7 @@ describe('Store', () => {
 
       if (payload?.type === MSG_TYPES.EXECUTE_SUBSTRATE_ACTION && payload.payload?.action === 'get_workflow_run') {
         return Promise.resolve({
-          substrate: 'agentganggang.substrate',
+          substrate: 'multi-ai-panel.substrate',
           version: 'v1',
           id: 'wf-2',
           action: 'get_workflow_run',

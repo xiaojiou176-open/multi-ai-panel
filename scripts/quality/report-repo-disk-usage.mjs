@@ -381,7 +381,7 @@ rows.push({
   cleanupClass: 'shared_tool_cache',
   kind: 'shared Playwright cache root',
   defaultAction: 'preserve',
-  notes: 'Shared tooling cache; never auto-clean from AgentGangGang',
+  notes: 'Shared tooling cache; never auto-clean from MultiAiPanel',
   countsTowardRepoOwned: false,
 });
 

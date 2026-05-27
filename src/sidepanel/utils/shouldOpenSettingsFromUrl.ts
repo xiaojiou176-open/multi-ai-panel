@@ -1,7 +1,7 @@
-export const SETTINGS_OPEN_EVENT = 'agentganggang:open-settings';
+export const SETTINGS_OPEN_EVENT = 'multi-ai-panel:open-settings';
 export const SETTINGS_OPEN_STORAGE_KEYS = {
-  OPEN: 'agentganggang.openSettings',
-  E2E: 'agentganggang.e2e',
+  OPEN: 'multi-ai-panel.openSettings',
+  E2E: 'multi-ai-panel.e2e',
 } as const;
 export const SETTINGS_WINDOW_HOOK = '__agentGangGang';
 export const SETTINGS_VISIBILITY_HOOK = '__agentGangGangShowSettings';

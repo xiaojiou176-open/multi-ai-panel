@@ -8,7 +8,7 @@ const version = packageJson.version;
 const releaseDir = path.join(repoRoot, '.runtime-cache', 'release');
 const sbomPath = path.join(
   releaseDir,
-  `agentganggang-v${version}-chrome-extension.sbom.spdx.json`
+  `multi-ai-panel-v${version}-chrome-extension.sbom.spdx.json`
 );
 
 mkdirSync(releaseDir, { recursive: true });

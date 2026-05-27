@@ -106,7 +106,7 @@ const readSkillManifestYaml = (relPath) => {
   };
 };
 
-const PATH_PLACEHOLDER = '/absolute/path/to/AgentGangGang';
+const PATH_PLACEHOLDER = '/absolute/path/to/MultiAiPanel';
 const FORBIDDEN_LOCAL_PATH_PATTERNS = ['/Users/', '/home/', 'C:\\Users\\'];
 const ROOT_PACKAGE_REQUIRED_FIELDS = [
   'description',
@@ -156,9 +156,9 @@ const packetManifestPaths = {
   openclaw: 'mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json',
 };
 const skillManifestPaths = {
-  codex: 'mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml',
+  codex: 'mcp/integration-kits/public-bundles/codex-bundle/skills/multi-ai-panel/manifest.yaml',
   openclaw:
-    'mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml',
+    'mcp/integration-kits/public-bundles/openclaw-bundle/skills/multi-ai-panel/manifest.yaml',
 };
 
 const findings = [];
@@ -171,15 +171,15 @@ const skillManifestSchema = readJson('mcp/integration-kits/skill-manifest.schema
 
 const codexKit = read('mcp/integration-kits/codex.config.toml.example');
 expect(
-  codexKit.includes('[mcp_servers.agentganggang]'),
-  'Codex starter kit is missing the agentganggang TOML block.',
+  codexKit.includes('[mcp_servers.multi-ai-panel]'),
+  'Codex starter kit is missing the multi-ai-panel TOML block.',
   findings
 );
 
 const claudeKit = readJson('mcp/integration-kits/claude.mcp.json.example');
 expect(
-  claudeKit?.mcpServers?.agentganggang?.command === 'npm',
-  'Claude starter kit must launch AgentGangGang with npm.',
+  claudeKit?.mcpServers?.multi-ai-panel?.command === 'npm',
+  'Claude starter kit must launch MultiAiPanel with npm.',
   findings
 );
 
@@ -187,20 +187,20 @@ const openCodeKit = JSON.parse(
   stripJsonComments(read('mcp/integration-kits/opencode.jsonc.example'))
 );
 expect(
-  openCodeKit?.mcp?.agentganggang?.type === 'local',
+  openCodeKit?.mcp?.multi-ai-panel?.type === 'local',
   'OpenCode starter kit must declare a local MCP server.',
   findings
 );
 expect(
-  Array.isArray(openCodeKit?.mcp?.agentganggang?.command),
+  Array.isArray(openCodeKit?.mcp?.multi-ai-panel?.command),
   'OpenCode starter kit must keep the command as an array.',
   findings
 );
 
-const openClawJson = readJson('mcp/integration-kits/openclaw.agentganggang.json.example');
+const openClawJson = readJson('mcp/integration-kits/openclaw.multi-ai-panel.json.example');
 expect(
   openClawJson?.command === 'npm',
-  'OpenClaw starter JSON must launch AgentGangGang through npm.',
+  'OpenClaw starter JSON must launch MultiAiPanel through npm.',
   findings
 );
 expect(
@@ -216,7 +216,7 @@ expect(
 
 const openClawShell = read('mcp/integration-kits/openclaw.mcp.set.example.sh');
 expect(
-  openClawShell.includes('openclaw mcp set agentganggang'),
+  openClawShell.includes('openclaw mcp set multi-ai-panel'),
   'OpenClaw shell helper must show the exact registry command.',
   findings
 );
@@ -231,7 +231,7 @@ for (const relPath of [
   'codex.config.toml.example',
   'claude.mcp.json.example',
   'opencode.jsonc.example',
-  'openclaw.agentganggang.json.example',
+  'openclaw.multi-ai-panel.json.example',
   'openclaw.mcp.servers.json.example',
   'openclaw.mcp.set.example.sh',
   'distribution-subject-map.json',
@@ -264,9 +264,9 @@ expect(
 expect(
   typeof supportMatrix?.container_entry?.bridge_requirement === 'string' &&
     supportMatrix.container_entry.bridge_requirement.includes(
-      'AGENTGANGGANG_BRIDGE_HOST=0.0.0.0'
+      'MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0'
     ),
-  'Support matrix container_entry.bridge_requirement must document AGENTGANGGANG_BRIDGE_HOST=0.0.0.0.',
+  'Support matrix container_entry.bridge_requirement must document MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0.',
   findings
 );
 
@@ -299,9 +299,9 @@ expect(
 );
 expect(
   Array.isArray(supportMatrix?.workflow_followthrough) &&
-    supportMatrix.workflow_followthrough.includes('agentganggang.get_workflow_run') &&
-    supportMatrix.workflow_followthrough.includes('agentganggang.list_workflow_runs') &&
-    supportMatrix.workflow_followthrough.includes('agentganggang.resume_workflow'),
+    supportMatrix.workflow_followthrough.includes('multi-ai-panel.get_workflow_run') &&
+    supportMatrix.workflow_followthrough.includes('multi-ai-panel.list_workflow_runs') &&
+    supportMatrix.workflow_followthrough.includes('multi-ai-panel.resume_workflow'),
   'Support matrix must expose the workflow_followthrough sequence for get/list/resume.',
   findings
 );
@@ -427,7 +427,7 @@ expect(
 
 expect(
   skillManifestSchema?.$id ===
-    'https://xiaojiou176-open.github.io/AgentGangGang/mcp/integration-kits/skill-manifest.schema.json',
+    'https://xiaojiou176-open.github.io/multi-ai-panel/mcp/integration-kits/skill-manifest.schema.json',
   'skill-manifest.schema.json must keep the canonical schema id.',
   findings
 );
@@ -443,7 +443,7 @@ for (const [host, manifestPath] of Object.entries(packetManifestPaths)) {
   }
 
   expect(
-    ['host_packet', 'agentganggang_host_packet', 'agentganggang_plugin_packet'].includes(
+    ['host_packet', 'multi-ai-panel_host_packet', 'multi-ai-panel_plugin_packet'].includes(
       manifest.kind
     ),
     `${manifestPath} kind must stay on a recognized packet type.`,
@@ -533,8 +533,8 @@ for (const relPath of [
 
 const dockerfile = read('Dockerfile');
 expect(
-  dockerfile.includes('AGENTGANGGANG_BRIDGE_HOST=0.0.0.0'),
-  'Dockerfile must publish the bridge by setting AGENTGANGGANG_BRIDGE_HOST=0.0.0.0.',
+  dockerfile.includes('MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0'),
+  'Dockerfile must publish the bridge by setting MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0.',
   findings
 );
 expect(
@@ -559,8 +559,8 @@ for (const needle of ['Codex', 'Claude Code', 'OpenCode', 'OpenClaw']) {
   }
 }
 for (const needle of [
-  'agentganggang://builder/support-matrix',
-  'agentganggang://sites/capabilities',
+  'multi-ai-panel://builder/support-matrix',
+  'multi-ai-panel://sites/capabilities',
   'Smallest useful compare-first loop',
 ]) {
   if (!starterKitsDoc.includes(needle)) {
@@ -568,7 +568,7 @@ for (const needle of [
   }
 }
 for (const needle of [
-  'AgentGangGang public distribution matrix',
+  'MultiAiPanel public distribution matrix',
   'official marketplace or registry',
   'Public-bundle-ready packet available now.',
   'npm run release:host-kits',
@@ -584,7 +584,7 @@ if (publicDistributionDoc.includes('Any official MCP Registry publication or lis
   );
 }
 for (const needle of [
-  'AgentGangGang host packets',
+  'MultiAiPanel host packets',
   'Codex packet',
   'Claude Code packet',
   'OpenCode packet',
@@ -597,8 +597,8 @@ for (const needle of [
 
 const readme = read('README.md');
 for (const needle of [
-  'agentganggang://builder/support-matrix',
-  'agentganggang://sites/capabilities',
+  'multi-ai-panel://builder/support-matrix',
+  'multi-ai-panel://sites/capabilities',
   'Quick placement map',
   'public-distribution-matrix.html',
   'mcp-host-packets.html',
@@ -619,7 +619,7 @@ if (
 }
 if (
   !faqDoc.includes(
-    'Is AgentGangGang already listed on an official marketplace or registry for every documented host?'
+    'Is MultiAiPanel already listed on an official marketplace or registry for every documented host?'
   )
 ) {
   findings.push(
@@ -658,13 +658,13 @@ if (
 }
 
 for (const relPath of [
-  'mcp/integration-kits/codex.skill.agentganggang.md.example',
-  'mcp/integration-kits/claude.skill.agentganggang.md.example',
-  'mcp/integration-kits/opencode.skill.agentganggang.md.example',
-  'mcp/integration-kits/openclaw.skill.agentganggang.md.example',
+  'mcp/integration-kits/codex.skill.multi-ai-panel.md.example',
+  'mcp/integration-kits/claude.skill.multi-ai-panel.md.example',
+  'mcp/integration-kits/opencode.skill.multi-ai-panel.md.example',
+  'mcp/integration-kits/openclaw.skill.multi-ai-panel.md.example',
 ]) {
   const text = read(relPath);
-  if (!text.includes('agentganggang.bridge_status')) {
+  if (!text.includes('multi-ai-panel.bridge_status')) {
     findings.push(`${relPath} must keep the bridge_status-first flow.`);
   }
   if (!text.includes('## Smallest useful flow')) {
@@ -674,9 +674,9 @@ for (const relPath of [
     findings.push(`${relPath} must document the preferred full flow.`);
   }
   for (const required of [
-    'agentganggang.get_workflow_run',
-    'agentganggang.list_workflow_runs',
-    'agentganggang.resume_workflow',
+    'multi-ai-panel.get_workflow_run',
+    'multi-ai-panel.list_workflow_runs',
+    'multi-ai-panel.resume_workflow',
   ]) {
     if (!text.includes(required)) {
       findings.push(`${relPath} must include ${required} in the workflow follow-through flow.`);
@@ -688,7 +688,7 @@ for (const relPath of [
   'mcp/integration-kits/codex.config.toml.example',
   'mcp/integration-kits/claude.mcp.json.example',
   'mcp/integration-kits/opencode.jsonc.example',
-  'mcp/integration-kits/openclaw.agentganggang.json.example',
+  'mcp/integration-kits/openclaw.multi-ai-panel.json.example',
   'mcp/integration-kits/openclaw.mcp.servers.json.example',
   'mcp/integration-kits/openclaw.mcp.set.example.sh',
   'mcp/integration-kits/public-bundles/codex-bundle/package.json',
@@ -699,8 +699,8 @@ for (const relPath of [
   'mcp/integration-kits/public-bundles/claude-code-bundle/manifest.json',
   'mcp/integration-kits/public-bundles/opencode-plugin/manifest.json',
   'mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json',
-  'mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml',
-  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml',
+  'mcp/integration-kits/public-bundles/codex-bundle/skills/multi-ai-panel/manifest.yaml',
+  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/multi-ai-panel/manifest.yaml',
   'mcp/integration-kits/distribution-subject-map.json',
   'mcp/integration-kits/public-distribution-matrix.json',
   'docs/mcp-host-packets.html',

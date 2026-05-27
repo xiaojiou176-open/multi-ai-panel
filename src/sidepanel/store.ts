@@ -1098,7 +1098,7 @@ export const useStore = create<AppState>((set, get) => ({
             ANALYSIS_BLOCK_REASONS.ANALYSIS_TURN_NOT_FOUND,
             i18n.t(
               'runtime.analysisTurnMissing',
-              'AgentGangGang could not find this compare turn for analysis.'
+              'MultiAiPanel could not find this compare turn for analysis.'
             )
           ),
         },
@@ -1189,7 +1189,7 @@ export const useStore = create<AppState>((set, get) => ({
             settings.analysis.provider === 'switchyard_runtime'
               ? i18n.t(
                   'analysis.blocked.body',
-                  'AgentGangGang keeps the BYOK lane disabled here because provider guidance says browser builds should not ship production API keys client-side.'
+                  'MultiAiPanel keeps the BYOK lane disabled here because provider guidance says browser builds should not ship production API keys client-side.'
                 )
               : (provider.availabilityReason ??
                   i18n.t(
@@ -1331,11 +1331,11 @@ export const useStore = create<AppState>((set, get) => ({
               settings.analysis.provider === 'switchyard_runtime'
                 ? i18n.t(
                     'analysis.errors.runtimeStartFailed',
-                    'AgentGangGang could not start the local Switchyard runtime lane.'
+                    'MultiAiPanel could not start the local Switchyard runtime lane.'
                   )
                 : i18n.t(
                     'analysis.errors.startFailed',
-                    'AgentGangGang could not start the browser-session analysis run.'
+                    'MultiAiPanel could not start the browser-session analysis run.'
                   ),
             updatedAt: Date.now(),
           },
@@ -1361,7 +1361,7 @@ export const useStore = create<AppState>((set, get) => ({
             targetModels,
             i18n.t(
               'workflow.errors.turnMissing',
-              'AgentGangGang could not find this compare turn for workflow staging.'
+              'MultiAiPanel could not find this compare turn for workflow staging.'
             )
           ),
         },
@@ -1403,7 +1403,7 @@ export const useStore = create<AppState>((set, get) => ({
         analysisState?.errorMessage ??
         i18n.t(
           'workflow.errors.analysisRequired',
-          'Run AI Compare Analyst first so AgentGangGang can stage the next question.'
+          'Run AI Compare Analyst first so MultiAiPanel can stage the next question.'
         );
       set((state) => ({
         workflowByTurn: {

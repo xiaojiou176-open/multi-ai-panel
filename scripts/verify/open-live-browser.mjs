@@ -15,28 +15,28 @@ import {
 
 const DEFAULT_URL = 'https://chatgpt.com/';
 const DEFAULT_CDP_PORT = 9336;
-const AGENTGANGGANG_EXTENSION_NAME = 'AgentGangGang';
-const AGENTGANGGANG_OPTIONS_PAGE = 'settings.html';
-const AGENTGANGGANG_SIDE_PANEL_PATH = 'index.html';
+const MULTI_AI_PANEL_EXTENSION_NAME = 'MultiAiPanel';
+const MULTI_AI_PANEL_OPTIONS_PAGE = 'settings.html';
+const MULTI_AI_PANEL_SIDE_PANEL_PATH = 'index.html';
 const EXTENSION_ID_CACHE_PATH = path.resolve(
   process.cwd(),
   '.runtime-cache',
   'live-extension-id.txt'
 );
 
-const LIVE_FLAG = process.env.AGENTGANGGANG_LIVE === '1';
+const LIVE_FLAG = process.env.MULTI_AI_PANEL_LIVE === '1';
 const DETACHED_BROWSER_LAUNCH_ALLOWED =
-  process.env.AGENTGANGGANG_LIVE_ALLOW_DETACHED_BROWSER === '1';
-const CDP_PORT = Number(process.env.AGENTGANGGANG_LIVE_CDP_PORT || DEFAULT_CDP_PORT);
-const BROWSER_CHANNEL = process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL || 'chrome';
-const START_URL = process.env.AGENTGANGGANG_LIVE_START_URL || DEFAULT_URL;
-const EXTENSION_PATH = process.env.AGENTGANGGANG_EXTENSION_PATH
-  ? path.resolve(process.env.AGENTGANGGANG_EXTENSION_PATH)
+  process.env.MULTI_AI_PANEL_LIVE_ALLOW_DETACHED_BROWSER === '1';
+const CDP_PORT = Number(process.env.MULTI_AI_PANEL_LIVE_CDP_PORT || DEFAULT_CDP_PORT);
+const BROWSER_CHANNEL = process.env.MULTI_AI_PANEL_LIVE_BROWSER_CHANNEL || 'chrome';
+const START_URL = process.env.MULTI_AI_PANEL_LIVE_START_URL || DEFAULT_URL;
+const EXTENSION_PATH = process.env.MULTI_AI_PANEL_EXTENSION_PATH
+  ? path.resolve(process.env.MULTI_AI_PANEL_EXTENSION_PATH)
   : path.resolve(process.cwd(), 'dist');
 const browserProfile = resolveBrowserProfile();
 const browserExecutable = resolveBrowserExecutablePath({
   ...process.env,
-  AGENTGANGGANG_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
+  MULTI_AI_PANEL_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
 });
 
 const readCachedExtensionId = () => {
@@ -82,9 +82,9 @@ const readProfileRepoOwnedExtensionIds = ({ userDataDir, profileDirectory, exten
         const resolvedPath =
           typeof entry?.path === 'string' && entry.path.length > 0 ? path.resolve(entry.path) : null;
         const manifestMatches =
-          manifest?.name === AGENTGANGGANG_EXTENSION_NAME &&
-          manifest?.options_page === AGENTGANGGANG_OPTIONS_PAGE &&
-          manifest?.side_panel?.default_path === AGENTGANGGANG_SIDE_PANEL_PATH;
+          manifest?.name === MULTI_AI_PANEL_EXTENSION_NAME &&
+          manifest?.options_page === MULTI_AI_PANEL_OPTIONS_PAGE &&
+          manifest?.side_panel?.default_path === MULTI_AI_PANEL_SIDE_PANEL_PATH;
         if (manifestMatches || resolvedPath === extensionRoot) {
           extensionIds.add(extensionId);
         }
@@ -269,7 +269,7 @@ const reusingExistingAttachBrowser =
   attachOwnership.available && cdpReadyBeforeLaunch && attachOwnership.repoOwned.length > 0;
 
 if (!LIVE_FLAG) {
-  errors.push('AGENTGANGGANG_LIVE=1 is required before launching the attach browser helper.');
+  errors.push('MULTI_AI_PANEL_LIVE=1 is required before launching the attach browser helper.');
 }
 
 if (!fs.existsSync(EXTENSION_PATH)) {
@@ -277,7 +277,7 @@ if (!fs.existsSync(EXTENSION_PATH)) {
 }
 
 if (!Number.isFinite(CDP_PORT) || CDP_PORT <= 0) {
-  errors.push(`AGENTGANGGANG_LIVE_CDP_PORT must be a positive integer. Received: ${CDP_PORT}`);
+  errors.push(`MULTI_AI_PANEL_LIVE_CDP_PORT must be a positive integer. Received: ${CDP_PORT}`);
 }
 
 if (browserResources.blocker && !reusingExistingAttachBrowser) {
@@ -360,7 +360,7 @@ if (!reusingExistingAttachBrowser) {
       .map((part) => JSON.stringify(part))
       .join(' ');
     console.error(
-      `[test:live:open-browser] failed: Detached repo-owned browser launch now requires AGENTGANGGANG_LIVE_ALLOW_DETACHED_BROWSER=1. Launch Chrome manually with ${manualLaunchCommand} or rerun with that explicit operator override.`
+      `[test:live:open-browser] failed: Detached repo-owned browser launch now requires MULTI_AI_PANEL_LIVE_ALLOW_DETACHED_BROWSER=1. Launch Chrome manually with ${manualLaunchCommand} or rerun with that explicit operator override.`
     );
     process.exit(1);
   }
@@ -387,12 +387,12 @@ if (!reusingExistingAttachBrowser) {
 }
 
 const attachCommand = [
-  'AGENTGANGGANG_LIVE=1',
-  'AGENTGANGGANG_LIVE_ATTACH_MODE=browser',
-  `AGENTGANGGANG_LIVE_CDP_URL=http://127.0.0.1:${CDP_PORT}`,
-  `AGENTGANGGANG_BROWSER_USER_DATA_DIR=${JSON.stringify(browserProfile.userDataDir)}`,
-  `AGENTGANGGANG_BROWSER_PROFILE_NAME=${JSON.stringify(browserProfile.profileName || '')}`,
-  `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY=${JSON.stringify(browserProfile.profileDirectory)}`,
+  'MULTI_AI_PANEL_LIVE=1',
+  'MULTI_AI_PANEL_LIVE_ATTACH_MODE=browser',
+  `MULTI_AI_PANEL_LIVE_CDP_URL=http://127.0.0.1:${CDP_PORT}`,
+  `MULTI_AI_PANEL_BROWSER_USER_DATA_DIR=${JSON.stringify(browserProfile.userDataDir)}`,
+  `MULTI_AI_PANEL_BROWSER_PROFILE_NAME=${JSON.stringify(browserProfile.profileName || '')}`,
+  `MULTI_AI_PANEL_BROWSER_PROFILE_DIRECTORY=${JSON.stringify(browserProfile.profileDirectory)}`,
   'npm run test:live',
 ].join(' ');
 
@@ -407,16 +407,16 @@ if (attachTargets.length === 0) {
 
 const runtimeInspectionEnv = {
   ...process.env,
-  AGENTGANGGANG_LIVE: '1',
-  AGENTGANGGANG_LIVE_ATTACH_MODE: 'browser',
-  AGENTGANGGANG_LIVE_CDP_URL: `http://127.0.0.1:${CDP_PORT}`,
-  AGENTGANGGANG_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
-  AGENTGANGGANG_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
-  AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory,
-  AGENTGANGGANG_EXTENSION_PATH: EXTENSION_PATH,
+  MULTI_AI_PANEL_LIVE: '1',
+  MULTI_AI_PANEL_LIVE_ATTACH_MODE: 'browser',
+  MULTI_AI_PANEL_LIVE_CDP_URL: `http://127.0.0.1:${CDP_PORT}`,
+  MULTI_AI_PANEL_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
+  MULTI_AI_PANEL_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
+  MULTI_AI_PANEL_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory,
+  MULTI_AI_PANEL_EXTENSION_PATH: EXTENSION_PATH,
 };
-delete runtimeInspectionEnv.AGENTGANGGANG_USER_DATA_DIR;
-delete runtimeInspectionEnv.AGENTGANGGANG_PROFILE_DIRECTORY;
+delete runtimeInspectionEnv.MULTI_AI_PANEL_USER_DATA_DIR;
+delete runtimeInspectionEnv.MULTI_AI_PANEL_PROFILE_DIRECTORY;
 const runtimeDiagnosisEnvelope = runLiveDiagnoseEnvelope({ env: runtimeInspectionEnv });
 const runtimeInspection = buildRuntimeInspectionReport(runtimeDiagnosisEnvelope);
 const runtimeBlocked = Boolean(runtimeInspection?.laneBlocked);
@@ -451,7 +451,7 @@ console.log(
   JSON.stringify(
     {
       ok: true,
-      mode: 'agentganggang_live_browser_launch',
+      mode: 'multi-ai-panel_live_browser_launch',
       executablePath,
       executableResolutionSource: browserExecutable.resolutionSource,
       pid: child?.pid || extractPid(attachOwnership.repoOwned[0] || ''),
@@ -475,9 +475,9 @@ console.log(
       runtimeInspection,
       nextAction: runtimeBlocked
         ? brandedChromeExtensionAutoloadUnsupported
-          ? `The repo-owned real Chrome lane launched, but ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`} did not expose a AgentGangGang extension runtime. Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. Keep this profile for login-state validation, then manually use "Load unpacked" in this repo-owned Chrome profile or move automated extension-runtime proof to Chromium/Chrome for Testing.`
-          : 'The repo-owned browser lane launched, but AgentGangGang still did not expose a live extension runtime. Treat this lane as runtime-blocked and prefer repo-side debugging or a rebuilt browser lane over repeated Chrome menu clicks.'
-        : 'Keep the identity tab open on the left, log in inside the launched browser window if needed, and use the real AgentGangGang side panel or toolbar entry instead of direct extension-tab navigation when you need the live UI surface. Then run the attach command in the same repo shell.',
+          ? `The repo-owned real Chrome lane launched, but ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`} did not expose a MultiAiPanel extension runtime. Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. Keep this profile for login-state validation, then manually use "Load unpacked" in this repo-owned Chrome profile or move automated extension-runtime proof to Chromium/Chrome for Testing.`
+          : 'The repo-owned browser lane launched, but MultiAiPanel still did not expose a live extension runtime. Treat this lane as runtime-blocked and prefer repo-side debugging or a rebuilt browser lane over repeated Chrome menu clicks.'
+        : 'Keep the identity tab open on the left, log in inside the launched browser window if needed, and use the real MultiAiPanel side panel or toolbar entry instead of direct extension-tab navigation when you need the live UI surface. Then run the attach command in the same repo shell.',
       trustedWarmupExtensionId,
       brandedChromeExtensionAutoloadUnsupported,
       browserVersion: versionPayload?.Browser || null,

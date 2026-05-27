@@ -370,7 +370,7 @@ describe('runtimeActions', () => {
         ok: false,
         errorCode: SEND_ERROR_CODES.HANDSHAKE,
         errorMessage:
-          'AgentGangGang could not confirm that ChatGPT was ready for AI analysis.',
+          'MultiAiPanel could not confirm that ChatGPT was ready for AI analysis.',
         data: expect.objectContaining({
           stage: 'content_ready_handshake',
           failureClass: FAILURE_CLASSES.HANDSHAKE_MISMATCH,
