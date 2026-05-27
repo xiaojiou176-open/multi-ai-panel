@@ -28,10 +28,10 @@ export const MCP_WORKFLOW_TEMPLATE_CATALOG = {
         },
       ],
       supportedToolFlow: [
-        'prompt_switchboard.run_workflow',
-        'prompt_switchboard.list_workflow_runs',
-        'prompt_switchboard.get_workflow_run',
-        'prompt_switchboard.resume_workflow',
+        'agentganggang.run_workflow',
+        'agentganggang.list_workflow_runs',
+        'agentganggang.get_workflow_run',
+        'agentganggang.resume_workflow',
       ],
       note:
         'This template is product-bound. It stages or resumes the built-in compare -> analyze -> seed follow-up lane instead of exposing a generic DAG engine.',

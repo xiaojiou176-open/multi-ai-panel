@@ -53,7 +53,7 @@ const buildDeliveryErrorMessage = (model: ModelName, errorCode: string) => {
   }
 
   return i18n.t('runtime.contentPromptDriveFailed', {
-    defaultValue: 'Prompt Switchboard could not drive {{model}} on this page.',
+    defaultValue: 'AgentGangGang could not drive {{model}} on this page.',
     model,
   });
 };
@@ -483,8 +483,8 @@ export async function runCompareAnalysis(
       errorCode,
       errorMessage:
         errorCode === SEND_ERROR_CODES.HANDSHAKE
-          ? `Prompt Switchboard could not confirm that ${model} was ready for AI analysis.`
-          : `Prompt Switchboard could not start AI analysis in ${model}.`,
+          ? `AgentGangGang could not confirm that ${model} was ready for AI analysis.`
+          : `AgentGangGang could not start AI analysis in ${model}.`,
       data: {
         stage:
           errorCode === SEND_ERROR_CODES.HANDSHAKE

@@ -9,16 +9,16 @@ import {
   runLiveDiagnoseEnvelope,
 } from './live-runtime-gates.mjs';
 
-const shouldRun = process.env.PROMPT_SWITCHBOARD_LIVE === '1';
+const shouldRun = process.env.AGENTGANGGANG_LIVE === '1';
 const browserProfile = resolveBrowserProfile();
-const attachMode = process.env.PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE || 'browser';
+const attachMode = process.env.AGENTGANGGANG_LIVE_ATTACH_MODE || 'browser';
 const browserChannel =
-  process.env.PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL ||
+  process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL ||
   (attachMode === 'browser' ? 'chrome' : 'chromium');
-const cdpUrl = process.env.PROMPT_SWITCHBOARD_LIVE_CDP_URL || 'http://127.0.0.1:9336';
-const strictMode = process.env.PROMPT_SWITCHBOARD_LIVE_STRICT === '1';
+const cdpUrl = process.env.AGENTGANGGANG_LIVE_CDP_URL || 'http://127.0.0.1:9336';
+const strictMode = process.env.AGENTGANGGANG_LIVE_STRICT === '1';
 const testPath = path.join('tests', 'e2e', 'live.smoke.spec.ts');
-const targetModels = process.env.PROMPT_SWITCHBOARD_LIVE_MODELS || 'ChatGPT';
+const targetModels = process.env.AGENTGANGGANG_LIVE_MODELS || 'ChatGPT';
 const preflightBlockerKinds = new Set([
   'site_login_gated',
   'site_not_open',
@@ -77,13 +77,13 @@ const probeCdpReady = (targetUrl) =>
 
 if (!shouldRun) {
   exitSkippedOrFailed(
-    '[test:live] skipped: this is a manual Tier C live-proof path; run npm run test:live:doctor, then set PROMPT_SWITCHBOARD_LIVE=1 before retrying'
+    '[test:live] skipped: this is a manual Tier C live-proof path; run npm run test:live:doctor, then set AGENTGANGGANG_LIVE=1 before retrying'
   );
 }
 
 if (attachMode !== 'browser' && attachMode !== 'persistent') {
   console.error(
-    '[test:live] failed: PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE must be browser or persistent.'
+    '[test:live] failed: AGENTGANGGANG_LIVE_ATTACH_MODE must be browser or persistent.'
   );
   process.exit(1);
 }
@@ -108,11 +108,11 @@ const browserMajorVersion = Number(String(versionPayload?.Browser || '').match(/
 const brandedChromeExtensionAutoloadUnsupported =
   attachMode === 'browser' && browserChannel === 'chrome' && browserMajorVersion >= 137;
 const brandedChromeExtensionAutoloadBlocker = brandedChromeExtensionAutoloadUnsupported
-  ? `Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. The current attach lane reports ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`}, so this real Chrome profile can preserve login state but cannot auto-load the unpacked Prompt Switchboard extension runtime. Manually use "Load unpacked" in this repo-owned Chrome profile, or move the automated extension-runtime proof lane to Chromium/Chrome for Testing.`
+  ? `Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. The current attach lane reports ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`}, so this real Chrome profile can preserve login state but cannot auto-load the unpacked AgentGangGang extension runtime. Manually use "Load unpacked" in this repo-owned Chrome profile, or move the automated extension-runtime proof lane to Chromium/Chrome for Testing.`
   : null;
 if (attachMode === 'browser' && !cdpReachable) {
   console.error(
-    `[test:live] failed: PROMPT_SWITCHBOARD_LIVE_CDP_URL is not attachable right now (${cdpUrl}). Launch the repo-owned browser first with npm run test:live:open-browser.`
+    `[test:live] failed: AGENTGANGGANG_LIVE_CDP_URL is not attachable right now (${cdpUrl}). Launch the repo-owned browser first with npm run test:live:open-browser.`
   );
   process.exit(1);
 }
@@ -124,22 +124,22 @@ if (!existsSync(testPath)) {
 
 const nextEnv = {
   ...process.env,
-  PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
-  PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
-  PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory || '',
-  PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: browserChannel,
-  PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE: attachMode,
-  PROMPT_SWITCHBOARD_LIVE_MODELS: targetModels,
+  AGENTGANGGANG_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
+  AGENTGANGGANG_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
+  AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory || '',
+  AGENTGANGGANG_LIVE_BROWSER_CHANNEL: browserChannel,
+  AGENTGANGGANG_LIVE_ATTACH_MODE: attachMode,
+  AGENTGANGGANG_LIVE_MODELS: targetModels,
 };
 
 if (attachMode === 'browser') {
-  nextEnv.PROMPT_SWITCHBOARD_LIVE_CDP_URL = cdpUrl;
+  nextEnv.AGENTGANGGANG_LIVE_CDP_URL = cdpUrl;
 } else {
-  delete nextEnv.PROMPT_SWITCHBOARD_LIVE_CDP_URL;
+  delete nextEnv.AGENTGANGGANG_LIVE_CDP_URL;
 }
 
-delete nextEnv.PROMPT_SWITCHBOARD_USER_DATA_DIR;
-delete nextEnv.PROMPT_SWITCHBOARD_PROFILE_DIRECTORY;
+delete nextEnv.AGENTGANGGANG_USER_DATA_DIR;
+delete nextEnv.AGENTGANGGANG_PROFILE_DIRECTORY;
 
 const diagnosisEnvelope = runLiveDiagnoseEnvelope({ env: nextEnv });
 const liveDiagnosis = diagnosisEnvelope?.diagnosis;

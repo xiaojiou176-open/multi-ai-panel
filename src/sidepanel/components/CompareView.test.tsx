@@ -100,7 +100,7 @@ describe('CompareView', () => {
       )
     ).toBeInTheDocument();
     expect(getByText('ChatGPT')).toBeInTheDocument();
-    expect(getByText(/Prompt Switchboard has not confirmed a usable host/)).toBeInTheDocument();
+    expect(getByText(/AgentGangGang has not confirmed a usable host/)).toBeInTheDocument();
     expect(getByRole('button', { name: 'Open this model' })).toBeInTheDocument();
 
     fireEvent.click(getAllByRole('button', { name: 'First compare guide' })[0]!);
@@ -182,12 +182,12 @@ describe('CompareView', () => {
 
     fireEvent.click(getByText('Copy compare summary'));
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('Prompt Switchboard compare summary')
+      expect.stringContaining('AgentGangGang compare summary')
     );
 
     fireEvent.click(getByText('Copy Markdown'));
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('# Prompt Switchboard compare export')
+      expect.stringContaining('# AgentGangGang compare export')
     );
   });
 
@@ -315,11 +315,11 @@ describe('CompareView', () => {
         .length
     ).toBeGreaterThan(0);
     expect(
-      getAllByText('The model started, but Prompt Switchboard could not complete delivery back into the compare board.')
+      getAllByText('The model started, but AgentGangGang could not complete delivery back into the compare board.')
         .length
     ).toBeGreaterThan(0);
     expect(
-      getAllByText('This run failed after the initial handoff, so Prompt Switchboard could not finish the answer lifecycle.')
+      getAllByText('This run failed after the initial handoff, so AgentGangGang could not finish the answer lifecycle.')
         .length
     ).toBeGreaterThan(0);
 

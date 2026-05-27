@@ -12,19 +12,19 @@ const tempFramesDir = path.join(repoRoot, '.runtime-cache', 'marketing-frames');
 const MARKETING_BROWSER_LAUNCH_TIMEOUT_MS = 300_000;
 const useHeadlessMarketingBrowser = process.env.MARKETING_BROWSER_HEADLESS === '1';
 const generatedAssets = [
-  'prompt-switchboard-hero.png',
-  'prompt-switchboard-compare-detail.png',
-  'prompt-switchboard-workflow-panel.png',
-  'prompt-switchboard-analyst-panel.png',
-  'prompt-switchboard-builder-surface.png',
-  'prompt-switchboard-settings.png',
-  'prompt-switchboard-demo.gif',
-  'prompt-switchboard-social-preview.png',
+  'agentganggang-hero.png',
+  'agentganggang-compare-detail.png',
+  'agentganggang-workflow-panel.png',
+  'agentganggang-analyst-panel.png',
+  'agentganggang-builder-surface.png',
+  'agentganggang-settings.png',
+  'agentganggang-demo.gif',
+  'agentganggang-social-preview.png',
 ];
 const staticFrontdoorAssets = [
-  'prompt-switchboard-before-after.svg',
-  'prompt-switchboard-workflow.svg',
-  'prompt-switchboard-nav-icon.svg',
+  'agentganggang-before-after.svg',
+  'agentganggang-workflow.svg',
+  'agentganggang-nav-icon.svg',
 ];
 const publicFrontdoorAssets = [...generatedAssets, ...staticFrontdoorAssets];
 
@@ -138,7 +138,7 @@ const buildHeroPresentationState = () => ({
           'Gemini leans builder-facing, while Perplexity is stricter about trust-boundary language.',
         recommendedAnswerModel: 'Gemini',
         recommendationReason:
-          'Gemini frames the builder lane clearly without turning Prompt Switchboard into a platform story.',
+          'Gemini frames the builder lane clearly without turning AgentGangGang into a platform story.',
         nextQuestion: 'Which next-step workflow cue should we put in the front door first?',
         synthesisDraft:
           'Lead with compare-first proof, make the workflow panel visible, and keep Codex / Claude Code inside the governed MCP lane.',
@@ -205,7 +205,7 @@ const buildGifStates = () => {
               {
                 id: 'pending-user',
                 role: 'user',
-                text: 'Give me a punchy launch tagline for Prompt Switchboard.',
+                text: 'Give me a punchy launch tagline for AgentGangGang.',
                 timestamp: baseTimestamp,
                 turnId: 'gif-turn-1',
                 requestId: 'gif-request-1',
@@ -427,9 +427,9 @@ const buildGifStates = () => {
 };
 
 const seedExtensionState = async (page, localState) => {
-  await page.getByText('Prompt Switchboard', { exact: true }).waitFor();
+  await page.getByText('AgentGangGang', { exact: true }).waitFor();
   await page.evaluate(async (payload) => {
-    const hook = window.__promptSwitchboard;
+    const hook = window.__agentGangGang;
     if (!hook?.replaceSessions) {
       throw new Error('missing prompt switchboard diagnostic hook');
     }
@@ -780,7 +780,7 @@ const createSocialPreview = async (context) => {
       </head>
       <body>
         <section class="panel copy">
-          <span class="eyebrow">Prompt Switchboard</span>
+          <span class="eyebrow">AgentGangGang</span>
           <h1>Ask once. Compare AI answers side by side.</h1>
           <p>Line up ChatGPT, Gemini, Perplexity, Qwen, and Grok from one local browser side panel instead of bouncing between tabs.</p>
           <div class="chips">
@@ -863,7 +863,7 @@ const createSocialPreview = async (context) => {
   `);
 
   await socialPage.screenshot({
-    path: path.join(outputDir, 'prompt-switchboard-social-preview.png'),
+    path: path.join(outputDir, 'agentganggang-social-preview.png'),
   });
   await socialPage.close();
 };
@@ -914,28 +914,28 @@ const main = async () => {
     await heroPage.getByText('Next compare seed is ready').waitFor();
 
     await heroPage.screenshot({
-      path: path.join(outputDir, 'prompt-switchboard-hero.png'),
+      path: path.join(outputDir, 'agentganggang-hero.png'),
     });
 
     await heroPage
       .locator('[data-testid="compare-turn-0"]')
-      .screenshot({ path: path.join(outputDir, 'prompt-switchboard-compare-detail.png') });
+      .screenshot({ path: path.join(outputDir, 'agentganggang-compare-detail.png') });
     await heroPage
       .getByTestId('workflow-panel-hero-turn-1')
-      .screenshot({ path: path.join(outputDir, 'prompt-switchboard-workflow-panel.png') });
+      .screenshot({ path: path.join(outputDir, 'agentganggang-workflow-panel.png') });
     await heroPage
       .getByTestId('compare-analyst-panel-hero-turn-1')
-      .screenshot({ path: path.join(outputDir, 'prompt-switchboard-analyst-panel.png') });
+      .screenshot({ path: path.join(outputDir, 'agentganggang-analyst-panel.png') });
 
     await heroPage.goto(`${extensionPrefix}/index.html`, { waitUntil: 'domcontentloaded' });
-    await heroPage.getByText('Prompt Switchboard', { exact: true }).waitFor();
+    await heroPage.getByText('AgentGangGang', { exact: true }).waitFor();
     await heroPage.evaluate(() => {
-      window.__promptSwitchboard?.openSettings?.();
+      window.__agentGangGang?.openSettings?.();
     });
     await heroPage.getByTestId('settings-panel').waitFor();
     await heroPage
       .locator('[data-testid="settings-panel"]')
-      .screenshot({ path: path.join(outputDir, 'prompt-switchboard-settings.png') });
+      .screenshot({ path: path.join(outputDir, 'agentganggang-settings.png') });
     await heroPage.close();
 
     const builderPage = await context.newPage();
@@ -949,7 +949,7 @@ const main = async () => {
     await builderPage
       .locator('section.card')
       .filter({ has: operatorHelperHeading })
-      .screenshot({ path: path.join(outputDir, 'prompt-switchboard-builder-surface.png') });
+      .screenshot({ path: path.join(outputDir, 'agentganggang-builder-surface.png') });
     await builderPage.close();
 
     const gifPage = await context.newPage();
@@ -995,7 +995,7 @@ const main = async () => {
       palettePath,
       '-lavfi',
       'fps=1,scale=1440:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5',
-      path.join(outputDir, 'prompt-switchboard-demo.gif'),
+      path.join(outputDir, 'agentganggang-demo.gif'),
     ]);
 
     await createSocialPreview(context);

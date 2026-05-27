@@ -1,31 +1,31 @@
 {
-  "surface": "prompt_switchboard_consumer_support_matrix",
+  "surface": "agentganggang_consumer_support_matrix",
   "path_placeholder": "/absolute/path/to/AgentGangGang",
   "first_calls": [
-    "prompt_switchboard.bridge_status",
-    "prompt_switchboard.check_readiness",
-    "prompt_switchboard.compare",
-    "prompt_switchboard.analyze_compare",
-    "prompt_switchboard.run_workflow"
+    "agentganggang.bridge_status",
+    "agentganggang.check_readiness",
+    "agentganggang.compare",
+    "agentganggang.analyze_compare",
+    "agentganggang.run_workflow"
   ],
   "workflow_followthrough": [
-    "prompt_switchboard.get_workflow_run",
-    "prompt_switchboard.list_workflow_runs",
-    "prompt_switchboard.resume_workflow"
+    "agentganggang.get_workflow_run",
+    "agentganggang.list_workflow_runs",
+    "agentganggang.resume_workflow"
   ],
   "container_entry": {
     "support_tier": "repo_owned_container_helper",
     "dockerfile": "../../Dockerfile",
     "dockerignore": "../../.dockerignore",
     "doc_page": "../../docs/docker-integration.html",
-    "purpose": "Containerized local Prompt Switchboard MCP sidecar and operator helper for builder-facing flows.",
+    "purpose": "Containerized local AgentGangGang MCP sidecar and operator helper for builder-facing flows.",
     "not_a": [
       "browser_extension_install_surface",
       "hosted_compare_service",
       "public_http_api",
       "glama_or_marketplace_listing"
     ],
-    "bridge_requirement": "For host-browser bridge attach, publish loopback port 48123 and set PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0 inside the container."
+    "bridge_requirement": "For host-browser bridge attach, publish loopback port 48123 and set AGENTGANGGANG_BRIDGE_HOST=0.0.0.0 inside the container."
   },
   "hosts": {
     "codex": {
@@ -37,23 +37,23 @@
       "sample_config_path": "codex.config.toml.example",
       "public_bundle_dir": "public-bundles/codex-bundle",
       "manifest_path": "public-bundles/codex-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/prompt-switchboard-codex-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-codex-bundle-<version>.tgz",
       "packet_page": "../../docs/codex-mcp-setup.html",
       "minimal_flow": [
-        "prompt_switchboard.bridge_status",
-        "prompt_switchboard.check_readiness",
-        "prompt_switchboard.compare"
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
       ],
       "preferred_full_flow": [
-        "prompt_switchboard.analyze_compare",
-        "prompt_switchboard.run_workflow",
-        "prompt_switchboard.get_workflow_run"
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["codex.config.toml.example"],
-      "skill_assets": ["codex.skill.prompt-switchboard.md.example"],
+      "skill_assets": ["codex.skill.agentganggang.md.example"],
       "skill_manifest_paths": [
-        "public-bundles/codex-bundle/skills/prompt-switchboard/manifest.yaml"
+        "public-bundles/codex-bundle/skills/agentganggang/manifest.yaml"
       ]
     },
     "claude_code": {
@@ -65,46 +65,46 @@
       "sample_config_path": "claude.mcp.json.example",
       "public_bundle_dir": "public-bundles/claude-code-bundle",
       "manifest_path": "public-bundles/claude-code-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/prompt-switchboard-claude-code-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-claude-code-bundle-<version>.tgz",
       "packet_page": "../../docs/claude-code-mcp-setup.html",
       "minimal_flow": [
-        "prompt_switchboard.bridge_status",
-        "prompt_switchboard.check_readiness",
-        "prompt_switchboard.compare"
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
       ],
       "preferred_full_flow": [
-        "prompt_switchboard.analyze_compare",
-        "prompt_switchboard.run_workflow",
-        "prompt_switchboard.get_workflow_run"
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["claude.mcp.json.example"],
-      "skill_assets": ["claude.skill.prompt-switchboard.md.example"]
+      "skill_assets": ["claude.skill.agentganggang.md.example"]
     },
     "opencode": {
       "label": "OpenCode",
       "support_tier": "public_bundle_ready_unverified_host_lane",
       "proof_class": "generic_mcp_client_public_bundle_ready",
       "official_docs": ["https://opencode.ai/docs/config", "https://opencode.ai/docs/cli/"],
-      "placement_hint": "Save the example as a project-root opencode.jsonc inside your Prompt Switchboard clone.",
+      "placement_hint": "Save the example as a project-root opencode.jsonc inside your AgentGangGang clone.",
       "sample_config_path": "opencode.jsonc.example",
       "public_bundle_dir": "public-bundles/opencode-plugin",
       "manifest_path": "public-bundles/opencode-plugin/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/prompt-switchboard-opencode-plugin-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-opencode-plugin-<version>.tgz",
       "packet_page": "../../docs/opencode-mcp-setup.html",
       "minimal_flow": [
-        "prompt_switchboard.bridge_status",
-        "prompt_switchboard.check_readiness",
-        "prompt_switchboard.compare"
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
       ],
       "preferred_full_flow": [
-        "prompt_switchboard.run_workflow",
-        "prompt_switchboard.get_workflow_run",
-        "prompt_switchboard.resume_workflow"
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.resume_workflow"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["opencode.jsonc.example"],
-      "skill_assets": ["opencode.skill.prompt-switchboard.md.example"]
+      "skill_assets": ["opencode.skill.agentganggang.md.example"]
     },
     "openclaw": {
       "label": "OpenClaw",
@@ -116,36 +116,36 @@
         "https://docs.openclaw.ai/plugins/bundles"
       ],
       "placement_hint": "Register the JSON with openclaw mcp set or place the server definition under mcp.servers.",
-      "sample_config_path": "openclaw.prompt-switchboard.json.example",
+      "sample_config_path": "openclaw.agentganggang.json.example",
       "public_bundle_dir": "public-bundles/openclaw-bundle",
       "manifest_path": "public-bundles/openclaw-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/prompt-switchboard-openclaw-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-openclaw-bundle-<version>.tgz",
       "packet_page": "../../docs/openclaw-mcp-setup.html",
       "minimal_flow": [
-        "prompt_switchboard.bridge_status",
-        "prompt_switchboard.check_readiness",
-        "prompt_switchboard.compare"
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
       ],
       "preferred_full_flow": [
-        "prompt_switchboard.run_workflow",
-        "prompt_switchboard.get_workflow_run",
-        "prompt_switchboard.resume_workflow"
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.resume_workflow"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": [
-        "openclaw.prompt-switchboard.json.example",
+        "openclaw.agentganggang.json.example",
         "openclaw.mcp.servers.json.example",
         "openclaw.mcp.set.example.sh"
       ],
-      "skill_assets": ["openclaw.skill.prompt-switchboard.md.example"],
+      "skill_assets": ["openclaw.skill.agentganggang.md.example"],
       "skill_manifest_paths": [
-        "public-bundles/openclaw-bundle/skills/prompt-switchboard/manifest.yaml"
+        "public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml"
       ]
     }
   },
   "supported_now": [
     "local_mcp_sidecar",
-    "prompt_switchboard_product_actions",
+    "agentganggang_product_actions",
     "codex_repo_specific_host_setup",
     "claude_code_repo_specific_host_setup"
   ],

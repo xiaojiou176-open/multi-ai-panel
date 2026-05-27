@@ -1,0 +1,33 @@
+---
+name: agentganggang
+description: Use AgentGangGang as a local compare-first MCP workspace during OpenClaw sessions.
+---
+
+# AgentGangGang
+
+Use this skill when OpenClaw should compare one prompt across multiple AI chat
+sites through the local AgentGangGang MCP surface.
+
+## Smallest useful flow
+
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+
+## Preferred full flow
+
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+4. `agentganggang.analyze_compare`
+5. `agentganggang.run_workflow`
+6. `agentganggang.get_workflow_run`
+7. `agentganggang.list_workflow_runs`
+8. `agentganggang.resume_workflow`
+
+## Boundary
+
+- AgentGangGang remains the compare-first browser workspace.
+- OpenClaw remains the outer agent shell.
+- This skill assumes OpenClaw is already configured to launch the local
+  AgentGangGang MCP server.

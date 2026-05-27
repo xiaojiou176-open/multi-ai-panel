@@ -4,7 +4,7 @@ This file mirrors the public AI-maintainer guidance for this repository.
 
 ## Repository Intent
 
-Prompt Switchboard is a browser extension that fans one prompt out to multiple
+AgentGangGang is a browser extension that fans one prompt out to multiple
 supported AI chat websites and shows the replies in one side panel.
 
 ## Current Host Truth

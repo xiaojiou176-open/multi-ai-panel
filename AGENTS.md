@@ -94,7 +94,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
     `process.kill(...)` / `os.kill(...)` with `pid <= 0`, `osascript`,
     `System Events`, `loginwindow`, `showForceQuitPanel`, or similar
     desktop/process-wide control paths.
-- Prompt Switchboard live helpers must fail closed instead of trying host-wide
+- AgentGangGang live helpers must fail closed instead of trying host-wide
   recovery.
   - Prefer repo-owned browser identity, explicit profile resolution, and CDP
     attach checks over host cleanup or desktop scripting.
@@ -112,7 +112,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 ## Browser And Resource Discipline
 
 - Treat confirmed missing login state as a blocker quickly.
-  - If one or two focused checks against the real Prompt Switchboard
+  - If one or two focused checks against the real AgentGangGang
     browser/profile already show the required site is logged out or otherwise
     unavailable, record that state as a blocker instead of escalating into
     repeated browser relaunches.
@@ -136,9 +136,9 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
     window.
 - Login-state-sensitive live flows must resolve the dedicated real Google
   Chrome profile lane through:
-  - `PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR`
-  - `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME`
-  - `PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY`
+  - `AGENTGANGGANG_BROWSER_USER_DATA_DIR`
+  - `AGENTGANGGANG_BROWSER_PROFILE_NAME`
+  - `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY`
   - The canonical root is `~/.cache/AgentGangGang/browser/chrome-user-data`
     with a single repo-owned `AgentGangGang` profile.
   - Default Chrome user data under `~/Library/Application Support/Google/Chrome`
@@ -172,7 +172,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 - Shared tooling caches such as `~/Library/Caches/ms-playwright/` are
   detection-only from this repo.
   - Report them during disk audits.
-  - Never auto-clean them from Prompt Switchboard commands.
+  - Never auto-clean them from AgentGangGang commands.
 - Do not leave root-level noise such as `.DS_Store`, stray `test-results`, or
   other repo-owned runtime artifacts behind after verification.
 - Perform repo-scoped cleanup only.
@@ -181,11 +181,11 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
   - Inventory repo-owned containers / images / volumes before cleanup.
   - Never run broad global prune commands as a shortcut.
 - The repo-local operating manual for these rules lives under:
-  - `.agents/skills/prompt-switchboard-resource-hygiene/`
+  - `.agents/skills/agentganggang-resource-hygiene/`
 
 ## Cross-Repo Isolation
 
-- Do not mix Prompt Switchboard live tabs or profiles with other repos' live
+- Do not mix AgentGangGang live tabs or profiles with other repos' live
   lanes.
 - Do not assume the user's everyday browser window is available as a disposable
   default test surface.
@@ -220,5 +220,5 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
   - only true external-only or human-only blockers outside the repo
 - Keep this tracked contract principle-level and store the execution checklist
   in:
-  - `.agents/skills/prompt-switchboard-resource-hygiene/SKILL.md`
-  - `.agents/skills/prompt-switchboard-consumer-host-kits/SKILL.md`
+  - `.agents/skills/agentganggang-resource-hygiene/SKILL.md`
+  - `.agents/skills/agentganggang-consumer-host-kits/SKILL.md`

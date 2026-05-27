@@ -1,6 +1,6 @@
-# Prompt Switchboard OpenCode Plugin Packet
+# AgentGangGang OpenCode Plugin Packet
 
-This directory is the repo-owned public OpenCode packet for Prompt Switchboard.
+This directory is the repo-owned public OpenCode packet for AgentGangGang.
 
 It does two things:
 
@@ -13,7 +13,7 @@ It does two things:
 - OpenCode already has an official npm plugin surface
 - this repo now ships a publish-ready package scaffold
 - the package is not published yet
-- Prompt Switchboard stays the local MCP server and browser-side product surface
+- AgentGangGang stays the local MCP server and browser-side product surface
 
 ## Public install shape
 
@@ -28,6 +28,6 @@ It does two things:
 
 ## Smallest useful smoke
 
-1. `prompt_switchboard.bridge_status`
-2. `prompt_switchboard.check_readiness`
-3. `prompt_switchboard.compare`
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`

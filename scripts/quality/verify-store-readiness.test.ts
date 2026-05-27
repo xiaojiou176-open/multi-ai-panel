@@ -5,19 +5,19 @@ import {
 } from './verify-store-readiness.mjs';
 
 const metadataText = JSON.stringify({
-  product_name: 'Prompt Switchboard',
+  product_name: 'AgentGangGang',
   manifest_description: 'Compare AI answers in a browser side panel.',
   current_install_surface: 'Install from GitHub Releases.',
   store_ready_note: 'Store submission materials are ready in this repository.',
 });
 
 const manifestText = JSON.stringify({
-  name: 'Prompt Switchboard',
+  name: 'AgentGangGang',
   description: 'Compare AI answers in a browser side panel.',
   icons: {
-    '16': 'public/prompt-switchboard-icon-16.png',
-    '48': 'public/prompt-switchboard-icon-48.png',
-    '128': 'public/prompt-switchboard-icon-128.png',
+    '16': 'public/agentganggang-icon-16.png',
+    '48': 'public/agentganggang-icon-48.png',
+    '128': 'public/agentganggang-icon-128.png',
   },
 });
 
@@ -43,21 +43,21 @@ const requiredFiles = new Set([
   'README.md',
   'CONTRIBUTING.md',
   'manifest.json',
-  'public/prompt-switchboard-icon.svg',
-  'public/prompt-switchboard-icon-16.png',
-  'public/prompt-switchboard-icon-48.png',
-  'public/prompt-switchboard-icon-128.png',
+  'public/agentganggang-icon.svg',
+  'public/agentganggang-icon-16.png',
+  'public/agentganggang-icon-48.png',
+  'public/agentganggang-icon-128.png',
   'docs/install.html',
   'docs/faq.html',
   'docs/mcp-coding-agents.html',
-  'docs/assets/prompt-switchboard-hero.png',
-  'docs/assets/prompt-switchboard-demo.gif',
-  'docs/assets/prompt-switchboard-compare-detail.png',
-  'docs/assets/prompt-switchboard-settings.png',
-  'docs/assets/prompt-switchboard-social-preview.png',
-  'docs/assets/prompt-switchboard-nav-icon.svg',
-  'docs/assets/prompt-switchboard-before-after.svg',
-  'docs/assets/prompt-switchboard-workflow.svg',
+  'docs/assets/agentganggang-hero.png',
+  'docs/assets/agentganggang-demo.gif',
+  'docs/assets/agentganggang-compare-detail.png',
+  'docs/assets/agentganggang-settings.png',
+  'docs/assets/agentganggang-social-preview.png',
+  'docs/assets/agentganggang-nav-icon.svg',
+  'docs/assets/agentganggang-before-after.svg',
+  'docs/assets/agentganggang-workflow.svg',
 ]);
 
 const collectFindings = (changelogText: string) =>

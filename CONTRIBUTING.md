@@ -2,7 +2,7 @@
 
 ## Project Shape
 
-This repository contains the Prompt Switchboard browser extension:
+This repository contains the AgentGangGang browser extension:
 
 - side panel UI
 - background service worker
@@ -27,7 +27,7 @@ Load `dist` in `chrome://extensions` with Developer Mode enabled.
 
 ## MCP Sidecar
 
-The repository also ships a local Prompt Switchboard MCP sidecar.
+The repository also ships a local AgentGangGang MCP sidecar.
 
 Use these commands:
 
@@ -41,7 +41,7 @@ Current transport model:
 
 - external MCP clients connect to the sidecar over `stdio`
 - the sidecar talks to the extension over a localhost loopback bridge on `127.0.0.1`
-- the bridge exposes Prompt Switchboard product actions only
+- the bridge exposes AgentGangGang product actions only
 - start the sidecar before opening or reloading the extension runtime if you want the bridge to attach immediately
 
 This is intentionally narrower than generic browser automation and lighter-weight than Chrome Native Messaging host registration.
@@ -60,12 +60,12 @@ helper.
 - not a hosted compare service
 - not a public HTTP API
 - when the container hosts the bridge for a browser on the same machine, set
-  `PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0` in the container and publish
+  `AGENTGANGGANG_BRIDGE_HOST=0.0.0.0` in the container and publish
   `127.0.0.1:48123:48123`
 
 ## Host Safety Boundary
 
-Prompt Switchboard must not grow OS-level desktop automation or host-wide
+AgentGangGang must not grow OS-level desktop automation or host-wide
 process cleanup paths as part of its supported runtime.
 
 That means this repo should not introduce:
@@ -126,7 +126,7 @@ Command boundary:
 - `clean:runtime:dry-run` previews the current runtime cleanup plan
 - `clean:runtime` removes disposable runtime outputs immediately, removes
   repo-owned external cache entries under `~/.cache/AgentGangGang/`
-  (including `live-profile-clones/prompt-switchboard-live-*`), prunes them with
+  (including `live-profile-clones/agentganggang-live-*`), prunes them with
   the current TTL/cap policy, and applies retention to local evidence
   directories, while preserving the repo-owned browser root under
   `~/.cache/AgentGangGang/browser/chrome-user-data/`
@@ -140,7 +140,7 @@ Runtime classes:
 - `.runtime-cache/test_output`, `.runtime-cache/coverage-tmp`,
   `.runtime-cache/coverage-split`, and `.runtime-cache/test-results` ->
   scratch / disposable-generated
-- `~/.cache/AgentGangGang/live-profile-clones/prompt-switchboard-live-*`
+- `~/.cache/AgentGangGang/live-profile-clones/agentganggang-live-*`
   -> repo-owned external disposable-generated temp clone created by
   login-state-sensitive live flows when profile cloning is enabled
 - `~/.cache/AgentGangGang/` -> repo-owned external cache root with
@@ -222,7 +222,7 @@ remains the documented hook contract.
 
 ## Verification Layers
 
-Treat Prompt Switchboard as a five-layer verification repo:
+Treat AgentGangGang as a five-layer verification repo:
 
 | Layer        | What it owns                                                                                                        | Default command                                                                                                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -252,7 +252,7 @@ Keep deterministic shell E2E isolated from the real Chrome login-state lane:
 - `tests/e2e/extension.spec.ts` should continue using repo-owned scratch
   profiles under `.runtime-cache/playwright-user-data/...`
 - shared Playwright browser downloads under `~/Library/Caches/ms-playwright/`
-  are visible in audits but are never auto-cleaned by Prompt Switchboard
+  are visible in audits but are never auto-cleaned by AgentGangGang
 - login-state-sensitive live flows stay outside default CI because they require
   a human-seeded browser profile
 
@@ -379,17 +379,17 @@ The bootstrap command:
 
 The default bootstrap source is:
 
-- `PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
-- `PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME=AgentGangGang`
+- `AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
+- `AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME=AgentGangGang`
 
 The same clone controls also apply to the repo-owned diagnosis ladder when you
 need a deterministic persistent-context troubleshooting pass without touching
 the canonical real Chrome attach lane:
 
 ```bash
-PROMPT_SWITCHBOARD_LIVE=1 PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=persistent PROMPT_SWITCHBOARD_CLONE_PROFILE=1 npm run test:live:probe
-PROMPT_SWITCHBOARD_LIVE=1 PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=persistent PROMPT_SWITCHBOARD_CLONE_PROFILE=1 npm run test:live:diagnose
-PROMPT_SWITCHBOARD_LIVE=1 PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=persistent PROMPT_SWITCHBOARD_CLONE_PROFILE=1 npm run test:live:support-bundle
+AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:probe
+AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:diagnose
+AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:support-bundle
 ```
 
 The maintainer-local live ladder is now:
@@ -414,12 +414,12 @@ The supported default login-state live-proof path is now:
 
 - repo-owned persistent browser user data dir:
   `~/.cache/AgentGangGang/browser/chrome-user-data`
-- `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME=AgentGangGang`
-- `PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=browser`
-- `PROMPT_SWITCHBOARD_LIVE=1 npm run test:live:open-browser`
+- `AGENTGANGGANG_BROWSER_PROFILE_NAME=AgentGangGang`
+- `AGENTGANGGANG_LIVE_ATTACH_MODE=browser`
+- `AGENTGANGGANG_LIVE=1 npm run test:live:open-browser`
 
 If you must override the runtime profile source, keep it on the repo-owned
-persistent browser root and use `PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY`
+persistent browser root and use `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY`
 explicitly. The default Chrome root is bootstrap-source only, not the canonical
 live runtime root.
 
@@ -428,7 +428,7 @@ browser instance, use the attach helper instead of reopening a new persistent
 context:
 
 ```bash
-PROMPT_SWITCHBOARD_LIVE=1 npm run test:live:open-browser
+AGENTGANGGANG_LIVE=1 npm run test:live:open-browser
 ```
 
 That helper launches or reuses one repo-owned real Google Chrome browser lane
@@ -445,7 +445,7 @@ with:
 After you finish any manual login in that exact window, run:
 
 ```bash
-PROMPT_SWITCHBOARD_LIVE=1 npm run test:live
+AGENTGANGGANG_LIVE=1 npm run test:live
 ```
 
 Use this attach path when you need to prove a real logged-in browser session
@@ -461,9 +461,9 @@ browser lane:
 
 - keep it open as the left-most tab when possible
 - pin it manually once if you want a stable visual marker in the tab strip
-- use `PROMPT_SWITCHBOARD_BROWSER_IDENTITY_LABEL` to override the displayed repo
+- use `AGENTGANGGANG_BROWSER_IDENTITY_LABEL` to override the displayed repo
   label
-- use `PROMPT_SWITCHBOARD_BROWSER_IDENTITY_ACCENT` with a hex color such as
+- use `AGENTGANGGANG_BROWSER_IDENTITY_ACCENT` with a hex color such as
   `#2563eb` if you want a repo-specific accent
 
 Do not script Chrome's private avatar/theme internals as part of the normal
@@ -545,14 +545,14 @@ of opening a detailed public issue.
 
 Before a public release or store submission:
 
-- confirm the product name is `Prompt Switchboard`
+- confirm the product name is `AgentGangGang`
 - confirm the short tagline remains `One prompt, many AI chats, one side panel.`
 - confirm the manifest description remains `Local-first AI compare workspace for ChatGPT, Gemini, Perplexity, Qwen, and Grok in one browser side panel.`
 - confirm the extension icon assets are:
-  - `public/prompt-switchboard-icon-16.png`
-  - `public/prompt-switchboard-icon-48.png`
-  - `public/prompt-switchboard-icon-128.png`
-- keep `public/prompt-switchboard-icon.svg` for repo/web surfaces only; Chrome extension manifest icons must stay on PNG assets
+  - `public/agentganggang-icon-16.png`
+  - `public/agentganggang-icon-48.png`
+  - `public/agentganggang-icon-128.png`
+- keep `public/agentganggang-icon.svg` for repo/web surfaces only; Chrome extension manifest icons must stay on PNG assets
 - keep `npm run test:pre-push` and `npm run test:nightly` green
 - run `npm run verify:release-baseline`
 - run `npm run verify:store-readiness`

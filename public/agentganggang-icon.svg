@@ -2,9 +2,9 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 128 128"
   role="img"
-  aria-labelledby="prompt-switchboard-icon-title"
+  aria-labelledby="agentganggang-icon-title"
 >
-  <title id="prompt-switchboard-icon-title">Prompt Switchboard Icon</title>
+  <title id="agentganggang-icon-title">AgentGangGang Icon</title>
   <defs>
     <linearGradient id="switchboard-bg" x1="12" x2="116" y1="12" y2="116" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0f766e" />

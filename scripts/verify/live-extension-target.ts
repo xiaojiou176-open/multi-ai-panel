@@ -37,7 +37,7 @@ export const listDevtoolsTargets = async (cdpUrl: string): Promise<DevtoolsPageT
   const response = await fetch(buildJsonListUrl(cdpUrl));
   if (!response.ok) {
     throw new Error(
-      `Prompt Switchboard could not read DevTools targets from ${buildJsonListUrl(cdpUrl)} (${response.status}).`
+      `AgentGangGang could not read DevTools targets from ${buildJsonListUrl(cdpUrl)} (${response.status}).`
     );
   }
 
@@ -57,7 +57,7 @@ const findExistingExtensionPageTargets = async (cdpUrl: string, extensionId: str
 const fetchJson = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Prompt Switchboard could not read DevTools metadata from ${url} (${response.status}).`);
+    throw new Error(`AgentGangGang could not read DevTools metadata from ${url} (${response.status}).`);
   }
   return (await response.json()) as T;
 };
@@ -170,7 +170,7 @@ export class ExistingExtensionTargetClient {
     };
 
     this.ws.on('close', () => {
-      rejectPending(new Error('Prompt Switchboard extension target connection closed.'));
+      rejectPending(new Error('AgentGangGang extension target connection closed.'));
     });
     this.ws.on('error', (error) => {
       rejectPending(error instanceof Error ? error : new Error(String(error)));
@@ -184,7 +184,7 @@ export class ExistingExtensionTargetClient {
       targets = await findExistingExtensionPageTargets(cdpUrl, extensionId);
       if (targets.length === 0) {
         throw new Error(
-          `Prompt Switchboard could not find an existing extension page target for chrome-extension://${extensionId}/ on ${cdpUrl}.`
+          `AgentGangGang could not find an existing extension page target for chrome-extension://${extensionId}/ on ${cdpUrl}.`
         );
       }
     }
@@ -261,7 +261,7 @@ export class ExistingExtensionTargetClient {
     }
 
     throw new Error(
-      `Prompt Switchboard found extension page targets on ${cdpUrl}, but none exposed a real extension runtime context. This usually means Chrome replaced direct extension-tab navigation with a blocked chrome-error page instead of a live side-panel/options surface. Rejected targets: ${JSON.stringify(
+      `AgentGangGang found extension page targets on ${cdpUrl}, but none exposed a real extension runtime context. This usually means Chrome replaced direct extension-tab navigation with a blocked chrome-error page instead of a live side-panel/options surface. Rejected targets: ${JSON.stringify(
         rejectedTargets
       )}`
     );
@@ -307,7 +307,7 @@ export class ExistingExtensionTargetClient {
         runtimeResult.exceptionDetails.exception?.description ||
           runtimeResult.exceptionDetails.text ||
           runtimeResult.result.description ||
-          'Prompt Switchboard extension target evaluation failed.'
+          'AgentGangGang extension target evaluation failed.'
       );
     }
 
@@ -344,7 +344,7 @@ export class ExistingExtensionTargetClient {
       await new Promise((resolve) => setTimeout(resolve, intervalMs));
     }
 
-    throw new Error(`Prompt Switchboard timed out waiting for extension target condition: ${expression}`);
+    throw new Error(`AgentGangGang timed out waiting for extension target condition: ${expression}`);
   }
 }
 

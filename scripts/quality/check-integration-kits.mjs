@@ -156,9 +156,9 @@ const packetManifestPaths = {
   openclaw: 'mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json',
 };
 const skillManifestPaths = {
-  codex: 'mcp/integration-kits/public-bundles/codex-bundle/skills/prompt-switchboard/manifest.yaml',
+  codex: 'mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml',
   openclaw:
-    'mcp/integration-kits/public-bundles/openclaw-bundle/skills/prompt-switchboard/manifest.yaml',
+    'mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml',
 };
 
 const findings = [];
@@ -171,15 +171,15 @@ const skillManifestSchema = readJson('mcp/integration-kits/skill-manifest.schema
 
 const codexKit = read('mcp/integration-kits/codex.config.toml.example');
 expect(
-  codexKit.includes('[mcp_servers.prompt_switchboard]'),
-  'Codex starter kit is missing the prompt_switchboard TOML block.',
+  codexKit.includes('[mcp_servers.agentganggang]'),
+  'Codex starter kit is missing the agentganggang TOML block.',
   findings
 );
 
 const claudeKit = readJson('mcp/integration-kits/claude.mcp.json.example');
 expect(
-  claudeKit?.mcpServers?.prompt_switchboard?.command === 'npm',
-  'Claude starter kit must launch Prompt Switchboard with npm.',
+  claudeKit?.mcpServers?.agentganggang?.command === 'npm',
+  'Claude starter kit must launch AgentGangGang with npm.',
   findings
 );
 
@@ -187,20 +187,20 @@ const openCodeKit = JSON.parse(
   stripJsonComments(read('mcp/integration-kits/opencode.jsonc.example'))
 );
 expect(
-  openCodeKit?.mcp?.prompt_switchboard?.type === 'local',
+  openCodeKit?.mcp?.agentganggang?.type === 'local',
   'OpenCode starter kit must declare a local MCP server.',
   findings
 );
 expect(
-  Array.isArray(openCodeKit?.mcp?.prompt_switchboard?.command),
+  Array.isArray(openCodeKit?.mcp?.agentganggang?.command),
   'OpenCode starter kit must keep the command as an array.',
   findings
 );
 
-const openClawJson = readJson('mcp/integration-kits/openclaw.prompt-switchboard.json.example');
+const openClawJson = readJson('mcp/integration-kits/openclaw.agentganggang.json.example');
 expect(
   openClawJson?.command === 'npm',
-  'OpenClaw starter JSON must launch Prompt Switchboard through npm.',
+  'OpenClaw starter JSON must launch AgentGangGang through npm.',
   findings
 );
 expect(
@@ -216,7 +216,7 @@ expect(
 
 const openClawShell = read('mcp/integration-kits/openclaw.mcp.set.example.sh');
 expect(
-  openClawShell.includes('openclaw mcp set prompt_switchboard'),
+  openClawShell.includes('openclaw mcp set agentganggang'),
   'OpenClaw shell helper must show the exact registry command.',
   findings
 );
@@ -231,7 +231,7 @@ for (const relPath of [
   'codex.config.toml.example',
   'claude.mcp.json.example',
   'opencode.jsonc.example',
-  'openclaw.prompt-switchboard.json.example',
+  'openclaw.agentganggang.json.example',
   'openclaw.mcp.servers.json.example',
   'openclaw.mcp.set.example.sh',
   'distribution-subject-map.json',
@@ -264,9 +264,9 @@ expect(
 expect(
   typeof supportMatrix?.container_entry?.bridge_requirement === 'string' &&
     supportMatrix.container_entry.bridge_requirement.includes(
-      'PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0'
+      'AGENTGANGGANG_BRIDGE_HOST=0.0.0.0'
     ),
-  'Support matrix container_entry.bridge_requirement must document PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0.',
+  'Support matrix container_entry.bridge_requirement must document AGENTGANGGANG_BRIDGE_HOST=0.0.0.0.',
   findings
 );
 
@@ -299,9 +299,9 @@ expect(
 );
 expect(
   Array.isArray(supportMatrix?.workflow_followthrough) &&
-    supportMatrix.workflow_followthrough.includes('prompt_switchboard.get_workflow_run') &&
-    supportMatrix.workflow_followthrough.includes('prompt_switchboard.list_workflow_runs') &&
-    supportMatrix.workflow_followthrough.includes('prompt_switchboard.resume_workflow'),
+    supportMatrix.workflow_followthrough.includes('agentganggang.get_workflow_run') &&
+    supportMatrix.workflow_followthrough.includes('agentganggang.list_workflow_runs') &&
+    supportMatrix.workflow_followthrough.includes('agentganggang.resume_workflow'),
   'Support matrix must expose the workflow_followthrough sequence for get/list/resume.',
   findings
 );
@@ -421,7 +421,7 @@ for (const [host, manifestPath] of Object.entries(packetManifestPaths)) {
   }
 
   expect(
-    ['host_packet', 'prompt_switchboard_host_packet', 'prompt_switchboard_plugin_packet'].includes(
+    ['host_packet', 'agentganggang_host_packet', 'agentganggang_plugin_packet'].includes(
       manifest.kind
     ),
     `${manifestPath} kind must stay on a recognized packet type.`,
@@ -511,8 +511,8 @@ for (const relPath of [
 
 const dockerfile = read('Dockerfile');
 expect(
-  dockerfile.includes('PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0'),
-  'Dockerfile must publish the bridge by setting PROMPT_SWITCHBOARD_BRIDGE_HOST=0.0.0.0.',
+  dockerfile.includes('AGENTGANGGANG_BRIDGE_HOST=0.0.0.0'),
+  'Dockerfile must publish the bridge by setting AGENTGANGGANG_BRIDGE_HOST=0.0.0.0.',
   findings
 );
 expect(
@@ -537,8 +537,8 @@ for (const needle of ['Codex', 'Claude Code', 'OpenCode', 'OpenClaw']) {
   }
 }
 for (const needle of [
-  'prompt-switchboard://builder/support-matrix',
-  'prompt-switchboard://sites/capabilities',
+  'agentganggang://builder/support-matrix',
+  'agentganggang://sites/capabilities',
   'Smallest useful compare-first loop',
 ]) {
   if (!starterKitsDoc.includes(needle)) {
@@ -546,7 +546,7 @@ for (const needle of [
   }
 }
 for (const needle of [
-  'Prompt Switchboard public distribution matrix',
+  'AgentGangGang public distribution matrix',
   'official marketplace or registry',
   'Public-bundle-ready packet available now.',
   'npm run release:host-kits',
@@ -562,7 +562,7 @@ if (publicDistributionDoc.includes('Any official MCP Registry publication or lis
   );
 }
 for (const needle of [
-  'Prompt Switchboard host packets',
+  'AgentGangGang host packets',
   'Codex packet',
   'Claude Code packet',
   'OpenCode packet',
@@ -575,8 +575,8 @@ for (const needle of [
 
 const readme = read('README.md');
 for (const needle of [
-  'prompt-switchboard://builder/support-matrix',
-  'prompt-switchboard://sites/capabilities',
+  'agentganggang://builder/support-matrix',
+  'agentganggang://sites/capabilities',
   'Quick placement map',
   'public-distribution-matrix.html',
   'mcp-host-packets.html',
@@ -597,7 +597,7 @@ if (
 }
 if (
   !faqDoc.includes(
-    'Is Prompt Switchboard already listed on an official marketplace or registry for every documented host?'
+    'Is AgentGangGang already listed on an official marketplace or registry for every documented host?'
   )
 ) {
   findings.push(
@@ -636,13 +636,13 @@ if (
 }
 
 for (const relPath of [
-  'mcp/integration-kits/codex.skill.prompt-switchboard.md.example',
-  'mcp/integration-kits/claude.skill.prompt-switchboard.md.example',
-  'mcp/integration-kits/opencode.skill.prompt-switchboard.md.example',
-  'mcp/integration-kits/openclaw.skill.prompt-switchboard.md.example',
+  'mcp/integration-kits/codex.skill.agentganggang.md.example',
+  'mcp/integration-kits/claude.skill.agentganggang.md.example',
+  'mcp/integration-kits/opencode.skill.agentganggang.md.example',
+  'mcp/integration-kits/openclaw.skill.agentganggang.md.example',
 ]) {
   const text = read(relPath);
-  if (!text.includes('prompt_switchboard.bridge_status')) {
+  if (!text.includes('agentganggang.bridge_status')) {
     findings.push(`${relPath} must keep the bridge_status-first flow.`);
   }
   if (!text.includes('## Smallest useful flow')) {
@@ -652,9 +652,9 @@ for (const relPath of [
     findings.push(`${relPath} must document the preferred full flow.`);
   }
   for (const required of [
-    'prompt_switchboard.get_workflow_run',
-    'prompt_switchboard.list_workflow_runs',
-    'prompt_switchboard.resume_workflow',
+    'agentganggang.get_workflow_run',
+    'agentganggang.list_workflow_runs',
+    'agentganggang.resume_workflow',
   ]) {
     if (!text.includes(required)) {
       findings.push(`${relPath} must include ${required} in the workflow follow-through flow.`);
@@ -666,7 +666,7 @@ for (const relPath of [
   'mcp/integration-kits/codex.config.toml.example',
   'mcp/integration-kits/claude.mcp.json.example',
   'mcp/integration-kits/opencode.jsonc.example',
-  'mcp/integration-kits/openclaw.prompt-switchboard.json.example',
+  'mcp/integration-kits/openclaw.agentganggang.json.example',
   'mcp/integration-kits/openclaw.mcp.servers.json.example',
   'mcp/integration-kits/openclaw.mcp.set.example.sh',
   'mcp/integration-kits/public-bundles/codex-bundle/package.json',
@@ -677,8 +677,8 @@ for (const relPath of [
   'mcp/integration-kits/public-bundles/claude-code-bundle/manifest.json',
   'mcp/integration-kits/public-bundles/opencode-plugin/manifest.json',
   'mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json',
-  'mcp/integration-kits/public-bundles/codex-bundle/skills/prompt-switchboard/manifest.yaml',
-  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/prompt-switchboard/manifest.yaml',
+  'mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml',
+  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml',
   'mcp/integration-kits/distribution-subject-map.json',
   'mcp/integration-kits/public-distribution-matrix.json',
   'docs/mcp-host-packets.html',

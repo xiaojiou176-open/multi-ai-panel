@@ -64,7 +64,7 @@ const buildReadinessBlockedTimeline = (
     readinessStatus === READINESS_STATUSES.TAB_LOADING
       ? i18n.t(
           'analysisInsights.summaryTabLoading',
-          'The tab is still loading, so Prompt Switchboard is waiting before it can continue.'
+          'The tab is still loading, so AgentGangGang is waiting before it can continue.'
         )
       : readinessStatus === READINESS_STATUSES.TAB_MISSING
         ? i18n.t(
@@ -79,11 +79,11 @@ const buildReadinessBlockedTimeline = (
           : readinessStatus === READINESS_STATUSES.SELECTOR_DRIFT_SUSPECT
             ? i18n.t(
                 'analysisInsights.summarySelectorDrift',
-                'Prompt Switchboard could not confirm the page controls before the run started.'
+                'AgentGangGang could not confirm the page controls before the run started.'
               )
             : i18n.t(
                 'analysisInsights.summaryReadyCheckBlocked',
-                'The compare run stopped before Prompt Switchboard could confirm the tab was ready.'
+                'The compare run stopped before AgentGangGang could confirm the tab was ready.'
               );
 
   return {
@@ -111,7 +111,7 @@ export const buildCompareRunTimeline = (
       summary:
         i18n.t(
           'analysisInsights.summaryQueued',
-          'Ready check passed. Prompt Switchboard is handing this run off to the active browser tab.'
+          'Ready check passed. AgentGangGang is handing this run off to the active browser tab.'
         ),
       emphasis: 'neutral',
       steps,
@@ -149,7 +149,7 @@ export const buildCompareRunTimeline = (
     return {
       summary: i18n.t(
         'analysisInsights.summaryHandoffBlocked',
-        'The tab was found, but Prompt Switchboard could not complete the browser handoff.'
+        'The tab was found, but AgentGangGang could not complete the browser handoff.'
       ),
       emphasis: 'danger',
       steps,
@@ -177,7 +177,7 @@ export const buildCompareRunTimeline = (
     return {
       summary: i18n.t(
         'analysisInsights.summaryDeliveryBlocked',
-        'The model started, but Prompt Switchboard could not complete delivery back into the compare board.'
+        'The model started, but AgentGangGang could not complete delivery back into the compare board.'
       ),
       emphasis: 'danger',
       steps,
@@ -190,7 +190,7 @@ export const buildCompareRunTimeline = (
   return {
     summary: i18n.t(
       'analysisInsights.summaryLifecycleFailed',
-      'This run failed after the initial handoff, so Prompt Switchboard could not finish the answer lifecycle.'
+      'This run failed after the initial handoff, so AgentGangGang could not finish the answer lifecycle.'
     ),
     emphasis: 'danger',
     steps,

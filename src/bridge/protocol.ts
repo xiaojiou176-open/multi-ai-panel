@@ -6,16 +6,16 @@ import {
   type SubstrateActionName,
 } from '../substrate/api/index.js';
 
-export const PROMPT_SWITCHBOARD_BRIDGE_HOST = '127.0.0.1';
-export const PROMPT_SWITCHBOARD_BRIDGE_PORT = 48123;
-export const PROMPT_SWITCHBOARD_BRIDGE_VERSION = 1;
-export const PROMPT_SWITCHBOARD_BRIDGE_HOST_ENV = 'PROMPT_SWITCHBOARD_BRIDGE_HOST';
-export const PROMPT_SWITCHBOARD_BRIDGE_PORT_ENV = 'PROMPT_SWITCHBOARD_BRIDGE_PORT';
+export const AGENTGANGGANG_BRIDGE_HOST = '127.0.0.1';
+export const AGENTGANGGANG_BRIDGE_PORT = 48123;
+export const AGENTGANGGANG_BRIDGE_VERSION = 1;
+export const AGENTGANGGANG_BRIDGE_HOST_ENV = 'AGENTGANGGANG_BRIDGE_HOST';
+export const AGENTGANGGANG_BRIDGE_PORT_ENV = 'AGENTGANGGANG_BRIDGE_PORT';
 
 export type BridgeRuntimeEnv = Record<string, string | undefined>;
 
-export const BRIDGE_HEADER_EXTENSION_ID = 'x-prompt-switchboard-extension-id';
-export const BRIDGE_HEADER_KEY = 'x-prompt-switchboard-bridge-key';
+export const BRIDGE_HEADER_EXTENSION_ID = 'x-agentganggang-extension-id';
+export const BRIDGE_HEADER_KEY = 'x-agentganggang-bridge-key';
 
 export const BRIDGE_COMMAND_NAMES = SUBSTRATE_ACTION_NAMES;
 
@@ -174,21 +174,21 @@ const defaultBridgeRuntimeEnv: BridgeRuntimeEnv = (() => {
 })();
 
 export const resolveBridgeHost = (env: BridgeRuntimeEnv = defaultBridgeRuntimeEnv) =>
-  env[PROMPT_SWITCHBOARD_BRIDGE_HOST_ENV]?.trim() || PROMPT_SWITCHBOARD_BRIDGE_HOST;
+  env[AGENTGANGGANG_BRIDGE_HOST_ENV]?.trim() || AGENTGANGGANG_BRIDGE_HOST;
 
 export const resolveBridgePort = (env: BridgeRuntimeEnv = defaultBridgeRuntimeEnv) => {
-  const rawPort = env[PROMPT_SWITCHBOARD_BRIDGE_PORT_ENV];
+  const rawPort = env[AGENTGANGGANG_BRIDGE_PORT_ENV];
   if (!rawPort) {
-    return PROMPT_SWITCHBOARD_BRIDGE_PORT;
+    return AGENTGANGGANG_BRIDGE_PORT;
   }
 
   const parsedPort = Number(rawPort);
   return Number.isInteger(parsedPort) && parsedPort > 0
     ? parsedPort
-    : PROMPT_SWITCHBOARD_BRIDGE_PORT;
+    : AGENTGANGGANG_BRIDGE_PORT;
 };
 
 export const createBridgeBaseUrl = (
-  host = PROMPT_SWITCHBOARD_BRIDGE_HOST,
-  port = PROMPT_SWITCHBOARD_BRIDGE_PORT
+  host = AGENTGANGGANG_BRIDGE_HOST,
+  port = AGENTGANGGANG_BRIDGE_PORT
 ) => `http://${host}:${port}`;

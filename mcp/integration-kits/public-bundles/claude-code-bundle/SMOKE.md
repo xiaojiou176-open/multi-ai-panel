@@ -3,9 +3,9 @@
 1. Start the local sidecar with `npm run mcp:server`.
 2. Attach the bundle MCP config inside Claude Code.
 3. Call:
-   - `prompt_switchboard.bridge_status`
-   - `prompt_switchboard.check_readiness`
-   - `prompt_switchboard.compare`
+   - `agentganggang.bridge_status`
+   - `agentganggang.check_readiness`
+   - `agentganggang.compare`
 4. If the compare lane is healthy, continue with:
-   - `prompt_switchboard.analyze_compare`
-   - `prompt_switchboard.run_workflow`
+   - `agentganggang.analyze_compare`
+   - `agentganggang.run_workflow`

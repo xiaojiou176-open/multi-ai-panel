@@ -1,8 +1,8 @@
 # Privacy Policy
 
-## What Prompt Switchboard Does
+## What AgentGangGang Does
 
-Prompt Switchboard is a browser extension that helps you send one prompt to
+AgentGangGang is a browser extension that helps you send one prompt to
 multiple supported AI chat websites from a single side panel.
 
 The extension is **local-first** and **compare-first**:
@@ -45,7 +45,7 @@ SDKs, or a hosted analytics collector inside this repository build.
 
 ## Third-Party Services
 
-When you use Prompt Switchboard, your prompt and the resulting responses are
+When you use AgentGangGang, your prompt and the resulting responses are
 handled by the third-party AI websites you selected, under those services'
 terms and privacy policies.
 

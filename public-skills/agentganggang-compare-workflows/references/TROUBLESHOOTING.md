@@ -1,4 +1,4 @@
-# Prompt Switchboard Troubleshooting
+# AgentGangGang Troubleshooting
 
 Use this page when the packet installs cleanly on paper but the first real
 compare turn does not succeed.
@@ -7,7 +7,7 @@ compare turn does not succeed.
 
 Check these first:
 
-- the Prompt Switchboard browser extension is installed and enabled
+- the AgentGangGang browser extension is installed and enabled
 - the local sidecar process can start from the command in `INSTALL.md`
 - the host config points at the right command, args, and working directory
 
@@ -29,9 +29,9 @@ ready.
 
 Try this order:
 
-1. rerun `prompt_switchboard.bridge_status`
-2. rerun `prompt_switchboard.check_readiness`
-3. if the skill supports it, use `prompt_switchboard.retry_failed`
+1. rerun `agentganggang.bridge_status`
+2. rerun `agentganggang.check_readiness`
+3. if the skill supports it, use `agentganggang.retry_failed`
 4. if the same tab keeps failing, report the exact blocked model tab instead of
    generalizing
 
@@ -46,6 +46,6 @@ Point back to `DEMO.md` and confirm these three signals:
 
 ## 5. Boundary reminder
 
-Prompt Switchboard is a local browser workflow with a local MCP sidecar. This
+AgentGangGang is a local browser workflow with a local MCP sidecar. This
 packet does not claim a hosted relay, a live marketplace listing, or universal
 readiness on every machine.

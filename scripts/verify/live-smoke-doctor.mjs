@@ -15,27 +15,27 @@ import {
   sanitizeReportPayload,
 } from '../shared/runtime-governance.mjs';
 
-const LIVE_FLAG = process.env.PROMPT_SWITCHBOARD_LIVE === '1';
-const ATTACH_MODE = process.env.PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE || 'browser';
+const LIVE_FLAG = process.env.AGENTGANGGANG_LIVE === '1';
+const ATTACH_MODE = process.env.AGENTGANGGANG_LIVE_ATTACH_MODE || 'browser';
 const BROWSER_CHANNEL =
-  process.env.PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL ||
+  process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL ||
   (ATTACH_MODE === 'browser' ? 'chrome' : 'chromium');
-const CDP_URL = process.env.PROMPT_SWITCHBOARD_LIVE_CDP_URL || 'http://127.0.0.1:9336';
-const EXTENSION_PATH_FROM_ENV = process.env.PROMPT_SWITCHBOARD_EXTENSION_PATH || '';
-const CLONE_PROFILE = process.env.PROMPT_SWITCHBOARD_CLONE_PROFILE === '1';
-const KEEP_LIVE_CLONE = process.env.PROMPT_SWITCHBOARD_KEEP_LIVE_CLONE === '1';
-const TARGET_MODELS = (process.env.PROMPT_SWITCHBOARD_LIVE_MODELS || 'ChatGPT')
+const CDP_URL = process.env.AGENTGANGGANG_LIVE_CDP_URL || 'http://127.0.0.1:9336';
+const EXTENSION_PATH_FROM_ENV = process.env.AGENTGANGGANG_EXTENSION_PATH || '';
+const CLONE_PROFILE = process.env.AGENTGANGGANG_CLONE_PROFILE === '1';
+const KEEP_LIVE_CLONE = process.env.AGENTGANGGANG_KEEP_LIVE_CLONE === '1';
+const TARGET_MODELS = (process.env.AGENTGANGGANG_LIVE_MODELS || 'ChatGPT')
   .split(',')
   .map((value) => value.trim())
   .filter(Boolean);
 const PROMPT =
-  process.env.PROMPT_SWITCHBOARD_LIVE_PROMPT ||
+  process.env.AGENTGANGGANG_LIVE_PROMPT ||
   'Summarize the value of deterministic testing in one sentence.';
-const TIMEOUT_MS = Number(process.env.PROMPT_SWITCHBOARD_LIVE_TIMEOUT_MS || '90000');
+const TIMEOUT_MS = Number(process.env.AGENTGANGGANG_LIVE_TIMEOUT_MS || '90000');
 const browserProfile = resolveBrowserProfile();
 const browserExecutable = resolveBrowserExecutablePath({
   ...process.env,
-  PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
+  AGENTGANGGANG_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
 });
 const externalCachePolicy = getExternalCachePolicy();
 const externalCacheState = inspectExternalRepoCache();
@@ -144,19 +144,19 @@ const canInspectRuntime =
 const runtimeInspectionEnv = canInspectRuntime
   ? {
       ...process.env,
-      PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
-      PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
-      PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory || '',
-      PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
-      PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE: 'browser',
-      PROMPT_SWITCHBOARD_LIVE_CDP_URL: CDP_URL,
-      PROMPT_SWITCHBOARD_EXTENSION_PATH: EXTENSION_PATH_FROM_ENV,
-      PROMPT_SWITCHBOARD_LIVE_MODELS: TARGET_MODELS.join(','),
+      AGENTGANGGANG_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
+      AGENTGANGGANG_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
+      AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory || '',
+      AGENTGANGGANG_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
+      AGENTGANGGANG_LIVE_ATTACH_MODE: 'browser',
+      AGENTGANGGANG_LIVE_CDP_URL: CDP_URL,
+      AGENTGANGGANG_EXTENSION_PATH: EXTENSION_PATH_FROM_ENV,
+      AGENTGANGGANG_LIVE_MODELS: TARGET_MODELS.join(','),
     }
   : null;
 if (runtimeInspectionEnv) {
-  delete runtimeInspectionEnv.PROMPT_SWITCHBOARD_USER_DATA_DIR;
-  delete runtimeInspectionEnv.PROMPT_SWITCHBOARD_PROFILE_DIRECTORY;
+  delete runtimeInspectionEnv.AGENTGANGGANG_USER_DATA_DIR;
+  delete runtimeInspectionEnv.AGENTGANGGANG_PROFILE_DIRECTORY;
 }
 const runtimeDiagnosisEnvelope = runtimeInspectionEnv
   ? runLiveDiagnoseEnvelope({ env: runtimeInspectionEnv })
@@ -168,19 +168,19 @@ const brandedChromeExtensionAutoloadBlocker =
   BROWSER_CHANNEL === 'chrome' &&
   browserMajorVersion >= 137 &&
   runtimeInspection?.laneBlocked
-    ? `Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. The current attach lane reports ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`}, so this real Chrome profile can preserve login state but will not auto-load the unpacked Prompt Switchboard extension runtime. Manually use "Load unpacked" in the repo-owned Chrome profile, or switch automated extension-runtime proof to Chromium/Chrome for Testing.`
+    ? `Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. The current attach lane reports ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`}, so this real Chrome profile can preserve login state but will not auto-load the unpacked AgentGangGang extension runtime. Manually use "Load unpacked" in the repo-owned Chrome profile, or switch automated extension-runtime proof to Chromium/Chrome for Testing.`
     : null;
 
-const missingRequiredEnv = [!LIVE_FLAG ? 'PROMPT_SWITCHBOARD_LIVE=1' : null].filter(Boolean);
+const missingRequiredEnv = [!LIVE_FLAG ? 'AGENTGANGGANG_LIVE=1' : null].filter(Boolean);
 
 const unsupportedChannelBlocker =
   attachModeResolved === 'persistent' && BROWSER_CHANNEL === 'chrome'
-    ? 'PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use a Chromium channel or the attachable real Chrome profile lane instead.'
+    ? 'AGENTGANGGANG_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use a Chromium channel or the attachable real Chrome profile lane instead.'
     : null;
 
 const attachModeBlocker =
   ATTACH_MODE === 'browser' && cdpReachable === false
-    ? `PROMPT_SWITCHBOARD_LIVE_CDP_URL is not attachable right now: ${CDP_URL}. Launch an attachable browser first with npm run test:live:open-browser.`
+    ? `AGENTGANGGANG_LIVE_CDP_URL is not attachable right now: ${CDP_URL}. Launch an attachable browser first with npm run test:live:open-browser.`
     : null;
 
 const blockers = [
@@ -205,40 +205,40 @@ const blockers = [
 const readyToRun = blockers.length === 0;
 
 const report = sanitizeReportPayload({
-  mode: 'prompt_switchboard_live_smoke_doctor',
+  mode: 'agentganggang_live_smoke_doctor',
   readyToRun,
   requiredEnv: {
-    PROMPT_SWITCHBOARD_LIVE: LIVE_FLAG ? '1' : '',
+    AGENTGANGGANG_LIVE: LIVE_FLAG ? '1' : '',
   },
   optionalEnv: {
-    PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR || '',
-    PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME || '',
-    PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY || '',
-    PROMPT_SWITCHBOARD_BROWSER_EXECUTABLE_PATH:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_EXECUTABLE_PATH || '',
-    PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR || '',
-    PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME || '',
-    PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_DIRECTORY:
-      process.env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_DIRECTORY || '',
-    PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
-    PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE: ATTACH_MODE,
-    PROMPT_SWITCHBOARD_LIVE_CDP_URL: CDP_URL,
-    PROMPT_SWITCHBOARD_EXTENSION_PATH: EXTENSION_PATH_FROM_ENV,
-    PROMPT_SWITCHBOARD_CLONE_PROFILE: CLONE_PROFILE ? '1' : '0',
-    PROMPT_SWITCHBOARD_KEEP_LIVE_CLONE: KEEP_LIVE_CLONE ? '1' : '0',
-    PROMPT_SWITCHBOARD_LIVE_MODELS: TARGET_MODELS,
-    PROMPT_SWITCHBOARD_LIVE_TIMEOUT_MS: TIMEOUT_MS,
-    PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT:
-      process.env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT || '',
-    PROMPT_SWITCHBOARD_EXTERNAL_CACHE_MAX_BYTES:
-      process.env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_MAX_BYTES || '',
-    PROMPT_SWITCHBOARD_EXTERNAL_CACHE_TTL_HOURS:
-      process.env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_TTL_HOURS || '',
+    AGENTGANGGANG_BROWSER_USER_DATA_DIR:
+      process.env.AGENTGANGGANG_BROWSER_USER_DATA_DIR || '',
+    AGENTGANGGANG_BROWSER_PROFILE_NAME:
+      process.env.AGENTGANGGANG_BROWSER_PROFILE_NAME || '',
+    AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY:
+      process.env.AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY || '',
+    AGENTGANGGANG_BROWSER_EXECUTABLE_PATH:
+      process.env.AGENTGANGGANG_BROWSER_EXECUTABLE_PATH || '',
+    AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR:
+      process.env.AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR || '',
+    AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME:
+      process.env.AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME || '',
+    AGENTGANGGANG_BROWSER_SOURCE_PROFILE_DIRECTORY:
+      process.env.AGENTGANGGANG_BROWSER_SOURCE_PROFILE_DIRECTORY || '',
+    AGENTGANGGANG_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
+    AGENTGANGGANG_LIVE_ATTACH_MODE: ATTACH_MODE,
+    AGENTGANGGANG_LIVE_CDP_URL: CDP_URL,
+    AGENTGANGGANG_EXTENSION_PATH: EXTENSION_PATH_FROM_ENV,
+    AGENTGANGGANG_CLONE_PROFILE: CLONE_PROFILE ? '1' : '0',
+    AGENTGANGGANG_KEEP_LIVE_CLONE: KEEP_LIVE_CLONE ? '1' : '0',
+    AGENTGANGGANG_LIVE_MODELS: TARGET_MODELS,
+    AGENTGANGGANG_LIVE_TIMEOUT_MS: TIMEOUT_MS,
+    AGENTGANGGANG_EXTERNAL_CACHE_ROOT:
+      process.env.AGENTGANGGANG_EXTERNAL_CACHE_ROOT || '',
+    AGENTGANGGANG_EXTERNAL_CACHE_MAX_BYTES:
+      process.env.AGENTGANGGANG_EXTERNAL_CACHE_MAX_BYTES || '',
+    AGENTGANGGANG_EXTERNAL_CACHE_TTL_HOURS:
+      process.env.AGENTGANGGANG_EXTERNAL_CACHE_TTL_HOURS || '',
   },
   filesystem: {
     extensionPath,

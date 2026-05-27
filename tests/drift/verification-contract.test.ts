@@ -91,7 +91,7 @@ describe('verification contract', () => {
 
     expect(hostSafety).toContain("{ label: 'detached spawn'");
     expect(hostSafety).toContain(`{ label: 'child.${'unref()'}'`);
-    expect(liveOpenBrowser).toContain('PROMPT_SWITCHBOARD_LIVE_ALLOW_DETACHED_BROWSER=1');
+    expect(liveOpenBrowser).toContain('AGENTGANGGANG_LIVE_ALLOW_DETACHED_BROWSER=1');
     expect(liveOpenBrowser).toContain('Detached repo-owned browser launch now requires');
     expect(liveOpenBrowser).toContain(detachedSpawnMarker);
     expect(liveOpenBrowser).toContain(`child.${'unref()'};`);

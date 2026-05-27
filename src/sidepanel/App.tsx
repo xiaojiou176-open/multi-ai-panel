@@ -131,7 +131,7 @@ function App() {
       label: t('app.workspacePulse.waitLabel', 'Readiness is still settling'),
       body: t(
         'app.workspacePulse.waitBody',
-        'Prompt Switchboard is still checking or waiting for model tabs to finish loading. Re-check once the pages settle.'
+        'AgentGangGang is still checking or waiting for model tabs to finish loading. Re-check once the pages settle.'
       ),
     };
   }, [currentPromptCount, readinessSummary, selectedModels.length, t]);
@@ -326,7 +326,7 @@ function App() {
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <h1 className="bg-gradient-to-r from-[color:var(--ps-text)] via-[color:var(--ps-text)] to-[color:var(--ps-accent)] bg-clip-text text-lg font-semibold tracking-tight text-transparent">
-                      Prompt Switchboard
+                      AgentGangGang
                     </h1>
                     <span className="inline-flex rounded-full border border-[rgba(83,196,143,0.28)] bg-[rgba(83,196,143,0.12)] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[color:var(--ps-success)]">
                       {t('app.trust', 'Local-first')}

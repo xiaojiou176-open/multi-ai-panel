@@ -46,7 +46,7 @@ export const switchyardRuntimeAnalysisProvider: AnalysisProviderDefinition = {
   id: ANALYSIS_PROVIDER_IDS.SWITCHYARD_RUNTIME,
   label: 'Local Switchyard runtime',
   description:
-    'Route one analysis prompt through a local Switchyard service without letting Switchyard take over Prompt Switchboard tab orchestration.',
+    'Route one analysis prompt through a local Switchyard service without letting Switchyard take over AgentGangGang tab orchestration.',
   availableInBrowserBuild: true,
   executionSurface: ANALYSIS_EXECUTION_SURFACES.FUTURE_RUNTIME,
   availabilityReason:

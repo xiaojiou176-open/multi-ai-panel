@@ -6,7 +6,7 @@ import {
   BridgeBootstrapRequestSchema,
   BridgeCommandEnvelopeSchema,
   BridgeCommandResultSchema,
-  PROMPT_SWITCHBOARD_BRIDGE_VERSION,
+  AGENTGANGGANG_BRIDGE_VERSION,
   resolveBridgeHost,
   resolveBridgePort,
 } from '../src/bridge/protocol.js';
@@ -49,7 +49,7 @@ const sendEmpty = (response: ServerResponse, statusCode = 204) => {
   response.end();
 };
 
-export class PromptSwitchboardBridgeServer {
+export class AgentGangGangBridgeServer {
   private readonly host: string;
   private readonly port: number;
   private readonly pendingCommands = new Map<string, PendingCommand>();
@@ -117,7 +117,7 @@ export class PromptSwitchboardBridgeServer {
   ): Promise<BridgeCommandResult> {
     if (!this.bridgeKey || !this.extensionId) {
       throw new Error(
-        'Prompt Switchboard bridge is not connected yet. Open the extension so it can bootstrap the local bridge.'
+        'AgentGangGang bridge is not connected yet. Open the extension so it can bootstrap the local bridge.'
       );
     }
 
@@ -177,7 +177,7 @@ export class PromptSwitchboardBridgeServer {
           ok: true,
           bridgeKey: this.bridgeKey,
           pollIntervalMs: 30_000,
-          bridgeVersion: PROMPT_SWITCHBOARD_BRIDGE_VERSION,
+          bridgeVersion: AGENTGANGGANG_BRIDGE_VERSION,
         });
         return;
       }

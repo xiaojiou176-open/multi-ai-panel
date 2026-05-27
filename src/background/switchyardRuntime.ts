@@ -83,7 +83,7 @@ const requestJson = async <T>(url: string, init?: RequestInit): Promise<T> => {
 
 const buildRuntimeFailureMessage = (
   payload?: SwitchyardRuntimeInvokeResponse,
-  fallback = 'Prompt Switchboard could not reach the local Switchyard runtime.'
+  fallback = 'AgentGangGang could not reach the local Switchyard runtime.'
 ) => payload?.auth?.transportHint ?? payload?.error?.suggestedAction ?? fallback;
 
 export const runSwitchyardCompareAnalysis = async ({
@@ -193,7 +193,7 @@ export const runSwitchyardCompareAnalysis = async ({
       ok: false,
       kind: 'runtime_unavailable',
       message:
-        'Prompt Switchboard could not reach the local Switchyard runtime on http://127.0.0.1:4317.',
+        'AgentGangGang could not reach the local Switchyard runtime on http://127.0.0.1:4317.',
       details: {
         analystModel,
         provider: target.provider,

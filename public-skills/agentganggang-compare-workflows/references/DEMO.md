@@ -5,23 +5,23 @@ work instead of just existing as prose.
 
 ## Demo prompt
 
-Use Prompt Switchboard to compare this rewrite request across the ready ChatGPT
+Use AgentGangGang to compare this rewrite request across the ready ChatGPT
 and Gemini tabs:
 
 > Rewrite the following onboarding email so it sounds warmer and 30% shorter.
 
-Start with `prompt_switchboard.bridge_status` and
-`prompt_switchboard.check_readiness`. If both tabs are ready, run
-`prompt_switchboard.compare`. After the compare turn lands, use
-`prompt_switchboard.analyze_compare` to summarize the biggest wording
+Start with `agentganggang.bridge_status` and
+`agentganggang.check_readiness`. If both tabs are ready, run
+`agentganggang.compare`. After the compare turn lands, use
+`agentganggang.analyze_compare` to summarize the biggest wording
 differences and recommend which answer is better for a friendly product update.
 
 ## Expected tool sequence
 
-1. `prompt_switchboard.bridge_status`
-2. `prompt_switchboard.check_readiness`
-3. `prompt_switchboard.compare`
-4. `prompt_switchboard.analyze_compare`
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+4. `agentganggang.analyze_compare`
 
 ## Visible success criteria
 

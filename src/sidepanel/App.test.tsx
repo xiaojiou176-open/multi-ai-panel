@@ -207,34 +207,34 @@ describe('App', () => {
   });
 
   it('opens settings from localStorage flags and clears them', () => {
-    window.localStorage.setItem('prompt-switchboard.openSettings', '1');
-    window.localStorage.setItem('prompt-switchboard.e2e', '1');
+    window.localStorage.setItem('agentganggang.openSettings', '1');
+    window.localStorage.setItem('agentganggang.e2e', '1');
 
     const { queryByTestId } = render(<App />);
 
     expect(queryByTestId('settings-panel')).toBeInTheDocument();
-    expect(window.localStorage.getItem('prompt-switchboard.openSettings')).toBeNull();
-    expect(window.localStorage.getItem('prompt-switchboard.e2e')).toBeNull();
+    expect(window.localStorage.getItem('agentganggang.openSettings')).toBeNull();
+    expect(window.localStorage.getItem('agentganggang.e2e')).toBeNull();
   });
 
   it('exposes and cleans up the window settings hook', () => {
     const { queryByTestId, unmount } = render(<App />);
 
     const target = window as unknown as {
-      __promptSwitchboard?: { openSettings: () => void };
+      __agentGangGang?: { openSettings: () => void };
     };
-    expect(target.__promptSwitchboard?.openSettings).toBeTypeOf('function');
+    expect(target.__agentGangGang?.openSettings).toBeTypeOf('function');
 
     act(() => {
-      target.__promptSwitchboard?.openSettings();
+      target.__agentGangGang?.openSettings();
     });
-    expect(target.__promptSwitchboard?.openSettings).toBeTypeOf('function');
+    expect(target.__agentGangGang?.openSettings).toBeTypeOf('function');
 
     return waitFor(() => {
       expect(queryByTestId('settings-panel')).toBeInTheDocument();
     }).then(() => {
       unmount();
-      expect(target.__promptSwitchboard).toBeUndefined();
+      expect(target.__agentGangGang).toBeUndefined();
     });
   });
 
@@ -260,14 +260,14 @@ describe('App', () => {
 
     const { queryByTestId } = render(<App />);
     const target = window as unknown as {
-      __promptSwitchboard?: {
+      __agentGangGang?: {
         replaceSessions: (sessions: unknown[], currentId?: string | null) => Promise<void>;
         setViewMode: (mode: 'compare' | 'transcript') => void;
       };
     };
 
     await act(async () => {
-      await target.__promptSwitchboard?.replaceSessions(
+      await target.__agentGangGang?.replaceSessions(
         [
           {
             id: 'next',
@@ -284,7 +284,7 @@ describe('App', () => {
     expect(importSessions).toHaveBeenCalled();
 
     act(() => {
-      target.__promptSwitchboard?.setViewMode('transcript');
+      target.__agentGangGang?.setViewMode('transcript');
     });
     expect(queryByTestId('message-list')).toBeInTheDocument();
   });
@@ -293,17 +293,17 @@ describe('App', () => {
     const { getByTitle, getByText, queryByTestId } = render(<App />);
 
     const target = window as unknown as {
-      __promptSwitchboardShowSettings?: boolean;
+      __agentGangGangShowSettings?: boolean;
     };
 
-    expect(target.__promptSwitchboardShowSettings).toBe(false);
+    expect(target.__agentGangGangShowSettings).toBe(false);
 
     fireEvent.click(getByTitle('settings.title'));
-    expect(target.__promptSwitchboardShowSettings).toBe(true);
+    expect(target.__agentGangGangShowSettings).toBe(true);
     expect(queryByTestId('settings-panel')).toBeInTheDocument();
 
     fireEvent.click(getByText('close'));
-    expect(target.__promptSwitchboardShowSettings).toBe(false);
+    expect(target.__agentGangGangShowSettings).toBe(false);
   });
 
   it('opens settings from hashchange, custom events, and postMessage', async () => {
@@ -321,7 +321,7 @@ describe('App', () => {
     expect(queryByTestId('settings-panel')).toBeNull();
 
     act(() => {
-      window.dispatchEvent(new Event('prompt-switchboard:open-settings'));
+      window.dispatchEvent(new Event('agentganggang:open-settings'));
     });
     await waitFor(() => expect(queryByTestId('settings-panel')).toBeInTheDocument());
 
@@ -330,7 +330,7 @@ describe('App', () => {
 
     act(() => {
       window.dispatchEvent(
-        new MessageEvent('message', { data: { type: 'prompt-switchboard:open-settings' } })
+        new MessageEvent('message', { data: { type: 'agentganggang:open-settings' } })
       );
     });
     await waitFor(() => expect(queryByTestId('settings-panel')).toBeInTheDocument());
@@ -355,13 +355,13 @@ describe('App', () => {
     expect(shouldOpenSettingsFromUrl()).toBe(true);
 
     window.location.hash = '';
-    window.localStorage.setItem('prompt-switchboard.openSettings', '1');
+    window.localStorage.setItem('agentganggang.openSettings', '1');
     expect(shouldOpenSettingsFromUrl()).toBe(true);
-    expect(window.localStorage.getItem('prompt-switchboard.openSettings')).toBeNull();
+    expect(window.localStorage.getItem('agentganggang.openSettings')).toBeNull();
 
-    window.localStorage.setItem('prompt-switchboard.e2e', '1');
+    window.localStorage.setItem('agentganggang.e2e', '1');
     expect(shouldOpenSettingsFromUrl()).toBe(true);
-    expect(window.localStorage.getItem('prompt-switchboard.e2e')).toBeNull();
+    expect(window.localStorage.getItem('agentganggang.e2e')).toBeNull();
   });
 
   it('returns false when no settings-open signal is present', () => {

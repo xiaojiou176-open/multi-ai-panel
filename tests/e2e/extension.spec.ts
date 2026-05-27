@@ -9,7 +9,7 @@ import {
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { waitForPromptSwitchboardExtensionId } from '../../scripts/verify/live-probe-shared';
+import { waitForAgentGangGangExtensionId } from '../../scripts/verify/live-probe-shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const extensionPathCandidates = ['../../dist'];
@@ -18,7 +18,7 @@ const extensionIdCachePath = path.resolve(
   '.runtime-cache',
   'live-extension-id.txt'
 );
-const E2E_HEADED = process.env.PROMPT_SWITCHBOARD_E2E_HEADED === '1';
+const E2E_HEADED = process.env.AGENTGANGGANG_E2E_HEADED === '1';
 
 const resolveExtensionPath = (): string => {
   const fromEnv = process.env.EXTENSION_PATH;
@@ -119,10 +119,10 @@ test('sidepanel renders and handles core flow', async ({ browserName: _browserNa
   fs.mkdirSync(path.dirname(userDataDir), { recursive: true });
   context = await launchContext();
 
-  const extensionId = await waitForPromptSwitchboardExtensionId(context);
+  const extensionId = await waitForAgentGangGangExtensionId(context);
   if (!extensionId) {
     throw new Error(
-      'Prompt Switchboard shell E2E could not detect a repo-owned extension runtime in the launched persistent context.'
+      'AgentGangGang shell E2E could not detect a repo-owned extension runtime in the launched persistent context.'
     );
   }
   fs.mkdirSync(path.dirname(extensionIdCachePath), { recursive: true });
@@ -161,7 +161,7 @@ test('sidepanel renders and handles core flow', async ({ browserName: _browserNa
   page = await context.newPage();
   await page.goto(`${extensionPrefix}/index.html`);
 
-  await expect(page.getByText('Prompt Switchboard', { exact: true })).toBeVisible();
+  await expect(page.getByText('AgentGangGang', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Writing Pack', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Writing Pack', exact: true }).click();
   const promptInput = page.getByRole('textbox', {
@@ -336,5 +336,5 @@ test('sidepanel renders and handles core flow', async ({ browserName: _browserNa
   // shell proof path can reopen the UI without waiting on a flaky background
   // service-worker event after the persistent-context restart.
   await page.goto(`${extensionPrefix}/index.html`);
-  await expect(page.getByText('Prompt Switchboard', { exact: true })).toBeVisible();
+  await expect(page.getByText('AgentGangGang', { exact: true })).toBeVisible();
 });

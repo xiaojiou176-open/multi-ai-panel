@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "prompt_switchboard": {
+    "agentganggang": {
       "command": "npm",
       "args": [
         "--prefix",

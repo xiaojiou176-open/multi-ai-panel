@@ -1,10 +1,10 @@
-# Prompt Switchboard Claude Code Bundle
+# AgentGangGang Claude Code Bundle
 
 This is the repo-owned public bundle packet for Claude Code.
 
 It is meant for:
 
-- Claude Code users who want a public, compare-first Prompt Switchboard setup packet
+- Claude Code users who want a public, compare-first AgentGangGang setup packet
 - bundle-compatible consumers such as OpenClaw that can ingest Claude-format packs
 
 ## What the bundle includes
@@ -12,12 +12,12 @@ It is meant for:
 - `.claude-plugin/plugin.json`
 - `.mcp.json`
 - `manifest.json`
-- `commands/prompt-switchboard.md`
+- `commands/agentganggang.md`
 - `SMOKE.md`
 
 ## Truth boundary
 
-- Prompt Switchboard stays the local MCP server and browser-side product surface
+- AgentGangGang stays the local MCP server and browser-side product surface
 - Claude Code stays the outer coding loop
 - this bundle is not a marketplace listing
 - this bundle is not a hosted service or SDK
@@ -31,14 +31,14 @@ It is meant for:
 
 ## Smallest useful smoke
 
-1. `prompt_switchboard.bridge_status`
-2. `prompt_switchboard.check_readiness`
-3. `prompt_switchboard.compare`
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
 
 ## Full follow-through
 
-1. `prompt_switchboard.analyze_compare`
-2. `prompt_switchboard.run_workflow`
-3. `prompt_switchboard.get_workflow_run`
-4. `prompt_switchboard.list_workflow_runs`
-5. `prompt_switchboard.resume_workflow`
+1. `agentganggang.analyze_compare`
+2. `agentganggang.run_workflow`
+3. `agentganggang.get_workflow_run`
+4. `agentganggang.list_workflow_runs`
+5. `agentganggang.resume_workflow`

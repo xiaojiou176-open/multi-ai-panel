@@ -1,11 +1,11 @@
 {
-  "name": "prompt-switchboard-opencode-plugin",
+  "name": "agentganggang-opencode-plugin",
   "version": "0.2.2",
   "type": "module",
   "license": "MIT",
-  "description": "Prompt Switchboard bootstrap plugin for OpenCode plus a compare-first MCP packet.",
+  "description": "AgentGangGang bootstrap plugin for OpenCode plus a compare-first MCP packet.",
   "keywords": [
-    "prompt-switchboard",
+    "agentganggang",
     "opencode",
     "mcp",
     "plugin",

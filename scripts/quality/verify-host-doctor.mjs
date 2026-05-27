@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 const ghToken = process.env.GH_TOKEN || process.env.HOST_VERIFY_GH_TOKEN || '';
 
 const result = {
-  mode: 'prompt_switchboard_host_verify_doctor',
+  mode: 'agentganggang_host_verify_doctor',
   ghInstalled: false,
   tokenPresent: Boolean(ghToken),
   ghAuthStatus: 'unknown',

@@ -1,4 +1,4 @@
-# Install and Connect Prompt Switchboard MCP
+# Install and Connect AgentGangGang MCP
 
 This guide avoids private paths and keeps the install loop portable.
 
@@ -6,7 +6,7 @@ This guide avoids private paths and keeps the install loop portable.
 
 - a local clone of `https://github.com/xiaojiou176-open/AgentGangGang`
 - Node.js and npm
-- the Prompt Switchboard browser extension installed and able to reach its side panel
+- the AgentGangGang browser extension installed and able to reach its side panel
 - at least two supported AI chat tabs signed in and open
 
 ## 1. Clone and install the repo
@@ -19,7 +19,7 @@ npm install
 
 ## 2. Make the MCP server launchable
 
-Prompt Switchboard exposes its MCP server through the repo-owned script:
+AgentGangGang exposes its MCP server through the repo-owned script:
 
 ```bash
 npm --prefix /absolute/path/to/AgentGangGang run mcp:server
@@ -41,9 +41,9 @@ into your OpenClaw MCP configuration.
 
 Once the host can see the server, run this tool sequence:
 
-1. `prompt_switchboard.bridge_status`
-2. `prompt_switchboard.check_readiness`
-3. `prompt_switchboard.compare`
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
 
 If that loop works, the host wiring is good enough for a real compare-first
 workflow.

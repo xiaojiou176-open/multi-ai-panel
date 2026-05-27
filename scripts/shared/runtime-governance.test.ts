@@ -31,7 +31,7 @@ import {
 const tempRoots = new Set<string>();
 
 const makeTempRoot = () => {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prompt-switchboard-governance-test-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-governance-test-'));
   tempRoots.add(tempRoot);
   return tempRoot;
 };
@@ -133,7 +133,7 @@ describe('runtime-governance', () => {
   it('resolves the persistent browser root and user data dir inside the repo-owned external cache tree', () => {
     const externalRoot = makeTempRoot();
     const env = {
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT: externalRoot,
+      AGENTGANGGANG_EXTERNAL_CACHE_ROOT: externalRoot,
     };
 
     expect(getPersistentBrowserRoot(env)).toBe(
@@ -152,8 +152,8 @@ describe('runtime-governance', () => {
     const fixture = createSourceChromeFixture();
 
     const resolved = resolveSourceBrowserProfile({
-      PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR: fixture.userDataDir,
-      PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME: fixture.profileName,
+      AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR: fixture.userDataDir,
+      AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME: fixture.profileName,
     });
 
     expect(resolved.blockers).toEqual([]);
@@ -164,7 +164,7 @@ describe('runtime-governance', () => {
   it('fails closed on the persistent browser root when bootstrap has not run yet', () => {
     const externalRoot = makeTempRoot();
     const env = {
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT: externalRoot,
+      AGENTGANGGANG_EXTERNAL_CACHE_ROOT: externalRoot,
     };
 
     const resolved = resolveBrowserProfile(env);
@@ -180,7 +180,7 @@ describe('runtime-governance', () => {
       testEntrypoint: path.join(tempRoot, 'live.smoke.spec.ts'),
       promptPreview: 'keep this prompt private',
       nested: {
-        PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR: tempRoot,
+        AGENTGANGGANG_BROWSER_USER_DATA_DIR: tempRoot,
         root: tempRoot,
         bodyPreview: 'keep this body private',
       },
@@ -190,7 +190,7 @@ describe('runtime-governance', () => {
     expect(payload.localStatePath).toBe('<redacted-path:Local State>');
     expect(payload.testEntrypoint).toBe('<redacted-path:live.smoke.spec.ts>');
     expect(payload.promptPreview).toBe('[redacted promptPreview]');
-    expect(payload.nested.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR).toBe(
+    expect(payload.nested.AGENTGANGGANG_BROWSER_USER_DATA_DIR).toBe(
       '<redacted-path:Profile 23>'
     );
     expect(payload.nested.root).toBe('<redacted-path:Profile 23>');
@@ -202,7 +202,7 @@ describe('runtime-governance', () => {
 
     const resolved = resolveBrowserExecutablePath({
       PLAYWRIGHT_BROWSERS_PATH: browsersRoot,
-      PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: 'chromium',
+      AGENTGANGGANG_LIVE_BROWSER_CHANNEL: 'chromium',
     });
 
     expect(resolved.resolutionSource).toBe('playwright_chromium');
@@ -245,9 +245,9 @@ describe('runtime-governance', () => {
     const sourceFixture = createSourceChromeFixture();
     const externalRoot = makeTempRoot();
     const env = {
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT: externalRoot,
-      PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR: sourceFixture.userDataDir,
-      PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME: sourceFixture.profileName,
+      AGENTGANGGANG_EXTERNAL_CACHE_ROOT: externalRoot,
+      AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR: sourceFixture.userDataDir,
+      AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME: sourceFixture.profileName,
     };
     const persistentUserDataDir = getPersistentBrowserUserDataDir(env);
 
@@ -278,9 +278,9 @@ describe('runtime-governance', () => {
   it('keeps the persistent browser root out of disposable external cache accounting and pruning', () => {
     const externalRoot = makeTempRoot();
     const env = {
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT: externalRoot,
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_TTL_HOURS: String(DEFAULT_EXTERNAL_CACHE_TTL_HOURS),
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_MAX_BYTES: String(DEFAULT_EXTERNAL_CACHE_MAX_BYTES),
+      AGENTGANGGANG_EXTERNAL_CACHE_ROOT: externalRoot,
+      AGENTGANGGANG_EXTERNAL_CACHE_TTL_HOURS: String(DEFAULT_EXTERNAL_CACHE_TTL_HOURS),
+      AGENTGANGGANG_EXTERNAL_CACHE_MAX_BYTES: String(DEFAULT_EXTERNAL_CACHE_MAX_BYTES),
     };
     const persistentUserDataDir = getPersistentBrowserUserDataDir(env);
     writeFileOfSize(
@@ -323,7 +323,7 @@ describe('runtime-governance', () => {
   it('recognizes persistent browser paths correctly', () => {
     const externalRoot = makeTempRoot();
     const env = {
-      PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT: externalRoot,
+      AGENTGANGGANG_EXTERNAL_CACHE_ROOT: externalRoot,
     };
 
     expect(isPersistentBrowserPath(getPersistentBrowserRoot(env), env)).toBe(true);

@@ -1,18 +1,18 @@
 ---
-name: prompt-switchboard-compare-workflows
-description: Teach an agent to install Prompt Switchboard's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
+name: agentganggang-compare-workflows
+description: Teach an agent to install AgentGangGang's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
 version: 1.1.1
 triggers:
   - prompt switchboard
-  - prompt-switchboard
-  - prompt_switchboard
+  - agentganggang
+  - agentganggang
   - compare-first
   - AgentGangGang
 ---
 
-# Prompt Switchboard Compare Workflows
+# AgentGangGang Compare Workflows
 
-Teach the agent how to install, connect, and use Prompt Switchboard as a
+Teach the agent how to install, connect, and use AgentGangGang as a
 compare-first browser workspace.
 
 ## Use this skill when
@@ -23,7 +23,7 @@ compare-first browser workspace.
 
 ## What this package teaches
 
-- how to wire the local Prompt Switchboard MCP sidecar into a host
+- how to wire the local AgentGangGang MCP sidecar into a host
 - which MCP tools are safe and useful first
 - how to move from readiness checks to a real compare turn
 - how to keep the workflow grounded in a browser-native compare product
@@ -39,19 +39,19 @@ compare-first browser workspace.
 
 ## Recommended workflow
 
-1. `prompt_switchboard.bridge_status`
-2. `prompt_switchboard.check_readiness`
-3. `prompt_switchboard.compare`
-4. `prompt_switchboard.analyze_compare`
-5. `prompt_switchboard.run_workflow`
+1. `agentganggang.bridge_status`
+2. `agentganggang.check_readiness`
+3. `agentganggang.compare`
+4. `agentganggang.analyze_compare`
+5. `agentganggang.run_workflow`
 
 ## Suggested first prompt
 
-Use Prompt Switchboard to compare the prompt below across the ready ChatGPT and
-Gemini tabs. Start with `prompt_switchboard.bridge_status` and
-`prompt_switchboard.check_readiness`. If fewer than two model tabs are ready,
+Use AgentGangGang to compare the prompt below across the ready ChatGPT and
+Gemini tabs. Start with `agentganggang.bridge_status` and
+`agentganggang.check_readiness`. If fewer than two model tabs are ready,
 stop and tell me exactly which login or tab-prep step is missing. If two or
-more tabs are ready, run `prompt_switchboard.compare` and summarize the most
+more tabs are ready, run `agentganggang.compare` and summarize the most
 important wording differences.
 
 ## Success checks
@@ -63,6 +63,6 @@ important wording differences.
 
 ## Boundaries
 
-- Prompt Switchboard stays a local browser workflow, not a hosted service
+- AgentGangGang stays a local browser workflow, not a hosted service
 - the MCP sidecar supports compare workflows; it does not replace the extension
 - keep claims grounded in the actual tool surface documented in this package

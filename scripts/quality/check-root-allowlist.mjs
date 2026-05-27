@@ -77,7 +77,7 @@ const autoCleanupEntries = [
 const autoCleanupPatterns = [
   {
     pattern:
-      /^prompt-switchboard-(codex-bundle|claude-code-bundle|opencode-plugin|openclaw-bundle)-.+\.tgz$/,
+      /^agentganggang-(codex-bundle|claude-code-bundle|opencode-plugin|openclaw-bundle)-.+\.tgz$/,
     reason: 'repo-owned host-kit artifact should live under dist/public-bundles',
   },
 ];

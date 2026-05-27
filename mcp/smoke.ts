@@ -16,7 +16,7 @@ const packageJson = JSON.parse(
   readFileSync(path.resolve(__dirname, '../package.json'), 'utf8')
 ) as { version: string };
 
-const extensionId = 'prompt-switchboard-smoke-extension';
+const extensionId = 'agentganggang-smoke-extension';
 const extensionVersion = 'smoke';
 const workflowTemplateId = 'compare-analyze-follow-up';
 
@@ -314,7 +314,7 @@ const createMockResult = (command: string, args: Record<string, unknown>) => {
         sessionId: 'session-smoke',
         turnId: 'turn-smoke',
         format: args.format ?? 'markdown',
-        content: '# Prompt Switchboard compare export\n\nSmoke compare content',
+        content: '# AgentGangGang compare export\n\nSmoke compare content',
       };
     case 'analyze_compare':
       return {
@@ -365,7 +365,7 @@ async function main() {
   const bridgePort = await getFreePort();
   const bridgeBaseUrl = createBridgeBaseUrl(bridgeHost, bridgePort);
   const client = new Client({
-    name: 'prompt-switchboard-mcp-smoke',
+    name: 'agentganggang-mcp-smoke',
     version: packageJson.version,
   });
 
@@ -379,7 +379,7 @@ async function main() {
     cwd: path.resolve(__dirname, '..'),
     env: {
       ...process.env,
-      PROMPT_SWITCHBOARD_BRIDGE_PORT: String(bridgePort),
+      AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
     },
   });
 
@@ -490,17 +490,17 @@ async function main() {
   const resourceUris = resources.resources.map((resource) => resource.uri).sort();
 
   const requiredTools = [
-    'prompt_switchboard.check_readiness',
-    'prompt_switchboard.open_model_tabs',
-    'prompt_switchboard.compare',
-    'prompt_switchboard.retry_failed',
-    'prompt_switchboard.get_session',
-    'prompt_switchboard.list_sessions',
-    'prompt_switchboard.export_compare',
-    'prompt_switchboard.analyze_compare',
-    'prompt_switchboard.run_workflow',
-    'prompt_switchboard.get_workflow_run',
-    'prompt_switchboard.bridge_status',
+    'agentganggang.check_readiness',
+    'agentganggang.open_model_tabs',
+    'agentganggang.compare',
+    'agentganggang.retry_failed',
+    'agentganggang.get_session',
+    'agentganggang.list_sessions',
+    'agentganggang.export_compare',
+    'agentganggang.analyze_compare',
+    'agentganggang.run_workflow',
+    'agentganggang.get_workflow_run',
+    'agentganggang.bridge_status',
   ];
 
   for (const toolName of requiredTools) {
@@ -510,14 +510,14 @@ async function main() {
   }
 
   const requiredResources = [
-    'prompt-switchboard://sessions/current',
-    'prompt-switchboard://models/readiness',
-    'prompt-switchboard://models/catalog',
-    'prompt-switchboard://analysis/providers',
-    'prompt-switchboard://workflows/templates',
-    'prompt-switchboard://builder/support-matrix',
-    'prompt-switchboard://builder/public-distribution',
-    'prompt-switchboard://sites/capabilities',
+    'agentganggang://sessions/current',
+    'agentganggang://models/readiness',
+    'agentganggang://models/catalog',
+    'agentganggang://analysis/providers',
+    'agentganggang://workflows/templates',
+    'agentganggang://builder/support-matrix',
+    'agentganggang://builder/public-distribution',
+    'agentganggang://sites/capabilities',
   ];
 
   for (const resourceUri of requiredResources) {
@@ -527,7 +527,7 @@ async function main() {
   }
 
   const readinessResult = await client.callTool({
-    name: 'prompt_switchboard.check_readiness',
+    name: 'agentganggang.check_readiness',
     arguments: {
       models: ['ChatGPT'],
     },
@@ -535,7 +535,7 @@ async function main() {
   const readinessEnvelope = requireStructuredToolEnvelope('check_readiness', readinessResult);
 
   const compareResult = await client.callTool({
-    name: 'prompt_switchboard.compare',
+    name: 'agentganggang.compare',
     arguments: {
       prompt: 'Smoke compare prompt',
       models: ['ChatGPT'],
@@ -544,7 +544,7 @@ async function main() {
   const compareEnvelope = requireStructuredToolEnvelope('compare', compareResult);
 
   const workflowResult = await client.callTool({
-    name: 'prompt_switchboard.run_workflow',
+    name: 'agentganggang.run_workflow',
     arguments: {
       workflowId: workflowTemplateId,
       turnId: 'turn-smoke',
@@ -564,7 +564,7 @@ async function main() {
   }
 
   const workflowSnapshotResult = await client.callTool({
-    name: 'prompt_switchboard.get_workflow_run',
+    name: 'agentganggang.get_workflow_run',
     arguments: {
       runId: workflowRunId,
     },
@@ -575,7 +575,7 @@ async function main() {
   );
 
   const workflowListResult = await client.callTool({
-    name: 'prompt_switchboard.list_workflow_runs',
+    name: 'agentganggang.list_workflow_runs',
     arguments: {},
   });
   const workflowListEnvelope = requireStructuredToolEnvelope(
@@ -584,7 +584,7 @@ async function main() {
   );
 
   const workflowResumeResult = await client.callTool({
-    name: 'prompt_switchboard.resume_workflow',
+    name: 'agentganggang.resume_workflow',
     arguments: {
       runId: workflowRunId,
       externalUpdate: {
@@ -608,22 +608,22 @@ async function main() {
   );
 
   const resourceResult = await client.readResource({
-    uri: 'prompt-switchboard://sessions/current',
+    uri: 'agentganggang://sessions/current',
   });
   const analysisProvidersResource = await client.readResource({
-    uri: 'prompt-switchboard://analysis/providers',
+    uri: 'agentganggang://analysis/providers',
   });
   const workflowTemplatesResource = await client.readResource({
-    uri: 'prompt-switchboard://workflows/templates',
+    uri: 'agentganggang://workflows/templates',
   });
   const builderSupportMatrixResource = await client.readResource({
-    uri: 'prompt-switchboard://builder/support-matrix',
+    uri: 'agentganggang://builder/support-matrix',
   });
   const publicDistributionMatrixResource = await client.readResource({
-    uri: 'prompt-switchboard://builder/public-distribution',
+    uri: 'agentganggang://builder/public-distribution',
   });
   const siteCapabilitiesResource = await client.readResource({
-    uri: 'prompt-switchboard://sites/capabilities',
+    uri: 'agentganggang://sites/capabilities',
   });
 
   if (!resourceResult.contents?.length) {

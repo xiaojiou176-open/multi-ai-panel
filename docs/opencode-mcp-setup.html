@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prompt Switchboard for OpenCode</title>
+    <title>AgentGangGang for OpenCode</title>
     <meta
       name="description"
-      content="Use Prompt Switchboard with OpenCode through a public MCP packet, honest support boundaries, and a publish-ready OpenCode plugin scaffold."
+      content="Use AgentGangGang with OpenCode through a public MCP packet, honest support boundaries, and a publish-ready OpenCode plugin scaffold."
     />
     <link
       rel="canonical"
@@ -41,8 +41,8 @@
     <div class="shell">
       <nav class="nav">
         <div class="wordmark">
-          <img src="./assets/prompt-switchboard-nav-icon.svg" alt="Prompt Switchboard logo" width="32" height="32" />
-          <span>Prompt Switchboard</span>
+          <img src="./assets/agentganggang-nav-icon.svg" alt="AgentGangGang logo" width="32" height="32" />
+          <span>AgentGangGang</span>
         </div>
         <div class="actions">
           <a class="nav-link" href="./mcp-host-packets.html">Host packets</a>
@@ -53,7 +53,7 @@
       </nav>
       <main class="card">
         <span class="chip">OpenCode packet</span>
-        <h1>Use Prompt Switchboard with OpenCode through a public packet without overclaiming a published plugin.</h1>
+        <h1>Use AgentGangGang with OpenCode through a public packet without overclaiming a published plugin.</h1>
         <p>
           OpenCode already ships an official plugin surface and project-root config model. Prompt
           Switchboard now adds a public-bundle-ready OpenCode packet in this repo: MCP config, a
@@ -97,9 +97,9 @@
         </p>
         <pre>{
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["prompt-switchboard-opencode-plugin"],
+  "plugin": ["agentganggang-opencode-plugin"],
   "mcp": {
-    "prompt_switchboard": {
+    "agentganggang": {
       "type": "local",
       "command": [
         "npm",
@@ -116,9 +116,9 @@
       <section class="card">
         <h2>Smallest useful smoke</h2>
         <ol>
-          <li><code>prompt_switchboard.bridge_status</code></li>
-          <li><code>prompt_switchboard.check_readiness</code></li>
-          <li><code>prompt_switchboard.compare</code></li>
+          <li><code>agentganggang.bridge_status</code></li>
+          <li><code>agentganggang.check_readiness</code></li>
+          <li><code>agentganggang.compare</code></li>
         </ol>
         <p>
           If you install the plugin scaffold locally, use the bundled helper tool to print the same
@@ -132,7 +132,7 @@
           <li>Packable artifact path: run <code>npm run release:host-kits</code></li>
           <li>Official surface exists: OpenCode npm plugin flow</li>
           <li>Current repo truth: package scaffold present, npm publish still external</li>
-          <li>Prompt Switchboard still stays compare-first and browser-native. This packet does not turn it into a hosted relay, SDK, or generic automation platform.</li>
+          <li>AgentGangGang still stays compare-first and browser-native. This packet does not turn it into a hosted relay, SDK, or generic automation platform.</li>
         </ul>
       </section>
       <section class="card">
@@ -142,7 +142,7 @@
           <li>Choose the owner-controlled npm package name and namespace for the OpenCode plugin package.</li>
           <li>Publish <code>mcp/integration-kits/public-bundles/opencode-plugin/</code> to npm.</li>
           <li>Install it through the official OpenCode plugin flow and verify one compare-first smoke path.</li>
-          <li>Only after the package URL and install proof exist should you update public docs to claim Prompt Switchboard is publicly published for OpenCode.</li>
+          <li>Only after the package URL and install proof exist should you update public docs to claim AgentGangGang is publicly published for OpenCode.</li>
         </ol>
       </section>
     </div>

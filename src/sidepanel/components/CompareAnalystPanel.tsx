@@ -122,7 +122,7 @@ export const CompareAnalystPanel = ({
     usingRuntimeLane
       ? t(
           'settings.analysis.byokBody',
-          'This lane needs a local Switchyard service plus a compatible runtime-backed provider session before Prompt Switchboard can use it.'
+          'This lane needs a local Switchyard service plus a compatible runtime-backed provider session before AgentGangGang can use it.'
         )
       : provider?.availabilityReason;
   const needsTwoAnswers = completedResponses.length < 2;
@@ -176,12 +176,12 @@ export const CompareAnalystPanel = ({
             {providerBlocked
               ? t(
                   'analysis.boundaryBlocked',
-                  'Core compare stays local-first. Prompt Switchboard only exposes runtime-backed analysis when the local runtime lane is truly available.'
+                  'Core compare stays local-first. AgentGangGang only exposes runtime-backed analysis when the local runtime lane is truly available.'
                 )
               : usingRuntimeLane
                 ? t(
                     'analysis.runtimeBoundary',
-                    'Core compare stays browser-native. This optional lane sends one analysis prompt through a local Switchyard runtime while Prompt Switchboard keeps the cockpit, tabs, and compare workflow.'
+                    'Core compare stays browser-native. This optional lane sends one analysis prompt through a local Switchyard runtime while AgentGangGang keeps the cockpit, tabs, and compare workflow.'
                   )
                 : t(
                   'analysis.boundary',
@@ -250,7 +250,7 @@ export const CompareAnalystPanel = ({
               ? providerAvailabilityReason ??
                 t(
                   'analysis.blocked.body',
-                  'Prompt Switchboard keeps the BYOK lane disabled here because provider guidance says browser builds should not ship production API keys client-side.'
+                  'AgentGangGang keeps the BYOK lane disabled here because provider guidance says browser builds should not ship production API keys client-side.'
                 )
               : t(
                   'analysis.disabled.body',

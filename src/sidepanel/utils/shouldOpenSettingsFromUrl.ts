@@ -1,10 +1,10 @@
-export const SETTINGS_OPEN_EVENT = 'prompt-switchboard:open-settings';
+export const SETTINGS_OPEN_EVENT = 'agentganggang:open-settings';
 export const SETTINGS_OPEN_STORAGE_KEYS = {
-  OPEN: 'prompt-switchboard.openSettings',
-  E2E: 'prompt-switchboard.e2e',
+  OPEN: 'agentganggang.openSettings',
+  E2E: 'agentganggang.e2e',
 } as const;
-export const SETTINGS_WINDOW_HOOK = '__promptSwitchboard';
-export const SETTINGS_VISIBILITY_HOOK = '__promptSwitchboardShowSettings';
+export const SETTINGS_WINDOW_HOOK = '__agentGangGang';
+export const SETTINGS_VISIBILITY_HOOK = '__agentGangGangShowSettings';
 
 export const shouldOpenSettingsFromUrl = (): boolean => {
   if (typeof window === 'undefined') return false;

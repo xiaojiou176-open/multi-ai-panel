@@ -103,7 +103,7 @@ const getBody = (
   if (status === 'seed_ready') {
     return t(
       'workflow.body.seedReady',
-      'Prompt Switchboard has staged a next-round seed. You can place it in the composer or run the next compare now.'
+      'AgentGangGang has staged a next-round seed. You can place it in the composer or run the next compare now.'
     );
   }
 
@@ -112,7 +112,7 @@ const getBody = (
       waitingFor ??
       t(
         'workflow.body.waiting',
-        'Prompt Switchboard is waiting for browser-side work to finish before it can stage the next step.'
+        'AgentGangGang is waiting for browser-side work to finish before it can stage the next step.'
       )
     );
   }
@@ -122,7 +122,7 @@ const getBody = (
       errorMessage ??
       t(
         'workflow.body.errorFallback',
-        'Prompt Switchboard could not turn this compare turn into a next-step workflow yet.'
+        'AgentGangGang could not turn this compare turn into a next-step workflow yet.'
       )
     );
   }
@@ -130,7 +130,7 @@ const getBody = (
   if (status === 'running_compare') {
     return t(
       'workflow.body.runningCompare',
-      'Prompt Switchboard is sending the staged next-round prompt through the compare-first lane.'
+      'AgentGangGang is sending the staged next-round prompt through the compare-first lane.'
     );
   }
 
@@ -143,7 +143,7 @@ const getBody = (
 
   return t(
     'workflow.body.needsAnalysis',
-    'Prompt Switchboard can run AI Compare Analyst first, then stage the strongest next-round prompt.'
+    'AgentGangGang can run AI Compare Analyst first, then stage the strongest next-round prompt.'
   );
 };
 

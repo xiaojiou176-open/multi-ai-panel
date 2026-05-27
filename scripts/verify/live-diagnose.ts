@@ -5,7 +5,7 @@ const probe = await collectLiveProbe();
 const diagnosis = probe.readyToProbe
   ? buildLiveDiagnosis(probe)
   : {
-      mode: 'prompt_switchboard_live_diagnose',
+      mode: 'agentganggang_live_diagnose',
       generatedAt: new Date().toISOString(),
       status: 'blocked' as const,
       blockers: probe.blockers.map((message) => ({

@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
-  "kind": "prompt_switchboard_host_packet",
-  "id": "prompt-switchboard-codex-bundle",
-  "name": "Prompt Switchboard Codex Bundle",
-  "description": "Repo-owned Codex bundle packet for the Prompt Switchboard local MCP sidecar.",
+  "kind": "agentganggang_host_packet",
+  "id": "agentganggang-codex-bundle",
+  "name": "AgentGangGang Codex Bundle",
+  "description": "Repo-owned Codex bundle packet for the AgentGangGang local MCP sidecar.",
   "version": "0.2.2",
   "license": "MIT",
   "homepage": "https://xiaojiou176-open.github.io/AgentGangGang/",
@@ -19,14 +19,14 @@
     "shape": "bundle_packet",
     "host": "Codex",
     "placement": "Copy the MCP block into config.toml or consume the packed archive through a compatible bundle installer.",
-    "skillManifest": "skills/prompt-switchboard/manifest.yaml"
+    "skillManifest": "skills/agentganggang/manifest.yaml"
   },
   "smoke": {
     "guide": "SMOKE.md",
     "smallestUsefulFlow": [
-      "prompt_switchboard.bridge_status",
-      "prompt_switchboard.check_readiness",
-      "prompt_switchboard.compare"
+      "agentganggang.bridge_status",
+      "agentganggang.check_readiness",
+      "agentganggang.compare"
     ]
   },
   "capabilities": [

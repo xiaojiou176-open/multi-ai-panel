@@ -22,12 +22,12 @@ export const buildDeliveryErrorMessage = (errorCode: SendErrorCode): string => {
     case SEND_ERROR_CODES.RUNTIME:
       return i18n.t(
         'runtime.deliveryRuntime',
-        'Prompt Switchboard could not deliver this prompt to the target tab.'
+        'AgentGangGang could not deliver this prompt to the target tab.'
       );
     case SEND_ERROR_CODES.HANDSHAKE:
       return i18n.t(
         'runtime.deliveryHandshake',
-        'Prompt Switchboard could not confirm that the target tab was ready.'
+        'AgentGangGang could not confirm that the target tab was ready.'
       );
     case SEND_ERROR_CODES.REJECTED:
     default:
@@ -58,7 +58,7 @@ export const buildReadinessErrorMessage = (report: ModelReadinessReport): string
     case READINESS_STATUSES.SELECTOR_DRIFT_SUSPECT:
       return i18n.t('runtime.readinessSelectorDrift', {
         defaultValue:
-          '{{model}} looks open, but Prompt Switchboard could not confirm the input controls on this page.',
+          '{{model}} looks open, but AgentGangGang could not confirm the input controls on this page.',
         model: report.model,
       });
     case READINESS_STATUSES.CONTENT_UNAVAILABLE:

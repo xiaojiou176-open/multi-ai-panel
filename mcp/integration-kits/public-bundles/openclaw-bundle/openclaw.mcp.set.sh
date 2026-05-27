@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Prompt Switchboard public bundle packet for OpenClaw.
+# AgentGangGang public bundle packet for OpenClaw.
 # This stays on the official `openclaw mcp set <name> <json>` path.
 
-openclaw mcp set prompt_switchboard "$(cat <<'JSON'
+openclaw mcp set agentganggang "$(cat <<'JSON'
 {
   \"command\": \"npm\",
   \"args\": [

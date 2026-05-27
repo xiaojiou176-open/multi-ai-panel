@@ -2,7 +2,7 @@ name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 template: |
-  ## Prompt Switchboard
+  ## AgentGangGang
 
   This release keeps the public front door aligned with the product itself:
 

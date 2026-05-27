@@ -24,7 +24,7 @@ const isTopLevelBrowserInstance = (line) => {
 };
 
 const parseMaxBrowserInstances = () => {
-  const raw = process.env.PROMPT_SWITCHBOARD_MAX_BROWSER_INSTANCES;
+  const raw = process.env.AGENTGANGGANG_MAX_BROWSER_INSTANCES;
   if (!raw) {
     return DEFAULT_MAX_BROWSER_INSTANCES;
   }
@@ -64,7 +64,7 @@ export const inspectBrowserResourceState = () => {
     activeBrowserCount,
     blocker:
       activeBrowserCount > maxBrowserInstances
-        ? `Browser resource guard tripped: ${activeBrowserCount} active browser instances exceed the repo limit of ${maxBrowserInstances}. Wait for other repo/worker lanes to reclaim browser load before launching another Prompt Switchboard helper.`
+        ? `Browser resource guard tripped: ${activeBrowserCount} active browser instances exceed the repo limit of ${maxBrowserInstances}. Wait for other repo/worker lanes to reclaim browser load before launching another AgentGangGang helper.`
         : null,
   };
 };

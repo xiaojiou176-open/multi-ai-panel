@@ -68,8 +68,8 @@ for (const { packageJson, manifest } of hostPackets) {
   }
   if (
     packetManifest.kind !== 'host_packet' &&
-    packetManifest.kind !== 'prompt_switchboard_host_packet' &&
-    packetManifest.kind !== 'prompt_switchboard_plugin_packet'
+    packetManifest.kind !== 'agentganggang_host_packet' &&
+    packetManifest.kind !== 'agentganggang_plugin_packet'
   ) {
     findings.push(`${manifest} must use a recognized packet kind.`);
   }
@@ -91,8 +91,8 @@ for (const { packageJson, manifest } of hostPackets) {
 }
 
 for (const relPath of [
-  'mcp/integration-kits/public-bundles/codex-bundle/skills/prompt-switchboard/manifest.yaml',
-  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/prompt-switchboard/manifest.yaml',
+  'mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml',
+  'mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml',
 ]) {
   if (!existsSync(path.join(repoRoot, relPath))) {
     findings.push(`${relPath} must exist.`);

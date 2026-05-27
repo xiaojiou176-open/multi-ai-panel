@@ -33,7 +33,7 @@ describe('analysis providers', () => {
     expect(prepared).toEqual({
       provider: 'browser_session',
       model: 'ChatGPT',
-      prompt: expect.stringContaining('You are analyzing a Prompt Switchboard compare turn.'),
+      prompt: expect.stringContaining('You are analyzing a AgentGangGang compare turn.'),
     });
     expect(prepared.prompt).toContain('Requested models: ChatGPT, Gemini');
 
@@ -78,7 +78,7 @@ describe('analysis providers', () => {
     expect(prepared).toEqual({
       provider: 'switchyard_runtime',
       model: 'ChatGPT',
-      prompt: expect.stringContaining('You are analyzing a Prompt Switchboard compare turn.'),
+      prompt: expect.stringContaining('You are analyzing a AgentGangGang compare turn.'),
     });
 
     const dateSpy = vi.spyOn(Date, 'now').mockReturnValue(5678);

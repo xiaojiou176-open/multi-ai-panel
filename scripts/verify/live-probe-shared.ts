@@ -42,10 +42,10 @@ const DEFAULT_EXTENSION_IDENTITY_TIMEOUT_MS = 1_500;
 const CLONE_RETRY_CODES = new Set(['ENOENT', 'EBUSY', 'EPERM']);
 const CLONE_RETRY_ATTEMPTS = 4;
 const CLONE_RETRY_DELAY_MS = 80;
-const PROMPT_SWITCHBOARD_EXTENSION_NAME = 'Prompt Switchboard';
-const PROMPT_SWITCHBOARD_OPTIONS_PAGE = 'settings.html';
-const PROMPT_SWITCHBOARD_SIDE_PANEL_PATH = 'index.html';
-const PROMPT_SWITCHBOARD_WORKER_LOADER_PATH = 'service-worker-loader.js';
+const AGENTGANGGANG_EXTENSION_NAME = 'AgentGangGang';
+const AGENTGANGGANG_OPTIONS_PAGE = 'settings.html';
+const AGENTGANGGANG_SIDE_PANEL_PATH = 'index.html';
+const AGENTGANGGANG_WORKER_LOADER_PATH = 'service-worker-loader.js';
 
 type AttachMode = 'browser' | 'persistent';
 type AttachModeResolved = 'browser' | 'persistent';
@@ -128,7 +128,7 @@ export interface LiveExtensionProbeResult {
 }
 
 export interface LiveProbeResult {
-  mode: 'prompt_switchboard_live_site_probe';
+  mode: 'agentganggang_live_site_probe';
   generatedAt: string;
   readyToProbe: boolean;
   blockers: string[];
@@ -138,7 +138,7 @@ export interface LiveProbeResult {
 }
 
 export interface LiveDiagnosisResult {
-  mode: 'prompt_switchboard_live_diagnose';
+  mode: 'agentganggang_live_diagnose';
   generatedAt: string;
   status: 'ready_for_compare' | 'blocked';
   blockers: Array<{
@@ -159,14 +159,14 @@ interface LiveSiteCandidateSnapshot {
   hasStopControl: boolean;
 }
 
-interface PromptSwitchboardExtensionIdentitySnapshot {
+interface AgentGangGangExtensionIdentitySnapshot {
   runtimeId: string | null;
   manifestName: string | null;
   optionsPage: string | null;
   sidePanelDefaultPath: string | null;
 }
 
-interface PromptSwitchboardExtensionPageSnapshot extends PromptSwitchboardExtensionIdentitySnapshot {
+interface AgentGangGangExtensionPageSnapshot extends AgentGangGangExtensionIdentitySnapshot {
   href: string;
   localType: string;
 }
@@ -206,14 +206,14 @@ const probeCdpReady = (targetUrl: string) =>
   });
 
 const resolveExtensionPath = () => {
-  if (process.env.PROMPT_SWITCHBOARD_EXTENSION_PATH) {
-    return path.resolve(process.env.PROMPT_SWITCHBOARD_EXTENSION_PATH);
+  if (process.env.AGENTGANGGANG_EXTENSION_PATH) {
+    return path.resolve(process.env.AGENTGANGGANG_EXTENSION_PATH);
   }
   return path.resolve(process.cwd(), 'dist');
 };
 
 const parseTargetModels = (): ModelName[] => {
-  const raw = process.env.PROMPT_SWITCHBOARD_LIVE_MODELS;
+  const raw = process.env.AGENTGANGGANG_LIVE_MODELS;
   if (!raw) {
     return [...DEFAULT_TARGET_MODELS];
   }
@@ -239,16 +239,16 @@ export const resolveLiveProbeConfig = (): LiveProbeConfig => ({
   ...(() => {
     const browserProfile = resolveBrowserProfile();
     const attachModeRequested =
-      (process.env.PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE as AttachMode | undefined) || 'browser';
+      (process.env.AGENTGANGGANG_LIVE_ATTACH_MODE as AttachMode | undefined) || 'browser';
     const browserChannel =
-      process.env.PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL ||
+      process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL ||
       resolveDefaultBrowserChannel(attachModeRequested);
     const browserExecutable = resolveBrowserExecutablePath({
       ...process.env,
-      PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: browserChannel,
+      AGENTGANGGANG_LIVE_BROWSER_CHANNEL: browserChannel,
     });
     return {
-      liveFlag: process.env.PROMPT_SWITCHBOARD_LIVE === '1',
+      liveFlag: process.env.AGENTGANGGANG_LIVE === '1',
       userDataDir: browserProfile.userDataDir,
       isPersistentBrowserRoot: browserProfile.isPersistentBrowserRoot,
       profileDirectory: browserProfile.profileDirectory || '',
@@ -260,13 +260,13 @@ export const resolveLiveProbeConfig = (): LiveProbeConfig => ({
       browserExecutableResolutionSource: browserExecutable.resolutionSource,
       browserExecutableBlockers: browserExecutable.blockers,
       attachModeRequested,
-      cdpUrl: process.env.PROMPT_SWITCHBOARD_LIVE_CDP_URL || DEFAULT_CDP_URL,
+      cdpUrl: process.env.AGENTGANGGANG_LIVE_CDP_URL || DEFAULT_CDP_URL,
       extensionPath: resolveExtensionPath(),
-      cloneProfile: process.env.PROMPT_SWITCHBOARD_CLONE_PROFILE === '1',
-      keepLiveClone: process.env.PROMPT_SWITCHBOARD_KEEP_LIVE_CLONE === '1',
-      openMissingTabs: process.env.PROMPT_SWITCHBOARD_LIVE_OPEN_MISSING_TABS === '1',
+      cloneProfile: process.env.AGENTGANGGANG_CLONE_PROFILE === '1',
+      keepLiveClone: process.env.AGENTGANGGANG_KEEP_LIVE_CLONE === '1',
+      openMissingTabs: process.env.AGENTGANGGANG_LIVE_OPEN_MISSING_TABS === '1',
       probeWaitMs: Number(
-        process.env.PROMPT_SWITCHBOARD_LIVE_PROBE_WAIT_MS || DEFAULT_PROBE_WAIT_MS
+        process.env.AGENTGANGGANG_LIVE_PROBE_WAIT_MS || DEFAULT_PROBE_WAIT_MS
       ),
       targetModels: parseTargetModels(),
     };
@@ -283,7 +283,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
     config.attachModeRequested === 'browser' ? 'browser' : 'persistent';
 
   if (!config.liveFlag) {
-    blockers.push('PROMPT_SWITCHBOARD_LIVE=1 is required.');
+    blockers.push('AGENTGANGGANG_LIVE=1 is required.');
   }
   blockers.push(...config.profileBlockers);
   blockers.push(...config.browserExecutableBlockers);
@@ -294,7 +294,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
   }
   if (attachModeResolved === 'persistent' && config.browserChannel === 'chrome') {
     blockers.push(
-      'PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use chromium or the attachable browser helper.'
+      'AGENTGANGGANG_LIVE_BROWSER_CHANNEL=chrome is not supported for extension side-loading in Playwright persistent contexts. Use chromium or the attachable browser helper.'
     );
   }
   if (
@@ -303,7 +303,7 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
     config.isPersistentBrowserRoot
   ) {
     blockers.push(
-      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use PROMPT_SWITCHBOARD_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
+      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use AGENTGANGGANG_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
     );
   }
   if (config.attachModeRequested === 'browser' && !cdpReachable) {
@@ -330,14 +330,14 @@ export const resolveLiveProbeBlockers = async (config: LiveProbeConfig) => {
   };
 };
 
-export const isPromptSwitchboardManifestIdentity = (
-  snapshot: PromptSwitchboardExtensionIdentitySnapshot | null | undefined
-): snapshot is PromptSwitchboardExtensionIdentitySnapshot & { runtimeId: string } =>
+export const isAgentGangGangManifestIdentity = (
+  snapshot: AgentGangGangExtensionIdentitySnapshot | null | undefined
+): snapshot is AgentGangGangExtensionIdentitySnapshot & { runtimeId: string } =>
   typeof snapshot?.runtimeId === 'string' &&
   snapshot.runtimeId.length > 0 &&
-  snapshot.manifestName === PROMPT_SWITCHBOARD_EXTENSION_NAME &&
-  snapshot.optionsPage === PROMPT_SWITCHBOARD_OPTIONS_PAGE &&
-  snapshot.sidePanelDefaultPath === PROMPT_SWITCHBOARD_SIDE_PANEL_PATH;
+  snapshot.manifestName === AGENTGANGGANG_EXTENSION_NAME &&
+  snapshot.optionsPage === AGENTGANGGANG_OPTIONS_PAGE &&
+  snapshot.sidePanelDefaultPath === AGENTGANGGANG_SIDE_PANEL_PATH;
 
 const parseExtensionRuntimeFromUrl = (candidateUrl: string) => {
   try {
@@ -355,7 +355,7 @@ const parseExtensionRuntimeFromUrl = (candidateUrl: string) => {
   }
 };
 
-const inspectPromptSwitchboardWorkerIdentity = async (worker: PlaywrightWorker) => {
+const inspectAgentGangGangWorkerIdentity = async (worker: PlaywrightWorker) => {
   const workerUrl = worker.url();
   const workerRuntime = parseExtensionRuntimeFromUrl(workerUrl);
 
@@ -365,7 +365,7 @@ const inspectPromptSwitchboardWorkerIdentity = async (worker: PlaywrightWorker) 
 
   try {
     const snapshot = await Promise.race([
-      worker.evaluate<PromptSwitchboardExtensionIdentitySnapshot>(() => ({
+      worker.evaluate<AgentGangGangExtensionIdentitySnapshot>(() => ({
         ...(() => {
           const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
           return {
@@ -382,8 +382,8 @@ const inspectPromptSwitchboardWorkerIdentity = async (worker: PlaywrightWorker) 
       ),
     ]);
 
-    if (!isPromptSwitchboardManifestIdentity(snapshot)) {
-      if (workerRuntime.path !== PROMPT_SWITCHBOARD_WORKER_LOADER_PATH) {
+    if (!isAgentGangGangManifestIdentity(snapshot)) {
+      if (workerRuntime.path !== AGENTGANGGANG_WORKER_LOADER_PATH) {
         return null;
       }
 
@@ -402,14 +402,14 @@ const inspectPromptSwitchboardWorkerIdentity = async (worker: PlaywrightWorker) 
   }
 };
 
-const inspectPromptSwitchboardPageIdentity = async (page: Page) => {
+const inspectAgentGangGangPageIdentity = async (page: Page) => {
   if (!page.url().startsWith('chrome-extension://')) {
     return null;
   }
 
   try {
     const snapshot = await Promise.race([
-      page.evaluate<PromptSwitchboardExtensionPageSnapshot>(() => ({
+      page.evaluate<AgentGangGangExtensionPageSnapshot>(() => ({
         ...(() => {
           const extensionRuntime = globalThis as typeof globalThis & BrowserExtensionRuntime;
           return {
@@ -429,7 +429,7 @@ const inspectPromptSwitchboardPageIdentity = async (page: Page) => {
     ]);
 
     if (
-      !isPromptSwitchboardManifestIdentity(snapshot) ||
+      !isAgentGangGangManifestIdentity(snapshot) ||
       snapshot.localType !== 'object' ||
       !snapshot.href.startsWith(`chrome-extension://${snapshot.runtimeId}/`)
     ) {
@@ -445,16 +445,16 @@ const inspectPromptSwitchboardPageIdentity = async (page: Page) => {
   }
 };
 
-export const findPromptSwitchboardExtensionId = async (context: BrowserContext) => {
+export const findAgentGangGangExtensionId = async (context: BrowserContext) => {
   for (const page of context.pages()) {
-    const identity = await inspectPromptSwitchboardPageIdentity(page);
+    const identity = await inspectAgentGangGangPageIdentity(page);
     if (identity) {
       return identity.runtimeId;
     }
   }
 
   for (const worker of context.serviceWorkers()) {
-    const identity = await inspectPromptSwitchboardWorkerIdentity(worker);
+    const identity = await inspectAgentGangGangWorkerIdentity(worker);
     if (identity) {
       return identity.runtimeId;
     }
@@ -463,7 +463,7 @@ export const findPromptSwitchboardExtensionId = async (context: BrowserContext) 
   return null;
 };
 
-export const waitForPromptSwitchboardExtensionId = async (
+export const waitForAgentGangGangExtensionId = async (
   context: BrowserContext,
   timeoutMs = 30_000,
   intervalMs = 250
@@ -471,7 +471,7 @@ export const waitForPromptSwitchboardExtensionId = async (
   const startedAt = Date.now();
 
   while (Date.now() - startedAt < timeoutMs) {
-    const runtimeId = await findPromptSwitchboardExtensionId(context);
+    const runtimeId = await findAgentGangGangExtensionId(context);
     if (runtimeId) {
       return runtimeId;
     }
@@ -489,10 +489,10 @@ export const classifyExtensionSurfaceProbeFailure = (error: unknown): string => 
   }
 
   if (/Target page, context or browser has been closed/i.test(message)) {
-    return 'The extension page closed before Prompt Switchboard could finish the live probe. Reopen the Prompt Switchboard side panel or extension page in the current browser, then rerun the probe.';
+    return 'The extension page closed before AgentGangGang could finish the live probe. Reopen the AgentGangGang side panel or extension page in the current browser, then rerun the probe.';
   }
 
-  return `Prompt Switchboard could not inspect the extension page during live probing: ${message}`;
+  return `AgentGangGang could not inspect the extension page during live probing: ${message}`;
 };
 
 const resolveExtensionId = async (
@@ -500,7 +500,7 @@ const resolveExtensionId = async (
   attachModeResolved: AttachModeResolved
 ) => {
   void attachModeResolved;
-  return await findPromptSwitchboardExtensionId(context);
+  return await findAgentGangGangExtensionId(context);
 };
 
 const classifyProbeLaunchFailure = (error: unknown, effectiveRun: LiveProbeEffectiveRun) => {
@@ -515,10 +515,10 @@ const classifyProbeLaunchFailure = (error: unknown, effectiveRun: LiveProbeEffec
   }
 
   if (/Target page, context or browser has been closed|SIGTRAP/i.test(message)) {
-    return `The browser process closed before Prompt Switchboard could inspect the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}). Prefer the attach helper or a cleaner Chromium-compatible profile source.`;
+    return `The browser process closed before AgentGangGang could inspect the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}). Prefer the attach helper or a cleaner Chromium-compatible profile source.`;
   }
 
-  return `Prompt Switchboard could not open the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}): ${message}`;
+  return `AgentGangGang could not open the requested live profile (${sanitizePathForReport(effectiveRun.userDataDir)} / ${effectiveRun.profileDirectory}): ${message}`;
 };
 
 const isRepoOwnedTempClone = (targetPath: string) => {
@@ -535,7 +535,7 @@ const cleanupPersistentClone = (tempRoot: string | null, keepLiveClone: boolean)
   }
   if (keepLiveClone) {
     console.log(
-      `[test:live:probe] preserved repo-owned temp clone at ${sanitizePathForReport(tempRoot)} because PROMPT_SWITCHBOARD_KEEP_LIVE_CLONE=1`
+      `[test:live:probe] preserved repo-owned temp clone at ${sanitizePathForReport(tempRoot)} because AGENTGANGGANG_KEEP_LIVE_CLONE=1`
     );
     return;
   }
@@ -761,7 +761,7 @@ const inspectExtensionRuntimeEvidence = async (
   modelPages: Array<{ model: ModelName; page: Page }>
 ) => {
   const serviceWorkerIdentities = (
-    await Promise.all(context.serviceWorkers().map((worker) => inspectPromptSwitchboardWorkerIdentity(worker)))
+    await Promise.all(context.serviceWorkers().map((worker) => inspectAgentGangGangWorkerIdentity(worker)))
   ).filter((identity): identity is NonNullable<typeof identity> => Boolean(identity));
   const serviceWorkerUrls = serviceWorkerIdentities.map((identity) => identity.workerUrl);
   const contentScriptContexts = await inspectContentScriptContexts(context, modelPages);
@@ -894,7 +894,7 @@ const inspectExtensionSurface = async (
         hasCheckingIndicator: false,
         bodyPreview: '',
         errorMessage:
-          'Prompt Switchboard did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a Prompt Switchboard content-script context.',
+          'AgentGangGang did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a AgentGangGang content-script context.',
       };
     }
     return null;
@@ -917,7 +917,7 @@ const inspectExtensionSurface = async (
       hasCheckingIndicator: false,
       bodyPreview: '',
       errorMessage:
-        'Prompt Switchboard did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a Prompt Switchboard content-script context. Any extension page targets in this lane should be treated as blocked shells, not proof that the extension is active.',
+        'AgentGangGang did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a AgentGangGang content-script context. Any extension page targets in this lane should be treated as blocked shells, not proof that the extension is active.',
     };
   }
 
@@ -1037,7 +1037,7 @@ export const withLiveProbeContext = async <T>(
   pruneExternalRepoCache();
   const { blockers, effectiveRun } = await resolveLiveProbeBlockers(config);
   const attachConnectTimeoutMs = Number(
-    process.env.PROMPT_SWITCHBOARD_LIVE_ATTACH_CONNECT_TIMEOUT_MS ||
+    process.env.AGENTGANGGANG_LIVE_ATTACH_CONNECT_TIMEOUT_MS ||
       DEFAULT_ATTACH_CONNECT_TIMEOUT_MS
   );
   if (blockers.length > 0) {
@@ -1153,7 +1153,7 @@ export const collectLiveProbe = async (
   );
 
   return {
-    mode: 'prompt_switchboard_live_site_probe',
+    mode: 'agentganggang_live_site_probe',
     generatedAt: new Date().toISOString(),
     readyToProbe: blockers.length === 0,
     blockers,
@@ -1222,13 +1222,13 @@ export const buildLiveDiagnosis = (probe: LiveProbeResult): LiveDiagnosisResult 
       );
     } else {
       nextActions.add(
-        'Keep the current attach browser open, reopen the Prompt Switchboard side panel or extension page manually if needed, then rerun the live probe.'
+        'Keep the current attach browser open, reopen the AgentGangGang side panel or extension page manually if needed, then rerun the live probe.'
       );
     }
   }
 
   return {
-    mode: 'prompt_switchboard_live_diagnose',
+    mode: 'agentganggang_live_diagnose',
     generatedAt: new Date().toISOString(),
     status: blockers.length === 0 ? 'ready_for_compare' : 'blocked',
     blockers,

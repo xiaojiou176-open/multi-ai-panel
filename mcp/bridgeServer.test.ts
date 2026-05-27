@@ -9,7 +9,7 @@ import {
   type BridgeCommandResult,
   createBridgeBaseUrl,
 } from '../src/bridge/protocol';
-import { PromptSwitchboardBridgeServer } from './bridgeServer';
+import { AgentGangGangBridgeServer } from './bridgeServer';
 
 const httpJson = async (
   url: string,
@@ -81,7 +81,7 @@ const getFreePort = async () =>
     });
   });
 
-const activeServers: PromptSwitchboardBridgeServer[] = [];
+const activeServers: AgentGangGangBridgeServer[] = [];
 
 afterEach(async () => {
   while (activeServers.length > 0) {
@@ -92,10 +92,10 @@ afterEach(async () => {
   }
 });
 
-describe('PromptSwitchboardBridgeServer', () => {
+describe('AgentGangGangBridgeServer', () => {
   it('serves unauthenticated health checks for doctor flows', async () => {
     const port = await getFreePort();
-    const bridge = new PromptSwitchboardBridgeServer(port);
+    const bridge = new AgentGangGangBridgeServer(port);
     activeServers.push(bridge);
     await bridge.start();
 
@@ -113,7 +113,7 @@ describe('PromptSwitchboardBridgeServer', () => {
 
   it('completes bootstrap, pull, and result delivery', async () => {
     const port = await getFreePort();
-    const bridge = new PromptSwitchboardBridgeServer(port);
+    const bridge = new AgentGangGangBridgeServer(port);
     activeServers.push(bridge);
     await bridge.start();
 

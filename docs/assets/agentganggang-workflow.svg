@@ -42,7 +42,7 @@
   <text x="534" y="265" fill="#B45309" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">STEP 2</text>
   <text x="514" y="314" fill="#0F172A" font-family="Arial, sans-serif" font-size="30" font-weight="700">Ask once</text>
   <text x="514" y="352" fill="#475569" font-family="Arial, sans-serif" font-size="18">Write one prompt inside the</text>
-  <text x="514" y="378" fill="#475569" font-family="Arial, sans-serif" font-size="18">Prompt Switchboard side panel</text>
+  <text x="514" y="378" fill="#475569" font-family="Arial, sans-serif" font-size="18">AgentGangGang side panel</text>
   <text x="514" y="404" fill="#475569" font-family="Arial, sans-serif" font-size="18">and fan it out in one action.</text>
 
   <rect x="916" y="246" width="112" height="28" rx="14" fill="#ECFDF5" stroke="#A7F3D0"/>
@@ -61,6 +61,6 @@
     <rect x="120" y="484" width="1040" height="156" rx="30" fill="#FFFFFF"/>
   </g>
   <text x="164" y="540" fill="#0F172A" font-family="Arial, sans-serif" font-size="34" font-weight="700">Trust boundary</text>
-  <text x="164" y="582" fill="#475569" font-family="Arial, sans-serif" font-size="20">Prompt Switchboard keeps prompt fan-out inside the browser, uses your existing login sessions,</text>
+  <text x="164" y="582" fill="#475569" font-family="Arial, sans-serif" font-size="20">AgentGangGang keeps prompt fan-out inside the browser, uses your existing login sessions,</text>
   <text x="164" y="612" fill="#475569" font-family="Arial, sans-serif" font-size="20">and does not require a hosted relay or account system to compare supported AI chats.</text>
 </svg>

@@ -32,7 +32,7 @@ describe('mcp/server entry runner', () => {
 
     expect(events).toEqual(['start', 'connect']);
     expect(writeError).toHaveBeenCalledWith(
-      'Prompt Switchboard MCP sidecar listening on stdio with loopback bridge http://127.0.0.1:4315'
+      'AgentGangGang MCP sidecar listening on stdio with loopback bridge http://127.0.0.1:4315'
     );
     expect(currentBridgeServer.close).not.toHaveBeenCalled();
   });
@@ -63,7 +63,7 @@ describe('mcp/server entry runner', () => {
 
     expect(currentBridgeServer.close).toHaveBeenCalledTimes(1);
     expect(writeError).toHaveBeenCalledWith(
-      'Prompt Switchboard MCP server failed to start:',
+      'AgentGangGang MCP server failed to start:',
       startupError
     );
     expect(exit).toHaveBeenCalledWith(1);

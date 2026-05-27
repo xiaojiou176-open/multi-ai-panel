@@ -1,8 +1,8 @@
 schema_version: 1
-kind: prompt_switchboard_plugin_packet
-id: prompt-switchboard-opencode-plugin
-name: Prompt Switchboard OpenCode Plugin Packet
-description: Repo-owned OpenCode plugin packet for the Prompt Switchboard local MCP sidecar.
+kind: agentganggang_plugin_packet
+id: agentganggang-opencode-plugin
+name: AgentGangGang OpenCode Plugin Packet
+description: Repo-owned OpenCode plugin packet for the AgentGangGang local MCP sidecar.
 version: "0.2.2"
 license: MIT
 homepage: https://xiaojiou176-open.github.io/AgentGangGang/
@@ -16,9 +16,9 @@ install:
 smoke:
   guide: SMOKE.md
   smallest_useful_flow:
-    - prompt_switchboard.bridge_status
-    - prompt_switchboard.check_readiness
-    - prompt_switchboard.compare
+    - agentganggang.bridge_status
+    - agentganggang.check_readiness
+    - agentganggang.compare
 capabilities:
   - compare
   - readiness

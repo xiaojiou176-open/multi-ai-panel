@@ -15,28 +15,28 @@ import {
 
 const DEFAULT_URL = 'https://chatgpt.com/';
 const DEFAULT_CDP_PORT = 9336;
-const PROMPT_SWITCHBOARD_EXTENSION_NAME = 'Prompt Switchboard';
-const PROMPT_SWITCHBOARD_OPTIONS_PAGE = 'settings.html';
-const PROMPT_SWITCHBOARD_SIDE_PANEL_PATH = 'index.html';
+const AGENTGANGGANG_EXTENSION_NAME = 'AgentGangGang';
+const AGENTGANGGANG_OPTIONS_PAGE = 'settings.html';
+const AGENTGANGGANG_SIDE_PANEL_PATH = 'index.html';
 const EXTENSION_ID_CACHE_PATH = path.resolve(
   process.cwd(),
   '.runtime-cache',
   'live-extension-id.txt'
 );
 
-const LIVE_FLAG = process.env.PROMPT_SWITCHBOARD_LIVE === '1';
+const LIVE_FLAG = process.env.AGENTGANGGANG_LIVE === '1';
 const DETACHED_BROWSER_LAUNCH_ALLOWED =
-  process.env.PROMPT_SWITCHBOARD_LIVE_ALLOW_DETACHED_BROWSER === '1';
-const CDP_PORT = Number(process.env.PROMPT_SWITCHBOARD_LIVE_CDP_PORT || DEFAULT_CDP_PORT);
-const BROWSER_CHANNEL = process.env.PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL || 'chrome';
-const START_URL = process.env.PROMPT_SWITCHBOARD_LIVE_START_URL || DEFAULT_URL;
-const EXTENSION_PATH = process.env.PROMPT_SWITCHBOARD_EXTENSION_PATH
-  ? path.resolve(process.env.PROMPT_SWITCHBOARD_EXTENSION_PATH)
+  process.env.AGENTGANGGANG_LIVE_ALLOW_DETACHED_BROWSER === '1';
+const CDP_PORT = Number(process.env.AGENTGANGGANG_LIVE_CDP_PORT || DEFAULT_CDP_PORT);
+const BROWSER_CHANNEL = process.env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL || 'chrome';
+const START_URL = process.env.AGENTGANGGANG_LIVE_START_URL || DEFAULT_URL;
+const EXTENSION_PATH = process.env.AGENTGANGGANG_EXTENSION_PATH
+  ? path.resolve(process.env.AGENTGANGGANG_EXTENSION_PATH)
   : path.resolve(process.cwd(), 'dist');
 const browserProfile = resolveBrowserProfile();
 const browserExecutable = resolveBrowserExecutablePath({
   ...process.env,
-  PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
+  AGENTGANGGANG_LIVE_BROWSER_CHANNEL: BROWSER_CHANNEL,
 });
 
 const readCachedExtensionId = () => {
@@ -82,9 +82,9 @@ const readProfileRepoOwnedExtensionIds = ({ userDataDir, profileDirectory, exten
         const resolvedPath =
           typeof entry?.path === 'string' && entry.path.length > 0 ? path.resolve(entry.path) : null;
         const manifestMatches =
-          manifest?.name === PROMPT_SWITCHBOARD_EXTENSION_NAME &&
-          manifest?.options_page === PROMPT_SWITCHBOARD_OPTIONS_PAGE &&
-          manifest?.side_panel?.default_path === PROMPT_SWITCHBOARD_SIDE_PANEL_PATH;
+          manifest?.name === AGENTGANGGANG_EXTENSION_NAME &&
+          manifest?.options_page === AGENTGANGGANG_OPTIONS_PAGE &&
+          manifest?.side_panel?.default_path === AGENTGANGGANG_SIDE_PANEL_PATH;
         if (manifestMatches || resolvedPath === extensionRoot) {
           extensionIds.add(extensionId);
         }
@@ -269,7 +269,7 @@ const reusingExistingAttachBrowser =
   attachOwnership.available && cdpReadyBeforeLaunch && attachOwnership.repoOwned.length > 0;
 
 if (!LIVE_FLAG) {
-  errors.push('PROMPT_SWITCHBOARD_LIVE=1 is required before launching the attach browser helper.');
+  errors.push('AGENTGANGGANG_LIVE=1 is required before launching the attach browser helper.');
 }
 
 if (!fs.existsSync(EXTENSION_PATH)) {
@@ -277,7 +277,7 @@ if (!fs.existsSync(EXTENSION_PATH)) {
 }
 
 if (!Number.isFinite(CDP_PORT) || CDP_PORT <= 0) {
-  errors.push(`PROMPT_SWITCHBOARD_LIVE_CDP_PORT must be a positive integer. Received: ${CDP_PORT}`);
+  errors.push(`AGENTGANGGANG_LIVE_CDP_PORT must be a positive integer. Received: ${CDP_PORT}`);
 }
 
 if (browserResources.blocker && !reusingExistingAttachBrowser) {
@@ -360,7 +360,7 @@ if (!reusingExistingAttachBrowser) {
       .map((part) => JSON.stringify(part))
       .join(' ');
     console.error(
-      `[test:live:open-browser] failed: Detached repo-owned browser launch now requires PROMPT_SWITCHBOARD_LIVE_ALLOW_DETACHED_BROWSER=1. Launch Chrome manually with ${manualLaunchCommand} or rerun with that explicit operator override.`
+      `[test:live:open-browser] failed: Detached repo-owned browser launch now requires AGENTGANGGANG_LIVE_ALLOW_DETACHED_BROWSER=1. Launch Chrome manually with ${manualLaunchCommand} or rerun with that explicit operator override.`
     );
     process.exit(1);
   }
@@ -387,12 +387,12 @@ if (!reusingExistingAttachBrowser) {
 }
 
 const attachCommand = [
-  'PROMPT_SWITCHBOARD_LIVE=1',
-  'PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=browser',
-  `PROMPT_SWITCHBOARD_LIVE_CDP_URL=http://127.0.0.1:${CDP_PORT}`,
-  `PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR=${JSON.stringify(browserProfile.userDataDir)}`,
-  `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME=${JSON.stringify(browserProfile.profileName || '')}`,
-  `PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY=${JSON.stringify(browserProfile.profileDirectory)}`,
+  'AGENTGANGGANG_LIVE=1',
+  'AGENTGANGGANG_LIVE_ATTACH_MODE=browser',
+  `AGENTGANGGANG_LIVE_CDP_URL=http://127.0.0.1:${CDP_PORT}`,
+  `AGENTGANGGANG_BROWSER_USER_DATA_DIR=${JSON.stringify(browserProfile.userDataDir)}`,
+  `AGENTGANGGANG_BROWSER_PROFILE_NAME=${JSON.stringify(browserProfile.profileName || '')}`,
+  `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY=${JSON.stringify(browserProfile.profileDirectory)}`,
   'npm run test:live',
 ].join(' ');
 
@@ -407,16 +407,16 @@ if (attachTargets.length === 0) {
 
 const runtimeInspectionEnv = {
   ...process.env,
-  PROMPT_SWITCHBOARD_LIVE: '1',
-  PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE: 'browser',
-  PROMPT_SWITCHBOARD_LIVE_CDP_URL: `http://127.0.0.1:${CDP_PORT}`,
-  PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
-  PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
-  PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory,
-  PROMPT_SWITCHBOARD_EXTENSION_PATH: EXTENSION_PATH,
+  AGENTGANGGANG_LIVE: '1',
+  AGENTGANGGANG_LIVE_ATTACH_MODE: 'browser',
+  AGENTGANGGANG_LIVE_CDP_URL: `http://127.0.0.1:${CDP_PORT}`,
+  AGENTGANGGANG_BROWSER_USER_DATA_DIR: browserProfile.userDataDir,
+  AGENTGANGGANG_BROWSER_PROFILE_NAME: browserProfile.profileName || '',
+  AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY: browserProfile.profileDirectory,
+  AGENTGANGGANG_EXTENSION_PATH: EXTENSION_PATH,
 };
-delete runtimeInspectionEnv.PROMPT_SWITCHBOARD_USER_DATA_DIR;
-delete runtimeInspectionEnv.PROMPT_SWITCHBOARD_PROFILE_DIRECTORY;
+delete runtimeInspectionEnv.AGENTGANGGANG_USER_DATA_DIR;
+delete runtimeInspectionEnv.AGENTGANGGANG_PROFILE_DIRECTORY;
 const runtimeDiagnosisEnvelope = runLiveDiagnoseEnvelope({ env: runtimeInspectionEnv });
 const runtimeInspection = buildRuntimeInspectionReport(runtimeDiagnosisEnvelope);
 const runtimeBlocked = Boolean(runtimeInspection?.laneBlocked);
@@ -451,7 +451,7 @@ console.log(
   JSON.stringify(
     {
       ok: true,
-      mode: 'prompt_switchboard_live_browser_launch',
+      mode: 'agentganggang_live_browser_launch',
       executablePath,
       executableResolutionSource: browserExecutable.resolutionSource,
       pid: child?.pid || extractPid(attachOwnership.repoOwned[0] || ''),
@@ -475,9 +475,9 @@ console.log(
       runtimeInspection,
       nextAction: runtimeBlocked
         ? brandedChromeExtensionAutoloadUnsupported
-          ? `The repo-owned real Chrome lane launched, but ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`} did not expose a Prompt Switchboard extension runtime. Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. Keep this profile for login-state validation, then manually use "Load unpacked" in this repo-owned Chrome profile or move automated extension-runtime proof to Chromium/Chrome for Testing.`
-          : 'The repo-owned browser lane launched, but Prompt Switchboard still did not expose a live extension runtime. Treat this lane as runtime-blocked and prefer repo-side debugging or a rebuilt browser lane over repeated Chrome menu clicks.'
-        : 'Keep the identity tab open on the left, log in inside the launched browser window if needed, and use the real Prompt Switchboard side panel or toolbar entry instead of direct extension-tab navigation when you need the live UI surface. Then run the attach command in the same repo shell.',
+          ? `The repo-owned real Chrome lane launched, but ${versionPayload?.Browser || `Chrome/${browserMajorVersion}`} did not expose a AgentGangGang extension runtime. Official Google Chrome branded builds removed command-line unpacked extension autoload support starting in Chrome 137, and removed --disable-extensions-except in Chrome 139. Keep this profile for login-state validation, then manually use "Load unpacked" in this repo-owned Chrome profile or move automated extension-runtime proof to Chromium/Chrome for Testing.`
+          : 'The repo-owned browser lane launched, but AgentGangGang still did not expose a live extension runtime. Treat this lane as runtime-blocked and prefer repo-side debugging or a rebuilt browser lane over repeated Chrome menu clicks.'
+        : 'Keep the identity tab open on the left, log in inside the launched browser window if needed, and use the real AgentGangGang side panel or toolbar entry instead of direct extension-tab navigation when you need the live UI surface. Then run the attach command in the same repo shell.',
       trustedWarmupExtensionId,
       brandedChromeExtensionAutoloadUnsupported,
       browserVersion: versionPayload?.Browser || null,

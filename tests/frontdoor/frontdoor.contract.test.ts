@@ -23,9 +23,9 @@ describe('front door contract', () => {
     expect(readme).toContain('## Why It Beats Tab Juggling');
     expect(readme).toContain('## FAQ');
     expect(readme).toContain('## Why Star It Now');
-    expect(readme).toContain('./docs/assets/prompt-switchboard-hero.png');
-    expect(readme).toContain('./docs/assets/prompt-switchboard-demo.gif');
-    expect(readme).toContain('./docs/assets/prompt-switchboard-before-after.svg');
+    expect(readme).toContain('./docs/assets/agentganggang-hero.png');
+    expect(readme).toContain('./docs/assets/agentganggang-demo.gif');
+    expect(readme).toContain('./docs/assets/agentganggang-before-after.svg');
     expect(readme).toContain(metadata.install_guide_path.replace('./', './docs/'));
     expect(readme).toContain(metadata.first_compare_path.replace('./', './docs/'));
     expect(readme).toContain(metadata.supported_sites_path.replace('./', './docs/'));
@@ -135,8 +135,8 @@ describe('front door contract', () => {
     expect(normalizedMcpAgents).toContain('does <strong>not</strong> ship a public HTTP API');
     expect(normalizedMcpAgents).toContain('Native Messaging remains a scaffold');
     expect(mcpAgents).toContain('Not arbitrary browser automation');
-    expect(mcpAgents).toContain('prompt-switchboard://builder/support-matrix');
-    expect(mcpAgents).toContain('prompt-switchboard://sites/capabilities');
+    expect(mcpAgents).toContain('agentganggang://builder/support-matrix');
+    expect(mcpAgents).toContain('agentganggang://sites/capabilities');
     expect(normalizedMcpAgents).toContain('starter skill templates for all four documented hosts');
     expect(mcpAgents).toContain(metadata.first_compare_path);
     expect(normalizedStarterKits).toContain(metadata.current_install_surface);
@@ -147,8 +147,8 @@ describe('front door contract', () => {
     expect(starterKits).toContain('"@type": "TechArticle"');
     expect(starterKits).toContain('OpenCode');
     expect(starterKits).toContain('OpenClaw');
-    expect(starterKits).toContain('prompt-switchboard://builder/support-matrix');
-    expect(starterKits).toContain('prompt-switchboard://sites/capabilities');
+    expect(starterKits).toContain('agentganggang://builder/support-matrix');
+    expect(starterKits).toContain('agentganggang://sites/capabilities');
     expect(starterKits).toContain('not a verified repo-owned host lane');
     expect(starterKits).toContain(metadata.first_compare_path);
     expect(hostPackets).toContain('Codex packet');
@@ -253,17 +253,17 @@ describe('front door contract', () => {
 
   it('keeps the tracked public visual assets and crawl files present', () => {
     const requiredFiles = [
-      ['docs', 'assets', 'prompt-switchboard-hero.png'],
-      ['docs', 'assets', 'prompt-switchboard-demo.gif'],
-      ['docs', 'assets', 'prompt-switchboard-compare-detail.png'],
-      ['docs', 'assets', 'prompt-switchboard-workflow-panel.png'],
-      ['docs', 'assets', 'prompt-switchboard-analyst-panel.png'],
-      ['docs', 'assets', 'prompt-switchboard-builder-surface.png'],
-      ['docs', 'assets', 'prompt-switchboard-settings.png'],
-      ['docs', 'assets', 'prompt-switchboard-social-preview.png'],
-      ['docs', 'assets', 'prompt-switchboard-nav-icon.svg'],
-      ['docs', 'assets', 'prompt-switchboard-before-after.svg'],
-      ['docs', 'assets', 'prompt-switchboard-workflow.svg'],
+      ['docs', 'assets', 'agentganggang-hero.png'],
+      ['docs', 'assets', 'agentganggang-demo.gif'],
+      ['docs', 'assets', 'agentganggang-compare-detail.png'],
+      ['docs', 'assets', 'agentganggang-workflow-panel.png'],
+      ['docs', 'assets', 'agentganggang-analyst-panel.png'],
+      ['docs', 'assets', 'agentganggang-builder-surface.png'],
+      ['docs', 'assets', 'agentganggang-settings.png'],
+      ['docs', 'assets', 'agentganggang-social-preview.png'],
+      ['docs', 'assets', 'agentganggang-nav-icon.svg'],
+      ['docs', 'assets', 'agentganggang-before-after.svg'],
+      ['docs', 'assets', 'agentganggang-workflow.svg'],
       ['docs', 'install.html'],
       ['docs', 'first-compare-guide.html'],
       ['docs', 'prompt-packs.html'],

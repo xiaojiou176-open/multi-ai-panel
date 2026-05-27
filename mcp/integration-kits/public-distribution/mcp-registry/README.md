@@ -1,10 +1,10 @@
-# Prompt Switchboard MCP Registry Submission Pack
+# AgentGangGang MCP Registry Submission Pack
 
 This folder keeps the repo-owned submission materials for the official MCP
 Registry lane.
 
-In plain language: Prompt Switchboard already ships a real repo-owned MCP server.
-The official MCP Registry already returns a live Prompt Switchboard MCP entry for the same governed integration surface.
+In plain language: AgentGangGang already ships a real repo-owned MCP server.
+The official MCP Registry already returns a live AgentGangGang MCP entry for the same governed integration surface.
 The repo still stays extension-first and mixed-surface: the browser extension is
 the main product doorway, and this registry packet is only one companion lane
 for the governed MCP integration.

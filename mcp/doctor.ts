@@ -122,14 +122,14 @@ export const createDoctorMessage = (bridgeBaseUrl: string, health: BridgeHealth)
     scaffoldHelper: 'scripts/mcp/native-messaging-manifest.mjs',
   },
   extensionRequirement:
-    'Load Prompt Switchboard in Chromium with the unpacked extension enabled so the background bridge client can connect.',
+    'Load AgentGangGang in Chromium with the unpacked extension enabled so the background bridge client can connect.',
   currentModel:
     'The MCP server uses stdio for external agents and a localhost loopback HTTP bridge for the extension runtime.',
   workflowTruth:
     'Workflow run snapshots are session-scoped runtime cache. They are useful for current-session inspection, not a durable cold-start ledger.',
   startupOrder: [
     'npm run mcp:operator -- server',
-    'load or reload the unpacked Prompt Switchboard extension in Chromium',
+    'load or reload the unpacked AgentGangGang extension in Chromium',
     'open the side panel or settings page so the background bridge client can bootstrap',
   ],
 });

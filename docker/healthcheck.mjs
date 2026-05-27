@@ -1,5 +1,5 @@
 const DEFAULT_BRIDGE_PORT = 48123;
-const parsedPort = Number(process.env.PROMPT_SWITCHBOARD_BRIDGE_PORT ?? DEFAULT_BRIDGE_PORT);
+const parsedPort = Number(process.env.AGENTGANGGANG_BRIDGE_PORT ?? DEFAULT_BRIDGE_PORT);
 const bridgePort = Number.isInteger(parsedPort) && parsedPort > 0 ? parsedPort : DEFAULT_BRIDGE_PORT;
 const bridgeBaseUrl = `http://127.0.0.1:${bridgePort}`;
 

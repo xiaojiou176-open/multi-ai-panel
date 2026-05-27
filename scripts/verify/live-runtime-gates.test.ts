@@ -49,7 +49,7 @@ describe('live-runtime-gates', () => {
               surface: 'probe',
               kind: 'probe_blocker',
               message:
-                'Prompt Switchboard did not expose a live extension runtime in the current browser lane.',
+                'AgentGangGang did not expose a live extension runtime in the current browser lane.',
             },
           ],
         },
@@ -69,7 +69,7 @@ describe('live-runtime-gates', () => {
         surface: 'probe',
         kind: 'probe_blocker',
         message:
-          'Prompt Switchboard did not expose a live extension runtime in the current browser lane.',
+          'AgentGangGang did not expose a live extension runtime in the current browser lane.',
       },
     ]);
   });

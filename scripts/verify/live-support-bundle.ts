@@ -27,7 +27,7 @@ const probe = await collectLiveProbe(config);
 const diagnosis = probe.readyToProbe
   ? buildLiveDiagnosis(probe)
   : {
-      mode: 'prompt_switchboard_live_diagnose',
+      mode: 'agentganggang_live_diagnose',
       generatedAt: new Date().toISOString(),
       status: 'blocked',
       blockers: probe.blockers.map((message) => ({
@@ -86,7 +86,7 @@ const captureDeepText = async (page: import('@playwright/test').Page) =>
   });
 
 const summaryLines = [
-  '# Prompt Switchboard live support bundle',
+  '# AgentGangGang live support bundle',
   '',
   `- generatedAt: ${probe.generatedAt}`,
   `- status: ${diagnosis.status}`,
@@ -248,7 +248,7 @@ process.stdout.write(
   `${JSON.stringify(
     {
       ok: true,
-      mode: 'prompt_switchboard_live_support_bundle',
+      mode: 'agentganggang_live_support_bundle',
       bundleDir,
       diagnosisStatus: diagnosis.status,
       blockerCount: diagnosis.blockers.length,

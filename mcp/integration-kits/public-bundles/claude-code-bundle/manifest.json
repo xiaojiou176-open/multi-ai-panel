@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
-  "kind": "prompt_switchboard_host_packet",
-  "id": "prompt-switchboard-claude-code-bundle",
-  "name": "Prompt Switchboard Claude Code Bundle",
-  "description": "Repo-owned Claude Code bundle packet for the Prompt Switchboard local MCP sidecar.",
+  "kind": "agentganggang_host_packet",
+  "id": "agentganggang-claude-code-bundle",
+  "name": "AgentGangGang Claude Code Bundle",
+  "description": "Repo-owned Claude Code bundle packet for the AgentGangGang local MCP sidecar.",
   "version": "0.2.2",
   "license": "MIT",
   "homepage": "https://xiaojiou176-open.github.io/AgentGangGang/",
@@ -23,9 +23,9 @@
   "smoke": {
     "guide": "SMOKE.md",
     "smallestUsefulFlow": [
-      "prompt_switchboard.bridge_status",
-      "prompt_switchboard.check_readiness",
-      "prompt_switchboard.compare"
+      "agentganggang.bridge_status",
+      "agentganggang.check_readiness",
+      "agentganggang.compare"
     ]
   },
   "capabilities": [

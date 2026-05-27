@@ -3,24 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prompt Switchboard Docker integration</title>
+    <title>AgentGangGang Docker integration</title>
     <meta
       name="description"
-      content="Run the Prompt Switchboard Docker integration without pretending the compare-first browser product became a hosted service."
+      content="Run the AgentGangGang Docker integration without pretending the compare-first browser product became a hosted service."
     />
     <link
       rel="canonical"
       href="https://xiaojiou176-open.github.io/AgentGangGang/docker-integration.html"
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Prompt Switchboard Docker integration" />
+    <meta property="og:title" content="AgentGangGang Docker integration" />
     <meta
       property="og:description"
-      content="Containerized Prompt Switchboard integration for builder flows. The browser extension still runs on the host, and no hosted compare service is claimed."
+      content="Containerized AgentGangGang integration for builder flows. The browser extension still runs on the host, and no hosted compare service is claimed."
     />
     <meta
       property="og:image"
-      content="https://xiaojiou176-open.github.io/AgentGangGang/assets/prompt-switchboard-social-preview.png"
+      content="https://xiaojiou176-open.github.io/AgentGangGang/assets/agentganggang-social-preview.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <style>
@@ -172,12 +172,12 @@
       <nav class="nav">
         <div class="wordmark">
           <img
-            src="./assets/prompt-switchboard-nav-icon.svg"
-            alt="Prompt Switchboard logo"
+            src="./assets/agentganggang-nav-icon.svg"
+            alt="AgentGangGang logo"
             width="32"
             height="32"
           />
-          <span>Prompt Switchboard</span>
+          <span>AgentGangGang</span>
         </div>
         <div class="actions">
           <a class="nav-link" href="./index.html">Landing page</a>
@@ -194,9 +194,9 @@
         <span class="chip">Docker wrapper</span>
         <h1>Containerize the MCP integration process, not the whole compare-first product.</h1>
         <p>
-          This Docker entry wraps the repo-owned Prompt Switchboard MCP server so coding-host
+          This Docker entry wraps the repo-owned AgentGangGang MCP server so coding-host
           workflows can launch it from a container. The browser extension still runs on the host
-          machine, and Prompt Switchboard does not turn into a hosted compare service here.
+          machine, and AgentGangGang does not turn into a hosted compare service here.
         </p>
         <h2 style="margin-top: 24px">What it is</h2>
         <ul>
@@ -211,10 +211,10 @@
           <li>not proof of a Glama, Chrome Web Store, or registry listing</li>
         </ul>
         <h2 style="margin-top: 24px">Build and run</h2>
-        <pre><code>docker build -t prompt-switchboard-mcp .
-docker run --rm -i -p 48123:48123 prompt-switchboard-mcp server</code></pre>
+        <pre><code>docker build -t agentganggang-mcp .
+docker run --rm -i -p 48123:48123 agentganggang-mcp server</code></pre>
         <p>
-          Use <code>docker run --rm prompt-switchboard-mcp doctor</code> for the repo-owned doctor
+          Use <code>docker run --rm agentganggang-mcp doctor</code> for the repo-owned doctor
           envelope, and check <code>http://127.0.0.1:48123/health</code> for runtime bridge
           readiness once the container is up.
         </p>
@@ -224,7 +224,7 @@ docker run --rm -i -p 48123:48123 prompt-switchboard-mcp server</code></pre>
         </p>
         <p>
           Current public Glama pages verify a server catalog and connector surfaces, but this repo
-          does not claim a Prompt Switchboard listing there yet.
+          does not claim a AgentGangGang listing there yet.
         </p>
       </main>
     </div>

@@ -20,7 +20,7 @@ const removalRetryCodes = new Set(['ENOTEMPTY', 'EBUSY', 'EPERM']);
 const removalRetryAttempts = 4;
 const removalRetryDelayMs = 80;
 const legacyTempCloneRoot = os.tmpdir();
-const legacyTempCloneLabel = 'legacy os.tmpdir() prompt-switchboard-live-* cleanup compatibility sweep';
+const legacyTempCloneLabel = 'legacy os.tmpdir() agentganggang-live-* cleanup compatibility sweep';
 const persistentBrowserState = inspectPersistentBrowserState();
 
 const immediateTargets = [
@@ -262,7 +262,7 @@ function removeLegacyRepoOwnedTempClones() {
       logAction(
         `would remove class=legacy_cleanup path=${path.basename(
           clonePath
-        )} rebuild='PROMPT_SWITCHBOARD_LIVE=1 npm run test:live'`
+        )} rebuild='AGENTGANGGANG_LIVE=1 npm run test:live'`
       );
       continue;
     }
@@ -271,7 +271,7 @@ function removeLegacyRepoOwnedTempClones() {
       logAction(
         `removed class=legacy_cleanup path=${path.basename(
           clonePath
-        )} rebuild='PROMPT_SWITCHBOARD_LIVE=1 npm run test:live'`
+        )} rebuild='AGENTGANGGANG_LIVE=1 npm run test:live'`
       );
     } catch (error) {
       console.error(

@@ -1,10 +1,10 @@
-# Prompt Switchboard
+# AgentGangGang
 
 One prompt, many AI chats, one side panel.
 
 Teach an agent or operator one browser-first compare workflow: check readiness in already-open AI tabs, ask once from the side panel, then retry or export from the same turn.
 
-Prompt Switchboard is a **compare-first, browser-native AI compare workspace**. It lets you send one prompt to ChatGPT, Gemini, Perplexity, Qwen, and Grok, then compare the replies in one side panel instead of bouncing between tabs.
+AgentGangGang is a **compare-first, browser-native AI compare workspace**. It lets you send one prompt to ChatGPT, Gemini, Perplexity, Qwen, and Grok, then compare the replies in one side panel instead of bouncing between tabs.
 
 After the core compare flow is clear, the repo also exposes governed integrations for **Codex and Claude Code browser workflows**. OpenCode and OpenClaw remain later, packet-style follow-through lanes instead of the main product story.
 
@@ -12,15 +12,15 @@ Agent-facing truth comes after the product story is clear: the first thing this 
 
 > **Trust boundary**
 >
-> Prompt Switchboard stays inside your browser, uses your existing sessions on supported sites, and does **not** add a hosted relay or account layer.
+> AgentGangGang stays inside your browser, uses your existing sessions on supported sites, and does **not** add a hosted relay or account layer.
 > The supported repo build also does **not** rely on OS-level desktop
 > automation, Force Quit helpers, or host-wide process cleanup.
 
 [Install the latest build](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest) • [Landing page](./docs/index.html) • [Install guide](./docs/install.html) • [First compare guide](./docs/first-compare-guide.html) • [Supported sites](./docs/supported-sites.html) • [Trust boundary](./docs/trust-boundary.html) • [FAQ guide](./docs/faq.html) • [Privacy](./PRIVACY.md) • [Security](./SECURITY.md) • [Building locally](./CONTRIBUTING.md)
 
-![Prompt Switchboard hero showing one prompt and multiple AI answers side by side.](./docs/assets/prompt-switchboard-hero.png)
+![AgentGangGang hero showing one prompt and multiple AI answers side by side.](./docs/assets/agentganggang-hero.png)
 
-The shortest way to evaluate Prompt Switchboard is simple: install the latest packaged build, keep the AI tabs you already use open, then ask once from the side panel and compare the answers in one place.
+The shortest way to evaluate AgentGangGang is simple: install the latest packaged build, keep the AI tabs you already use open, then ask once from the side panel and compare the answers in one place.
 
 ## What Is Real Today
 
@@ -29,11 +29,11 @@ The shortest way to evaluate Prompt Switchboard is simple: install the latest pa
 | Product install | **GitHub Release zip is the supported install path today.**                                                                                                      |
 | Core product    | **Browser extension + compare-first side panel** with your existing signed-in tabs.                                                                              |
 | Optional integrations | **Governed coding-agent integrations** for Codex and Claude Code, plus repo-owned starter packets for OpenCode and OpenClaw, and an optional Docker wrapper for the same surface. |
-| Official registry | **The official MCP Registry already returns a live Prompt Switchboard MCP entry for the governed integration surface.**                                      |
+| Official registry | **The official MCP Registry already returns a live AgentGangGang MCP entry for the governed integration surface.**                                      |
 | Not live yet    | **Browser store, host marketplaces, and any Glama listing.**                                                                                                     |
 
 The supported install path today is the packaged GitHub Release zip. Browser-store submission materials are being kept ready, but GitHub Releases remains the supported install surface today.
-The official MCP Registry already returns a live Prompt Switchboard MCP entry for the same governed integration surface. That registry proof does **not** make the browser-store path live, and it does **not** mean every host marketplace is already published.
+The official MCP Registry already returns a live AgentGangGang MCP entry for the same governed integration surface. That registry proof does **not** make the browser-store path live, and it does **not** mean every host marketplace is already published.
 
 The optional integration lane stays one step lower in the information hierarchy. Reach for MCP starter kits, host packets, Docker integration docs, and distribution truth only after the first compare path is already clear.
 
@@ -65,9 +65,9 @@ Use these pages in that exact order:
 - **Turn disagreement into the next move**: seed the next compare round, keep seed-only actions honest, and run the next compare only when you choose to.
 - **Carry useful results outside the side panel**: copy a compare summary, export Markdown, or keep a readable local artifact instead of only a backup dump.
 - **Add optional AI analysis without replacing the core compare lane**: the AI Compare Analyst can summarize consensus, explain disagreement, recommend the best-fit answer to continue from, and draft the next question by reusing one browser tab you already trust, while the main compare flow stays inside the same browser workspace.
-- **Expose product actions through governed coding-agent integrations**: Prompt Switchboard can expose readiness, compare, retry, export, session, analyst, and next-step workflow actions to local agents without becoming generic browser automation.
+- **Expose product actions through governed coding-agent integrations**: AgentGangGang can expose readiness, compare, retry, export, session, analyst, and next-step workflow actions to local agents without becoming generic browser automation.
 - **Keep everything local in your browser**: no hosted relay sits between your prompt and the supported AI sites.
-- **Reuse the AI tabs you already use**: Prompt Switchboard works with the browser sessions you already keep open.
+- **Reuse the AI tabs you already use**: AgentGangGang works with the browser sessions you already keep open.
 - **Start from reusable prompt packs**: launch writing, research, coding, and rewriting compare runs without starting from a blank prompt every time.
 - **Export, restore, and reuse compare runs**: carry compare runs between machines through local import/export and save repeatable prompt recipes.
 
@@ -80,7 +80,7 @@ Before you start:
 
 1. Open the [latest Releases page](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest).
 2. Download the packaged extension zip, unzip it locally, open `chrome://extensions`, enable **Developer Mode**, and use **Load unpacked** on the extracted folder.
-3. If the Prompt Switchboard icon is hidden, open the browser Extensions menu, pin Prompt Switchboard, then click the toolbar icon to open the side panel.
+3. If the AgentGangGang icon is hidden, open the browser Extensions menu, pin AgentGangGang, then click the toolbar icon to open the side panel.
 4. Open the supported AI tabs you want to compare, then ask once from the side panel.
 
 Today the public install path is the packaged GitHub Release zip. A lower-friction store distribution path is being prepared, but it is not live yet.
@@ -126,11 +126,11 @@ If you want to see the value quickly, try one of these on three or more supporte
 
 If you already use MCP-capable coding agents, come here **after** the first compare works:
 
-- [Prompt Switchboard for Codex, Claude Code, and MCP agents](./docs/mcp-coding-agents.html)
-- [Prompt Switchboard MCP starter kits](./docs/mcp-starter-kits.html)
-- [Prompt Switchboard Docker integration](./docs/docker-integration.html)
-- [Prompt Switchboard host packets](./docs/mcp-host-packets.html)
-- [Prompt Switchboard public distribution matrix](./docs/public-distribution-matrix.html)
+- [AgentGangGang for Codex, Claude Code, and MCP agents](./docs/mcp-coding-agents.html)
+- [AgentGangGang MCP starter kits](./docs/mcp-starter-kits.html)
+- [AgentGangGang Docker integration](./docs/docker-integration.html)
+- [AgentGangGang host packets](./docs/mcp-host-packets.html)
+- [AgentGangGang public distribution matrix](./docs/public-distribution-matrix.html)
 
 These builder surfaces are intentionally second-ring pages. They are real and useful, but they should not outrank install, first compare, supported sites, and trust boundary in the first impression.
 
@@ -141,11 +141,11 @@ publish flows; they are not proof that any public listing is already live.
 
 ## Why It Beats Tab Juggling
 
-![Prompt Switchboard before-and-after comparison showing manual multi-tab comparison versus one local side panel workspace.](./docs/assets/prompt-switchboard-before-after.svg)
+![AgentGangGang before-and-after comparison showing manual multi-tab comparison versus one local side panel workspace.](./docs/assets/agentganggang-before-after.svg)
 
-The strongest product claim here is not abstract AI productivity. It is much simpler: Prompt Switchboard removes the messy part of side-by-side comparison.
+The strongest product claim here is not abstract AI productivity. It is much simpler: AgentGangGang removes the messy part of side-by-side comparison.
 
-| Manual multi-tab compare                        | Prompt Switchboard                                           |
+| Manual multi-tab compare                        | AgentGangGang                                           |
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | Paste the same prompt into every site           | Ask once from the side panel                                 |
 | Wait in separate tabs and windows               | Watch status chips update in one board                       |
@@ -156,13 +156,13 @@ The strongest product claim here is not abstract AI productivity. It is much sim
 ## How It Works
 
 1. **Open the sites you already use**: keep ChatGPT, Gemini, Perplexity, Qwen, or Grok signed in inside normal browser tabs.
-2. **Ask once from the side panel**: Prompt Switchboard fans the same prompt out from one local workspace.
+2. **Ask once from the side panel**: AgentGangGang fans the same prompt out from one local workspace.
 3. **Compare clearly**: review the answers side by side, inspect the per-model run timeline, copy the best response, or jump back into the original model tab.
 4. **Recover, export, and continue**: retry only the failed models, use the repair center when readiness blocks a run, export a readable compare artifact, or seed the next compare round from the completed answers.
 
 ## Integrations (Second Ring, After The First Compare)
 
-Prompt Switchboard also includes governed coding-agent integrations for product-level workflows.
+AgentGangGang also includes governed coding-agent integrations for product-level workflows.
 Those integrations are real, but they are **not** the default first-stop story of the repo.
 The default story is still: install, run one compare, then export or retry from the same turn.
 
@@ -171,7 +171,7 @@ The default story is still: install, run one compare, then export or retry from 
 - The exposed surface stays product-specific: readiness, compare, retry,
   export, session reads, the analyst lane, and workflow helpers.
 - The optional Docker integration wraps the same local MCP surface; it does **not**
-  turn Prompt Switchboard into a hosted compare service or public HTTP API.
+  turn AgentGangGang into a hosted compare service or public HTTP API.
 - The MCP surface does **not** expose arbitrary DOM selectors or generic
   website automation.
 
@@ -179,10 +179,10 @@ Current truthful split:
 
 - **Supported now**: Codex and Claude Code are the strongest repo-specific host
   flows.
-- **Official MCP Registry**: a live Prompt Switchboard entry already points to
+- **Official MCP Registry**: a live AgentGangGang entry already points to
   the governed integration install/docs surface.
 - **ClawHub**: the standalone compare-workflows skill is now publicly listed at
-  `https://clawhub.ai/xiaojiou176/prompt-switchboard-compare-workflows`.
+  `https://clawhub.ai/xiaojiou176/agentganggang-compare-workflows`.
 - **awesome-opencode**: the curated project/resource entry is submitted on
   [`awesome-opencode/awesome-opencode#276`](https://github.com/awesome-opencode/awesome-opencode/pull/276)
   and is still review-pending; that receipt does **not** make the OpenCode
@@ -214,7 +214,7 @@ README:
 - [`mcp/integration-kits/public-distribution-matrix.json`](./mcp/integration-kits/public-distribution-matrix.json)
 
 The machine-readable builder truth lives at
-`prompt-switchboard://builder/support-matrix`.
+`agentganggang://builder/support-matrix`.
 
 Quick placement map:
 
@@ -224,7 +224,7 @@ Quick placement map:
 - OpenClaw -> `openclaw mcp set` or `mcp.servers`
 
 If host wiring looks correct but site behavior still feels brittle, read
-`prompt-switchboard://sites/capabilities` next. That resource is the current
+`agentganggang://sites/capabilities` next. That resource is the current
 per-site DOM/readiness/private-API boundary map for the compare-first product
 surface.
 
@@ -233,25 +233,25 @@ to explore that direction later, start from the scaffold notes in
 [`mcp/native-messaging/README.md`](./mcp/native-messaging/README.md) instead of
 treating it as an already-wired runtime path.
 
-![Animated Prompt Switchboard demo showing the compare-first flow from empty state to completed multi-model answers.](./docs/assets/prompt-switchboard-demo.gif)
+![Animated AgentGangGang demo showing the compare-first flow from empty state to completed multi-model answers.](./docs/assets/agentganggang-demo.gif)
 
 The demo now shows the actual product rhythm: ready state, compare fan-out, workflow staging, and a completed comparison board.
 
 ### Compare View
 
-![Prompt Switchboard compare detail showing model cards, status chips, copy action, and open-site action.](./docs/assets/prompt-switchboard-compare-detail.png)
+![AgentGangGang compare detail showing model cards, status chips, copy action, and open-site action.](./docs/assets/agentganggang-compare-detail.png)
 
 This detail view highlights the compare-first design with the current next-step lane: one prompt header, WorkflowPanel, analyst guidance, clear model identity, delivery status chips, and direct links back to the original site.
 
 ### Trust Boundary Map
 
-![Prompt Switchboard workflow diagram showing open sites, ask once, compare clearly, and the browser trust boundary.](./docs/assets/prompt-switchboard-workflow.svg)
+![AgentGangGang workflow diagram showing open sites, ask once, compare clearly, and the browser trust boundary.](./docs/assets/agentganggang-workflow.svg)
 
-The workflow map makes the runtime boundary explicit: Prompt Switchboard orchestrates the browser-side flow, while the supported AI websites remain the actual execution surfaces.
+The workflow map makes the runtime boundary explicit: AgentGangGang orchestrates the browser-side flow, while the supported AI websites remain the actual execution surfaces.
 
 ### Settings And Portability
 
-![Prompt Switchboard settings view with data export, import, language, theme, and keyboard preferences.](./docs/assets/prompt-switchboard-settings.png)
+![AgentGangGang settings view with data export, import, language, theme, and keyboard preferences.](./docs/assets/agentganggang-settings.png)
 
 Settings keep the project honest as a real tool, not just a hero screenshot: export and import, language, theme, and keyboard preferences all live inside the extension.
 
@@ -263,7 +263,7 @@ Settings keep the project honest as a real tool, not just a hero screenshot: exp
 - Qwen
 - Grok / xAI
 
-These integrations depend on live DOM structure. When a supported site changes markup, Prompt Switchboard may need selector updates before the compare flow fully recovers.
+These integrations depend on live DOM structure. When a supported site changes markup, AgentGangGang may need selector updates before the compare flow fully recovers.
 
 Need the public-facing install and support detail page? Read [`docs/supported-sites.html`](./docs/supported-sites.html).
 
@@ -313,4 +313,4 @@ Track packaged builds and release notes on the [Releases page](https://github.co
 
 ## Why Star It Now
 
-If Prompt Switchboard makes multi-model comparison easier for you, star the repo so the latest packaged builds, selector drift fixes, and compare-first front-door updates stay easy to find.
+If AgentGangGang makes multi-model comparison easier for you, star the repo so the latest packaged builds, selector drift fixes, and compare-first front-door updates stay easy to find.

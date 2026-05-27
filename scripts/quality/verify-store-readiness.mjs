@@ -12,21 +12,21 @@ const requiredFiles = [
   'README.md',
   'CONTRIBUTING.md',
   'manifest.json',
-  'public/prompt-switchboard-icon.svg',
-  'public/prompt-switchboard-icon-16.png',
-  'public/prompt-switchboard-icon-48.png',
-  'public/prompt-switchboard-icon-128.png',
+  'public/agentganggang-icon.svg',
+  'public/agentganggang-icon-16.png',
+  'public/agentganggang-icon-48.png',
+  'public/agentganggang-icon-128.png',
   'docs/install.html',
   'docs/faq.html',
   'docs/mcp-coding-agents.html',
-  'docs/assets/prompt-switchboard-hero.png',
-  'docs/assets/prompt-switchboard-demo.gif',
-  'docs/assets/prompt-switchboard-compare-detail.png',
-  'docs/assets/prompt-switchboard-settings.png',
-  'docs/assets/prompt-switchboard-social-preview.png',
-  'docs/assets/prompt-switchboard-nav-icon.svg',
-  'docs/assets/prompt-switchboard-before-after.svg',
-  'docs/assets/prompt-switchboard-workflow.svg',
+  'docs/assets/agentganggang-hero.png',
+  'docs/assets/agentganggang-demo.gif',
+  'docs/assets/agentganggang-compare-detail.png',
+  'docs/assets/agentganggang-settings.png',
+  'docs/assets/agentganggang-social-preview.png',
+  'docs/assets/agentganggang-nav-icon.svg',
+  'docs/assets/agentganggang-before-after.svg',
+  'docs/assets/agentganggang-workflow.svg',
 ];
 
 const requiredWorkflowMarkers = [
@@ -95,11 +95,11 @@ export const collectStoreReadinessFindings = ({
 
   if (
     !manifest.icons ||
-    manifest.icons['16'] !== 'public/prompt-switchboard-icon-16.png' ||
-    manifest.icons['48'] !== 'public/prompt-switchboard-icon-48.png' ||
-    manifest.icons['128'] !== 'public/prompt-switchboard-icon-128.png'
+    manifest.icons['16'] !== 'public/agentganggang-icon-16.png' ||
+    manifest.icons['48'] !== 'public/agentganggang-icon-48.png' ||
+    manifest.icons['128'] !== 'public/agentganggang-icon-128.png'
   ) {
-    findings.push('manifest icon contract must point to Prompt Switchboard PNG extension icons');
+    findings.push('manifest icon contract must point to AgentGangGang PNG extension icons');
   }
 
   for (const [label, doc] of [

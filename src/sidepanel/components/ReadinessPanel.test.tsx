@@ -47,7 +47,7 @@ describe('ReadinessPanel', () => {
 
     fireEvent.click(getByRole('button', { name: 'Review repair steps' }));
     expect(
-      getByText(/Prompt Switchboard found the page, but could not confirm the send controls/)
+      getByText(/AgentGangGang found the page, but could not confirm the send controls/)
     ).toBeInTheDocument();
     expect(getByText(/Remote selector cache/)).toBeInTheDocument();
     expect(getByTestId('readiness-repair-Gemini')).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe('ReadinessPanel', () => {
     );
 
     expect(
-      getAllByText('Selected models look ready, or Prompt Switchboard is checking them now.')[0]
+      getAllByText('Selected models look ready, or AgentGangGang is checking them now.')[0]
     ).toBeInTheDocument();
     expect(getAllByText('Loading').length).toBeGreaterThan(0);
     expect(getByRole('button', { name: 'Review repair steps' })).toBeInTheDocument();

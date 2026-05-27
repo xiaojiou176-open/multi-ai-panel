@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "prompt_switchboard": {
+    "agentganggang": {
       "command": "npm",
       "args": ["run", "mcp:server"],
       "cwd": "/absolute/path/to/AgentGangGang"

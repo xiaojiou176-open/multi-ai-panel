@@ -5,8 +5,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   buildLiveDiagnosis,
   classifyExtensionSurfaceProbeFailure,
-  findPromptSwitchboardExtensionId,
-  isPromptSwitchboardManifestIdentity,
+  findAgentGangGangExtensionId,
+  isAgentGangGangManifestIdentity,
   resolveLiveProbeConfig,
   resolveLiveProbeBlockers,
   type LiveProbeResult,
@@ -15,7 +15,7 @@ import {
 const tempRoots = new Set<string>();
 
 const makeTempRoot = () => {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prompt-switchboard-live-probe-test-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-live-probe-test-'));
   tempRoots.add(tempRoot);
   return tempRoot;
 };
@@ -25,9 +25,9 @@ afterEach(() => {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }
   tempRoots.clear();
-  delete process.env.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR;
-  delete process.env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME;
-  delete process.env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY;
+  delete process.env.AGENTGANGGANG_BROWSER_USER_DATA_DIR;
+  delete process.env.AGENTGANGGANG_BROWSER_PROFILE_NAME;
+  delete process.env.AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY;
 });
 
 describe('live-probe-shared', () => {
@@ -44,23 +44,23 @@ describe('live-probe-shared', () => {
       classifyExtensionSurfaceProbeFailure(
         new Error('page.evaluate: Target page, context or browser has been closed')
       )
-    ).toContain('closed before Prompt Switchboard could finish the live probe');
+    ).toContain('closed before AgentGangGang could finish the live probe');
   });
 
-  it('accepts the Prompt Switchboard manifest fingerprint as a repo-owned extension identity', () => {
+  it('accepts the AgentGangGang manifest fingerprint as a repo-owned extension identity', () => {
     expect(
-      isPromptSwitchboardManifestIdentity({
+      isAgentGangGangManifestIdentity({
         runtimeId: 'abcdefghijklmnopabcdefghijklmnop',
-        manifestName: 'Prompt Switchboard',
+        manifestName: 'AgentGangGang',
         optionsPage: 'settings.html',
         sidePanelDefaultPath: 'index.html',
       })
     ).toBe(true);
   });
 
-  it('rejects component-extension identities that are not Prompt Switchboard', () => {
+  it('rejects component-extension identities that are not AgentGangGang', () => {
     expect(
-      isPromptSwitchboardManifestIdentity({
+      isAgentGangGangManifestIdentity({
         runtimeId: 'abcdefghijklmnopabcdefghijklmnop',
         manifestName: 'Google Network Speech',
         optionsPage: null,
@@ -78,7 +78,7 @@ describe('live-probe-shared', () => {
             url: () => `chrome-extension://${runtimeId}/index.html`,
             evaluate: async () => ({
               runtimeId,
-              manifestName: 'Prompt Switchboard',
+              manifestName: 'AgentGangGang',
               optionsPage: 'settings.html',
               sidePanelDefaultPath: 'index.html',
               href: `chrome-extension://${runtimeId}/index.html`,
@@ -95,7 +95,7 @@ describe('live-probe-shared', () => {
         ],
     } as const;
 
-    await expect(findPromptSwitchboardExtensionId(context as never)).resolves.toBe(runtimeId);
+    await expect(findAgentGangGangExtensionId(context as never)).resolves.toBe(runtimeId);
   });
 
   it('times out a stalled extension page probe and falls back to the service worker identity', async () => {
@@ -115,7 +115,7 @@ describe('live-probe-shared', () => {
             url: () => `chrome-extension://${runtimeId}/background.js`,
             evaluate: async () => ({
               runtimeId,
-              manifestName: 'Prompt Switchboard',
+              manifestName: 'AgentGangGang',
               optionsPage: 'settings.html',
               sidePanelDefaultPath: 'index.html',
             }),
@@ -123,7 +123,7 @@ describe('live-probe-shared', () => {
         ],
     } as const;
 
-    const pendingIdentity = findPromptSwitchboardExtensionId(context as never);
+    const pendingIdentity = findAgentGangGangExtensionId(context as never);
     await vi.advanceTimersByTimeAsync(1_600);
     await expect(pendingIdentity).resolves.toBe(runtimeId);
     vi.useRealTimers();
@@ -143,7 +143,7 @@ describe('live-probe-shared', () => {
         ],
     } as const;
 
-    const pendingIdentity = findPromptSwitchboardExtensionId(context as never);
+    const pendingIdentity = findAgentGangGangExtensionId(context as never);
     await vi.advanceTimersByTimeAsync(1_600);
     await expect(pendingIdentity).resolves.toBe(runtimeId);
     vi.useRealTimers();
@@ -151,7 +151,7 @@ describe('live-probe-shared', () => {
 
   it('surfaces unavailable extension inspection as a probe blocker without hiding site readiness', () => {
     const probe: LiveProbeResult = {
-      mode: 'prompt_switchboard_live_site_probe',
+      mode: 'agentganggang_live_site_probe',
       generatedAt: new Date().toISOString(),
       readyToProbe: true,
       blockers: [],
@@ -211,13 +211,13 @@ describe('live-probe-shared', () => {
         'Chrome blocked direct navigation to the extension page in attach mode (ERR_BLOCKED_BY_CLIENT).',
     });
     expect(diagnosis.nextActions).toContain(
-      'Keep the current attach browser open, reopen the Prompt Switchboard side panel or extension page manually if needed, then rerun the live probe.'
+      'Keep the current attach browser open, reopen the AgentGangGang side panel or extension page manually if needed, then rerun the live probe.'
     );
   });
 
   it('stops recommending menu-click retries when the lane only exposes blocked extension shells', () => {
     const probe: LiveProbeResult = {
-      mode: 'prompt_switchboard_live_site_probe',
+      mode: 'agentganggang_live_site_probe',
       generatedAt: new Date().toISOString(),
       readyToProbe: true,
       blockers: [],
@@ -263,7 +263,7 @@ describe('live-probe-shared', () => {
         hasCheckingIndicator: false,
         bodyPreview: '',
         errorMessage:
-          'Prompt Switchboard found extension page targets on http://127.0.0.1:9444, but none exposed a real extension runtime context. This usually means Chrome replaced direct extension-tab navigation with a blocked chrome-error page instead of a live side-panel/options surface.',
+          'AgentGangGang found extension page targets on http://127.0.0.1:9444, but none exposed a real extension runtime context. This usually means Chrome replaced direct extension-tab navigation with a blocked chrome-error page instead of a live side-panel/options surface.',
       },
     };
 
@@ -273,13 +273,13 @@ describe('live-probe-shared', () => {
       'Treat the current browser lane as extension-runtime-blocked. Rebuilding or replacing the repo-owned browser lane is more truthful than repeatedly reopening Chrome menus in the same lane.'
     );
     expect(diagnosis.nextActions).not.toContain(
-      'Keep the current attach browser open, reopen the Prompt Switchboard side panel or extension page manually if needed, then rerun the live probe.'
+      'Keep the current attach browser open, reopen the AgentGangGang side panel or extension page manually if needed, then rerun the live probe.'
     );
   });
 
   it('treats missing worker and missing content-script runtime as a lane blocker before page-shell retries', () => {
     const probe: LiveProbeResult = {
-      mode: 'prompt_switchboard_live_site_probe',
+      mode: 'agentganggang_live_site_probe',
       generatedAt: new Date().toISOString(),
       readyToProbe: true,
       blockers: [],
@@ -333,7 +333,7 @@ describe('live-probe-shared', () => {
         hasCheckingIndicator: false,
         bodyPreview: '',
         errorMessage:
-          'Prompt Switchboard did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a Prompt Switchboard content-script context.',
+          'AgentGangGang did not expose a live extension runtime in the current browser lane. No extension service worker was detected and none of the probed model tabs exposed a AgentGangGang content-script context.',
       },
     };
 
@@ -347,7 +347,7 @@ describe('live-probe-shared', () => {
 
   it('does not mark the lane as runtime-blocked once a content-script context is present', () => {
     const probe: LiveProbeResult = {
-      mode: 'prompt_switchboard_live_site_probe',
+      mode: 'agentganggang_live_site_probe',
       generatedAt: new Date().toISOString(),
       readyToProbe: true,
       blockers: [],
@@ -403,7 +403,7 @@ describe('live-probe-shared', () => {
         hasCheckingIndicator: false,
         bodyPreview: '',
         errorMessage:
-          'Prompt Switchboard found extension page targets on http://127.0.0.1:9777, but none exposed a real extension runtime context.',
+          'AgentGangGang found extension page targets on http://127.0.0.1:9777, but none exposed a real extension runtime context.',
       },
     };
 
@@ -418,14 +418,14 @@ describe('live-probe-shared', () => {
   });
 
   it('does not default live probe config to a shared Chromium Default profile when browser profile env is missing', () => {
-    process.env.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR = makeTempRoot();
+    process.env.AGENTGANGGANG_BROWSER_USER_DATA_DIR = makeTempRoot();
 
     const config = resolveLiveProbeConfig();
 
     expect(config.profileDirectory).toBe('');
     expect(config.profileBlockers).toContain(
       `Persistent browser Local State is missing at: ${path.join(
-        process.env.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR!,
+        process.env.AGENTGANGGANG_BROWSER_USER_DATA_DIR!,
         'Local State'
       )}. Run npm run test:live:bootstrap-profile first.`
     );
@@ -453,13 +453,13 @@ describe('live-probe-shared', () => {
     const { blockers } = await resolveLiveProbeBlockers(config);
 
     expect(blockers).toContain(
-      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use PROMPT_SWITCHBOARD_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
+      'Persistent live probe paths must not launch Playwright directly against the canonical repo-owned browser root. Use AGENTGANGGANG_CLONE_PROFILE=1 or the real Chrome attach lane instead.'
     );
   });
 
   it('keeps canonical readiness alongside raw live site state', () => {
     const probe: LiveProbeResult = {
-      mode: 'prompt_switchboard_live_site_probe',
+      mode: 'agentganggang_live_site_probe',
       generatedAt: new Date().toISOString(),
       readyToProbe: true,
       blockers: [],

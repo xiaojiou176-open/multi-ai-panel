@@ -53,7 +53,7 @@ describe('compareExport', () => {
 
     const summary = buildCompareShareSummary(turn, requestedModels as never, insight, disagreement);
 
-    expect(summary).toContain('Prompt Switchboard compare summary');
+    expect(summary).toContain('AgentGangGang compare summary');
     expect(summary).toContain('Prompt: Compare these answers.');
     expect(summary).toContain('Completed: ChatGPT');
     expect(summary).toContain('Failed: Gemini');
@@ -75,12 +75,12 @@ describe('compareExport', () => {
       disagreement
     );
 
-    expect(markdown).toContain('# Prompt Switchboard compare export');
+    expect(markdown).toContain('# AgentGangGang compare export');
     expect(markdown).toContain('## Original prompt');
     expect(markdown).toContain('## ChatGPT');
     expect(markdown).toContain('ChatGPT answer');
     expect(markdown).toContain('## Gemini');
     expect(markdown).toContain('Gemini answer');
-    expect(markdown).toContain('Prompt Switchboard keeps this compare export local-first.');
+    expect(markdown).toContain('AgentGangGang keeps this compare export local-first.');
   });
 });

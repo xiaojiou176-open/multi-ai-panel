@@ -72,8 +72,8 @@ const executeCompareLikeAction = async (
       code: result.status === 'blocked' ? `${action}_blocked` : `${action}_delivery_failed`,
       message:
         action === SUBSTRATE_ACTION_NAMES.COMPARE
-          ? 'Prompt Switchboard could not queue the requested compare run.'
-          : 'Prompt Switchboard could not queue the requested retry run.',
+          ? 'AgentGangGang could not queue the requested compare run.'
+          : 'AgentGangGang could not queue the requested retry run.',
       retryable: true,
       details: {
         ...result,
@@ -111,7 +111,7 @@ const executeAnalyzeCompareAction = async (
       code: result.reason ?? 'analysis_failed',
       message:
         result.message ??
-        'Prompt Switchboard could not finish AI Compare Analyst for this turn.',
+        'AgentGangGang could not finish AI Compare Analyst for this turn.',
       retryable: result.reason !== 'turn_not_found',
       details: {
         ...result,

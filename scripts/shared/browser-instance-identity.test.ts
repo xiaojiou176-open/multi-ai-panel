@@ -12,7 +12,7 @@ import {
 const tempRoots = new Set<string>();
 
 const makeTempRoot = () => {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prompt-switchboard-browser-identity-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-browser-identity-'));
   tempRoots.add(tempRoot);
   return tempRoot;
 };

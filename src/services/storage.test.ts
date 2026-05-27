@@ -223,16 +223,16 @@ describe('StorageService', () => {
     expect(chrome.storage.session.set).toHaveBeenCalledWith({ tabs: { Gemini: 2 } });
   });
 
-  it('should get and save promptSwitchboardGroupId', async () => {
-    sessionGetMock().mockResolvedValue({ promptSwitchboardGroupId: 99 });
-    const id = await StorageService.getPromptSwitchboardGroupId();
+  it('should get and save agentGangGangGroupId', async () => {
+    sessionGetMock().mockResolvedValue({ agentGangGangGroupId: 99 });
+    const id = await StorageService.getAgentGangGangGroupId();
     expect(id).toBe(99);
 
-    await StorageService.savePromptSwitchboardGroupId(100);
-    expect(chrome.storage.session.set).toHaveBeenCalledWith({ promptSwitchboardGroupId: 100 });
+    await StorageService.saveAgentGangGangGroupId(100);
+    expect(chrome.storage.session.set).toHaveBeenCalledWith({ agentGangGangGroupId: 100 });
 
-    sessionGetMock().mockResolvedValue({ promptSwitchboardGroupId: 'bad' });
-    const invalid = await StorageService.getPromptSwitchboardGroupId();
+    sessionGetMock().mockResolvedValue({ agentGangGangGroupId: 'bad' });
+    const invalid = await StorageService.getAgentGangGangGroupId();
     expect(invalid).toBeNull();
   });
 
@@ -414,29 +414,29 @@ describe('StorageService', () => {
     await expect(StorageService.saveSettings(validSettings)).resolves.toBeUndefined();
   });
 
-  it('should handle invalid tabs and promptSwitchboardGroupId values', async () => {
+  it('should handle invalid tabs and agentGangGangGroupId values', async () => {
     sessionGetMock().mockResolvedValue({ tabs: 'bad' });
     await expect(StorageService.getTabs()).resolves.toEqual({});
 
     sessionGetMock().mockResolvedValue({});
-    await expect(StorageService.getPromptSwitchboardGroupId()).resolves.toBeNull();
+    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBeNull();
   });
 
   it('should persist transient session storage values and recover from session storage errors', async () => {
     sessionGetMock().mockResolvedValueOnce({ tabs: { ChatGPT: 123 } });
     await expect(StorageService.getTabs()).resolves.toEqual({ ChatGPT: 123 });
 
-    sessionGetMock().mockResolvedValueOnce({ promptSwitchboardGroupId: 42 });
-    await expect(StorageService.getPromptSwitchboardGroupId()).resolves.toBe(42);
+    sessionGetMock().mockResolvedValueOnce({ agentGangGangGroupId: 42 });
+    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBe(42);
 
     await expect(StorageService.saveTabs({ Gemini: 456 })).resolves.toBeUndefined();
-    await expect(StorageService.savePromptSwitchboardGroupId(7)).resolves.toBeUndefined();
+    await expect(StorageService.saveAgentGangGangGroupId(7)).resolves.toBeUndefined();
 
     sessionGetMock().mockRejectedValueOnce(new Error('boom'));
-    await expect(StorageService.getPromptSwitchboardGroupId()).resolves.toBeNull();
+    await expect(StorageService.getAgentGangGangGroupId()).resolves.toBeNull();
 
     sessionSetMock().mockRejectedValueOnce(new Error('boom'));
-    await expect(StorageService.savePromptSwitchboardGroupId(9)).resolves.toBeUndefined();
+    await expect(StorageService.saveAgentGangGangGroupId(9)).resolves.toBeUndefined();
   });
 
   it('swallows tab cache write failures from session storage', async () => {

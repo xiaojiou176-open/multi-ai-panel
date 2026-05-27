@@ -1,10 +1,10 @@
 {
-  "name": "prompt-switchboard-codex-bundle",
+  "name": "agentganggang-codex-bundle",
   "version": "0.2.2",
   "license": "MIT",
-  "description": "Compare-first Prompt Switchboard MCP bundle for Codex and compatible bundle consumers such as OpenClaw.",
+  "description": "Compare-first AgentGangGang MCP bundle for Codex and compatible bundle consumers such as OpenClaw.",
   "keywords": [
-    "prompt-switchboard",
+    "agentganggang",
     "codex",
     "mcp",
     "bundle",

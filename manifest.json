@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Prompt Switchboard",
+  "name": "AgentGangGang",
   "version": "0.2.2",
   "minimum_chrome_version": "116",
   "description": "Local-first AI compare workspace for ChatGPT, Gemini, Perplexity, Qwen, and Grok in one browser side panel.",
@@ -33,7 +33,7 @@
     }
   ],
   "action": {
-    "default_title": "Open Prompt Switchboard"
+    "default_title": "Open AgentGangGang"
   },
   "options_page": "settings.html",
   "web_accessible_resources": [
@@ -43,8 +43,8 @@
     }
   ],
   "icons": {
-    "16": "public/prompt-switchboard-icon-16.png",
-    "48": "public/prompt-switchboard-icon-48.png",
-    "128": "public/prompt-switchboard-icon-128.png"
+    "16": "public/agentganggang-icon-16.png",
+    "48": "public/agentganggang-icon-48.png",
+    "128": "public/agentganggang-icon-128.png"
   }
 }

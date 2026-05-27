@@ -402,7 +402,7 @@ export const CompareView = ({ messages }: CompareViewProps) => {
                                       )
                                     : t(
                                         'compare.onboarding.repairModelHostMissing',
-                                        'Prompt Switchboard has not confirmed a usable host for this model yet.'
+                                        'AgentGangGang has not confirmed a usable host for this model yet.'
                                       )}
                                 </p>
                               </div>
@@ -772,7 +772,7 @@ export const CompareView = ({ messages }: CompareViewProps) => {
                     type="button"
                     className="ps-action-secondary inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium transition-colors hover:border-[rgba(255,255,255,0.18)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[color:var(--ps-text)]"
                     onClick={() => {
-                      downloadTextFile(`prompt-switchboard-compare-${turnIndex + 1}.md`, markdownExport);
+                      downloadTextFile(`agentganggang-compare-${turnIndex + 1}.md`, markdownExport);
                     }}
                   >
                     <Download size={13} />
@@ -1050,7 +1050,7 @@ export const CompareView = ({ messages }: CompareViewProps) => {
                       (insight.completeCount < 2
                         ? t(
                             'workflow.body.completeMoreAnswers',
-                            'Finish at least two answers before Prompt Switchboard can stage the next move.'
+                            'Finish at least two answers before AgentGangGang can stage the next move.'
                           )
                         : undefined)
                     }

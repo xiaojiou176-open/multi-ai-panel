@@ -8,7 +8,7 @@ import { BRIDGE_COMMAND_NAMES, type BridgeStateSnapshot } from '../src/bridge/pr
 import { WorkflowExternalUpdateSchema } from '../src/substrate/api/index.js';
 import { SITE_CAPABILITY_MATRIX } from '../src/utils/siteCapabilityMatrix.js';
 import { MCP_ANALYSIS_PROVIDER_CATALOG } from './analysisCatalog.js';
-import { PromptSwitchboardBridgeServer } from './bridgeServer.js';
+import { AgentGangGangBridgeServer } from './bridgeServer.js';
 import { MCP_MODEL_CATALOG } from './modelCatalog.js';
 import { MCP_WORKFLOW_TEMPLATE_CATALOG } from './workflowCatalog.js';
 
@@ -58,11 +58,11 @@ const asToolResult = (label: string, payload: Record<string, unknown>) => ({
 
 type RegisterableMcpServer = Pick<McpServer, 'registerResource' | 'registerTool'>;
 type BridgeRuntime = Pick<
-  PromptSwitchboardBridgeServer,
+  AgentGangGangBridgeServer,
   'dispatchCommand' | 'getPort' | 'getState' | 'start' | 'close'
 >;
 type ServerLifecycleBridge = Pick<
-  PromptSwitchboardBridgeServer,
+  AgentGangGangBridgeServer,
   'getHost' | 'getPort' | 'start' | 'close'
 >;
 type ConnectableMcpServer = Pick<McpServer, 'connect'>;
@@ -74,7 +74,7 @@ type ServerRunOptions = {
   writeError?: (...args: unknown[]) => void;
 };
 
-export const registerPromptSwitchboardMcpSurface = (
+export const registerAgentGangGangMcpSurface = (
   mcpServer: RegisterableMcpServer,
   bridgeServer: BridgeRuntime
 ) => {
@@ -94,17 +94,17 @@ export const registerPromptSwitchboardMcpSurface = (
     );
 
   mcpServer.registerResource(
-    'prompt-switchboard-current-session',
-    'prompt-switchboard://sessions/current',
+    'agentganggang-current-session',
+    'agentganggang://sessions/current',
     {
-      title: 'Current Prompt Switchboard session',
-      description: 'Latest cached snapshot of the current Prompt Switchboard session.',
+      title: 'Current AgentGangGang session',
+      description: 'Latest cached snapshot of the current AgentGangGang session.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://sessions/current',
+          uri: 'agentganggang://sessions/current',
           mimeType: 'application/json',
           text: JSON.stringify(requireState().currentSession, null, 2),
         },
@@ -113,17 +113,17 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-readiness',
-    'prompt-switchboard://models/readiness',
+    'agentganggang-readiness',
+    'agentganggang://models/readiness',
     {
-      title: 'Prompt Switchboard readiness snapshot',
+      title: 'AgentGangGang readiness snapshot',
       description: 'Latest cached per-model readiness snapshot from the extension bridge.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://models/readiness',
+          uri: 'agentganggang://models/readiness',
           mimeType: 'application/json',
           text: JSON.stringify(requireState().readiness, null, 2),
         },
@@ -132,17 +132,17 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-model-catalog',
-    'prompt-switchboard://models/catalog',
+    'agentganggang-model-catalog',
+    'agentganggang://models/catalog',
     {
-      title: 'Prompt Switchboard model catalog',
+      title: 'AgentGangGang model catalog',
       description: 'Supported model names, labels, hostnames, and open URLs.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://models/catalog',
+          uri: 'agentganggang://models/catalog',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_MODEL_CATALOG, null, 2),
         },
@@ -151,10 +151,10 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-analysis-providers',
-    'prompt-switchboard://analysis/providers',
+    'agentganggang-analysis-providers',
+    'agentganggang://analysis/providers',
     {
-      title: 'Prompt Switchboard analysis provider catalog',
+      title: 'AgentGangGang analysis provider catalog',
       description:
         'Structured analysis-lane truth for browser-session and local Switchyard runtime execution surfaces.',
       mimeType: 'application/json',
@@ -162,7 +162,7 @@ export const registerPromptSwitchboardMcpSurface = (
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://analysis/providers',
+          uri: 'agentganggang://analysis/providers',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_ANALYSIS_PROVIDER_CATALOG, null, 2),
         },
@@ -171,18 +171,18 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-workflow-templates',
-    'prompt-switchboard://workflows/templates',
+    'agentganggang-workflow-templates',
+    'agentganggang://workflows/templates',
     {
-      title: 'Prompt Switchboard workflow template catalog',
+      title: 'AgentGangGang workflow template catalog',
       description:
-        'Structured builder-facing catalog for the built-in Prompt Switchboard workflow templates and their durability boundaries.',
+        'Structured builder-facing catalog for the built-in AgentGangGang workflow templates and their durability boundaries.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://workflows/templates',
+          uri: 'agentganggang://workflows/templates',
           mimeType: 'application/json',
           text: JSON.stringify(MCP_WORKFLOW_TEMPLATE_CATALOG, null, 2),
         },
@@ -191,18 +191,18 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-builder-support-matrix',
-    'prompt-switchboard://builder/support-matrix',
+    'agentganggang-builder-support-matrix',
+    'agentganggang://builder/support-matrix',
     {
-      title: 'Prompt Switchboard builder support matrix',
+      title: 'AgentGangGang builder support matrix',
       description:
-        'Machine-readable truth for current supported, partial, public-bundle-ready, and planned Prompt Switchboard builder and consumer bindings.',
+        'Machine-readable truth for current supported, partial, public-bundle-ready, and planned AgentGangGang builder and consumer bindings.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://builder/support-matrix',
+          uri: 'agentganggang://builder/support-matrix',
           mimeType: 'application/json',
           text: JSON.stringify(builderSupportMatrix, null, 2),
         },
@@ -211,10 +211,10 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-public-distribution-matrix',
-    'prompt-switchboard://builder/public-distribution',
+    'agentganggang-public-distribution-matrix',
+    'agentganggang://builder/public-distribution',
     {
-      title: 'Prompt Switchboard public distribution matrix',
+      title: 'AgentGangGang public distribution matrix',
       description:
         'Machine-readable truth for public builder bundles, official host surfaces, and current marketplace or registry claim boundaries.',
       mimeType: 'application/json',
@@ -222,7 +222,7 @@ export const registerPromptSwitchboardMcpSurface = (
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://builder/public-distribution',
+          uri: 'agentganggang://builder/public-distribution',
           mimeType: 'application/json',
           text: JSON.stringify(publicDistributionMatrix, null, 2),
         },
@@ -231,18 +231,18 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerResource(
-    'prompt-switchboard-site-capabilities',
-    'prompt-switchboard://sites/capabilities',
+    'agentganggang-site-capabilities',
+    'agentganggang://sites/capabilities',
     {
-      title: 'Prompt Switchboard site capability matrix',
+      title: 'AgentGangGang site capability matrix',
       description:
-        'Machine-readable per-site DOM, readiness, compare-path, and private-API-boundary notes for supported Prompt Switchboard sites.',
+        'Machine-readable per-site DOM, readiness, compare-path, and private-API-boundary notes for supported AgentGangGang sites.',
       mimeType: 'application/json',
     },
     async () => ({
       contents: [
         {
-          uri: 'prompt-switchboard://sites/capabilities',
+          uri: 'agentganggang://sites/capabilities',
           mimeType: 'application/json',
           text: JSON.stringify(SITE_CAPABILITY_MATRIX, null, 2),
         },
@@ -251,9 +251,9 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.check_readiness',
+    'agentganggang.check_readiness',
     {
-      description: 'Check readiness for selected Prompt Switchboard model tabs.',
+      description: 'Check readiness for selected AgentGangGang model tabs.',
       inputSchema: {
         models: z.array(z.enum(['ChatGPT', 'Gemini', 'Perplexity', 'Qwen', 'Grok'])).optional(),
       },
@@ -261,16 +261,16 @@ export const registerPromptSwitchboardMcpSurface = (
     },
     async ({ models }) =>
       callBridge(
-        'Prompt Switchboard readiness check result',
+        'AgentGangGang readiness check result',
         BRIDGE_COMMAND_NAMES.CHECK_READINESS,
         { models }
       )
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.open_model_tabs',
+    'agentganggang.open_model_tabs',
     {
-      description: 'Open or reuse supported model tabs inside Prompt Switchboard.',
+      description: 'Open or reuse supported model tabs inside AgentGangGang.',
       inputSchema: {
         models: z.array(z.enum(['ChatGPT', 'Gemini', 'Perplexity', 'Qwen', 'Grok'])).optional(),
       },
@@ -278,17 +278,17 @@ export const registerPromptSwitchboardMcpSurface = (
     },
     async ({ models }) =>
       callBridge(
-        'Prompt Switchboard opened the requested model tabs',
+        'AgentGangGang opened the requested model tabs',
         BRIDGE_COMMAND_NAMES.OPEN_MODEL_TABS,
         { models }
       )
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.compare',
+    'agentganggang.compare',
     {
       description:
-        'Run one Prompt Switchboard compare turn, persist it into session history, and fan the prompt out to ready model tabs.',
+        'Run one AgentGangGang compare turn, persist it into session history, and fan the prompt out to ready model tabs.',
       inputSchema: {
         prompt: z.string().min(1),
         sessionId: z.string().optional(),
@@ -297,7 +297,7 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ prompt, sessionId, models }) =>
-      callBridge('Prompt Switchboard compare run queued', BRIDGE_COMMAND_NAMES.COMPARE, {
+      callBridge('AgentGangGang compare run queued', BRIDGE_COMMAND_NAMES.COMPARE, {
         prompt,
         sessionId,
         models,
@@ -305,10 +305,10 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.retry_failed',
+    'agentganggang.retry_failed',
     {
       description:
-        'Retry failed models from an existing Prompt Switchboard compare turn without replaying successful ones.',
+        'Retry failed models from an existing AgentGangGang compare turn without replaying successful ones.',
       inputSchema: {
         turnId: z.string().min(1),
         sessionId: z.string().optional(),
@@ -317,7 +317,7 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId, models }) =>
-      callBridge('Prompt Switchboard retry run queued', BRIDGE_COMMAND_NAMES.RETRY_FAILED, {
+      callBridge('AgentGangGang retry run queued', BRIDGE_COMMAND_NAMES.RETRY_FAILED, {
         turnId,
         sessionId,
         models,
@@ -325,10 +325,10 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.get_session',
+    'agentganggang.get_session',
     {
       description:
-        'Fetch a persisted Prompt Switchboard session snapshot, including compare turns and current model statuses.',
+        'Fetch a persisted AgentGangGang session snapshot, including compare turns and current model statuses.',
       inputSchema: {
         sessionId: z.string().optional(),
         includeMessages: z.boolean().optional(),
@@ -336,29 +336,29 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ sessionId, includeMessages }) =>
-      callBridge('Prompt Switchboard session snapshot', BRIDGE_COMMAND_NAMES.GET_SESSION, {
+      callBridge('AgentGangGang session snapshot', BRIDGE_COMMAND_NAMES.GET_SESSION, {
         sessionId,
         includeMessages,
       })
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.list_sessions',
+    'agentganggang.list_sessions',
     {
-      description: 'List recent Prompt Switchboard sessions from local extension storage.',
+      description: 'List recent AgentGangGang sessions from local extension storage.',
       inputSchema: {
         limit: z.number().int().positive().max(50).optional(),
       },
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ limit }) =>
-      callBridge('Prompt Switchboard session list', BRIDGE_COMMAND_NAMES.LIST_SESSIONS, {
+      callBridge('AgentGangGang session list', BRIDGE_COMMAND_NAMES.LIST_SESSIONS, {
         limit,
       })
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.export_compare',
+    'agentganggang.export_compare',
     {
       description: 'Export one compare turn as Markdown or as a compact local-first share summary.',
       inputSchema: {
@@ -369,7 +369,7 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId, format }) =>
-      callBridge('Prompt Switchboard compare export', BRIDGE_COMMAND_NAMES.EXPORT_COMPARE, {
+      callBridge('AgentGangGang compare export', BRIDGE_COMMAND_NAMES.EXPORT_COMPARE, {
         turnId,
         sessionId,
         format,
@@ -377,7 +377,7 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.analyze_compare',
+    'agentganggang.analyze_compare',
     {
       description:
         'Run the current AI Compare Analyst lane for the latest or requested compare turn.',
@@ -388,17 +388,17 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ turnId, sessionId }) =>
-      callBridge('Prompt Switchboard AI compare analysis', BRIDGE_COMMAND_NAMES.ANALYZE_COMPARE, {
+      callBridge('AgentGangGang AI compare analysis', BRIDGE_COMMAND_NAMES.ANALYZE_COMPARE, {
         turnId,
         sessionId,
       })
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.run_workflow',
+    'agentganggang.run_workflow',
     {
       description:
-        'Start the built-in linear Prompt Switchboard workflow template (`compare-analyze-follow-up`) inside the governed local substrate.',
+        'Start the built-in linear AgentGangGang workflow template (`compare-analyze-follow-up`) inside the governed local substrate.',
       inputSchema: {
         workflowId: z.string().min(1),
         sessionId: z.string().optional(),
@@ -408,7 +408,7 @@ export const registerPromptSwitchboardMcpSurface = (
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ workflowId, sessionId, turnId, input }) =>
-      callBridge('Prompt Switchboard workflow run result', BRIDGE_COMMAND_NAMES.RUN_WORKFLOW, {
+      callBridge('AgentGangGang workflow run result', BRIDGE_COMMAND_NAMES.RUN_WORKFLOW, {
         workflowId,
         sessionId,
         turnId,
@@ -417,26 +417,26 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.list_workflow_runs',
+    'agentganggang.list_workflow_runs',
     {
       description:
-        'List recent session-scoped Prompt Switchboard workflow snapshots for builder-side recovery or inspection.',
+        'List recent session-scoped AgentGangGang workflow snapshots for builder-side recovery or inspection.',
       inputSchema: {
         limit: z.number().int().positive().max(50).optional(),
       },
       outputSchema: BridgeToolEnvelopeSchema,
     },
     async ({ limit }) =>
-      callBridge('Prompt Switchboard workflow run list', BRIDGE_COMMAND_NAMES.LIST_WORKFLOW_RUNS, {
+      callBridge('AgentGangGang workflow run list', BRIDGE_COMMAND_NAMES.LIST_WORKFLOW_RUNS, {
         limit,
       })
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.get_workflow_run',
+    'agentganggang.get_workflow_run',
     {
       description:
-        'Fetch the latest session-scoped snapshot for one Prompt Switchboard workflow run.',
+        'Fetch the latest session-scoped snapshot for one AgentGangGang workflow run.',
       inputSchema: {
         runId: z.string().min(1),
       },
@@ -444,17 +444,17 @@ export const registerPromptSwitchboardMcpSurface = (
     },
     async ({ runId }) =>
       callBridge(
-        'Prompt Switchboard workflow run snapshot',
+        'AgentGangGang workflow run snapshot',
         BRIDGE_COMMAND_NAMES.GET_WORKFLOW_RUN,
         { runId }
       )
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.resume_workflow',
+    'agentganggang.resume_workflow',
     {
       description:
-        'Resume one session-scoped Prompt Switchboard workflow run after supplying the external step result it was waiting for.',
+        'Resume one session-scoped AgentGangGang workflow run after supplying the external step result it was waiting for.',
       inputSchema: {
         runId: z.string().min(1),
         externalUpdate: WorkflowExternalUpdateSchema.optional(),
@@ -463,7 +463,7 @@ export const registerPromptSwitchboardMcpSurface = (
     },
     async ({ runId, externalUpdate }) =>
       callBridge(
-        'Prompt Switchboard workflow resume result',
+        'AgentGangGang workflow resume result',
         BRIDGE_COMMAND_NAMES.RESUME_WORKFLOW,
         {
           runId,
@@ -473,15 +473,15 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 
   mcpServer.registerTool(
-    'prompt_switchboard.bridge_status',
+    'agentganggang.bridge_status',
     {
       description:
-        'Report whether the local Prompt Switchboard extension bridge is connected to this MCP sidecar.',
+        'Report whether the local AgentGangGang extension bridge is connected to this MCP sidecar.',
       inputSchema: {},
       outputSchema: BridgeStatusSchema,
     },
     async () =>
-      asToolResult('Prompt Switchboard bridge status', {
+      asToolResult('AgentGangGang bridge status', {
         connected: Boolean(requireState().extensionId),
         extensionId: requireState().extensionId ?? null,
         lastSeenAt: requireState().lastSeenAt ?? null,
@@ -490,14 +490,14 @@ export const registerPromptSwitchboardMcpSurface = (
   );
 };
 
-export const createPromptSwitchboardMcpRuntime = () => {
-  const bridgeServer = new PromptSwitchboardBridgeServer();
+export const createAgentGangGangMcpRuntime = () => {
+  const bridgeServer = new AgentGangGangBridgeServer();
   const mcpServer = new McpServer({
-    name: 'prompt-switchboard',
+    name: 'agentganggang',
     version: packageJson.version,
   });
 
-  registerPromptSwitchboardMcpSurface(mcpServer, bridgeServer);
+  registerAgentGangGangMcpSurface(mcpServer, bridgeServer);
 
   return {
     bridgeServer,
@@ -513,7 +513,7 @@ const resolveServerRuntime = (options: ServerRunOptions = {}) => {
     };
   }
 
-  return createPromptSwitchboardMcpRuntime();
+  return createAgentGangGangMcpRuntime();
 };
 
 export async function runServerMain(options: ServerRunOptions = {}) {
@@ -526,7 +526,7 @@ export async function runServerMain(options: ServerRunOptions = {}) {
     const transport = createTransport();
     await mcpServer.connect(transport as never);
     writeError(
-      `Prompt Switchboard MCP sidecar listening on stdio with loopback bridge http://${bridgeServer.getHost()}:${bridgeServer.getPort()}`
+      `AgentGangGang MCP sidecar listening on stdio with loopback bridge http://${bridgeServer.getHost()}:${bridgeServer.getPort()}`
     );
   } catch (error) {
     await bridgeServer.close().catch(() => undefined);
@@ -540,7 +540,7 @@ export async function runServerCli(options: ServerRunOptions = {}) {
   try {
     await runServerMain(options);
   } catch (error) {
-    writeError('Prompt Switchboard MCP server failed to start:', error);
+    writeError('AgentGangGang MCP server failed to start:', error);
     (options.exit ?? process.exit)(1);
   }
 }

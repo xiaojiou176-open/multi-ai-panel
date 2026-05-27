@@ -22,22 +22,22 @@ const packets = [
   {
     id: 'codex_bundle',
     dir: path.join(repoRoot, 'mcp', 'integration-kits', 'public-bundles', 'codex-bundle'),
-    packageName: 'prompt-switchboard-codex-bundle',
+    packageName: 'agentganggang-codex-bundle',
   },
   {
     id: 'claude_code_bundle',
     dir: path.join(repoRoot, 'mcp', 'integration-kits', 'public-bundles', 'claude-code-bundle'),
-    packageName: 'prompt-switchboard-claude-code-bundle',
+    packageName: 'agentganggang-claude-code-bundle',
   },
   {
     id: 'opencode_plugin',
     dir: path.join(repoRoot, 'mcp', 'integration-kits', 'public-bundles', 'opencode-plugin'),
-    packageName: 'prompt-switchboard-opencode-plugin',
+    packageName: 'agentganggang-opencode-plugin',
   },
   {
     id: 'openclaw_bundle',
     dir: path.join(repoRoot, 'mcp', 'integration-kits', 'public-bundles', 'openclaw-bundle'),
-    packageName: 'prompt-switchboard-openclaw-bundle',
+    packageName: 'agentganggang-openclaw-bundle',
   },
 ];
 
@@ -45,7 +45,7 @@ rmSync(distDir, { recursive: true, force: true });
 mkdirSync(distDir, { recursive: true });
 
 const manifest = {
-  surface: 'prompt_switchboard_public_bundle_artifacts',
+  surface: 'agentganggang_public_bundle_artifacts',
   version: rootPackage.version,
   generated_at: new Date().toISOString(),
   source_matrix: path.relative(repoRoot, matrixPath),
@@ -54,7 +54,7 @@ const manifest = {
 };
 
 const rootArtifactPattern =
-  /^prompt-switchboard-(codex-bundle|claude-code-bundle|opencode-plugin|openclaw-bundle)-.+\.tgz$/;
+  /^agentganggang-(codex-bundle|claude-code-bundle|opencode-plugin|openclaw-bundle)-.+\.tgz$/;
 for (const entry of readdirSync(repoRoot)) {
   if (!rootArtifactPattern.test(entry)) {
     continue;

@@ -212,7 +212,7 @@ for (const release of loadArrayEndpoint('releases', `repos/${repo}/releases?per_
     addTextFindings('release-asset', assetLabel, assetResult.data.toString('utf8'), asset.name);
 
     if (asset.name.endsWith('.zip') || asset.name.endsWith('.tgz') || asset.name.endsWith('.tar.gz')) {
-      const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prompt-switchboard-host-scan-'));
+      const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-host-scan-'));
       const archivePath = path.join(tempRoot, asset.name);
       fs.writeFileSync(archivePath, assetResult.data);
       try {
@@ -270,7 +270,7 @@ for (const artifact of artifacts) {
     continue;
   }
 
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'prompt-switchboard-actions-artifact-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-actions-artifact-'));
   try {
     execFileSync(
       'gh',

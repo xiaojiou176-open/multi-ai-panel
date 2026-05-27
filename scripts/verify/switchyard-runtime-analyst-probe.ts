@@ -15,7 +15,7 @@ const parseOption = (flag: string) => {
 const model = (parseOption('--model') ?? 'Gemini') as ModelName;
 const prompt =
   parseOption('--prompt') ??
-  'Reply with exactly PROMPT_SWITCHBOARD_RUNTIME_OK and nothing else.';
+  'Reply with exactly AGENTGANGGANG_RUNTIME_OK and nothing else.';
 
 const result = await runSwitchyardCompareAnalysis({
   analystModel: model,
@@ -25,7 +25,7 @@ const result = await runSwitchyardCompareAnalysis({
 console.log(
   JSON.stringify(
     {
-      surface: 'prompt-switchboard-switchyard-runtime-probe',
+      surface: 'agentganggang-switchyard-runtime-probe',
       model,
       prompt,
       result,

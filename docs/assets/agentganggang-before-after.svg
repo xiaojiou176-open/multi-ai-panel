@@ -18,7 +18,7 @@
   </defs>
   <rect width="1280" height="780" rx="36" fill="url(#bg)"/>
   <text x="80" y="74" fill="#BE185D" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2.8">PROMPT SWITCHBOARD</text>
-  <text x="80" y="126" fill="#0F172A" font-family="Arial, sans-serif" font-size="46" font-weight="700">Why Prompt Switchboard beats tab juggling</text>
+  <text x="80" y="126" fill="#0F172A" font-family="Arial, sans-serif" font-size="46" font-weight="700">Why AgentGangGang beats tab juggling</text>
   <text x="80" y="162" fill="#475569" font-family="Arial, sans-serif" font-size="22">The payoff is not “more tabs.” It is less comparison overhead and one place to review the run.</text>
 
   <g filter="url(#shadow)">
@@ -56,7 +56,7 @@
   <text x="120" y="678" fill="#475569" font-family="Arial, sans-serif" font-size="16">and no single review board.</text>
 
   <rect x="712" y="596" width="476" height="100" rx="22" fill="#FFFFFF" stroke="#FDE68A"/>
-  <text x="740" y="628" fill="#92400E" font-family="Arial, sans-serif" font-size="22" font-weight="700">Prompt Switchboard payoff</text>
+  <text x="740" y="628" fill="#92400E" font-family="Arial, sans-serif" font-size="22" font-weight="700">AgentGangGang payoff</text>
   <text x="740" y="654" fill="#475569" font-family="Arial, sans-serif" font-size="16">One prompt in, aligned answers out,</text>
   <text x="740" y="678" fill="#475569" font-family="Arial, sans-serif" font-size="16">and one local review board.</text>
 </svg>

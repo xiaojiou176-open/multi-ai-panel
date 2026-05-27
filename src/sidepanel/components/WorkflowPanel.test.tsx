@@ -82,7 +82,7 @@ describe('WorkflowPanel', () => {
         turnId="turn-1"
         status="blocked"
         targetModels={['ChatGPT']}
-        errorMessage="Run AI Compare Analyst first so Prompt Switchboard can stage the next question."
+        errorMessage="Run AI Compare Analyst first so AgentGangGang can stage the next question."
         hasAnalystResult={false}
         onRunWorkflow={vi.fn()}
         onUseSeed={vi.fn()}
@@ -92,7 +92,7 @@ describe('WorkflowPanel', () => {
 
     expect(getByText('Workflow is blocked until this turn is ready')).toBeInTheDocument();
     expect(
-      getByText('Run AI Compare Analyst first so Prompt Switchboard can stage the next question.')
+      getByText('Run AI Compare Analyst first so AgentGangGang can stage the next question.')
     ).toBeInTheDocument();
   });
 });

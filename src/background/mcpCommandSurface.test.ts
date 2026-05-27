@@ -143,6 +143,6 @@ describe('executeBridgeCommand', () => {
         command: 'bridge_status',
         args: {},
       } as never)
-    ).rejects.toThrow('prompt_switchboard_bridge_command_unsupported:bridge_status');
+    ).rejects.toThrow('agentganggang_bridge_command_unsupported:bridge_status');
   });
 });

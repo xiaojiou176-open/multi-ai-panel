@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.xiaojiou176-open/prompt-switchboard-mcp",
-  "title": "Prompt Switchboard MCP Sidecar",
-  "description": "Local MCP sidecar for Prompt Switchboard's browser-first compare workflows: readiness, compare, retry, export, and workflow carry-forward.",
+  "name": "io.github.xiaojiou176-open/agentganggang-mcp",
+  "title": "AgentGangGang MCP Sidecar",
+  "description": "Local MCP sidecar for AgentGangGang's browser-first compare workflows: readiness, compare, retry, export, and workflow carry-forward.",
   "repository": {
     "url": "https://github.com/xiaojiou176-open/AgentGangGang",
     "source": "github"

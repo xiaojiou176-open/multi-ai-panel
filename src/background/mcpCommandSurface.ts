@@ -9,7 +9,7 @@ export const executeBridgeCommand = async (
   command: Omit<BridgeCommandEnvelope, 'id'>
 ): Promise<unknown> => {
   if (!Object.values(BRIDGE_COMMAND_NAMES).includes(command.command)) {
-    throw new Error(`prompt_switchboard_bridge_command_unsupported:${String(command.command)}`);
+    throw new Error(`agentganggang_bridge_command_unsupported:${String(command.command)}`);
   }
 
   const args = BridgeCommandSchemas[command.command].parse(command.args);

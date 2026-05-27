@@ -1,10 +1,10 @@
 {
-  "name": "prompt-switchboard-openclaw-bundle",
+  "name": "agentganggang-openclaw-bundle",
   "version": "0.2.2",
   "license": "MIT",
-  "description": "Prompt Switchboard OpenClaw MCP bundle packet with registry snippets, placement hints, and compare-first smoke notes.",
+  "description": "AgentGangGang OpenClaw MCP bundle packet with registry snippets, placement hints, and compare-first smoke notes.",
   "keywords": [
-    "prompt-switchboard",
+    "agentganggang",
     "openclaw",
     "mcp",
     "bundle",
@@ -24,7 +24,7 @@
     ".codex-plugin",
     "manifest.json",
     "manifest.yaml",
-    "openclaw.prompt-switchboard.json",
+    "openclaw.agentganggang.json",
     "mcp.servers.json",
     "openclaw.mcp.set.sh",
     "skills",

@@ -61,9 +61,9 @@ const release = parseJson(
 );
 
 const expectedAssets = new Set([
-  `prompt-switchboard-v${version}-chrome-extension.zip`,
-  `prompt-switchboard-v${version}-chrome-extension.zip.sha256.txt`,
-  `prompt-switchboard-v${version}-chrome-extension.sbom.spdx.json`,
+  `agentganggang-v${version}-chrome-extension.zip`,
+  `agentganggang-v${version}-chrome-extension.zip.sha256.txt`,
+  `agentganggang-v${version}-chrome-extension.sbom.spdx.json`,
 ]);
 
 const actualAssets = new Set((release.assets ?? []).map((asset) => asset.name));

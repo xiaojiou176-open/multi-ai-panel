@@ -2,8 +2,8 @@ schema_version: 1
 artifact: public-skill-listing-manifest
 
 skill:
-  name: prompt-switchboard-compare-workflows
-  display_name: Prompt Switchboard Compare Workflows
+  name: agentganggang-compare-workflows
+  display_name: AgentGangGang Compare Workflows
   version: 1.1.1
   entrypoint: SKILL.md
   package_shape: skill-folder
@@ -12,16 +12,16 @@ registry_targets:
   clawhub:
     status: listed-live
     package_shape: skill-folder
-    live_read_back: https://clawhub.ai/xiaojiou176/prompt-switchboard-compare-workflows
-    submit_via: clawhub publish . --slug prompt-switchboard-compare-workflows --name "Prompt Switchboard Compare Workflows" --version 1.1.1 --tags browser-extension,mcp,compare-first,productivity
+    live_read_back: https://clawhub.ai/xiaojiou176/agentganggang-compare-workflows
+    submit_via: clawhub publish . --slug agentganggang-compare-workflows --name "AgentGangGang Compare Workflows" --version 1.1.1 --tags browser-extension,mcp,compare-first,productivity
   openhands-extensions:
     status: changes-requested
     package_shape: skill-folder
     submission_url: https://github.com/OpenHands/extensions/pull/154
-    submit_via: submit this folder as skills/prompt-switchboard-compare-workflows/ in OpenHands/extensions
+    submit_via: submit this folder as skills/agentganggang-compare-workflows/ in OpenHands/extensions
 
 boundaries:
-  product_identity: Browser-first compare workspace companion skill for the local Prompt Switchboard MCP sidecar.
+  product_identity: Browser-first compare workspace companion skill for the local AgentGangGang MCP sidecar.
   canonical_repo_version: 0.2.2
   official_listing_state: clawhub-live-plus-openhands-changes-requested
   not_claimed:

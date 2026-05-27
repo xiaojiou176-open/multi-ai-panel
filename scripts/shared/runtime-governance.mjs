@@ -15,7 +15,7 @@ export const PERSISTENT_BROWSER_USER_DATA_DIRNAME = 'chrome-user-data';
 export const PERSISTENT_BROWSER_PROFILE_DIRECTORY = 'Profile 1';
 export const PERSISTENT_BROWSER_PROFILE_NAME = 'AgentGangGang';
 export const LIVE_PROFILE_CLONE_DIRNAME = 'live-profile-clones';
-export const REPO_OWNED_LIVE_CLONE_PREFIX = 'prompt-switchboard-live-';
+export const REPO_OWNED_LIVE_CLONE_PREFIX = 'agentganggang-live-';
 export const CHROME_SINGLETON_FILENAMES = [
   'SingletonLock',
   'SingletonCookie',
@@ -201,7 +201,7 @@ export const getRepoRuntimePath = (repoRoot = process.cwd(), ...segments) =>
   path.join(getRepoRuntimeRoot(repoRoot), ...segments);
 
 export const getExternalRepoCacheRoot = (env = process.env) =>
-  path.resolve(expandHome(env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_ROOT || DEFAULT_EXTERNAL_CACHE_ROOT));
+  path.resolve(expandHome(env.AGENTGANGGANG_EXTERNAL_CACHE_ROOT || DEFAULT_EXTERNAL_CACHE_ROOT));
 
 export const getDisposableExternalCacheRoot = (env = process.env) =>
   getExternalRepoCacheRoot(env);
@@ -218,11 +218,11 @@ export const getExternalLiveProfileCloneRoot = (env = process.env) =>
 export const getExternalCachePolicy = (env = process.env) => ({
   root: getDisposableExternalCacheRoot(env),
   ttlHours: parsePositiveInt(
-    env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_TTL_HOURS,
+    env.AGENTGANGGANG_EXTERNAL_CACHE_TTL_HOURS,
     DEFAULT_EXTERNAL_CACHE_TTL_HOURS
   ),
   maxBytes: parsePositiveInt(
-    env.PROMPT_SWITCHBOARD_EXTERNAL_CACHE_MAX_BYTES,
+    env.AGENTGANGGANG_EXTERNAL_CACHE_MAX_BYTES,
     DEFAULT_EXTERNAL_CACHE_MAX_BYTES
   ),
 });
@@ -529,11 +529,11 @@ const resolveProfileFromLocalState = ({
 
 export const resolveBrowserProfile = (env = process.env) => {
   const userDataDir = path.resolve(
-    expandHome(env.PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR || getPersistentBrowserUserDataDir(env))
+    expandHome(env.AGENTGANGGANG_BROWSER_USER_DATA_DIR || getPersistentBrowserUserDataDir(env))
   );
   const profileName =
-    env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME?.trim() || PERSISTENT_BROWSER_PROFILE_NAME;
-  const explicitProfileDirectory = env.PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY?.trim() || '';
+    env.AGENTGANGGANG_BROWSER_PROFILE_NAME?.trim() || PERSISTENT_BROWSER_PROFILE_NAME;
+  const explicitProfileDirectory = env.AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY?.trim() || '';
   const localStatePath = path.join(userDataDir, 'Local State');
   const result = resolveProfileFromLocalState({
     userDataDir,
@@ -545,7 +545,7 @@ export const resolveBrowserProfile = (env = process.env) => {
     missingLocalStateMessage: (localStatePath) =>
       `Persistent browser Local State is missing at: ${localStatePath}. Run npm run test:live:bootstrap-profile first.`,
     missingProfileMessage: (value) =>
-      `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME could not be resolved from the persistent browser Local State: ${value}. Run npm run test:live:bootstrap-profile first or set PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY explicitly.`,
+      `AGENTGANGGANG_BROWSER_PROFILE_NAME could not be resolved from the persistent browser Local State: ${value}. Run npm run test:live:bootstrap-profile first or set AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY explicitly.`,
   });
 
   return {
@@ -565,25 +565,25 @@ export const resolveBrowserProfile = (env = process.env) => {
 export const resolveSourceBrowserProfile = (env = process.env) => {
   const userDataDir = path.resolve(
     expandHome(
-      env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR ||
+      env.AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR ||
         DEFAULT_MAC_GOOGLE_CHROME_USER_DATA_DIR
     )
   );
   const profileName =
-    env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME?.trim() ||
+    env.AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME?.trim() ||
     PERSISTENT_BROWSER_PROFILE_NAME;
   const explicitProfileDirectory =
-    env.PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_DIRECTORY?.trim() || '';
+    env.AGENTGANGGANG_BROWSER_SOURCE_PROFILE_DIRECTORY?.trim() || '';
   const localStatePath = path.join(userDataDir, 'Local State');
   const result = resolveProfileFromLocalState({
     userDataDir,
     localStatePath,
     profileName,
     explicitProfileDirectory,
-    missingRootMessage: () => 'PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR path does not exist.',
+    missingRootMessage: () => 'AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR path does not exist.',
     missingLocalStateMessage: () => 'Chrome Local State is missing.',
     missingProfileMessage: (value) =>
-      `PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME could not be resolved from Chrome Local State: ${value}`,
+      `AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME could not be resolved from Chrome Local State: ${value}`,
   });
 
   return {
@@ -651,9 +651,9 @@ export const removeBrowserSingletonArtifacts = (userDataDir) => {
 
 export const resolveBrowserExecutablePath = (env = process.env) => {
   const requestedBrowserChannel =
-    env.PROMPT_SWITCHBOARD_LIVE_BROWSER_CHANNEL?.trim().toLowerCase() || '';
-  const explicitPath = env.PROMPT_SWITCHBOARD_BROWSER_EXECUTABLE_PATH
-    ? path.resolve(expandHome(env.PROMPT_SWITCHBOARD_BROWSER_EXECUTABLE_PATH))
+    env.AGENTGANGGANG_LIVE_BROWSER_CHANNEL?.trim().toLowerCase() || '';
+  const explicitPath = env.AGENTGANGGANG_BROWSER_EXECUTABLE_PATH
+    ? path.resolve(expandHome(env.AGENTGANGGANG_BROWSER_EXECUTABLE_PATH))
     : null;
 
   if (explicitPath) {
@@ -662,7 +662,7 @@ export const resolveBrowserExecutablePath = (env = process.env) => {
       resolutionSource: 'browser_executable_env',
       blockers: fs.existsSync(explicitPath)
         ? []
-        : [`PROMPT_SWITCHBOARD_BROWSER_EXECUTABLE_PATH does not exist: ${explicitPath}`],
+        : [`AGENTGANGGANG_BROWSER_EXECUTABLE_PATH does not exist: ${explicitPath}`],
     };
   }
 

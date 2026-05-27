@@ -77,10 +77,10 @@ if (!extensionId || !hostPath) {
   process.exitCode = 1;
 } else {
   const installDir = resolveInstallDir();
-  const manifestPath = path.join(installDir, 'com.prompt_switchboard.host.json');
+  const manifestPath = path.join(installDir, 'com.agentganggang.host.json');
   const manifest = {
-    name: 'com.prompt_switchboard.host',
-    description: 'Prompt Switchboard Native Messaging host scaffold',
+    name: 'com.agentganggang.host',
+    description: 'AgentGangGang Native Messaging host scaffold',
     path: hostPath,
     type: 'stdio',
     allowed_origins: [`chrome-extension://${extensionId}/`],

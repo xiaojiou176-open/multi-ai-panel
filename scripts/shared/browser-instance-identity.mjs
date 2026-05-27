@@ -326,11 +326,11 @@ export const writeBrowserIdentityPage = ({
   extensionUrl = null,
 }) => {
   const repoLabel =
-    env.PROMPT_SWITCHBOARD_BROWSER_IDENTITY_LABEL?.trim() || path.basename(repoRoot);
+    env.AGENTGANGGANG_BROWSER_IDENTITY_LABEL?.trim() || path.basename(repoRoot);
   const accent =
-    env.PROMPT_SWITCHBOARD_BROWSER_IDENTITY_ACCENT?.trim() &&
-    HEX_COLOR_PATTERN.test(env.PROMPT_SWITCHBOARD_BROWSER_IDENTITY_ACCENT.trim())
-      ? env.PROMPT_SWITCHBOARD_BROWSER_IDENTITY_ACCENT.trim()
+    env.AGENTGANGGANG_BROWSER_IDENTITY_ACCENT?.trim() &&
+    HEX_COLOR_PATTERN.test(env.AGENTGANGGANG_BROWSER_IDENTITY_ACCENT.trim())
+      ? env.AGENTGANGGANG_BROWSER_IDENTITY_ACCENT.trim()
       : deriveIdentityAccent(repoLabel);
   const monogram = deriveIdentityMonogram(repoLabel);
   const identityDir = ensureDirectory(

@@ -76,7 +76,7 @@ chrome.runtime.onMessage.addListener((message: MessagePayload, _sender, sendResp
           kind: 'validation',
           code: 'missing_action',
           message:
-            'Prompt Switchboard could not execute a substrate action without an action name.',
+            'AgentGangGang could not execute a substrate action without an action name.',
           retryable: false,
         },
       });
@@ -134,7 +134,7 @@ chrome.runtime.onMessage.addListener((message: MessagePayload, _sender, sendResp
           errorCode: SEND_ERROR_CODES.RUNTIME,
           errorMessage: i18n.t(
             'runtime.analysisRuntimeFailed',
-            'Prompt Switchboard could not finish AI analysis in the target tab.'
+            'AgentGangGang could not finish AI analysis in the target tab.'
           ),
         } satisfies CompareAnalysisResponsePayload);
       });

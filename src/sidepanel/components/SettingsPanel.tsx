@@ -125,7 +125,7 @@ export const SettingsPanel: React.FC<SettingsProps> = ({ onClose }) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `prompt-switchboard-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `agentganggang-backup-${new Date().toISOString().slice(0, 10)}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -565,7 +565,7 @@ export const SettingsPanel: React.FC<SettingsProps> = ({ onClose }) => {
                 <p className="mt-2 text-sm text-slate-600">
                   {t(
                     'settings.analysis.byokBody',
-                    'Use one local Switchyard service for the analysis lane while Prompt Switchboard keeps compare, tabs, and workflow orchestration in the browser.'
+                    'Use one local Switchyard service for the analysis lane while AgentGangGang keeps compare, tabs, and workflow orchestration in the browser.'
                   )}
                 </p>
                 <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[11px] font-medium text-amber-800">
@@ -598,7 +598,7 @@ export const SettingsPanel: React.FC<SettingsProps> = ({ onClose }) => {
                     )
                   : t(
                       'settings.analysis.modelHint',
-                      'Prompt Switchboard tries this tab first, then falls back to another ready model if needed.'
+                      'AgentGangGang tries this tab first, then falls back to another ready model if needed.'
                     )}
               </p>
 

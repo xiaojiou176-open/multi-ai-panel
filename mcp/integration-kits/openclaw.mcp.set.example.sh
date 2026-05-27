@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Prompt Switchboard starter kit for OpenClaw.
+# AgentGangGang starter kit for OpenClaw.
 # This follows the official `openclaw mcp set <name> <json>` path.
 
-openclaw mcp set prompt_switchboard "$(cat <<'JSON'
+openclaw mcp set agentganggang "$(cat <<'JSON'
 {
   \"command\": \"npm\",
   \"args\": [
