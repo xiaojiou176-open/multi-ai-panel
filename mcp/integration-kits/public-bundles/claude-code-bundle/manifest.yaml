@@ -1,0 +1,28 @@
+schema_version: 1
+kind: agentganggang_host_packet
+id: agentganggang-claude-code-bundle
+name: AgentGangGang Claude Code Bundle
+description: Repo-owned Claude Code bundle packet for the AgentGangGang local MCP sidecar.
+version: "0.2.2"
+license: MIT
+homepage: https://xiaojiou176-open.github.io/AgentGangGang/
+repository: https://github.com/xiaojiou176-open/AgentGangGang
+supportTier: supported_now
+publicationStatus: repo_owned_bundle_not_officially_listed
+install:
+  shape: bundle_packet
+  host: Claude Code
+  placement: Copy the MCP block into .mcp.json or consume the packed archive through a compatible bundle installer.
+smoke:
+  guide: SMOKE.md
+  smallest_useful_flow:
+    - agentganggang.bridge_status
+    - agentganggang.check_readiness
+    - agentganggang.compare
+capabilities:
+  - compare
+  - readiness
+  - retry_failed
+  - export_compare
+  - analyze_compare
+  - workflow_followthrough

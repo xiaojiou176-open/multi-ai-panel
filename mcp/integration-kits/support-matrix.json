@@ -1,0 +1,182 @@
+{
+  "surface": "agentganggang_consumer_support_matrix",
+  "path_placeholder": "/absolute/path/to/AgentGangGang",
+  "first_calls": [
+    "agentganggang.bridge_status",
+    "agentganggang.check_readiness",
+    "agentganggang.compare",
+    "agentganggang.analyze_compare",
+    "agentganggang.run_workflow"
+  ],
+  "workflow_followthrough": [
+    "agentganggang.get_workflow_run",
+    "agentganggang.list_workflow_runs",
+    "agentganggang.resume_workflow"
+  ],
+  "container_entry": {
+    "support_tier": "repo_owned_container_helper",
+    "dockerfile": "../../Dockerfile",
+    "dockerignore": "../../.dockerignore",
+    "doc_page": "../../docs/docker-integration.html",
+    "purpose": "Containerized local AgentGangGang MCP sidecar and operator helper for builder-facing flows.",
+    "not_a": [
+      "browser_extension_install_surface",
+      "hosted_compare_service",
+      "public_http_api",
+      "glama_or_marketplace_listing"
+    ],
+    "bridge_requirement": "For host-browser bridge attach, publish loopback port 48123 and set AGENTGANGGANG_BRIDGE_HOST=0.0.0.0 inside the container."
+  },
+  "hosts": {
+    "codex": {
+      "label": "Codex",
+      "support_tier": "supported_now",
+      "proof_class": "repo_specific_host_binding",
+      "official_docs": ["https://developers.openai.com/codex/mcp"],
+      "placement_hint": "Paste the snippet into your Codex MCP server section inside config.toml.",
+      "sample_config_path": "codex.config.toml.example",
+      "public_bundle_dir": "public-bundles/codex-bundle",
+      "manifest_path": "public-bundles/codex-bundle/manifest.json",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-codex-bundle-<version>.tgz",
+      "packet_page": "../../docs/codex-mcp-setup.html",
+      "minimal_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_full_flow": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run"
+      ],
+      "smoke_proof": "npm run mcp:operator -- smoke",
+      "config_assets": ["codex.config.toml.example"],
+      "skill_assets": ["codex.skill.agentganggang.md.example"],
+      "skill_manifest_paths": [
+        "public-bundles/codex-bundle/skills/agentganggang/manifest.yaml"
+      ]
+    },
+    "claude_code": {
+      "label": "Claude Code",
+      "support_tier": "supported_now",
+      "proof_class": "repo_specific_host_binding",
+      "official_docs": ["https://docs.anthropic.com/en/docs/claude-code/mcp"],
+      "placement_hint": "Paste the snippet into your Claude Code MCP config file such as .mcp.json.",
+      "sample_config_path": "claude.mcp.json.example",
+      "public_bundle_dir": "public-bundles/claude-code-bundle",
+      "manifest_path": "public-bundles/claude-code-bundle/manifest.json",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-claude-code-bundle-<version>.tgz",
+      "packet_page": "../../docs/claude-code-mcp-setup.html",
+      "minimal_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_full_flow": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run"
+      ],
+      "smoke_proof": "npm run mcp:operator -- smoke",
+      "config_assets": ["claude.mcp.json.example"],
+      "skill_assets": ["claude.skill.agentganggang.md.example"]
+    },
+    "opencode": {
+      "label": "OpenCode",
+      "support_tier": "public_bundle_ready_unverified_host_lane",
+      "proof_class": "generic_mcp_client_public_bundle_ready",
+      "official_docs": ["https://opencode.ai/docs/config", "https://opencode.ai/docs/cli/"],
+      "placement_hint": "Save the example as a project-root opencode.jsonc inside your AgentGangGang clone.",
+      "sample_config_path": "opencode.jsonc.example",
+      "public_bundle_dir": "public-bundles/opencode-plugin",
+      "manifest_path": "public-bundles/opencode-plugin/manifest.json",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-opencode-plugin-<version>.tgz",
+      "packet_page": "../../docs/opencode-mcp-setup.html",
+      "minimal_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_full_flow": [
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.resume_workflow"
+      ],
+      "smoke_proof": "npm run mcp:operator -- smoke",
+      "config_assets": ["opencode.jsonc.example"],
+      "skill_assets": ["opencode.skill.agentganggang.md.example"]
+    },
+    "openclaw": {
+      "label": "OpenClaw",
+      "support_tier": "public_bundle_ready_unverified_host_lane",
+      "proof_class": "generic_mcp_registry_public_bundle_ready",
+      "official_docs": [
+        "https://docs.openclaw.ai/cli/mcp",
+        "https://docs.openclaw.ai/plugins",
+        "https://docs.openclaw.ai/plugins/bundles"
+      ],
+      "placement_hint": "Register the JSON with openclaw mcp set or place the server definition under mcp.servers.",
+      "sample_config_path": "openclaw.agentganggang.json.example",
+      "public_bundle_dir": "public-bundles/openclaw-bundle",
+      "manifest_path": "public-bundles/openclaw-bundle/manifest.json",
+      "public_bundle_artifact": "dist/public-bundles/agentganggang-openclaw-bundle-<version>.tgz",
+      "packet_page": "../../docs/openclaw-mcp-setup.html",
+      "minimal_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_full_flow": [
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.resume_workflow"
+      ],
+      "smoke_proof": "npm run mcp:operator -- smoke",
+      "config_assets": [
+        "openclaw.agentganggang.json.example",
+        "openclaw.mcp.servers.json.example",
+        "openclaw.mcp.set.example.sh"
+      ],
+      "skill_assets": ["openclaw.skill.agentganggang.md.example"],
+      "skill_manifest_paths": [
+        "public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml"
+      ]
+    }
+  },
+  "supported_now": [
+    "local_mcp_sidecar",
+    "agentganggang_product_actions",
+    "codex_repo_specific_host_setup",
+    "claude_code_repo_specific_host_setup"
+  ],
+  "maintainer_local_partial": [
+    "operator_helper",
+    "live_proof_ladder",
+    "session_scoped_workflow_snapshots",
+    "optional_switchyard_runtime_backed_analyst_lane"
+  ],
+  "public_bundle_ready_unverified_host_lane": [
+    "opencode_project_root_mcp_config",
+    "opencode_public_bundle_packet",
+    "opencode_skill_template",
+    "openclaw_saved_mcp_server_definition",
+    "openclaw_public_bundle_packet",
+    "openclaw_skill_template"
+  ],
+  "starter_kit_only_unverified_host_lane": [
+    "opencode_project_root_mcp_config",
+    "opencode_public_bundle_packet",
+    "opencode_skill_template",
+    "openclaw_saved_mcp_server_definition",
+    "openclaw_public_bundle_packet",
+    "openclaw_skill_template"
+  ],
+  "planned_only": [
+    "public_cli",
+    "public_http_api",
+    "general_sdk",
+    "plugin_marketplace_packages",
+    "verified_opencode_host_lane",
+    "verified_openclaw_host_lane"
+  ]
+}

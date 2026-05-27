@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["agentganggang-opencode-plugin"],
+  "mcp": {
+    "agentganggang": {
+      "type": "local",
+      "command": [
+        "npm",
+        "--prefix",
+        "/absolute/path/to/AgentGangGang",
+        "run",
+        "mcp:server"
+      ],
+      "enabled": true
+    }
+  }
+}

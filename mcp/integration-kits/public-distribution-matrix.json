@@ -1,0 +1,306 @@
+{
+  "surface": "agentganggang_public_distribution_matrix",
+  "official_docs_inspected_at": "2026-04-07",
+  "current_install_surface": "The supported install path today is the packaged GitHub Release zip.",
+  "bundle_claim": "A AgentGangGang public bundle means repo-owned config, skill or prompt guidance, placement hints, smoke flow, and synced public docs.",
+  "distribution_subject_map": "mcp/integration-kits/distribution-subject-map.json",
+  "skill_registry": {
+    "canonical_manifest_schema": "mcp/integration-kits/skill-manifest.schema.json",
+    "publishable_skill_packets": [
+      {
+        "host": "codex",
+        "skill_path": "mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/SKILL.md",
+        "manifest_path": "mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml",
+        "status": "repo_owned_manifest_ready_not_marketplace_published"
+      },
+      {
+        "host": "openclaw",
+        "skill_path": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/SKILL.md",
+        "manifest_path": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml",
+        "status": "repo_owned_manifest_ready_not_marketplace_published"
+      }
+    ],
+    "docs_only_skill_examples": [
+      "mcp/integration-kits/codex.skill.agentganggang.md.example",
+      "mcp/integration-kits/claude.skill.agentganggang.md.example",
+      "mcp/integration-kits/opencode.skill.agentganggang.md.example",
+      "mcp/integration-kits/openclaw.skill.agentganggang.md.example"
+    ],
+    "official_surfaces": {
+      "opencode": {
+        "status": "official_skill_markdown_surface_verified",
+        "summary": "OpenCode documents Agent Skills as SKILL.md definitions and explicitly calls out frontmatter name and description.",
+        "minimum_verified_fields": ["name", "description"]
+      },
+      "codex": {
+        "status": "no_official_skill_registry_surface_verified",
+        "summary": "Official Codex MCP docs were verified, but no separate AgentGangGang skill registry or marketplace manifest surface was verified from those docs."
+      },
+      "claude_code": {
+        "status": "no_official_skill_registry_surface_verified",
+        "summary": "Official Claude Code MCP docs were verified, but no separate skill registry or marketplace manifest surface was verified from those docs."
+      },
+      "openclaw": {
+        "status": "bundle_and_saved_server_definition_surface_verified",
+        "summary": "OpenClaw official docs verify plugin bundle and saved MCP server definition flows, but no separate AgentGangGang skill marketplace schema was verified."
+      }
+    }
+  },
+  "docker_glama_surface": {
+    "docker_status": "repo_owned_container_entry_ready",
+    "dockerfile": "Dockerfile",
+    "dockerignore": ".dockerignore",
+    "doc_page": "docs/docker-integration.html",
+    "purpose": "Containerized local AgentGangGang MCP sidecar and operator helper for builder-facing flows.",
+    "not_a": [
+      "hosted_compare_service",
+      "public_http_api",
+      "browser_extension_store_surface",
+      "official_glama_listing"
+    ],
+    "bridge_requirement": "When the container hosts the live sidecar, publish loopback port 48123 on the host and set AGENTGANGGANG_BRIDGE_HOST=0.0.0.0 inside the container so the host browser can still reach 127.0.0.1:48123.",
+    "glama_surface": {
+      "status": "catalog_and_connector_surfaces_verified_no_agentganggang_listing",
+      "official_pages": ["https://glama.ai/mcp/servers", "https://glama.ai/mcp/connectors"],
+      "summary": "Current accessible Glama pages verify a public MCP server catalog and a connector surface that says connectors browse the official MCP Registry and connect without local installation. No official AgentGangGang listing or Docker-specific submission requirement was verified from those pages in this run.",
+      "external_publish_packet": {
+        "surface": "glama_listing_or_connector_submission",
+        "missing": [
+          "an owner-controlled AgentGangGang listing or connector entry",
+          "official listing URL",
+          "post-submit read-back proof"
+        ],
+        "verify_after": [
+          "public Glama listing URL",
+          "listed install surface",
+          "claim alignment with README and public distribution docs"
+        ]
+      }
+    }
+  },
+  "official_registry_surface": {
+    "official_docs": ["https://modelcontextprotocol.io/registry"],
+    "status": "official_registry_listing_live_websiteurl_backed",
+    "summary": "The official MCP Registry already returns a live AgentGangGang MCP entry for the same local sidecar install surface.",
+    "external_publish_packet": {
+      "surface": "official_mcp_registry_package_upgrade",
+      "missing": [
+        "optional package-backed install artifact",
+        "optional namespace/auth work only if a package-backed upgrade is desired"
+      ],
+      "steps": [
+        "Keep the already-live registry entry aligned with the browser-first README, landing page, and local sidecar docs.",
+        "Only plan extra registry work if you want a package-backed install upgrade beyond the current websiteUrl-backed entry.",
+        "If that upgrade matters, publish the package artifact first, then complete the exact auth and namespace steps for that richer install surface.",
+        "Verify the live registry URL, listed version, and install surface before changing any broader marketplace claims."
+      ],
+      "verify_after": ["registry URL", "listed version", "install surface"]
+    }
+  },
+  "hosts": {
+    "codex": {
+      "label": "Codex",
+      "support_tier": "supported_now",
+      "official_docs": ["https://developers.openai.com/codex/mcp"],
+      "official_public_surface": {
+        "status": "official_docs_verified_no_listing_surface_verified",
+        "summary": "Official Codex MCP setup docs are verified. No official AgentGangGang marketplace or registry listing surface was verified from current official Codex docs."
+      },
+      "current_public_distribution_surface": "repo_owned_public_bundle",
+      "public_bundle_assets": [
+        "mcp/integration-kits/codex.config.toml.example",
+        "mcp/integration-kits/codex.skill.agentganggang.md.example",
+        "mcp/integration-kits/public-bundles/codex-bundle/",
+        "mcp/integration-kits/public-bundles/codex-bundle/package.json",
+        "mcp/integration-kits/public-bundles/codex-bundle/manifest.json",
+        "mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml",
+        "mcp/integration-kits/support-matrix.json",
+        "mcp/integration-kits/public-distribution-matrix.json",
+        "mcp/integration-kits/distribution-subject-map.json",
+        "docs/codex-mcp-setup.html",
+        "docs/mcp-host-packets.html",
+        "docs/mcp-coding-agents.html",
+        "docs/mcp-starter-kits.html",
+        "docs/public-distribution-matrix.html",
+        "docs/faq.html",
+        "README.md"
+      ],
+      "placement_hint": "Paste the MCP block into the Codex MCP server section inside config.toml.",
+      "smallest_useful_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_followthrough": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.list_workflow_runs",
+        "agentganggang.resume_workflow"
+      ],
+      "truthful_claim": "AgentGangGang ships a public Codex starter bundle, but not an official Codex marketplace listing.",
+      "external_publish_packet": null
+    },
+    "claude_code": {
+      "label": "Claude Code",
+      "support_tier": "supported_now",
+      "official_docs": ["https://docs.anthropic.com/en/docs/claude-code/mcp"],
+      "official_public_surface": {
+        "status": "official_docs_verified_no_listing_surface_verified",
+        "summary": "Official Claude Code MCP setup docs are verified. No official AgentGangGang marketplace or registry listing surface was verified from current official Claude Code MCP docs."
+      },
+      "current_public_distribution_surface": "repo_owned_public_bundle",
+      "public_bundle_assets": [
+        "mcp/integration-kits/claude.mcp.json.example",
+        "mcp/integration-kits/claude.skill.agentganggang.md.example",
+        "mcp/integration-kits/public-bundles/claude-code-bundle/",
+        "mcp/integration-kits/public-bundles/claude-code-bundle/package.json",
+        "mcp/integration-kits/public-bundles/claude-code-bundle/manifest.json",
+        "mcp/integration-kits/support-matrix.json",
+        "mcp/integration-kits/public-distribution-matrix.json",
+        "mcp/integration-kits/distribution-subject-map.json",
+        "docs/claude-code-mcp-setup.html",
+        "docs/mcp-host-packets.html",
+        "docs/mcp-coding-agents.html",
+        "docs/mcp-starter-kits.html",
+        "docs/public-distribution-matrix.html",
+        "docs/faq.html",
+        "README.md"
+      ],
+      "placement_hint": "Paste the MCP block into a Claude Code MCP config file such as .mcp.json.",
+      "smallest_useful_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_followthrough": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.list_workflow_runs",
+        "agentganggang.resume_workflow"
+      ],
+      "truthful_claim": "AgentGangGang ships a public Claude Code starter bundle, but not an official Claude Code marketplace listing.",
+      "external_publish_packet": null
+    },
+    "opencode": {
+      "label": "OpenCode",
+      "support_tier": "public_bundle_ready_unverified_host_lane",
+      "official_docs": ["https://opencode.ai/docs/config", "https://opencode.ai/docs/plugins"],
+      "official_public_surface": {
+        "status": "official_plugin_surface_exists",
+        "summary": "Official OpenCode docs expose a plugin system and public plugin distribution shape, but this repo does not yet ship a published OpenCode plugin package."
+      },
+      "current_public_distribution_surface": "repo_owned_public_bundle",
+      "public_bundle_assets": [
+        "mcp/integration-kits/opencode.jsonc.example",
+        "mcp/integration-kits/opencode.skill.agentganggang.md.example",
+        "mcp/integration-kits/public-bundles/opencode-plugin/",
+        "mcp/integration-kits/public-bundles/opencode-plugin/package.json",
+        "mcp/integration-kits/public-bundles/opencode-plugin/manifest.json",
+        "mcp/integration-kits/support-matrix.json",
+        "mcp/integration-kits/public-distribution-matrix.json",
+        "mcp/integration-kits/distribution-subject-map.json",
+        "docs/opencode-mcp-setup.html",
+        "docs/mcp-host-packets.html",
+        "docs/mcp-coding-agents.html",
+        "docs/mcp-starter-kits.html",
+        "docs/public-distribution-matrix.html",
+        "docs/faq.html",
+        "README.md"
+      ],
+      "placement_hint": "Save the example as a project-root opencode.jsonc inside your AgentGangGang clone.",
+      "smallest_useful_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_followthrough": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.list_workflow_runs",
+        "agentganggang.resume_workflow"
+      ],
+      "truthful_claim": "AgentGangGang ships a public-bundle-ready OpenCode plugin packet, but not a published OpenCode plugin package yet.",
+      "external_publish_packet": {
+        "surface": "opencode_plugin_publication",
+        "missing": [
+          "published OpenCode plugin package under an owner-controlled namespace",
+          "owner publish permission"
+        ],
+        "steps": [
+          "Run npm run release:host-kits and verify the OpenCode packet archive under dist/public-bundles/.",
+          "Choose the owner-controlled npm package name and namespace for the OpenCode plugin package.",
+          "Publish mcp/integration-kits/public-bundles/opencode-plugin/ to npm.",
+          "Install it through the official OpenCode plugin flow and verify one compare-first smoke path."
+        ],
+        "verify_after": ["package URL", "plugin install flow", "docs link"]
+      }
+    },
+    "openclaw": {
+      "label": "OpenClaw",
+      "support_tier": "public_bundle_ready_unverified_host_lane",
+      "official_docs": [
+        "https://docs.openclaw.ai/cli/mcp",
+        "https://docs.openclaw.ai/plugins",
+        "https://docs.openclaw.ai/plugins/bundles"
+      ],
+      "official_public_surface": {
+        "status": "official_registry_flow_plugin_docs_and_bundle_docs_exist",
+        "summary": "Official OpenClaw docs inspected for this matrix expose MCP registry setup through openclaw mcp set, plugin install docs, and bundle install docs, but they do not prove a published AgentGangGang listing."
+      },
+      "current_public_distribution_surface": "repo_owned_public_bundle",
+      "public_bundle_assets": [
+        "mcp/integration-kits/openclaw.agentganggang.json.example",
+        "mcp/integration-kits/openclaw.mcp.servers.json.example",
+        "mcp/integration-kits/openclaw.mcp.set.example.sh",
+        "mcp/integration-kits/openclaw.skill.agentganggang.md.example",
+        "mcp/integration-kits/public-bundles/openclaw-bundle/",
+        "mcp/integration-kits/public-bundles/openclaw-bundle/package.json",
+        "mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json",
+        "mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml",
+        "mcp/integration-kits/public-bundles/codex-bundle/",
+        "mcp/integration-kits/public-bundles/claude-code-bundle/",
+        "mcp/integration-kits/support-matrix.json",
+        "mcp/integration-kits/public-distribution-matrix.json",
+        "mcp/integration-kits/distribution-subject-map.json",
+        "docs/openclaw-mcp-setup.html",
+        "docs/mcp-host-packets.html",
+        "docs/mcp-coding-agents.html",
+        "docs/mcp-starter-kits.html",
+        "docs/public-distribution-matrix.html",
+        "docs/faq.html",
+        "README.md"
+      ],
+      "placement_hint": "Register the JSON with openclaw mcp set or place the server definition under mcp.servers.",
+      "smallest_useful_flow": [
+        "agentganggang.bridge_status",
+        "agentganggang.check_readiness",
+        "agentganggang.compare"
+      ],
+      "preferred_followthrough": [
+        "agentganggang.analyze_compare",
+        "agentganggang.run_workflow",
+        "agentganggang.get_workflow_run",
+        "agentganggang.list_workflow_runs",
+        "agentganggang.resume_workflow"
+      ],
+      "truthful_claim": "AgentGangGang ships a public-bundle-ready OpenClaw packet through bundle artifacts and MCP registry snippets, but no published AgentGangGang OpenClaw listing is verified from the official docs checked in this run.",
+      "external_publish_packet": {
+        "surface": "openclaw_plugin_or_bundle_publication",
+        "missing": [
+          "published OpenClaw plugin or bundle listing under an owner-controlled surface",
+          "owner-controlled publish permission"
+        ],
+        "steps": [
+          "Run npm run release:host-kits and verify the OpenClaw packet archive under dist/public-bundles/.",
+          "Choose the official OpenClaw public surface you will really use: bundle install, plugin listing, or another official listing surface backed by OpenClaw docs.",
+          "Publish the repo-owned OpenClaw packet and keep the MCP registry JSON, shell helper, and install docs aligned to that exact surface.",
+          "Verify the listing URL or bundle URL and one compare-first smoke path after publish."
+        ],
+        "verify_after": ["listing or package URL", "install flow", "official listing proof"]
+      }
+    }
+  }
+}
