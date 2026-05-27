@@ -5,7 +5,7 @@
         "command": "npm",
         "args": [
           "--prefix",
-          "/absolute/path/to/multi-ai-sidepanel",
+          "/absolute/path/to/AgentGangGang",
           "run",
           "mcp:server"
         ]

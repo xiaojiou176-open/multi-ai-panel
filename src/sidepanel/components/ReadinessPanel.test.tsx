@@ -167,7 +167,7 @@ describe('ReadinessPanel', () => {
 
     fireEvent.click(getByRole('button', { name: 'Supported sites' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/supported-sites.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/supported-sites.html',
       '_blank',
       'noopener,noreferrer'
     );

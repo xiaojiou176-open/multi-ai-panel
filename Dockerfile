@@ -4,7 +4,7 @@ WORKDIR /app
 
 LABEL org.opencontainers.image.title="Prompt Switchboard MCP Sidecar"
 LABEL org.opencontainers.image.description="Containerized local Prompt Switchboard MCP sidecar and operator helper."
-LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/multi-ai-sidepanel"
+LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/AgentGangGang"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL io.modelcontextprotocol.server.name="io.github.xiaojiou176-open/prompt-switchboard"
 

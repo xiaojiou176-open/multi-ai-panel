@@ -93,4 +93,4 @@ For security-sensitive issues, follow [`SECURITY.md`](./SECURITY.md).
 
 For general non-sensitive support requests, use the public issue tracker:
 
-`https://github.com/xiaojiou176-open/multi-ai-sidepanel/issues`
+`https://github.com/xiaojiou176-open/AgentGangGang/issues`

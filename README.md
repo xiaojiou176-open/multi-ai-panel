@@ -16,7 +16,7 @@ Agent-facing truth comes after the product story is clear: the first thing this 
 > The supported repo build also does **not** rely on OS-level desktop
 > automation, Force Quit helpers, or host-wide process cleanup.
 
-[Install the latest build](https://github.com/xiaojiou176-open/multi-ai-sidepanel/releases/latest) • [Landing page](./docs/index.html) • [Install guide](./docs/install.html) • [First compare guide](./docs/first-compare-guide.html) • [Supported sites](./docs/supported-sites.html) • [Trust boundary](./docs/trust-boundary.html) • [FAQ guide](./docs/faq.html) • [Privacy](./PRIVACY.md) • [Security](./SECURITY.md) • [Building locally](./CONTRIBUTING.md)
+[Install the latest build](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest) • [Landing page](./docs/index.html) • [Install guide](./docs/install.html) • [First compare guide](./docs/first-compare-guide.html) • [Supported sites](./docs/supported-sites.html) • [Trust boundary](./docs/trust-boundary.html) • [FAQ guide](./docs/faq.html) • [Privacy](./PRIVACY.md) • [Security](./SECURITY.md) • [Building locally](./CONTRIBUTING.md)
 
 ![Prompt Switchboard hero showing one prompt and multiple AI answers side by side.](./docs/assets/prompt-switchboard-hero.png)
 
@@ -78,7 +78,7 @@ Before you start:
 - a Chromium-compatible browser with Developer Mode available
 - at least one supported AI chat tab already open and signed in
 
-1. Open the [latest Releases page](https://github.com/xiaojiou176-open/multi-ai-sidepanel/releases/latest).
+1. Open the [latest Releases page](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest).
 2. Download the packaged extension zip, unzip it locally, open `chrome://extensions`, enable **Developer Mode**, and use **Load unpacked** on the extracted folder.
 3. If the Prompt Switchboard icon is hidden, open the browser Extensions menu, pin Prompt Switchboard, then click the toolbar icon to open the side panel.
 4. Open the supported AI tabs you want to compare, then ask once from the side panel.
@@ -301,15 +301,15 @@ The short version is still:
 
 Use the public issue tracker for non-sensitive bugs, setup questions, or product feedback:
 
-<https://github.com/xiaojiou176-open/multi-ai-sidepanel/issues>
+<https://github.com/xiaojiou176-open/AgentGangGang/issues>
 
 For security-sensitive reports, follow [`SECURITY.md`](./SECURITY.md) instead of opening a detailed public issue.
 
 For open-ended product ideas, workflow discussion, or compare-first feedback, use GitHub Discussions:
 
-<https://github.com/xiaojiou176-open/multi-ai-sidepanel/discussions>
+<https://github.com/xiaojiou176-open/AgentGangGang/discussions>
 
-Track packaged builds and release notes on the [Releases page](https://github.com/xiaojiou176-open/multi-ai-sidepanel/releases).
+Track packaged builds and release notes on the [Releases page](https://github.com/xiaojiou176-open/AgentGangGang/releases).
 
 ## Why Star It Now
 

@@ -172,14 +172,14 @@ describe('SettingsPanel', () => {
     expect(getByText('Public distribution matrix')).toBeInTheDocument();
     fireEvent.click(getByText('MCP starter kits'));
     expect(openSpy).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/mcp-starter-kits.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/mcp-starter-kits.html',
       '_blank',
       'noopener,noreferrer'
     );
 
     fireEvent.click(getByText('Public distribution matrix'));
     expect(openSpy).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/public-distribution-matrix.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/public-distribution-matrix.html',
       '_blank',
       'noopener,noreferrer'
     );

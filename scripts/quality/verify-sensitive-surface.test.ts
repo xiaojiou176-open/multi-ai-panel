@@ -41,7 +41,7 @@ describe('sensitive surface rules', () => {
 
   it('does not flag GitHub automation home directories as maintainer-local output', () => {
     const findings = findOutputSurfaceFindings(
-      'git clone https://github.com/xiaojiou176-open/multi-ai-sidepanel /home/dependabot/dependabot-updater/repo',
+      'git clone https://github.com/xiaojiou176-open/AgentGangGang /home/dependabot/dependabot-updater/repo',
     );
 
     expect(findings).toEqual([]);

@@ -7,7 +7,7 @@ triggers:
   - prompt-switchboard
   - prompt_switchboard
   - compare-first
-  - multi-ai-sidepanel
+  - AgentGangGang
 ---
 
 # Prompt Switchboard Compare Workflows

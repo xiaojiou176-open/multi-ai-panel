@@ -11,14 +11,14 @@
     "compare-first",
     "local-first"
   ],
-  "homepage": "https://github.com/xiaojiou176-open/multi-ai-sidepanel/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle",
+  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/multi-ai-sidepanel.git",
+    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git",
     "directory": "mcp/integration-kits/public-bundles/openclaw-bundle"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/multi-ai-sidepanel/issues"
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
   },
   "files": [
     ".codex-plugin",

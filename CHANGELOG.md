@@ -182,7 +182,7 @@ different version story.
 - Release baseline now cleans transient runtime artifacts before and after
   verification and E2E execution.
 - Public-facing product name aligned to `Prompt Switchboard`.
-- Package name aligned to `multi-ai-sidepanel`.
+- Package name aligned to `AgentGangGang`.
 - Placeholder Vite icon references replaced with Prompt Switchboard branding
   assets.
 - Extension and package version target advanced to `0.2.0`.

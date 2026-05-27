@@ -8,12 +8,12 @@ export const DEFAULT_EXTERNAL_CACHE_MAX_BYTES = 2 * 1024 * 1024 * 1024;
 export const DEFAULT_EXTERNAL_CACHE_ROOT = path.join(
   os.homedir(),
   '.cache',
-  'multi-ai-sidepanel'
+  'AgentGangGang'
 );
 export const PERSISTENT_BROWSER_ROOT_DIRNAME = 'browser';
 export const PERSISTENT_BROWSER_USER_DATA_DIRNAME = 'chrome-user-data';
 export const PERSISTENT_BROWSER_PROFILE_DIRECTORY = 'Profile 1';
-export const PERSISTENT_BROWSER_PROFILE_NAME = 'multi-ai-sidepanel';
+export const PERSISTENT_BROWSER_PROFILE_NAME = 'AgentGangGang';
 export const LIVE_PROFILE_CLONE_DIRNAME = 'live-profile-clones';
 export const REPO_OWNED_LIVE_CLONE_PREFIX = 'prompt-switchboard-live-';
 export const CHROME_SINGLETON_FILENAMES = [

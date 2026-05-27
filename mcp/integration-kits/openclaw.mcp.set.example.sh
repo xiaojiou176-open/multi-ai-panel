@@ -8,7 +8,7 @@ openclaw mcp set prompt_switchboard "$(cat <<'JSON'
   \"command\": \"npm\",
   \"args\": [
     \"--prefix\",
-    \"/absolute/path/to/multi-ai-sidepanel\",
+    \"/absolute/path/to/AgentGangGang\",
     \"run\",
     \"mcp:server\"
   ]

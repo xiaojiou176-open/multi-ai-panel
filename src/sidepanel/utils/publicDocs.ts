@@ -1,4 +1,4 @@
-export const DOCS_BASE_URL = 'https://xiaojiou176-open.github.io/multi-ai-sidepanel';
+export const DOCS_BASE_URL = 'https://xiaojiou176-open.github.io/AgentGangGang';
 
 export const PUBLIC_DOC_PATHS = {
   install: 'install.html',

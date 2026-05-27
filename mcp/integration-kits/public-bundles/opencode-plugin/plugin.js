@@ -3,7 +3,7 @@ import { tool } from '@opencode-ai/plugin';
 const guideText = `Prompt Switchboard OpenCode bootstrap
 
 1. Keep the MCP server local:
-   npm --prefix /absolute/path/to/multi-ai-sidepanel run mcp:server
+   npm --prefix /absolute/path/to/AgentGangGang run mcp:server
 2. Put the MCP block into project-root opencode.jsonc
 3. First smoke:
    - prompt_switchboard.bridge_status

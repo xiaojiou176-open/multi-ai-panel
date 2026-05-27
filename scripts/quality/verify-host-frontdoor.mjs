@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const repo = 'xiaojiou176-open/multi-ai-sidepanel';
+const repo = 'xiaojiou176-open/AgentGangGang';
 const metadata = JSON.parse(
   readFileSync(path.join(process.cwd(), 'docs', 'frontdoor-metadata.json'), 'utf8'),
 );
@@ -76,7 +76,7 @@ const socialPreview = parseJson(
     'api',
     'graphql',
     '-f',
-    'query=query { repository(owner:"xiaojiou176-open", name:"multi-ai-sidepanel") { usesCustomOpenGraphImage openGraphImageUrl } }',
+    'query=query { repository(owner:"xiaojiou176-open", name:"AgentGangGang") { usesCustomOpenGraphImage openGraphImageUrl } }',
   ]),
   'social preview graphql',
 ).data?.repository;
