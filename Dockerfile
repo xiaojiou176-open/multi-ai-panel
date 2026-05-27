@@ -4,7 +4,7 @@ WORKDIR /app
 
 LABEL org.opencontainers.image.title="AgentGangGang MCP Sidecar"
 LABEL org.opencontainers.image.description="Containerized local AgentGangGang MCP sidecar and operator helper."
-LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/agentganggang"
+LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/AgentGangGang"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL io.modelcontextprotocol.server.name="io.github.xiaojiou176-open/agentganggang"
 

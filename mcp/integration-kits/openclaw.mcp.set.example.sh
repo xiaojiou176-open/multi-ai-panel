@@ -8,7 +8,7 @@ openclaw mcp set agentganggang "$(cat <<'JSON'
   \"command\": \"npm\",
   \"args\": [
     \"--prefix\",
-    \"/absolute/path/to/agentganggang\",
+    \"/absolute/path/to/AgentGangGang\",
     \"run\",
     \"mcp:server\"
   ]

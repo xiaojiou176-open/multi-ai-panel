@@ -125,11 +125,11 @@ Command boundary:
 
 - `clean:runtime:dry-run` previews the current runtime cleanup plan
 - `clean:runtime` removes disposable runtime outputs immediately, removes
-  repo-owned external cache entries under `~/.cache/agentganggang/`
+  repo-owned external cache entries under `~/.cache/AgentGangGang/`
   (including `live-profile-clones/agentganggang-live-*`), prunes them with
   the current TTL/cap policy, and applies retention to local evidence
   directories, while preserving the repo-owned browser root under
-  `~/.cache/agentganggang/browser/chrome-user-data/`
+  `~/.cache/AgentGangGang/browser/chrome-user-data/`
 - `clean:repo:light` only removes `dist`, `coverage`, and `.husky/_`
 - `clean:repo:heavy` runs the light cleanup set and also removes `node_modules`
 
@@ -140,13 +140,13 @@ Runtime classes:
 - `.runtime-cache/test_output`, `.runtime-cache/coverage-tmp`,
   `.runtime-cache/coverage-split`, and `.runtime-cache/test-results` ->
   scratch / disposable-generated
-- `~/.cache/agentganggang/live-profile-clones/agentganggang-live-*`
+- `~/.cache/AgentGangGang/live-profile-clones/agentganggang-live-*`
   -> repo-owned external disposable-generated temp clone created by
   login-state-sensitive live flows when profile cloning is enabled
-- `~/.cache/agentganggang/` -> repo-owned external cache root with
+- `~/.cache/AgentGangGang/` -> repo-owned external cache root with
   automatic retention (`72h`) and size cap (`2 GB`) unless overridden by
   repo-owned cache env vars
-- `~/.cache/agentganggang/browser/chrome-user-data/` ->
+- `~/.cache/AgentGangGang/browser/chrome-user-data/` ->
   repo-owned persistent browser state; excluded from TTL/cap pruning and
   excluded from `clean:runtime`
 - `.runtime-cache/release` -> evidence_keep with retention: keep the newest
@@ -351,9 +351,9 @@ The canonical login-state live lane now uses the repo-owned persistent browser
 root via environment-driven resolution:
 
 - default runtime root:
-  `~/.cache/agentganggang/browser/chrome-user-data`
+  `~/.cache/AgentGangGang/browser/chrome-user-data`
 - default runtime profile name:
-  `agentganggang`
+  `AgentGangGang`
 - default runtime profile directory:
   `Profile 1`
 
@@ -371,7 +371,7 @@ The bootstrap command:
 
 - expects all real Chrome / Chromium / Chrome for Testing processes to be
   closed first
-- copies the source `Local State` plus the source `agentganggang` profile
+- copies the source `Local State` plus the source `AgentGangGang` profile
   from the default Chrome root
 - rewrites the target root to a single canonical `Profile 1`
 - removes `SingletonLock`, `SingletonCookie`, and `SingletonSocket` from the
@@ -380,7 +380,7 @@ The bootstrap command:
 The default bootstrap source is:
 
 - `AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
-- `AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME=agentganggang`
+- `AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME=AgentGangGang`
 
 The same clone controls also apply to the repo-owned diagnosis ladder when you
 need a deterministic persistent-context troubleshooting pass without touching
@@ -413,8 +413,8 @@ available.
 The supported default login-state live-proof path is now:
 
 - repo-owned persistent browser user data dir:
-  `~/.cache/agentganggang/browser/chrome-user-data`
-- `AGENTGANGGANG_BROWSER_PROFILE_NAME=agentganggang`
+  `~/.cache/AgentGangGang/browser/chrome-user-data`
+- `AGENTGANGGANG_BROWSER_PROFILE_NAME=AgentGangGang`
 - `AGENTGANGGANG_LIVE_ATTACH_MODE=browser`
 - `AGENTGANGGANG_LIVE=1 npm run test:live:open-browser`
 
@@ -435,8 +435,8 @@ That helper launches or reuses one repo-owned real Google Chrome browser lane
 with:
 
 - the repo's unpacked extension side-loaded
-- `~/.cache/agentganggang/browser/chrome-user-data`
-- the resolved `agentganggang` / `Profile 1` profile
+- `~/.cache/AgentGangGang/browser/chrome-user-data`
+- the resolved `AgentGangGang` / `Profile 1` profile
 - a fixed CDP listener on `http://127.0.0.1:9336`
 - a generated local identity tab under
   `.runtime-cache/browser-identity/index.html` that shows the repo label, CDP

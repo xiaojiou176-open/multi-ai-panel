@@ -3,7 +3,7 @@ import { tool } from '@opencode-ai/plugin';
 const guideText = `AgentGangGang OpenCode bootstrap
 
 1. Keep the MCP server local:
-   npm --prefix /absolute/path/to/agentganggang run mcp:server
+   npm --prefix /absolute/path/to/AgentGangGang run mcp:server
 2. Put the MCP block into project-root opencode.jsonc
 3. First smoke:
    - agentganggang.bridge_status

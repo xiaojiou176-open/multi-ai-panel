@@ -106,7 +106,7 @@ const readSkillManifestYaml = (relPath) => {
   };
 };
 
-const PATH_PLACEHOLDER = '/absolute/path/to/agentganggang';
+const PATH_PLACEHOLDER = '/absolute/path/to/AgentGangGang';
 const FORBIDDEN_LOCAL_PATH_PATTERNS = ['/Users/', '/home/', 'C:\\Users\\'];
 const ROOT_PACKAGE_REQUIRED_FIELDS = [
   'description',
@@ -405,7 +405,7 @@ expect(
 
 expect(
   skillManifestSchema?.$id ===
-    'https://xiaojiou176-open.github.io/agentganggang/mcp/integration-kits/skill-manifest.schema.json',
+    'https://xiaojiou176-open.github.io/AgentGangGang/mcp/integration-kits/skill-manifest.schema.json',
   'skill-manifest.schema.json must keep the canonical schema id.',
   findings
 );

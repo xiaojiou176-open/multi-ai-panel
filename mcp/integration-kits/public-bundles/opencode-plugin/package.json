@@ -12,14 +12,14 @@
     "compare-first",
     "local-first"
   ],
-  "homepage": "https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/opencode-plugin",
+  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/opencode-plugin",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/agentganggang.git",
+    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git",
     "directory": "mcp/integration-kits/public-bundles/opencode-plugin"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/agentganggang/issues"
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
   },
   "dependencies": {
     "@opencode-ai/plugin": "*"

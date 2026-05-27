@@ -5,10 +5,10 @@ name: agentganggang
 description: Use AgentGangGang as a compare-first local MCP workspace during OpenClaw sessions.
 version: "0.2.2"
 license: MIT
-homepage: https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle
+homepage: https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle
 repository:
   type: git
-  url: git+https://github.com/xiaojiou176-open/agentganggang.git
+  url: git+https://github.com/xiaojiou176-open/AgentGangGang.git
   directory: mcp/integration-kits/public-bundles/openclaw-bundle
 supportTier: public_bundle_ready_unverified_host_lane
 publicationStatus: embedded_skill_only_not_independently_published

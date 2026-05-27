@@ -7,7 +7,7 @@ triggers:
   - agentganggang
   - agentganggang
   - compare-first
-  - agentganggang
+  - AgentGangGang
 ---
 
 # AgentGangGang Compare Workflows

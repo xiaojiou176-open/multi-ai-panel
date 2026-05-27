@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { findOutputSurfaceFindingsWithContext } from './sensitive-surface-rules.mjs';
 
-const repo = 'xiaojiou176-open/agentganggang';
+const repo = 'xiaojiou176-open/AgentGangGang';
 const findings = [];
 const scanGaps = [];
 

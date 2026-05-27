@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 
-const repo = 'xiaojiou176-open/agentganggang';
+const repo = 'xiaojiou176-open/AgentGangGang';
 
 function parseHttpStatus(detail) {
   const match = detail.match(/\(HTTP (\d{3})\)/u);

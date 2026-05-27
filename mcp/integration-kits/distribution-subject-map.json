@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "releaseVersion": "0.2.2",
   "rootPackage": {
-    "name": "agentganggang",
+    "name": "AgentGangGang",
     "kind": "repo_identity_only",
     "private": true,
     "publishable": false,

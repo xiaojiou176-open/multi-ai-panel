@@ -4,9 +4,9 @@
   "title": "AgentGangGang MCP Sidecar",
   "description": "Local MCP sidecar for AgentGangGang's browser-first compare workflows: readiness, compare, retry, export, and workflow carry-forward.",
   "repository": {
-    "url": "https://github.com/xiaojiou176-open/agentganggang",
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/xiaojiou176-open/agentganggang/blob/main/docs/mcp-coding-agents.html",
+  "websiteUrl": "https://github.com/xiaojiou176-open/AgentGangGang/blob/main/docs/mcp-coding-agents.html",
   "version": "0.2.2"
 }

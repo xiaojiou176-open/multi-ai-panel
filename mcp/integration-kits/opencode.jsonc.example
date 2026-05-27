@@ -6,7 +6,7 @@
       "command": [
         "npm",
         "--prefix",
-        "/absolute/path/to/agentganggang",
+        "/absolute/path/to/AgentGangGang",
         "run",
         "mcp:server"
       ],

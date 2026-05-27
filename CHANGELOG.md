@@ -182,7 +182,7 @@ different version story.
 - Release baseline now cleans transient runtime artifacts before and after
   verification and E2E execution.
 - Public-facing product name aligned to `AgentGangGang`.
-- Package name aligned to `agentganggang`.
+- Package name aligned to `AgentGangGang`.
 - Placeholder Vite icon references replaced with AgentGangGang branding
   assets.
 - Extension and package version target advanced to `0.2.0`.

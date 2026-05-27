@@ -5,7 +5,7 @@
 [mcp_servers.agentganggang]
 command = "npm"
 args = ["run", "mcp:server"]
-cwd = "/absolute/path/to/agentganggang"
+cwd = "/absolute/path/to/AgentGangGang"
 
 # Suggested first calls after the server is attached:
 # 1. agentganggang.bridge_status

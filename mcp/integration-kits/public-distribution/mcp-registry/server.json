@@ -4,9 +4,9 @@
   "title": "AgentGangGang MCP Sidecar",
   "description": "Compare-first local MCP sidecar for browser AI workflows.",
   "repository": {
-    "url": "https://github.com/xiaojiou176-open/agentganggang",
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/xiaojiou176-open/agentganggang/blob/main/docs/mcp-coding-agents.html",
+  "websiteUrl": "https://github.com/xiaojiou176-open/AgentGangGang/blob/main/docs/mcp-coding-agents.html",
   "version": "0.2.2"
 }

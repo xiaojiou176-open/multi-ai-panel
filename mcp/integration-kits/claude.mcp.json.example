@@ -3,7 +3,7 @@
     "agentganggang": {
       "command": "npm",
       "args": ["run", "mcp:server"],
-      "cwd": "/absolute/path/to/agentganggang"
+      "cwd": "/absolute/path/to/AgentGangGang"
     }
   }
 }

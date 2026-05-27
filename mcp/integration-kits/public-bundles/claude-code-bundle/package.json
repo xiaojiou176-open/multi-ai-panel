@@ -11,14 +11,14 @@
     "compare-first",
     "local-first"
   ],
-  "homepage": "https://github.com/xiaojiou176-open/agentganggang/tree/main/mcp/integration-kits/public-bundles/claude-code-bundle",
+  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/claude-code-bundle",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/agentganggang.git",
+    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git",
     "directory": "mcp/integration-kits/public-bundles/claude-code-bundle"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/agentganggang/issues"
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
   },
   "files": [
     ".claude-plugin",

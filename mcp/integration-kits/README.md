@@ -62,7 +62,7 @@ pretending publication already happened.
 
 1. Start the local AgentGangGang MCP sidecar.
 2. Copy the relevant host example into your own config.
-3. Replace `/absolute/path/to/agentganggang` with your clone path.
+3. Replace `/absolute/path/to/AgentGangGang` with your clone path.
 4. Keep client-side auth and config steps aligned with the official host docs.
 5. Use `agentganggang://builder/support-matrix` for host setup truth, `agentganggang://builder/public-distribution` for listing truth, and `agentganggang://sites/capabilities` for per-site DOM/readiness boundaries.
 6. Keep the workflow honest:

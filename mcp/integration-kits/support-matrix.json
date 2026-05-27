@@ -1,6 +1,6 @@
 {
   "surface": "agentganggang_consumer_support_matrix",
-  "path_placeholder": "/absolute/path/to/agentganggang",
+  "path_placeholder": "/absolute/path/to/AgentGangGang",
   "first_calls": [
     "agentganggang.bridge_status",
     "agentganggang.check_readiness",
