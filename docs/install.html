@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Install AgentGangGang | Load the latest packaged build</title>
+    <meta
+      name="description"
+      content="Install AgentGangGang from the latest packaged GitHub Release, load it as an unpacked extension, and send your first compare prompt."
+    />
+    <link
+      rel="canonical"
+      href="https://xiaojiou176-open.github.io/AgentGangGang/install.html"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Install AgentGangGang | Load the latest packaged build"
+    />
+    <meta
+      property="og:description"
+      content="The shortest path from download to first answer: unpack the latest release, load the extension, keep a supported AI tab open, and ask once from the side panel."
+    />
+    <meta
+      property="og:image"
+      content="https://xiaojiou176-open.github.io/AgentGangGang/assets/agentganggang-social-preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="AgentGangGang social preview showing the compare-first browser extension."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Install AgentGangGang | Load the latest packaged build"
+    />
+    <meta
+      name="twitter:description"
+      content="Install the packaged GitHub Release, load the extension, and reach the first compare flow with the fewest possible steps."
+    />
+    <meta
+      name="twitter:image"
+      content="https://xiaojiou176-open.github.io/AgentGangGang/assets/agentganggang-social-preview.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Install AgentGangGang from the latest packaged build",
+        "description": "Download the latest AgentGangGang GitHub Release zip, load it as an unpacked Chromium extension, and reach the first local compare run.",
+        "image": "https://xiaojiou176-open.github.io/AgentGangGang/assets/agentganggang-social-preview.png",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Chromium-compatible browser with Developer Mode"
+          },
+          {
+            "@type": "HowToTool",
+            "name": "AgentGangGang packaged GitHub Release zip"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Download the latest packaged build",
+            "text": "Open the latest AgentGangGang GitHub Release and download the packaged extension zip."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Load the unpacked extension",
+            "text": "Unzip the release locally and load the extracted folder from chrome://extensions with Developer Mode enabled."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Open supported AI tabs in the same browser profile",
+            "text": "Keep at least one supported AI chat tab open and signed in before opening the AgentGangGang side panel."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Run the first compare prompt",
+            "text": "Use the first-run checklist, refresh readiness, and send one prompt from the side panel."
+          }
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fcf6ef;
+        --ink: #18181b;
+        --muted: #57534e;
+        --line: rgba(148, 98, 68, 0.14);
+        --panel: rgba(255, 252, 249, 0.9);
+        --shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
+        --brand-a: #b45309;
+        --brand-b: #ea580c;
+        --brand-c: #d97706;
+        --display-font:
+          'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Baskerville', Georgia, serif;
+        --body-font: 'Avenir Next', 'Segoe UI', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--body-font);
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(234, 88, 12, 0.14), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(217, 119, 6, 0.12), transparent 20%),
+          linear-gradient(180deg, #fcf6ef 0%, #ffffff 45%, #f9efe4 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(920px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 28px 0 64px;
+      }
+
+      .nav,
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .nav {
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-family: var(--body-font);
+      }
+
+      .chip,
+      .nav-link,
+      .ghost,
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 12px 18px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.82);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .chip {
+        padding: 10px 14px;
+        background: #fff3e6;
+        border-color: #fed7aa;
+        color: #9a3412;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .cta {
+        color: white;
+        border: none;
+        background: linear-gradient(135deg, var(--brand-a), var(--brand-b), var(--brand-c));
+        box-shadow: 0 16px 40px rgba(180, 83, 9, 0.22);
+      }
+
+      .card {
+        margin-top: 28px;
+        padding: 28px;
+        border-radius: 28px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.88);
+      }
+
+      h1 {
+        margin: 18px 0 0;
+        font-family: var(--display-font);
+        font-size: clamp(40px, 6vw, 64px);
+        line-height: 1.02;
+        letter-spacing: -0.05em;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: var(--display-font);
+        font-size: 28px;
+        letter-spacing: -0.03em;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      ol,
+      ul {
+        margin: 16px 0 0;
+        padding-left: 24px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
+      }
+
+      .subcard {
+        padding: 22px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid var(--line);
+      }
+
+      .step-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 18px;
+      }
+
+      .step-card {
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid var(--line);
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #fff7ed, #ffedd5);
+        border: 1px solid rgba(180, 83, 9, 0.16);
+        color: #9a3412;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .step-card h2 {
+        margin-top: 16px;
+      }
+
+      @media (max-width: 820px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .step-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="nav">
+        <div class="wordmark">
+          <img
+            src="./assets/agentganggang-nav-icon.svg"
+            alt="AgentGangGang logo"
+            width="32"
+            height="32"
+          />
+          <span>AgentGangGang</span>
+        </div>
+        <div class="actions">
+          <a class="nav-link" href="./index.html">Landing page</a>
+          <a class="nav-link" href="./first-compare-guide.html">First compare guide</a>
+          <a class="nav-link" href="./supported-sites.html">Supported sites</a>
+          <a class="nav-link" href="./trust-boundary.html">Trust boundary</a>
+          <a class="nav-link" href="./faq.html">FAQ</a>
+          <a class="nav-link" href="./prompt-packs.html">Prompt packs</a>
+          <a class="nav-link" href="https://github.com/xiaojiou176-open/AgentGangGang#readme"
+            >README</a
+          >
+          <a
+            class="cta"
+            href="https://github.com/xiaojiou176-open/AgentGangGang/releases/latest"
+            >Download latest build</a
+          >
+        </div>
+      </nav>
+
+      <main class="card">
+        <span class="chip">Install guide</span>
+        <h1>Install the latest build and send your first compare prompt.</h1>
+        <p>
+          This is the shortest path to a real product trial. You do not need to build the project
+          locally to evaluate AgentGangGang.
+        </p>
+        <p>
+          Before you start, keep the supported AI tabs you want to compare already open and signed
+          in inside the same browser profile where you load the extension.
+        </p>
+        <p>
+          Once the side panel opens, use the built-in first-run checklist to open tabs, refresh
+          readiness, and seed the first compare prompt without bouncing back into the docs.
+        </p>
+        <p>
+          If you want the shortest operator-style map from “extension installed” to “first compare
+          run really succeeded,” use the
+          <a href="./first-compare-guide.html">first compare guide</a>. It keeps the first-run
+          checklist, repair ladder, and login-gated explanation in one place.
+        </p>
+        <p>
+          Keep the order honest: browser install first, one compare second, MCP or Docker builder
+          setup only after the core compare-first path is already working.
+        </p>
+        <p>
+          The supported install path today is the packaged GitHub Release zip. Browser-store
+          submission materials are being kept ready, but GitHub Releases remains the supported
+          install surface today.
+        </p>
+        <div class="step-grid">
+          <section class="step-card">
+            <span class="step-number">01</span>
+            <h2>Load the extension</h2>
+            <p>Use the packaged release zip and skip local source setup on the first pass.</p>
+          </section>
+          <section class="step-card">
+            <span class="step-number">02</span>
+            <h2>Run one compare</h2>
+            <p>
+              Keep your trusted AI tabs signed in, open the side panel, and use the built-in
+              checklist before sending.
+            </p>
+          </section>
+          <section class="step-card">
+            <span class="step-number">03</span>
+            <h2>Keep the turn alive</h2>
+            <p>
+              Retry only the failures, export a readable artifact, or move to prompt packs before
+              touching builder docs.
+            </p>
+          </section>
+        </div>
+        <div class="grid">
+          <section class="subcard">
+            <h2>What you need first</h2>
+            <ul>
+              <li>A Chromium-compatible browser with Developer Mode available</li>
+              <li>At least one supported AI chat tab already open and signed in</li>
+              <li>A local folder where you can unzip the packaged release</li>
+            </ul>
+          </section>
+          <section class="subcard">
+            <h2>Quick install path</h2>
+            <ol>
+              <li>Download the latest packaged release zip and unzip it locally.</li>
+              <li>
+                Open <code>chrome://extensions</code>, enable Developer Mode, and use
+                <strong>Load unpacked</strong> on the extracted folder.
+              </li>
+              <li>
+                If the AgentGangGang icon is hidden, open the browser Extensions menu, pin it,
+                then click the toolbar icon to open the side panel.
+              </li>
+              <li>Open your supported AI tabs, then ask once from the side panel.</li>
+            </ol>
+          </section>
+          <section class="subcard">
+            <h2>Current distribution surface</h2>
+            <p>
+              Today the supported path is the packaged release zip from GitHub Releases. A
+              lower-friction browser-store path is being prepared, but it is not live yet.
+            </p>
+          </section>
+          <section class="subcard">
+            <h2>What you do next</h2>
+            <ul>
+              <li>Run one real compare turn from the side panel.</li>
+              <li>Retry only the failed models instead of replaying everything.</li>
+              <li>Export a readable compare summary or Markdown artifact.</li>
+              <li>Reuse prompt packs for the second run instead of starting blank.</li>
+            </ul>
+          </section>
+        </div>
+      </main>
+
+      <section class="card">
+        <h2>Real Chrome proof note</h2>
+        <p>
+          For day-to-day automated runtime proof, prefer Chromium or Chrome for Testing. Official
+          Google Chrome branded builds 137+ / 139+ no longer reliably auto-load unpacked extensions
+          from command-line flags.
+        </p>
+        <p>
+          If you are validating AgentGangGang in a real signed-in Chrome profile, keep that
+          profile open, go to <code>chrome://extensions</code>, enable Developer Mode, and use
+          <strong>Load unpacked</strong> on the extracted release folder. The real Chrome lane is a
+          manual proof lane, not the default automated runtime path.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>After the first compare works</h2>
+        <p>
+          Stay in the product lane first: copy a compare summary, export Markdown, retry only the
+          failed cards, or open <a href="./prompt-packs.html">prompt packs</a> for the next run.
+        </p>
+        <p>
+          Optional AI analysis is available too, but it still runs through a browser tab you already
+          trust. The default compare workflow does not require any hosted relay or separate account
+          layer.
+        </p>
+        <p>
+          If you are here for the coding-host route, open the
+          <a href="./mcp-coding-agents.html">MCP agents page</a> and
+          <a href="./docker-integration.html">Docker integration page</a> only after the product path is
+          clear. The repo-owned MCP server is secondary, not required for the first compare.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Need the maintainer workflow instead?</h2>
+        <p>
+          Local builds, release bundles, front-door checks, asset refresh steps, and the repo-local
+          <code>mcp:operator</code> helper live in
+          <a href="https://github.com/xiaojiou176-open/AgentGangGang/blob/main/CONTRIBUTING.md"
+            >CONTRIBUTING.md</a
+          >
+          so the public front door can stay focused on first-run evaluation.
+        </p>
+        <p>
+          Need more public-facing context before you install? Read the
+          <a href="./supported-sites.html">supported sites</a>,
+          <a href="./trust-boundary.html">trust boundary</a>, and
+          <a href="./faq.html">FAQ</a> pages.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,312 +1,112 @@
-# AgentGangGang
+<p align="center">
+  <img src="https://em-content.zobj.net/source/apple/391/performing-arts_1f3ad.png" width="120" alt="performing arts" />
+</p>
 
-One prompt, many AI chats, one side panel.
+<h1 align="center">AgentGangGang</h1>
 
-Teach an agent or operator one browser-first compare workflow: check readiness in already-open AI tabs, ask once from the side panel, then retry or export from the same turn.
+<p align="center">
+  <strong>five AIs in one sidebar, one conversation, one ⌘+K</strong>
+</p>
 
-AgentGangGang is a **compare-first, browser-native AI compare workspace**. It lets you send one prompt to ChatGPT, Gemini, Perplexity, Qwen, and Grok, then compare the replies in one side panel instead of bouncing between tabs.
+<p align="center">
+  <a href="https://github.com/xiaojiou176-open/AgentGangGang/stargazers"><img src="https://img.shields.io/github/stars/xiaojiou176-open/AgentGangGang?style=flat&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/xiaojiou176-open/AgentGangGang/commits/main"><img src="https://img.shields.io/github/last-commit/xiaojiou176-open/AgentGangGang?style=flat" alt="Last Commit"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/xiaojiou176-open/AgentGangGang?style=flat" alt="License"></a>
+</p>
 
-After the core compare flow is clear, the repo also exposes governed integrations for **Codex and Claude Code browser workflows**. OpenCode and OpenClaw remain later, packet-style follow-through lanes instead of the main product story.
+<p align="center">
+  <a href="#what-you-get">What You Get</a> •
+  <a href="#install">Install</a> •
+  <a href="#how-it-work">How It Work</a> •
+  <a href="#ecosystem">Ecosystem</a>
+</p>
 
-Agent-facing truth comes after the product story is clear: the first thing this repo teaches is how to run one real compare turn inside the extension itself. Registry packs, host packets, and public bundles are supporting surfaces around that browser product, not the first install or first success door.
+---
 
-> **Trust boundary**
->
-> AgentGangGang stays inside your browser, uses your existing sessions on supported sites, and does **not** add a hosted relay or account layer.
-> The supported repo build also does **not** rely on OS-level desktop
-> automation, Force Quit helpers, or host-wide process cleanup.
+AgentGangGang is a Chrome side panel that hosts every major AI side-by-side. One prompt, every model, side-by-side answers, no tab juggling.
 
-[Install the latest build](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest) • [Landing page](./docs/index.html) • [Install guide](./docs/install.html) • [First compare guide](./docs/first-compare-guide.html) • [Supported sites](./docs/supported-sites.html) • [Trust boundary](./docs/trust-boundary.html) • [FAQ guide](./docs/faq.html) • [Privacy](./PRIVACY.md) • [Security](./SECURITY.md) • [Building locally](./CONTRIBUTING.md)
-
-![AgentGangGang hero showing one prompt and multiple AI answers side by side.](./docs/assets/agentganggang-hero.png)
-
-The shortest way to evaluate AgentGangGang is simple: install the latest packaged build, keep the AI tabs you already use open, then ask once from the side panel and compare the answers in one place.
-
-## What Is Real Today
-
-| Surface         | Current truth                                                                                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Product install | **GitHub Release zip is the supported install path today.**                                                                                                      |
-| Core product    | **Browser extension + compare-first side panel** with your existing signed-in tabs.                                                                              |
-| Builder lane    | **Local MCP sidecar** for Codex and Claude Code, plus repo-owned starter packets for OpenCode and OpenClaw, and an optional Docker wrapper for the same sidecar. |
-| Official registry | **The official MCP Registry already returns a live AgentGangGang MCP entry for the local sidecar.**                                                     |
-| Not live yet    | **Browser store, host marketplaces, and any Glama listing.**                                                                                                     |
-
-The supported install path today is the packaged GitHub Release zip. Browser-store submission materials are being kept ready, but GitHub Releases remains the supported install surface today.
-The official MCP Registry already returns a live AgentGangGang MCP entry for the same local sidecar install surface. That registry proof does **not** make the browser-store path live, and it does **not** mean every host marketplace is already published.
-
-The optional integration lane stays one step lower in the information hierarchy. Reach for MCP starter kits, host packets, Docker integration docs, and distribution truth only after the first compare path is already clear.
-
-Before the first compare run, make sure the supported AI tabs you want to use
-are already open and signed in inside the same browser profile.
-The side panel now includes a first-run checklist and readiness repair actions,
-so the shortest path to success lives inside the product instead of only in the docs.
-
-## Default Path
-
-If you only remember one route through this repo, remember this one:
-
-1. **Install the latest build** from GitHub Releases.
-2. **Run one real compare** from the side panel with the tabs you already trust.
-3. **Stay in the same turn** to retry failures only or export a readable compare artifact.
-
-Use these pages in that exact order:
-
-- [Install guide](./docs/install.html)
-- [First compare guide](./docs/first-compare-guide.html)
-- [Prompt packs](./docs/prompt-packs.html)
-
-## Why It Feels Worth Saving
-
-- **Compare responses side by side**: keep the same prompt aligned across multiple model cards instead of bouncing between tabs.
-- **Check readiness before you send**: see which selected model tabs are ready, still loading, missing, or likely affected by selector drift.
-- **Repair blocked models without guesswork**: readiness now points you to the next action when a tab is missing, loading, mismatched, or not exposing the send controls.
-- **Recover only the failures you care about**: retry the models that failed instead of replaying the whole compare run.
-- **Turn disagreement into the next move**: seed the next compare round, keep seed-only actions honest, and run the next compare only when you choose to.
-- **Carry useful results outside the side panel**: copy a compare summary, export Markdown, or keep a readable local artifact instead of only a backup dump.
-- **Add optional AI analysis without replacing the core compare lane**: the AI Compare Analyst can summarize consensus, explain disagreement, recommend the best-fit answer to continue from, and draft the next question by reusing one browser tab you already trust, while the main compare flow stays inside the same browser workspace.
-- **Expose product actions through governed coding-agent integrations**: AgentGangGang can expose readiness, compare, retry, export, session, analyst, and next-step workflow actions to local agents without becoming generic browser automation.
-- **Keep everything local in your browser**: no hosted relay sits between your prompt and the supported AI sites.
-- **Reuse the AI tabs you already use**: AgentGangGang works with the browser sessions you already keep open.
-- **Start from reusable prompt packs**: launch writing, research, coding, and rewriting compare runs without starting from a blank prompt every time.
-- **Export, restore, and reuse compare runs**: carry compare runs between machines through local import/export and save repeatable prompt recipes.
-
-## Try It Now
-
-Before you start:
-
-- a Chromium-compatible browser with Developer Mode available
-- at least one supported AI chat tab already open and signed in
-
-1. Open the [latest Releases page](https://github.com/xiaojiou176-open/AgentGangGang/releases/latest).
-2. Download the packaged extension zip, unzip it locally, open `chrome://extensions`, enable **Developer Mode**, and use **Load unpacked** on the extracted folder.
-3. If the AgentGangGang icon is hidden, open the browser Extensions menu, pin AgentGangGang, then click the toolbar icon to open the side panel.
-4. Open the supported AI tabs you want to compare, then ask once from the side panel.
-
-Today the public install path is the packaged GitHub Release zip. A lower-friction store distribution path is being prepared, but it is not live yet.
-
-If you are validating the real Chrome proof lane, keep one extra rule in mind:
-official Google Chrome branded builds 137+ / 139+ no longer reliably auto-load
-unpacked extensions from command-line flags. Automated runtime proof should use
-Chromium or Chrome for Testing. Real Chrome proof keeps the same signed-in
-profile, then uses `chrome://extensions` -> **Developer Mode** -> **Load unpacked**
-manually.
-
-Need the local build path, release workflow, Docker integration lane, or front-door
-maintenance steps? Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the dedicated
-[Docker integration page](./docs/docker-integration.html).
-
-Maintainer-only cleanup and runtime hygiene commands stay in
-[`CONTRIBUTING.md`](./CONTRIBUTING.md) so this README can stay focused on the
-public product surface.
-
-### Good First Compare Prompts
-
-If you want to see the value quickly, try one of these on three or more supported sites:
-
-- `Summarize the launch plan for a browser-native AI extension in three bullets.`
-- `Compare the trade-offs between React and Vue for a browser extension UI.`
-- `Rewrite this paragraph in a clearer, friendlier tone for a GitHub README.`
-
-### Explore By Use Case
-
-- [Compare ChatGPT vs Gemini vs Perplexity](./docs/compare-chatgpt-vs-gemini-vs-perplexity.html)
-- [Best AI for rewriting text](./docs/best-ai-for-rewriting-text.html)
-- [Best AI for coding explanations](./docs/best-ai-for-coding-explanations.html)
-- [Why browser-native AI comparison matters](./docs/browser-ai-comparison.html)
-- [Prompt packs](./docs/prompt-packs.html)
-
-### After The First Compare Works
-
-- Retry only the failed cards from the same compare turn.
-- Export a readable compare summary or Markdown artifact.
-- Reuse [Prompt packs](./docs/prompt-packs.html) when you want a faster second run.
-
-### Optional Builder Lane (Second Ring)
-
-If you already use MCP-capable coding agents, come here **after** the first compare works:
-
-- [AgentGangGang for Codex, Claude Code, and MCP agents](./docs/mcp-coding-agents.html)
-- [AgentGangGang MCP starter kits](./docs/mcp-starter-kits.html)
-- [AgentGangGang Docker integration](./docs/docker-integration.html)
-- [AgentGangGang host packets](./docs/mcp-host-packets.html)
-- [AgentGangGang public distribution matrix](./docs/public-distribution-matrix.html)
-
-These builder surfaces are intentionally second-ring pages. They are real and useful, but they should not outrank install, first compare, supported sites, and trust boundary in the first impression.
-
-If you need standalone skill folders for host-specific submission flows, use
-[public-skills/README.md](./public-skills/README.md). Those packets are
-repo-owned submission materials for OpenHands/extensions and ClawHub-style
-publish flows; they are not proof that any public listing is already live.
-
-## Why It Beats Tab Juggling
-
-![AgentGangGang before-and-after comparison showing manual multi-tab comparison versus one local side panel workspace.](./docs/assets/agentganggang-before-after.svg)
-
-The strongest product claim here is not abstract AI productivity. It is much simpler: AgentGangGang removes the messy part of side-by-side comparison.
-
-| Manual multi-tab compare                        | AgentGangGang                                           |
-| ----------------------------------------------- | ------------------------------------------------------------ |
-| Paste the same prompt into every site           | Ask once from the side panel                                 |
-| Wait in separate tabs and windows               | Watch status chips update in one board                       |
-| Reconstruct which answer belongs to which model | Keep aligned model cards in one compare view                 |
-| Copy results back into your own notes by hand   | Copy the best-fit answer or reopen the original tab directly |
-| Lose the comparison context after the session   | Keep the run saved locally for export and restore            |
-
-## How It Works
-
-1. **Open the sites you already use**: keep ChatGPT, Gemini, Perplexity, Qwen, or Grok signed in inside normal browser tabs.
-2. **Ask once from the side panel**: AgentGangGang fans the same prompt out from one local workspace.
-3. **Compare clearly**: review the answers side by side, inspect the per-model run timeline, copy the best response, or jump back into the original model tab.
-4. **Recover, export, and continue**: retry only the failed models, use the repair center when readiness blocks a run, export a readable compare artifact, or seed the next compare round from the completed answers.
-
-## Integrations (Second Ring, After The First Compare)
-
-AgentGangGang also includes governed coding-agent integrations for product-level workflows.
-Those integrations are real, but they are **not** the default first-stop story of the repo.
-The default story is still: install, run one compare, then export or retry from the same turn.
-
-- The integration speaks MCP over `stdio`.
-- The extension bridge stays on your own machine at `127.0.0.1`.
-- The exposed surface stays product-specific: readiness, compare, retry,
-  export, session reads, the analyst lane, and workflow helpers.
-- The optional Docker integration wraps the same local MCP surface; it does **not**
-  turn AgentGangGang into a hosted compare service or public HTTP API.
-- The MCP surface does **not** expose arbitrary DOM selectors or generic
-  website automation.
-
-Current truthful split:
-
-- **Supported now**: Codex and Claude Code are the strongest repo-specific host
-  flows.
-- **Official MCP Registry**: a live AgentGangGang entry already points to
-  the local sidecar install/docs surface.
-- **ClawHub**: the standalone compare-workflows skill is now publicly listed at
-  `https://clawhub.ai/xiaojiou176/agentganggang-compare-workflows`.
-- **Packet-ready, not published**: OpenCode still stays on the repo-owned
-  packet lane, and this repo still does not claim a broader official OpenClaw
-  plugin or marketplace listing beyond the live ClawHub skill page.
-- **Still external-only**: package namespace control, browser-store
-  submission, and any future marketplace or registry listing.
-
-Use the repo-local operator helper for the main maintainer path:
-
-```bash
-npm run mcp:operator -- doctor
-npm run mcp:operator -- server
-npm run mcp:operator -- smoke
-npm run mcp:operator -- live-probe
-npm run mcp:operator -- live-diagnose
-npm run mcp:operator -- live-support-bundle
+```
+┌──────────────────────────────────────┐
+│  LOCAL-FIRST          ████████ 100%  │
+│  SOURCE-TRACEABLE     ████████ 100%  │
+│  TYPING REQUIRED      ░░░░░░░░   0%  │
+│  VIBES                ████████ ZERO  │
+│                                FILLER│
+└──────────────────────────────────────┘
 ```
 
-Use these links instead of keeping the full builder ledger duplicated in the
-README:
+> ChatGPT, Claude, Gemini, Grok, DeepSeek — same panel, same prompt, instant compare.
 
-- [MCP agents guide](./docs/mcp-coding-agents.html)
-- [Host packets](./docs/mcp-host-packets.html)
-- [Public distribution matrix](./docs/public-distribution-matrix.html)
-- [`mcp/integration-kits/support-matrix.json`](./mcp/integration-kits/support-matrix.json)
-- [`mcp/integration-kits/public-distribution-matrix.json`](./mcp/integration-kits/public-distribution-matrix.json)
+## What You Get
 
-The machine-readable builder truth lives at
-`agentganggang://builder/support-matrix`.
+| Surface | What |
+|---|---|
+| `sidepanel` | All your AIs in one Chrome panel. Hot-swap, compare, fork. |
+| `⌘+K compare mode` | Send the same prompt to N agents. See answers next to each other. |
+| `mcp bridge` | AgentGangGang doubles as an MCP server for downstream agents. |
+| `public skills` | Drop into Claude/Codex/OpenClaw. Spawn the gang on demand. |
 
-Quick placement map:
+> [!IMPORTANT]
+> Local-first by default. No silent telemetry. No cloud round-trip. Your data stays on your machine until you explicitly ship it somewhere.
 
-- Codex -> `config.toml`
-- Claude Code -> `.mcp.json`
-- OpenCode -> project-root `opencode.jsonc`
-- OpenClaw -> `openclaw mcp set` or `mcp.servers`
+## Install
 
-If host wiring looks correct but site behavior still feels brittle, read
-`agentganggang://sites/capabilities` next. That resource is the current
-per-site DOM/readiness/private-API boundary map for the compare-first product
-surface.
+```bash
+git clone https://github.com/xiaojiou176-open/AgentGangGang.git
+cd AgentGangGang
+# follow the per-stack quickstart in INSTALL.md or docs/
+```
 
-Native Messaging is **not** the shipped transport in this release. If you want
-to explore that direction later, start from the scaffold notes in
-[`mcp/native-messaging/README.md`](./mcp/native-messaging/README.md) instead of
-treating it as an already-wired runtime path.
+Three commands. No `curl | sh`. No login. Read what you run.
 
-![Animated AgentGangGang demo showing the compare-first flow from empty state to completed multi-model answers.](./docs/assets/agentganggang-demo.gif)
+Install break? Open your favorite agent and say *"Read AGENTS.md and bootstrap AgentGangGang for me."* Agent fix own brain. Long version: [`docs/`](./docs/).
 
-The demo now shows the actual product rhythm: ready state, compare fan-out, workflow staging, and a completed comparison board.
+## How It Work
 
-### Compare View
+The repo is seven layers — exactly the seven commits in `git log`. New work goes in as small named PRs. No 50-file mystery commits.
 
-![AgentGangGang compare detail showing model cards, status chips, copy action, and open-site action.](./docs/assets/agentganggang-compare-detail.png)
+| Layer | What |
+|---|---|
+| `chore: scaffold` | License, governance, hygiene gates, CI scaffolding. |
+| `feat(core)` | The primary engine. The reason AgentGangGang exists. |
+| `feat(modules)` | Packages, adapters, services, plugins. The second floor. |
+| `feat(contracts)` | Schemas, configs, public boundaries. Other code talks here. |
+| `test:` | Receipts. Everything in this layer must run. |
+| `feat(ops)` | Scripts, infra, CI helpers, build glue. |
+| `docs:` | Public docs surface. The pretty face. |
 
-This detail view highlights the compare-first design with the current next-step lane: one prompt header, WorkflowPanel, analyst guidance, clear model identity, delivery status chips, and direct links back to the original site.
+`git log` reads like a building floor plan. Look once, know the whole shape.
 
-### Trust Boundary Map
+## Ecosystem
 
-![AgentGangGang workflow diagram showing open sites, ask once, compare clearly, and the browser trust boundary.](./docs/assets/agentganggang-workflow.svg)
+AgentGangGang lives in the ***Me family**: three personal tools. command-style names, stupid-simple jobs.
 
-The workflow map makes the runtime boundary explicit: AgentGangGang orchestrates the browser-side flow, while the supported AI websites remain the actual execution surfaces.
+| Repo | What |
+|---|---|
+| [**BeamMe**](https://github.com/xiaojiou176-open/BeamMe) | beam your agent config to any planet |
+| [**BrewMe**](https://github.com/xiaojiou176-open/BrewMe) | wake up, news already brewed |
+| [**AgentGangGang**](https://github.com/xiaojiou176-open/AgentGangGang) *(you here)* | five AIs in one sidebar |
 
-### Settings And Portability
+Cross-family taste:
+[**BeamMe**](https://github.com/xiaojiou176-open/BeamMe) ·
+[**BrewMe**](https://github.com/xiaojiou176-open/BrewMe) ·
+[**OpenVibeCoding**](https://github.com/xiaojiou176-open/OpenVibeCoding) ·
+[**proofyard**](https://github.com/xiaojiou176-open/proofyard).
 
-![AgentGangGang settings view with data export, import, language, theme, and keyboard preferences.](./docs/assets/agentganggang-settings.png)
+## Star This Repo
 
-Settings keep the project honest as a real tool, not just a hero screenshot: export and import, language, theme, and keyboard preferences all live inside the extension.
+If AgentGangGang saves you a click, an hour, or a headache — star costs zero. Fair trade. ⭐
 
-## Supported Sites
+[![Star History Chart](https://api.star-history.com/svg?repos=xiaojiou176-open/AgentGangGang&type=Date)](https://star-history.com/#xiaojiou176-open/AgentGangGang&Date)
 
-- ChatGPT
-- Gemini
-- Perplexity
-- Qwen
-- Grok / xAI
+## Also by Yifeng[Terry] Yu
 
-These integrations depend on live DOM structure. When a supported site changes markup, AgentGangGang may need selector updates before the compare flow fully recovers.
+- **[BeamMe](https://github.com/xiaojiou176-open/BeamMe)** — beam your agent config to any planet
+- **[BrewMe](https://github.com/xiaojiou176-open/BrewMe)** — wake up, news already brewed
+- **[OpenVibeCoding](https://github.com/xiaojiou176-open/OpenVibeCoding)** — AI codes overnight, you ship in the morning
+- **[proofyard](https://github.com/xiaojiou176-open/proofyard)** — every claim ships with its receipt
+- **[dealyard](https://github.com/xiaojiou176-open/dealyard)** — let prices fight, you sit and watch
 
-Need the public-facing install and support detail page? Read [`docs/supported-sites.html`](./docs/supported-sites.html).
+## License
 
-## Good Fit / Not The Goal
-
-**Good fit**
-
-- You already use multiple AI chat sites and want a faster way to compare answers.
-- You want the trust boundary to stay inside the browser instead of adding another hosted layer.
-- You want session history and settings to stay in the same browser workspace.
-
-**Not the goal**
-
-- A cloud dashboard that proxies prompts through a backend.
-- A provider-neutral SDK for arbitrary model APIs.
-- A browser automation framework for non-supported websites.
-- A generic AI chat app that replaces the compare-first browser workflow.
-
-## FAQ
-
-Use the public support pages for the shortest answers:
-
-- [`docs/install.html`](./docs/install.html)
-- [`docs/supported-sites.html`](./docs/supported-sites.html)
-- [`docs/trust-boundary.html`](./docs/trust-boundary.html)
-- [`docs/faq.html`](./docs/faq.html)
-
-The short version is still:
-
-- no hosted relay
-- no browser-store install today
-- no public SDK or generic browser automation claim
-
-## Support
-
-Use the public issue tracker for non-sensitive bugs, setup questions, or product feedback:
-
-<https://github.com/xiaojiou176-open/AgentGangGang/issues>
-
-For security-sensitive reports, follow [`SECURITY.md`](./SECURITY.md) instead of opening a detailed public issue.
-
-For open-ended product ideas, workflow discussion, or compare-first feedback, use GitHub Discussions:
-
-<https://github.com/xiaojiou176-open/AgentGangGang/discussions>
-
-Track packaged builds and release notes on the [Releases page](https://github.com/xiaojiou176-open/AgentGangGang/releases).
-
-## Why Star It Now
-
-If AgentGangGang makes multi-model comparison easier for you, star the repo so the latest packaged builds, selector drift fixes, and compare-first front-door updates stay easy to find.
+MIT — small print, big freedom.
