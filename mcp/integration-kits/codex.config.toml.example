@@ -5,7 +5,7 @@
 [mcp_servers.prompt_switchboard]
 command = "npm"
 args = ["run", "mcp:server"]
-cwd = "/absolute/path/to/multi-ai-sidepanel"
+cwd = "/absolute/path/to/AgentGangGang"
 
 # Suggested first calls after the server is attached:
 # 1. prompt_switchboard.bridge_status

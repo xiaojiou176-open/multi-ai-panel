@@ -3,7 +3,7 @@
     "prompt_switchboard": {
       "command": "npm",
       "args": ["run", "mcp:server"],
-      "cwd": "/absolute/path/to/multi-ai-sidepanel"
+      "cwd": "/absolute/path/to/AgentGangGang"
     }
   }
 }

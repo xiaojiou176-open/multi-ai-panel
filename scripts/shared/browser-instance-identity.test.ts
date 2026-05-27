@@ -27,12 +27,12 @@ afterEach(() => {
 describe('browser-instance-identity', () => {
   it('renders the core repo identity fields into the html payload', () => {
     const html = buildBrowserIdentityPageHtml({
-      repoLabel: 'multi-ai-sidepanel',
-      repoRoot: '/tmp/multi-ai-sidepanel',
+      repoLabel: 'AgentGangGang',
+      repoRoot: '/tmp/AgentGangGang',
       cdpUrl: 'http://127.0.0.1:9336',
       cdpPort: 9336,
       userDataDir: '/tmp/browser-root',
-      profileName: 'multi-ai-sidepanel',
+      profileName: 'AgentGangGang',
       profileDirectory: 'Profile 1',
       accent: '#0f766e',
       monogram: 'MS',
@@ -40,7 +40,7 @@ describe('browser-instance-identity', () => {
       extensionUrl: 'chrome-extension://abc/index.html',
     });
 
-    expect(html).toContain('multi-ai-sidepanel');
+    expect(html).toContain('AgentGangGang');
     expect(html).toContain('http://127.0.0.1:9336');
     expect(html).toContain('/tmp/browser-root');
     expect(html).toContain('Profile 1');
@@ -58,7 +58,7 @@ describe('browser-instance-identity', () => {
       cdpUrl: 'http://127.0.0.1:9336',
       browserProfile: {
         userDataDir: '/tmp/browser-root',
-        profileName: 'multi-ai-sidepanel',
+        profileName: 'AgentGangGang',
         profileDirectory: 'Profile 1',
       },
       startUrl: 'https://chatgpt.com/',

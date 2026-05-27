@@ -139,8 +139,8 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
   - `PROMPT_SWITCHBOARD_BROWSER_USER_DATA_DIR`
   - `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME`
   - `PROMPT_SWITCHBOARD_BROWSER_PROFILE_DIRECTORY`
-  - The canonical root is `~/.cache/multi-ai-sidepanel/browser/chrome-user-data`
-    with a single repo-owned `multi-ai-sidepanel` profile.
+  - The canonical root is `~/.cache/AgentGangGang/browser/chrome-user-data`
+    with a single repo-owned `AgentGangGang` profile.
   - Default Chrome user data under `~/Library/Application Support/Google/Chrome`
     is migration-source only, not the canonical runtime root.
   - Fail closed when that profile resolution is missing or ambiguous; do not
@@ -152,9 +152,9 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 ## Temp Clone, Cache, Disk, And Docker Hygiene
 
 - Keep repo-owned runtime scratch inside `.runtime-cache/`.
-- Keep repo-owned external cache under `~/.cache/multi-ai-sidepanel/` unless an
+- Keep repo-owned external cache under `~/.cache/AgentGangGang/` unless an
   explicit repo-owned override is set for the current run.
-- Treat `~/.cache/multi-ai-sidepanel/browser/chrome-user-data/` as persistent
+- Treat `~/.cache/AgentGangGang/browser/chrome-user-data/` as persistent
   browser state.
   - Exclude it from TTL / cap pruning.
   - Exclude it from `npm run clean:runtime`.

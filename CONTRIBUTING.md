@@ -125,11 +125,11 @@ Command boundary:
 
 - `clean:runtime:dry-run` previews the current runtime cleanup plan
 - `clean:runtime` removes disposable runtime outputs immediately, removes
-  repo-owned external cache entries under `~/.cache/multi-ai-sidepanel/`
+  repo-owned external cache entries under `~/.cache/AgentGangGang/`
   (including `live-profile-clones/prompt-switchboard-live-*`), prunes them with
   the current TTL/cap policy, and applies retention to local evidence
   directories, while preserving the repo-owned browser root under
-  `~/.cache/multi-ai-sidepanel/browser/chrome-user-data/`
+  `~/.cache/AgentGangGang/browser/chrome-user-data/`
 - `clean:repo:light` only removes `dist`, `coverage`, and `.husky/_`
 - `clean:repo:heavy` runs the light cleanup set and also removes `node_modules`
 
@@ -140,13 +140,13 @@ Runtime classes:
 - `.runtime-cache/test_output`, `.runtime-cache/coverage-tmp`,
   `.runtime-cache/coverage-split`, and `.runtime-cache/test-results` ->
   scratch / disposable-generated
-- `~/.cache/multi-ai-sidepanel/live-profile-clones/prompt-switchboard-live-*`
+- `~/.cache/AgentGangGang/live-profile-clones/prompt-switchboard-live-*`
   -> repo-owned external disposable-generated temp clone created by
   login-state-sensitive live flows when profile cloning is enabled
-- `~/.cache/multi-ai-sidepanel/` -> repo-owned external cache root with
+- `~/.cache/AgentGangGang/` -> repo-owned external cache root with
   automatic retention (`72h`) and size cap (`2 GB`) unless overridden by
   repo-owned cache env vars
-- `~/.cache/multi-ai-sidepanel/browser/chrome-user-data/` ->
+- `~/.cache/AgentGangGang/browser/chrome-user-data/` ->
   repo-owned persistent browser state; excluded from TTL/cap pruning and
   excluded from `clean:runtime`
 - `.runtime-cache/release` -> evidence_keep with retention: keep the newest
@@ -351,9 +351,9 @@ The canonical login-state live lane now uses the repo-owned persistent browser
 root via environment-driven resolution:
 
 - default runtime root:
-  `~/.cache/multi-ai-sidepanel/browser/chrome-user-data`
+  `~/.cache/AgentGangGang/browser/chrome-user-data`
 - default runtime profile name:
-  `multi-ai-sidepanel`
+  `AgentGangGang`
 - default runtime profile directory:
   `Profile 1`
 
@@ -371,7 +371,7 @@ The bootstrap command:
 
 - expects all real Chrome / Chromium / Chrome for Testing processes to be
   closed first
-- copies the source `Local State` plus the source `multi-ai-sidepanel` profile
+- copies the source `Local State` plus the source `AgentGangGang` profile
   from the default Chrome root
 - rewrites the target root to a single canonical `Profile 1`
 - removes `SingletonLock`, `SingletonCookie`, and `SingletonSocket` from the
@@ -380,7 +380,7 @@ The bootstrap command:
 The default bootstrap source is:
 
 - `PROMPT_SWITCHBOARD_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
-- `PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME=multi-ai-sidepanel`
+- `PROMPT_SWITCHBOARD_BROWSER_SOURCE_PROFILE_NAME=AgentGangGang`
 
 The same clone controls also apply to the repo-owned diagnosis ladder when you
 need a deterministic persistent-context troubleshooting pass without touching
@@ -413,8 +413,8 @@ available.
 The supported default login-state live-proof path is now:
 
 - repo-owned persistent browser user data dir:
-  `~/.cache/multi-ai-sidepanel/browser/chrome-user-data`
-- `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME=multi-ai-sidepanel`
+  `~/.cache/AgentGangGang/browser/chrome-user-data`
+- `PROMPT_SWITCHBOARD_BROWSER_PROFILE_NAME=AgentGangGang`
 - `PROMPT_SWITCHBOARD_LIVE_ATTACH_MODE=browser`
 - `PROMPT_SWITCHBOARD_LIVE=1 npm run test:live:open-browser`
 
@@ -435,8 +435,8 @@ That helper launches or reuses one repo-owned real Google Chrome browser lane
 with:
 
 - the repo's unpacked extension side-loaded
-- `~/.cache/multi-ai-sidepanel/browser/chrome-user-data`
-- the resolved `multi-ai-sidepanel` / `Profile 1` profile
+- `~/.cache/AgentGangGang/browser/chrome-user-data`
+- the resolved `AgentGangGang` / `Profile 1` profile
 - a fixed CDP listener on `http://127.0.0.1:9336`
 - a generated local identity tab under
   `.runtime-cache/browser-identity/index.html` that shows the repo label, CDP

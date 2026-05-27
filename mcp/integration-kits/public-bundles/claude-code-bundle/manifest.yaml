@@ -5,8 +5,8 @@ name: Prompt Switchboard Claude Code Bundle
 description: Repo-owned Claude Code bundle packet for the Prompt Switchboard local MCP sidecar.
 version: "0.2.2"
 license: MIT
-homepage: https://xiaojiou176-open.github.io/multi-ai-sidepanel/
-repository: https://github.com/xiaojiou176-open/multi-ai-sidepanel
+homepage: https://xiaojiou176-open.github.io/AgentGangGang/
+repository: https://github.com/xiaojiou176-open/AgentGangGang
 supportTier: supported_now
 publicationStatus: repo_owned_bundle_not_officially_listed
 install:

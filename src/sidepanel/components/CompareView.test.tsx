@@ -53,14 +53,14 @@ describe('CompareView', () => {
 
     fireEvent.click(getByRole('button', { name: 'MCP starter kits' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/mcp-starter-kits.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/mcp-starter-kits.html',
       '_blank',
       'noopener,noreferrer'
     );
 
     fireEvent.click(getByRole('button', { name: 'Public distribution matrix' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/public-distribution-matrix.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/public-distribution-matrix.html',
       '_blank',
       'noopener,noreferrer'
     );
@@ -105,7 +105,7 @@ describe('CompareView', () => {
 
     fireEvent.click(getAllByRole('button', { name: 'First compare guide' })[0]!);
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/multi-ai-sidepanel/first-compare-guide.html',
+      'https://xiaojiou176-open.github.io/AgentGangGang/first-compare-guide.html',
       '_blank',
       'noopener,noreferrer'
     );

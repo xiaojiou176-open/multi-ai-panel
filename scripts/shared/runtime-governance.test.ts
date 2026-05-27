@@ -48,7 +48,7 @@ const writeFileOfSize = (targetPath: string, bytes: number) => {
 
 const createSourceChromeFixture = ({
   profileDirectory = 'Profile 23',
-  profileName = 'multi-ai-sidepanel',
+  profileName = 'AgentGangGang',
 }: {
   profileDirectory?: string;
   profileName?: string;
@@ -217,7 +217,7 @@ describe('runtime-governance', () => {
         last_active_profiles: ['Profile 23'],
         info_cache: {
           'Profile 23': {
-            name: 'multi-ai-sidepanel',
+            name: 'AgentGangGang',
             avatar_icon: 'chrome://theme/IDR_PROFILE_AVATAR_1',
           },
         },

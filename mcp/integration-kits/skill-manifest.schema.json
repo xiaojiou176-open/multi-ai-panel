@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xiaojiou176-open.github.io/multi-ai-sidepanel/mcp/integration-kits/skill-manifest.schema.json",
+  "$id": "https://xiaojiou176-open.github.io/AgentGangGang/mcp/integration-kits/skill-manifest.schema.json",
   "title": "Prompt Switchboard skill manifest",
   "type": "object",
   "required": [

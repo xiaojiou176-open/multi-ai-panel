@@ -4,9 +4,9 @@
   "title": "Prompt Switchboard MCP Sidecar",
   "description": "Local MCP sidecar for Prompt Switchboard's browser-first compare workflows: readiness, compare, retry, export, and workflow carry-forward.",
   "repository": {
-    "url": "https://github.com/xiaojiou176-open/multi-ai-sidepanel",
+    "url": "https://github.com/xiaojiou176-open/AgentGangGang",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/xiaojiou176-open/multi-ai-sidepanel/blob/main/docs/mcp-coding-agents.html",
+  "websiteUrl": "https://github.com/xiaojiou176-open/AgentGangGang/blob/main/docs/mcp-coding-agents.html",
   "version": "0.2.2"
 }

@@ -4,7 +4,7 @@ This guide avoids private paths and keeps the install loop portable.
 
 ## What you need
 
-- a local clone of `https://github.com/xiaojiou176-open/multi-ai-sidepanel`
+- a local clone of `https://github.com/xiaojiou176-open/AgentGangGang`
 - Node.js and npm
 - the Prompt Switchboard browser extension installed and able to reach its side panel
 - at least two supported AI chat tabs signed in and open
@@ -12,8 +12,8 @@ This guide avoids private paths and keeps the install loop portable.
 ## 1. Clone and install the repo
 
 ```bash
-git clone https://github.com/xiaojiou176-open/multi-ai-sidepanel.git
-cd multi-ai-sidepanel
+git clone https://github.com/xiaojiou176-open/AgentGangGang.git
+cd AgentGangGang
 npm install
 ```
 
@@ -22,7 +22,7 @@ npm install
 Prompt Switchboard exposes its MCP server through the repo-owned script:
 
 ```bash
-npm --prefix /absolute/path/to/multi-ai-sidepanel run mcp:server
+npm --prefix /absolute/path/to/AgentGangGang run mcp:server
 ```
 
 You do not need to invent a new wrapper. Reuse that command in your host config.

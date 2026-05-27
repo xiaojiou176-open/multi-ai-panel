@@ -5,10 +5,10 @@ name: prompt-switchboard
 description: Use Prompt Switchboard as a compare-first local MCP workspace during Codex sessions.
 version: "0.2.2"
 license: MIT
-homepage: https://github.com/xiaojiou176-open/multi-ai-sidepanel/tree/main/mcp/integration-kits/public-bundles/codex-bundle
+homepage: https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/codex-bundle
 repository:
   type: git
-  url: git+https://github.com/xiaojiou176-open/multi-ai-sidepanel.git
+  url: git+https://github.com/xiaojiou176-open/AgentGangGang.git
   directory: mcp/integration-kits/public-bundles/codex-bundle
 supportTier: supported_now
 publicationStatus: embedded_skill_only_not_independently_published

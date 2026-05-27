@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const repo = 'xiaojiou176-open/multi-ai-sidepanel';
+const repo = 'xiaojiou176-open/AgentGangGang';
 const packageJson = JSON.parse(readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const version = packageJson.version;
 const releaseTag = `v${version}`;
