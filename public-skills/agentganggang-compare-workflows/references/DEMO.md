@@ -5,23 +5,23 @@ work instead of just existing as prose.
 
 ## Demo prompt
 
-Use AgentGangGang to compare this rewrite request across the ready ChatGPT
+Use MultiAiPanel to compare this rewrite request across the ready ChatGPT
 and Gemini tabs:
 
 > Rewrite the following onboarding email so it sounds warmer and 30% shorter.
 
-Start with `agentganggang.bridge_status` and
-`agentganggang.check_readiness`. If both tabs are ready, run
-`agentganggang.compare`. After the compare turn lands, use
-`agentganggang.analyze_compare` to summarize the biggest wording
+Start with `multi-ai-panel.bridge_status` and
+`multi-ai-panel.check_readiness`. If both tabs are ready, run
+`multi-ai-panel.compare`. After the compare turn lands, use
+`multi-ai-panel.analyze_compare` to summarize the biggest wording
 differences and recommend which answer is better for a friendly product update.
 
 ## Expected tool sequence
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
-4. `agentganggang.analyze_compare`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
+4. `multi-ai-panel.analyze_compare`
 
 ## Visible success criteria
 

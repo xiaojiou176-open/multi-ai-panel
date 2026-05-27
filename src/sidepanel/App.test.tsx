@@ -207,14 +207,14 @@ describe('App', () => {
   });
 
   it('opens settings from localStorage flags and clears them', () => {
-    window.localStorage.setItem('agentganggang.openSettings', '1');
-    window.localStorage.setItem('agentganggang.e2e', '1');
+    window.localStorage.setItem('multi-ai-panel.openSettings', '1');
+    window.localStorage.setItem('multi-ai-panel.e2e', '1');
 
     const { queryByTestId } = render(<App />);
 
     expect(queryByTestId('settings-panel')).toBeInTheDocument();
-    expect(window.localStorage.getItem('agentganggang.openSettings')).toBeNull();
-    expect(window.localStorage.getItem('agentganggang.e2e')).toBeNull();
+    expect(window.localStorage.getItem('multi-ai-panel.openSettings')).toBeNull();
+    expect(window.localStorage.getItem('multi-ai-panel.e2e')).toBeNull();
   });
 
   it('exposes and cleans up the window settings hook', () => {
@@ -321,7 +321,7 @@ describe('App', () => {
     expect(queryByTestId('settings-panel')).toBeNull();
 
     act(() => {
-      window.dispatchEvent(new Event('agentganggang:open-settings'));
+      window.dispatchEvent(new Event('multi-ai-panel:open-settings'));
     });
     await waitFor(() => expect(queryByTestId('settings-panel')).toBeInTheDocument());
 
@@ -330,7 +330,7 @@ describe('App', () => {
 
     act(() => {
       window.dispatchEvent(
-        new MessageEvent('message', { data: { type: 'agentganggang:open-settings' } })
+        new MessageEvent('message', { data: { type: 'multi-ai-panel:open-settings' } })
       );
     });
     await waitFor(() => expect(queryByTestId('settings-panel')).toBeInTheDocument());
@@ -355,13 +355,13 @@ describe('App', () => {
     expect(shouldOpenSettingsFromUrl()).toBe(true);
 
     window.location.hash = '';
-    window.localStorage.setItem('agentganggang.openSettings', '1');
+    window.localStorage.setItem('multi-ai-panel.openSettings', '1');
     expect(shouldOpenSettingsFromUrl()).toBe(true);
-    expect(window.localStorage.getItem('agentganggang.openSettings')).toBeNull();
+    expect(window.localStorage.getItem('multi-ai-panel.openSettings')).toBeNull();
 
-    window.localStorage.setItem('agentganggang.e2e', '1');
+    window.localStorage.setItem('multi-ai-panel.e2e', '1');
     expect(shouldOpenSettingsFromUrl()).toBe(true);
-    expect(window.localStorage.getItem('agentganggang.e2e')).toBeNull();
+    expect(window.localStorage.getItem('multi-ai-panel.e2e')).toBeNull();
   });
 
   it('returns false when no settings-open signal is present', () => {

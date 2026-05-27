@@ -1,6 +1,6 @@
 {
-  "name": "com.agentganggang.host",
-  "description": "AgentGangGang Native Messaging host scaffold",
+  "name": "com.multi-ai-panel.host",
+  "description": "MultiAiPanel Native Messaging host scaffold",
   "path": "__ABSOLUTE_HOST_PATH__",
   "type": "stdio",
   "allowed_origins": [

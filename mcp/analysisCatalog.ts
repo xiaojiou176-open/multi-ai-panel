@@ -28,7 +28,7 @@ const SWITCHYARD_RUNTIME_MODEL_MAP = {
 export const MCP_ANALYSIS_PROVIDER_CATALOG = {
   surface: 'analysis_provider_catalog',
   trustBoundary:
-    'AgentGangGang keeps compare, tabs, readiness, and workflow orchestration in the browser. Analysis lanes only describe how the extra analyst prompt executes.',
+    'MultiAiPanel keeps compare, tabs, readiness, and workflow orchestration in the browser. Analysis lanes only describe how the extra analyst prompt executes.',
   providers: [
     {
       id: 'browser_session',
@@ -43,7 +43,7 @@ export const MCP_ANALYSIS_PROVIDER_CATALOG = {
       id: 'switchyard_runtime',
       label: 'Local Switchyard runtime',
       description:
-        'Route one analysis prompt through a local Switchyard service without letting Switchyard take over AgentGangGang tab orchestration.',
+        'Route one analysis prompt through a local Switchyard service without letting Switchyard take over MultiAiPanel tab orchestration.',
       executionSurface: 'future_runtime',
       availableInBrowserBuild: true,
       availabilityReason:

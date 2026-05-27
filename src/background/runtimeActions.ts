@@ -53,7 +53,7 @@ const buildDeliveryErrorMessage = (model: ModelName, errorCode: string) => {
   }
 
   return i18n.t('runtime.contentPromptDriveFailed', {
-    defaultValue: 'AgentGangGang could not drive {{model}} on this page.',
+    defaultValue: 'MultiAiPanel could not drive {{model}} on this page.',
     model,
   });
 };
@@ -483,8 +483,8 @@ export async function runCompareAnalysis(
       errorCode,
       errorMessage:
         errorCode === SEND_ERROR_CODES.HANDSHAKE
-          ? `AgentGangGang could not confirm that ${model} was ready for AI analysis.`
-          : `AgentGangGang could not start AI analysis in ${model}.`,
+          ? `MultiAiPanel could not confirm that ${model} was ready for AI analysis.`
+          : `MultiAiPanel could not start AI analysis in ${model}.`,
       data: {
         stage:
           errorCode === SEND_ERROR_CODES.HANDSHAKE

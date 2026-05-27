@@ -1,40 +1,40 @@
 schemaVersion: "1.0.0"
 kind: skill_packet
-id: agentganggang-openclaw-skill
-name: agentganggang
-description: Use AgentGangGang as a compare-first local MCP workspace during OpenClaw sessions.
+id: multi-ai-panel-openclaw-skill
+name: multi-ai-panel
+description: Use MultiAiPanel as a compare-first local MCP workspace during OpenClaw sessions.
 version: "0.2.2"
 license: MIT
-homepage: https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle
+homepage: https://github.com/xiaojiou176-open/multi-ai-panel/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle
 repository:
   type: git
-  url: git+https://github.com/xiaojiou176-open/AgentGangGang.git
+  url: git+https://github.com/xiaojiou176-open/multi-ai-panel.git
   directory: mcp/integration-kits/public-bundles/openclaw-bundle
 supportTier: public_bundle_ready_unverified_host_lane
 publicationStatus: embedded_skill_only_not_independently_published
 host: OpenClaw
 placement:
-  relativePath: skills/agentganggang/SKILL.md
+  relativePath: skills/multi-ai-panel/SKILL.md
   discoveryRoots:
     - skills/<name>/SKILL.md
 capabilities:
-  - agentganggang.bridge_status
-  - agentganggang.check_readiness
-  - agentganggang.compare
-  - agentganggang.analyze_compare
-  - agentganggang.run_workflow
-  - agentganggang.get_workflow_run
-  - agentganggang.list_workflow_runs
-  - agentganggang.resume_workflow
+  - multi-ai-panel.bridge_status
+  - multi-ai-panel.check_readiness
+  - multi-ai-panel.compare
+  - multi-ai-panel.analyze_compare
+  - multi-ai-panel.run_workflow
+  - multi-ai-panel.get_workflow_run
+  - multi-ai-panel.list_workflow_runs
+  - multi-ai-panel.resume_workflow
 smoke:
   path: ../../SMOKE.md
   minimalFlow:
-    - agentganggang.bridge_status
-    - agentganggang.check_readiness
-    - agentganggang.compare
+    - multi-ai-panel.bridge_status
+    - multi-ai-panel.check_readiness
+    - multi-ai-panel.compare
   preferredFlow:
-    - agentganggang.analyze_compare
-    - agentganggang.run_workflow
-    - agentganggang.get_workflow_run
-    - agentganggang.list_workflow_runs
-    - agentganggang.resume_workflow
+    - multi-ai-panel.analyze_compare
+    - multi-ai-panel.run_workflow
+    - multi-ai-panel.get_workflow_run
+    - multi-ai-panel.list_workflow_runs
+    - multi-ai-panel.resume_workflow

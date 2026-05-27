@@ -1,4 +1,4 @@
-# AgentGangGang Docker Surface
+# MultiAiPanel Docker Surface
 
 This directory documents the repo-owned Docker entry for the local Prompt
 Switchboard MCP sidecar and operator helper.
@@ -16,8 +16,8 @@ Truth boundary:
 
 Exact local commands:
 
-- `docker build -t agentganggang-mcp .`
-- `docker run --rm -i -p 48123:48123 agentganggang-mcp server`
-- `docker run --rm agentganggang-mcp doctor`
+- `docker build -t multi-ai-panel-mcp .`
+- `docker run --rm -i -p 48123:48123 multi-ai-panel-mcp server`
+- `docker run --rm multi-ai-panel-mcp doctor`
 
 Glama or other registry/listing submission remains an owner-run external step.

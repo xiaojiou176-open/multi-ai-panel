@@ -1,10 +1,10 @@
-# AgentGangGang Claude Code Bundle
+# MultiAiPanel Claude Code Bundle
 
 This is the repo-owned public bundle packet for Claude Code.
 
 It is meant for:
 
-- Claude Code users who want a public, compare-first AgentGangGang setup packet
+- Claude Code users who want a public, compare-first MultiAiPanel setup packet
 - bundle-compatible consumers such as OpenClaw that can ingest Claude-format packs
 
 ## What the bundle includes
@@ -12,12 +12,12 @@ It is meant for:
 - `.claude-plugin/plugin.json`
 - `.mcp.json`
 - `manifest.json`
-- `commands/agentganggang.md`
+- `commands/multi-ai-panel.md`
 - `SMOKE.md`
 
 ## Truth boundary
 
-- AgentGangGang stays the local MCP server and browser-side product surface
+- MultiAiPanel stays the local MCP server and browser-side product surface
 - Claude Code stays the outer coding loop
 - this bundle is not a marketplace listing
 - this bundle is not a hosted service or SDK
@@ -31,14 +31,14 @@ It is meant for:
 
 ## Smallest useful smoke
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`
 
 ## Full follow-through
 
-1. `agentganggang.analyze_compare`
-2. `agentganggang.run_workflow`
-3. `agentganggang.get_workflow_run`
-4. `agentganggang.list_workflow_runs`
-5. `agentganggang.resume_workflow`
+1. `multi-ai-panel.analyze_compare`
+2. `multi-ai-panel.run_workflow`
+3. `multi-ai-panel.get_workflow_run`
+4. `multi-ai-panel.list_workflow_runs`
+5. `multi-ai-panel.resume_workflow`

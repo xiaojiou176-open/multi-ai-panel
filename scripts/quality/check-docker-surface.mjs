@@ -22,8 +22,8 @@ for (const relPath of requiredFiles) {
 }
 
 const dockerfile = read('Dockerfile');
-if (!dockerfile.includes('AGENTGANGGANG_BRIDGE_HOST=0.0.0.0')) {
-  findings.push('Dockerfile must expose AGENTGANGGANG_BRIDGE_HOST=0.0.0.0 for the container bridge.');
+if (!dockerfile.includes('MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0')) {
+  findings.push('Dockerfile must expose MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0 for the container bridge.');
 }
 if (!dockerfile.includes('EXPOSE 48123')) {
   findings.push('Dockerfile must expose bridge port 48123.');
@@ -33,8 +33,8 @@ const dockerReadme = read('docker/README.md');
 for (const needle of [
   'not a hosted compare service',
   'not a public HTTP API',
-  'docker run --rm -i -p 48123:48123 agentganggang-mcp server',
-  'docker run --rm agentganggang-mcp doctor',
+  'docker run --rm -i -p 48123:48123 multi-ai-panel-mcp server',
+  'docker run --rm multi-ai-panel-mcp doctor',
   'Glama or other registry/listing submission remains an owner-run external step.',
 ]) {
   if (!dockerReadme.includes(needle)) {
@@ -46,9 +46,9 @@ const dockerDoc = read('docs/docker-integration.html');
 for (const needle of [
   'Containerize the MCP integration process, not the whole compare-first product.',
   'not a hosted compare service',
-  'docker run --rm -i -p 48123:48123 agentganggang-mcp server',
-  'docker run --rm agentganggang-mcp doctor',
-  'AgentGangGang listing there yet',
+  'docker run --rm -i -p 48123:48123 multi-ai-panel-mcp server',
+  'docker run --rm multi-ai-panel-mcp doctor',
+  'MultiAiPanel listing there yet',
 ]) {
   if (!dockerDoc.includes(needle)) {
     findings.push(`docs/docker-integration.html must mention ${needle}.`);

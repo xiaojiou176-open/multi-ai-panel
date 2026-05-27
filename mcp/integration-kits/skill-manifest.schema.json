@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xiaojiou176-open.github.io/AgentGangGang/mcp/integration-kits/skill-manifest.schema.json",
-  "title": "AgentGangGang skill manifest",
+  "$id": "https://xiaojiou176-open.github.io/multi-ai-panel/mcp/integration-kits/skill-manifest.schema.json",
+  "title": "MultiAiPanel skill manifest",
   "type": "object",
   "required": [
     "schemaVersion",

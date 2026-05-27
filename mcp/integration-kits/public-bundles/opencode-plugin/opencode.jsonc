@@ -1,13 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["agentganggang-opencode-plugin"],
+  "plugin": ["multi-ai-panel-opencode-plugin"],
   "mcp": {
-    "agentganggang": {
+    "multi-ai-panel": {
       "type": "local",
       "command": [
         "npm",
         "--prefix",
-        "/absolute/path/to/AgentGangGang",
+        "/absolute/path/to/MultiAiPanel",
         "run",
         "mcp:server"
       ],

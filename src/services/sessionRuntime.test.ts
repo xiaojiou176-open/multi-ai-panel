@@ -58,10 +58,10 @@ describe('sessionRuntime', () => {
       'This model timed out before it could respond.'
     );
     expect(buildDeliveryErrorMessage(SEND_ERROR_CODES.RUNTIME)).toBe(
-      'AgentGangGang could not deliver this prompt to the target tab.'
+      'MultiAiPanel could not deliver this prompt to the target tab.'
     );
     expect(buildDeliveryErrorMessage(SEND_ERROR_CODES.HANDSHAKE)).toBe(
-      'AgentGangGang could not confirm that the target tab was ready.'
+      'MultiAiPanel could not confirm that the target tab was ready.'
     );
     expect(buildDeliveryErrorMessage(SEND_ERROR_CODES.REJECTED)).toBe(
       'This model rejected the prompt request before a response was received.'
@@ -83,14 +83,14 @@ describe('sessionRuntime', () => {
     };
 
     expect(buildReadinessErrorMessage(report)).toBe(
-      'Gemini looks open, but AgentGangGang could not confirm the input controls on this page.'
+      'Gemini looks open, but MultiAiPanel could not confirm the input controls on this page.'
     );
 
     expect(buildReadinessFailurePayload(report, 'req-1', 'turn-1')).toEqual({
       model: 'Gemini',
       requestId: 'req-1',
       turnId: 'turn-1',
-      text: 'Gemini looks open, but AgentGangGang could not confirm the input controls on this page.',
+      text: 'Gemini looks open, but MultiAiPanel could not confirm the input controls on this page.',
       isComplete: true,
       deliveryStatus: DELIVERY_STATUS.ERROR,
       errorCode: SEND_ERROR_CODES.HANDSHAKE,
@@ -173,7 +173,7 @@ describe('sessionRuntime', () => {
         },
       })
     ).toMatchObject({
-      text: 'AgentGangGang could not deliver this prompt to the target tab.',
+      text: 'MultiAiPanel could not deliver this prompt to the target tab.',
       deliveryStatus: DELIVERY_STATUS.ERROR,
       deliveryErrorCode: SEND_ERROR_CODES.RUNTIME,
       completedAt: 1_700_000_000_000,

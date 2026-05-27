@@ -96,7 +96,7 @@ describe('CompareAnalystPanel', () => {
     ).toBeInTheDocument();
     expect(
       getByText(
-        'Core compare stays browser-native. This optional lane sends one analysis prompt through a local Switchyard runtime while AgentGangGang keeps the cockpit, tabs, and compare workflow.'
+        'Core compare stays browser-native. This optional lane sends one analysis prompt through a local Switchyard runtime while MultiAiPanel keeps the cockpit, tabs, and compare workflow.'
       )
     ).toBeInTheDocument();
     expect(getByRole('button', { name: 'Analyze compare' })).toBeInTheDocument();

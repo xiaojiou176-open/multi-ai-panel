@@ -53,14 +53,14 @@ describe('CompareView', () => {
 
     fireEvent.click(getByRole('button', { name: 'MCP starter kits' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/AgentGangGang/mcp-starter-kits.html',
+      'https://xiaojiou176-open.github.io/multi-ai-panel/mcp-starter-kits.html',
       '_blank',
       'noopener,noreferrer'
     );
 
     fireEvent.click(getByRole('button', { name: 'Public distribution matrix' }));
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/AgentGangGang/public-distribution-matrix.html',
+      'https://xiaojiou176-open.github.io/multi-ai-panel/public-distribution-matrix.html',
       '_blank',
       'noopener,noreferrer'
     );
@@ -100,12 +100,12 @@ describe('CompareView', () => {
       )
     ).toBeInTheDocument();
     expect(getByText('ChatGPT')).toBeInTheDocument();
-    expect(getByText(/AgentGangGang has not confirmed a usable host/)).toBeInTheDocument();
+    expect(getByText(/MultiAiPanel has not confirmed a usable host/)).toBeInTheDocument();
     expect(getByRole('button', { name: 'Open this model' })).toBeInTheDocument();
 
     fireEvent.click(getAllByRole('button', { name: 'First compare guide' })[0]!);
     expect(window.open).toHaveBeenCalledWith(
-      'https://xiaojiou176-open.github.io/AgentGangGang/first-compare-guide.html',
+      'https://xiaojiou176-open.github.io/multi-ai-panel/first-compare-guide.html',
       '_blank',
       'noopener,noreferrer'
     );
@@ -182,12 +182,12 @@ describe('CompareView', () => {
 
     fireEvent.click(getByText('Copy compare summary'));
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('AgentGangGang compare summary')
+      expect.stringContaining('MultiAiPanel compare summary')
     );
 
     fireEvent.click(getByText('Copy Markdown'));
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('# AgentGangGang compare export')
+      expect.stringContaining('# MultiAiPanel compare export')
     );
   });
 
@@ -315,11 +315,11 @@ describe('CompareView', () => {
         .length
     ).toBeGreaterThan(0);
     expect(
-      getAllByText('The model started, but AgentGangGang could not complete delivery back into the compare board.')
+      getAllByText('The model started, but MultiAiPanel could not complete delivery back into the compare board.')
         .length
     ).toBeGreaterThan(0);
     expect(
-      getAllByText('This run failed after the initial handoff, so AgentGangGang could not finish the answer lifecycle.')
+      getAllByText('This run failed after the initial handoff, so MultiAiPanel could not finish the answer lifecycle.')
         .length
     ).toBeGreaterThan(0);
 

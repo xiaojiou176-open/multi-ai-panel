@@ -2,11 +2,11 @@ FROM node:22-bookworm-slim
 
 WORKDIR /app
 
-LABEL org.opencontainers.image.title="AgentGangGang MCP Sidecar"
-LABEL org.opencontainers.image.description="Containerized local AgentGangGang MCP sidecar and operator helper."
-LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/AgentGangGang"
+LABEL org.opencontainers.image.title="MultiAiPanel MCP Sidecar"
+LABEL org.opencontainers.image.description="Containerized local MultiAiPanel MCP sidecar and operator helper."
+LABEL org.opencontainers.image.source="https://github.com/xiaojiou176-open/multi-ai-panel"
 LABEL org.opencontainers.image.licenses="MIT"
-LABEL io.modelcontextprotocol.server.name="io.github.xiaojiou176-open/agentganggang"
+LABEL io.modelcontextprotocol.server.name="io.github.xiaojiou176-open/multi-ai-panel"
 
 COPY package.json package-lock.json* ./
 RUN if [ -f package-lock.json ]; then npm ci --ignore-scripts; else npm install --ignore-scripts; fi
@@ -15,8 +15,8 @@ COPY . .
 
 RUN chown -R node:node /app
 
-ENV AGENTGANGGANG_BRIDGE_HOST=0.0.0.0
-ENV AGENTGANGGANG_BRIDGE_PORT=48123
+ENV MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0
+ENV MULTI_AI_PANEL_BRIDGE_PORT=48123
 
 EXPOSE 48123
 

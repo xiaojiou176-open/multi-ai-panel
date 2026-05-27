@@ -61,7 +61,7 @@ const getRepairCopy = (
         title: t('readiness.repair.tabMissingTitle', 'Open this model in a normal signed-in tab'),
         body: t(
           'readiness.repair.tabMissingBody',
-          'AgentGangGang cannot route the next compare run until this model is open in the same browser profile.'
+          'MultiAiPanel cannot route the next compare run until this model is open in the same browser profile.'
         ),
       };
     case READINESS_STATUSES.TAB_LOADING:
@@ -69,7 +69,7 @@ const getRepairCopy = (
         title: t('readiness.repair.tabLoadingTitle', 'Let this tab finish loading, then re-check'),
         body: t(
           'readiness.repair.tabLoadingBody',
-          'The target chat surface is still loading, so AgentGangGang is waiting for the page to settle before it can safely send.'
+          'The target chat surface is still loading, so MultiAiPanel is waiting for the page to settle before it can safely send.'
         ),
       };
     case READINESS_STATUSES.MODEL_MISMATCH:
@@ -84,7 +84,7 @@ const getRepairCopy = (
       return {
         title: t(
           'readiness.repair.selectorDriftTitle',
-          'AgentGangGang found the page, but could not confirm the send controls'
+          'MultiAiPanel found the page, but could not confirm the send controls'
         ),
         body:
           report.inputReady && report.submitReady === false
@@ -102,7 +102,7 @@ const getRepairCopy = (
       return {
         title: t(
           'readiness.repair.contentUnavailableTitle',
-          'AgentGangGang could not complete the in-tab handshake'
+          'MultiAiPanel could not complete the in-tab handshake'
         ),
         body: t(
           'readiness.repair.contentUnavailableBody',
@@ -184,7 +184,7 @@ export const ReadinessPanel: React.FC<ReadinessPanelProps> = ({
                   )
                 : t(
                     'readiness.summaryOk',
-                    'Selected models look ready, or AgentGangGang is checking them now.'
+                    'Selected models look ready, or MultiAiPanel is checking them now.'
                   )}
             </span>
           </div>

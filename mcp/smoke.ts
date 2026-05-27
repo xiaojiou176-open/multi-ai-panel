@@ -16,7 +16,7 @@ const packageJson = JSON.parse(
   readFileSync(path.resolve(__dirname, '../package.json'), 'utf8')
 ) as { version: string };
 
-const extensionId = 'agentganggang-smoke-extension';
+const extensionId = 'multi-ai-panel-smoke-extension';
 const extensionVersion = 'smoke';
 const workflowTemplateId = 'compare-analyze-follow-up';
 
@@ -314,7 +314,7 @@ const createMockResult = (command: string, args: Record<string, unknown>) => {
         sessionId: 'session-smoke',
         turnId: 'turn-smoke',
         format: args.format ?? 'markdown',
-        content: '# AgentGangGang compare export\n\nSmoke compare content',
+        content: '# MultiAiPanel compare export\n\nSmoke compare content',
       };
     case 'analyze_compare':
       return {
@@ -365,7 +365,7 @@ async function main() {
   const bridgePort = await getFreePort();
   const bridgeBaseUrl = createBridgeBaseUrl(bridgeHost, bridgePort);
   const client = new Client({
-    name: 'agentganggang-mcp-smoke',
+    name: 'multi-ai-panel-mcp-smoke',
     version: packageJson.version,
   });
 
@@ -379,7 +379,7 @@ async function main() {
     cwd: path.resolve(__dirname, '..'),
     env: {
       ...process.env,
-      AGENTGANGGANG_BRIDGE_PORT: String(bridgePort),
+      MULTI_AI_PANEL_BRIDGE_PORT: String(bridgePort),
     },
   });
 
@@ -490,17 +490,17 @@ async function main() {
   const resourceUris = resources.resources.map((resource) => resource.uri).sort();
 
   const requiredTools = [
-    'agentganggang.check_readiness',
-    'agentganggang.open_model_tabs',
-    'agentganggang.compare',
-    'agentganggang.retry_failed',
-    'agentganggang.get_session',
-    'agentganggang.list_sessions',
-    'agentganggang.export_compare',
-    'agentganggang.analyze_compare',
-    'agentganggang.run_workflow',
-    'agentganggang.get_workflow_run',
-    'agentganggang.bridge_status',
+    'multi-ai-panel.check_readiness',
+    'multi-ai-panel.open_model_tabs',
+    'multi-ai-panel.compare',
+    'multi-ai-panel.retry_failed',
+    'multi-ai-panel.get_session',
+    'multi-ai-panel.list_sessions',
+    'multi-ai-panel.export_compare',
+    'multi-ai-panel.analyze_compare',
+    'multi-ai-panel.run_workflow',
+    'multi-ai-panel.get_workflow_run',
+    'multi-ai-panel.bridge_status',
   ];
 
   for (const toolName of requiredTools) {
@@ -510,14 +510,14 @@ async function main() {
   }
 
   const requiredResources = [
-    'agentganggang://sessions/current',
-    'agentganggang://models/readiness',
-    'agentganggang://models/catalog',
-    'agentganggang://analysis/providers',
-    'agentganggang://workflows/templates',
-    'agentganggang://builder/support-matrix',
-    'agentganggang://builder/public-distribution',
-    'agentganggang://sites/capabilities',
+    'multi-ai-panel://sessions/current',
+    'multi-ai-panel://models/readiness',
+    'multi-ai-panel://models/catalog',
+    'multi-ai-panel://analysis/providers',
+    'multi-ai-panel://workflows/templates',
+    'multi-ai-panel://builder/support-matrix',
+    'multi-ai-panel://builder/public-distribution',
+    'multi-ai-panel://sites/capabilities',
   ];
 
   for (const resourceUri of requiredResources) {
@@ -527,7 +527,7 @@ async function main() {
   }
 
   const readinessResult = await client.callTool({
-    name: 'agentganggang.check_readiness',
+    name: 'multi-ai-panel.check_readiness',
     arguments: {
       models: ['ChatGPT'],
     },
@@ -535,7 +535,7 @@ async function main() {
   const readinessEnvelope = requireStructuredToolEnvelope('check_readiness', readinessResult);
 
   const compareResult = await client.callTool({
-    name: 'agentganggang.compare',
+    name: 'multi-ai-panel.compare',
     arguments: {
       prompt: 'Smoke compare prompt',
       models: ['ChatGPT'],
@@ -544,7 +544,7 @@ async function main() {
   const compareEnvelope = requireStructuredToolEnvelope('compare', compareResult);
 
   const workflowResult = await client.callTool({
-    name: 'agentganggang.run_workflow',
+    name: 'multi-ai-panel.run_workflow',
     arguments: {
       workflowId: workflowTemplateId,
       turnId: 'turn-smoke',
@@ -564,7 +564,7 @@ async function main() {
   }
 
   const workflowSnapshotResult = await client.callTool({
-    name: 'agentganggang.get_workflow_run',
+    name: 'multi-ai-panel.get_workflow_run',
     arguments: {
       runId: workflowRunId,
     },
@@ -575,7 +575,7 @@ async function main() {
   );
 
   const workflowListResult = await client.callTool({
-    name: 'agentganggang.list_workflow_runs',
+    name: 'multi-ai-panel.list_workflow_runs',
     arguments: {},
   });
   const workflowListEnvelope = requireStructuredToolEnvelope(
@@ -584,7 +584,7 @@ async function main() {
   );
 
   const workflowResumeResult = await client.callTool({
-    name: 'agentganggang.resume_workflow',
+    name: 'multi-ai-panel.resume_workflow',
     arguments: {
       runId: workflowRunId,
       externalUpdate: {
@@ -608,22 +608,22 @@ async function main() {
   );
 
   const resourceResult = await client.readResource({
-    uri: 'agentganggang://sessions/current',
+    uri: 'multi-ai-panel://sessions/current',
   });
   const analysisProvidersResource = await client.readResource({
-    uri: 'agentganggang://analysis/providers',
+    uri: 'multi-ai-panel://analysis/providers',
   });
   const workflowTemplatesResource = await client.readResource({
-    uri: 'agentganggang://workflows/templates',
+    uri: 'multi-ai-panel://workflows/templates',
   });
   const builderSupportMatrixResource = await client.readResource({
-    uri: 'agentganggang://builder/support-matrix',
+    uri: 'multi-ai-panel://builder/support-matrix',
   });
   const publicDistributionMatrixResource = await client.readResource({
-    uri: 'agentganggang://builder/public-distribution',
+    uri: 'multi-ai-panel://builder/public-distribution',
   });
   const siteCapabilitiesResource = await client.readResource({
-    uri: 'agentganggang://sites/capabilities',
+    uri: 'multi-ai-panel://sites/capabilities',
   });
 
   if (!resourceResult.contents?.length) {

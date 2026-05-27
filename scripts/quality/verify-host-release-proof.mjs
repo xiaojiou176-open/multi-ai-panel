@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const repo = 'xiaojiou176-open/AgentGangGang';
+const repo = 'xiaojiou176-open/MultiAiPanel';
 const packageJson = JSON.parse(readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const version = packageJson.version;
 const releaseTag = `v${version}`;
@@ -61,9 +61,9 @@ const release = parseJson(
 );
 
 const expectedAssets = new Set([
-  `agentganggang-v${version}-chrome-extension.zip`,
-  `agentganggang-v${version}-chrome-extension.zip.sha256.txt`,
-  `agentganggang-v${version}-chrome-extension.sbom.spdx.json`,
+  `multi-ai-panel-v${version}-chrome-extension.zip`,
+  `multi-ai-panel-v${version}-chrome-extension.zip.sha256.txt`,
+  `multi-ai-panel-v${version}-chrome-extension.sbom.spdx.json`,
 ]);
 
 const actualAssets = new Set((release.assets ?? []).map((asset) => asset.name));

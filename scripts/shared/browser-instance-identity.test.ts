@@ -12,7 +12,7 @@ import {
 const tempRoots = new Set<string>();
 
 const makeTempRoot = () => {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agentganggang-browser-identity-'));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'multi-ai-panel-browser-identity-'));
   tempRoots.add(tempRoot);
   return tempRoot;
 };
@@ -27,12 +27,12 @@ afterEach(() => {
 describe('browser-instance-identity', () => {
   it('renders the core repo identity fields into the html payload', () => {
     const html = buildBrowserIdentityPageHtml({
-      repoLabel: 'AgentGangGang',
-      repoRoot: '/tmp/AgentGangGang',
+      repoLabel: 'MultiAiPanel',
+      repoRoot: '/tmp/MultiAiPanel',
       cdpUrl: 'http://127.0.0.1:9336',
       cdpPort: 9336,
       userDataDir: '/tmp/browser-root',
-      profileName: 'AgentGangGang',
+      profileName: 'MultiAiPanel',
       profileDirectory: 'Profile 1',
       accent: '#0f766e',
       monogram: 'MS',
@@ -40,7 +40,7 @@ describe('browser-instance-identity', () => {
       extensionUrl: 'chrome-extension://abc/index.html',
     });
 
-    expect(html).toContain('AgentGangGang');
+    expect(html).toContain('MultiAiPanel');
     expect(html).toContain('http://127.0.0.1:9336');
     expect(html).toContain('/tmp/browser-root');
     expect(html).toContain('Profile 1');
@@ -58,7 +58,7 @@ describe('browser-instance-identity', () => {
       cdpUrl: 'http://127.0.0.1:9336',
       browserProfile: {
         userDataDir: '/tmp/browser-root',
-        profileName: 'AgentGangGang',
+        profileName: 'MultiAiPanel',
         profileDirectory: 'Profile 1',
       },
       startUrl: 'https://chatgpt.com/',

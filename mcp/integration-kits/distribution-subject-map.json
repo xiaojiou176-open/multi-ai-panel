@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "releaseVersion": "0.2.2",
   "rootPackage": {
-    "name": "AgentGangGang",
+    "name": "MultiAiPanel",
     "kind": "repo_identity_only",
     "private": true,
     "publishable": false,
@@ -10,42 +10,42 @@
   },
   "primaryPublishableUnits": [
     {
-      "id": "agentganggang-browser-extension-release",
+      "id": "multi-ai-panel-browser-extension-release",
       "kind": "release_artifact",
       "path": "dist/",
       "manifest": "manifest.json",
       "currentStatus": "published_via_github_releases"
     },
     {
-      "id": "agentganggang-mcp-sidecar-container",
+      "id": "multi-ai-panel-mcp-sidecar-container",
       "kind": "container_image",
       "path": "Dockerfile",
       "manifest": "docs/docker-integration.html",
       "currentStatus": "repo_owned_container_entry_not_published_to_any_registry"
     },
     {
-      "id": "agentganggang-opencode-plugin",
+      "id": "multi-ai-panel-opencode-plugin",
       "kind": "package_shaped_host_packet",
       "path": "mcp/integration-kits/public-bundles/opencode-plugin",
       "manifest": "mcp/integration-kits/public-bundles/opencode-plugin/manifest.json",
       "currentStatus": "repo_owned_npm_plugin_scaffold_not_published"
     },
     {
-      "id": "agentganggang-codex-bundle-packet",
+      "id": "multi-ai-panel-codex-bundle-packet",
       "kind": "bundle_packet",
       "path": "mcp/integration-kits/public-bundles/codex-bundle",
       "manifest": "mcp/integration-kits/public-bundles/codex-bundle/manifest.json",
       "currentStatus": "repo_owned_bundle_packet_not_published_on_a_marketplace"
     },
     {
-      "id": "agentganggang-claude-code-bundle-packet",
+      "id": "multi-ai-panel-claude-code-bundle-packet",
       "kind": "bundle_packet",
       "path": "mcp/integration-kits/public-bundles/claude-code-bundle",
       "manifest": "mcp/integration-kits/public-bundles/claude-code-bundle/manifest.json",
       "currentStatus": "repo_owned_bundle_packet_not_published_on_a_marketplace"
     },
     {
-      "id": "agentganggang-openclaw-bundle-packet",
+      "id": "multi-ai-panel-openclaw-bundle-packet",
       "kind": "bundle_packet",
       "path": "mcp/integration-kits/public-bundles/openclaw-bundle",
       "manifest": "mcp/integration-kits/public-bundles/openclaw-bundle/manifest.json",
@@ -54,17 +54,17 @@
   ],
   "embeddedSkillPackets": [
     {
-      "id": "agentganggang-codex-skill",
+      "id": "multi-ai-panel-codex-skill",
       "kind": "skill_packet",
-      "path": "mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang",
-      "manifest": "mcp/integration-kits/public-bundles/codex-bundle/skills/agentganggang/manifest.yaml",
+      "path": "mcp/integration-kits/public-bundles/codex-bundle/skills/multi-ai-panel",
+      "manifest": "mcp/integration-kits/public-bundles/codex-bundle/skills/multi-ai-panel/manifest.yaml",
       "currentStatus": "embedded_skill_only_not_independently_published"
     },
     {
-      "id": "agentganggang-openclaw-skill",
+      "id": "multi-ai-panel-openclaw-skill",
       "kind": "skill_packet",
-      "path": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang",
-      "manifest": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml",
+      "path": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/multi-ai-panel",
+      "manifest": "mcp/integration-kits/public-bundles/openclaw-bundle/skills/multi-ai-panel/manifest.yaml",
       "currentStatus": "embedded_skill_only_not_independently_published"
     }
   ],
@@ -82,7 +82,7 @@
       "role": "starter_config_example"
     },
     {
-      "path": "mcp/integration-kits/openclaw.agentganggang.json.example",
+      "path": "mcp/integration-kits/openclaw.multi-ai-panel.json.example",
       "role": "starter_config_example"
     },
     {

@@ -1,6 +1,6 @@
-# AgentGangGang OpenCode Plugin Packet
+# MultiAiPanel OpenCode Plugin Packet
 
-This directory is the repo-owned public OpenCode packet for AgentGangGang.
+This directory is the repo-owned public OpenCode packet for MultiAiPanel.
 
 It does two things:
 
@@ -13,7 +13,7 @@ It does two things:
 - OpenCode already has an official npm plugin surface
 - this repo now ships a publish-ready package scaffold
 - the package is not published yet
-- AgentGangGang stays the local MCP server and browser-side product surface
+- MultiAiPanel stays the local MCP server and browser-side product surface
 
 ## Public install shape
 
@@ -28,6 +28,6 @@ It does two things:
 
 ## Smallest useful smoke
 
-1. `agentganggang.bridge_status`
-2. `agentganggang.check_readiness`
-3. `agentganggang.compare`
+1. `multi-ai-panel.bridge_status`
+2. `multi-ai-panel.check_readiness`
+3. `multi-ai-panel.compare`

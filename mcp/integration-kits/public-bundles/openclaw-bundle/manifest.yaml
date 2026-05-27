@@ -1,25 +1,25 @@
 schema_version: 1
-kind: agentganggang_host_packet
-id: agentganggang-openclaw-bundle
-name: AgentGangGang OpenClaw Bundle
-description: Repo-owned OpenClaw bundle packet for the AgentGangGang local MCP sidecar.
+kind: multi-ai-panel_host_packet
+id: multi-ai-panel-openclaw-bundle
+name: MultiAiPanel OpenClaw Bundle
+description: Repo-owned OpenClaw bundle packet for the MultiAiPanel local MCP sidecar.
 version: "0.2.2"
 license: MIT
-homepage: https://xiaojiou176-open.github.io/AgentGangGang/
-repository: https://github.com/xiaojiou176-open/AgentGangGang
+homepage: https://xiaojiou176-open.github.io/multi-ai-panel/
+repository: https://github.com/xiaojiou176-open/multi-ai-panel
 supportTier: public_bundle_ready_unverified_host_lane
 publicationStatus: repo_owned_bundle_not_officially_listed
 install:
   shape: bundle_packet
   host: OpenClaw
   placement: Register the MCP JSON with openclaw mcp set or consume the packed archive through the official bundle flow.
-  skillManifest: skills/agentganggang/manifest.yaml
+  skillManifest: skills/multi-ai-panel/manifest.yaml
 smoke:
   guide: SMOKE.md
   smallest_useful_flow:
-    - agentganggang.bridge_status
-    - agentganggang.check_readiness
-    - agentganggang.compare
+    - multi-ai-panel.bridge_status
+    - multi-ai-panel.check_readiness
+    - multi-ai-panel.compare
 capabilities:
   - compare
   - readiness

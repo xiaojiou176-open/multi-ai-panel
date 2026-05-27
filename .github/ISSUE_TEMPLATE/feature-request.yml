@@ -22,7 +22,7 @@ body:
     id: ideal
     attributes:
       label: Ideal outcome
-      description: What should AgentGangGang let you do instead?
+      description: What should MultiAiPanel let you do instead?
     validations:
       required: true
   - type: textarea

@@ -77,10 +77,10 @@ if (!extensionId || !hostPath) {
   process.exitCode = 1;
 } else {
   const installDir = resolveInstallDir();
-  const manifestPath = path.join(installDir, 'com.agentganggang.host.json');
+  const manifestPath = path.join(installDir, 'com.multi-ai-panel.host.json');
   const manifest = {
-    name: 'com.agentganggang.host',
-    description: 'AgentGangGang Native Messaging host scaffold',
+    name: 'com.multi-ai-panel.host',
+    description: 'MultiAiPanel Native Messaging host scaffold',
     path: hostPath,
     type: 'stdio',
     allowed_origins: [`chrome-extension://${extensionId}/`],

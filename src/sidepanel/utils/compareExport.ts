@@ -53,7 +53,7 @@ export const buildCompareShareSummary = (
             );
 
   return [
-    i18n.t('compare.export.summaryTitle', 'AgentGangGang compare summary'),
+    i18n.t('compare.export.summaryTitle', 'MultiAiPanel compare summary'),
     `${i18n.t('compare.export.prompt', 'Prompt')}: ${prompt}`,
     `${i18n.t('compare.export.models', 'Models')}: ${summarizeModels(requestedModels)}`,
     `${i18n.t('compare.export.completed', 'Completed')}: ${completedModels}`,
@@ -114,7 +114,7 @@ export const buildCompareMarkdownExport = (
       )}`;
 
   return [
-    `# ${i18n.t('compare.export.markdownTitle', 'AgentGangGang compare export')}`,
+    `# ${i18n.t('compare.export.markdownTitle', 'MultiAiPanel compare export')}`,
     '',
     `- ${i18n.t('compare.export.startedAt', 'Started at')}: ${startedAt}`,
     `- ${i18n.t('compare.export.models', 'Models')}: ${summarizeModels(requestedModels)}`,
@@ -145,7 +145,7 @@ export const buildCompareMarkdownExport = (
     '',
     `> ${i18n.t(
       'compare.export.localFirstNote',
-      'AgentGangGang keeps this compare export local-first. This file is generated inside the browser workflow and does not require a hosted relay.'
+      'MultiAiPanel keeps this compare export local-first. This file is generated inside the browser workflow and does not require a hosted relay.'
     )}`,
   ]
     .filter(Boolean)

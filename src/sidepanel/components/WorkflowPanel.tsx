@@ -103,7 +103,7 @@ const getBody = (
   if (status === 'seed_ready') {
     return t(
       'workflow.body.seedReady',
-      'AgentGangGang has staged a next-round seed. You can place it in the composer or run the next compare now.'
+      'MultiAiPanel has staged a next-round seed. You can place it in the composer or run the next compare now.'
     );
   }
 
@@ -112,7 +112,7 @@ const getBody = (
       waitingFor ??
       t(
         'workflow.body.waiting',
-        'AgentGangGang is waiting for browser-side work to finish before it can stage the next step.'
+        'MultiAiPanel is waiting for browser-side work to finish before it can stage the next step.'
       )
     );
   }
@@ -122,7 +122,7 @@ const getBody = (
       errorMessage ??
       t(
         'workflow.body.errorFallback',
-        'AgentGangGang could not turn this compare turn into a next-step workflow yet.'
+        'MultiAiPanel could not turn this compare turn into a next-step workflow yet.'
       )
     );
   }
@@ -130,7 +130,7 @@ const getBody = (
   if (status === 'running_compare') {
     return t(
       'workflow.body.runningCompare',
-      'AgentGangGang is sending the staged next-round prompt through the compare-first lane.'
+      'MultiAiPanel is sending the staged next-round prompt through the compare-first lane.'
     );
   }
 
@@ -143,7 +143,7 @@ const getBody = (
 
   return t(
     'workflow.body.needsAnalysis',
-    'AgentGangGang can run AI Compare Analyst first, then stage the strongest next-round prompt.'
+    'MultiAiPanel can run AI Compare Analyst first, then stage the strongest next-round prompt.'
   );
 };
 

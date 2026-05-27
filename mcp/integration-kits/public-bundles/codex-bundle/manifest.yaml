@@ -1,25 +1,25 @@
 schema_version: 1
-kind: agentganggang_host_packet
-id: agentganggang-codex-bundle
-name: AgentGangGang Codex Bundle
-description: Repo-owned Codex bundle packet for the AgentGangGang local MCP sidecar.
+kind: multi-ai-panel_host_packet
+id: multi-ai-panel-codex-bundle
+name: MultiAiPanel Codex Bundle
+description: Repo-owned Codex bundle packet for the MultiAiPanel local MCP sidecar.
 version: "0.2.2"
 license: MIT
-homepage: https://xiaojiou176-open.github.io/AgentGangGang/
-repository: https://github.com/xiaojiou176-open/AgentGangGang
+homepage: https://xiaojiou176-open.github.io/multi-ai-panel/
+repository: https://github.com/xiaojiou176-open/multi-ai-panel
 supportTier: supported_now
 publicationStatus: repo_owned_bundle_not_officially_listed
 install:
   shape: bundle_packet
   host: Codex
   placement: Copy the MCP block into config.toml or consume the packed archive through a compatible bundle installer.
-  skillManifest: skills/agentganggang/manifest.yaml
+  skillManifest: skills/multi-ai-panel/manifest.yaml
 smoke:
   guide: SMOKE.md
   smallest_useful_flow:
-    - agentganggang.bridge_status
-    - agentganggang.check_readiness
-    - agentganggang.compare
+    - multi-ai-panel.bridge_status
+    - multi-ai-panel.check_readiness
+    - multi-ai-panel.compare
 capabilities:
   - compare
   - readiness

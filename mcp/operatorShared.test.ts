@@ -44,7 +44,7 @@ describe('operatorShared workflow-run contract', () => {
 
     expect(envelope.result).toMatchObject({
       mode: 'governed_mcp_tool_template',
-      tool: 'agentganggang.run_workflow',
+      tool: 'multi-ai-panel.run_workflow',
       arguments: {
         workflowId: 'compare-analyze-follow-up',
         sessionId: 'session-real',

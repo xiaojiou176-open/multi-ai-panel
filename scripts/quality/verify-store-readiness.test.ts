@@ -5,19 +5,19 @@ import {
 } from './verify-store-readiness.mjs';
 
 const metadataText = JSON.stringify({
-  product_name: 'AgentGangGang',
+  product_name: 'MultiAiPanel',
   manifest_description: 'Compare AI answers in a browser side panel.',
   current_install_surface: 'Install from GitHub Releases.',
   store_ready_note: 'Store submission materials are ready in this repository.',
 });
 
 const manifestText = JSON.stringify({
-  name: 'AgentGangGang',
+  name: 'MultiAiPanel',
   description: 'Compare AI answers in a browser side panel.',
   icons: {
-    '16': 'public/agentganggang-icon-16.png',
-    '48': 'public/agentganggang-icon-48.png',
-    '128': 'public/agentganggang-icon-128.png',
+    '16': 'public/multi-ai-panel-icon-16.png',
+    '48': 'public/multi-ai-panel-icon-48.png',
+    '128': 'public/multi-ai-panel-icon-128.png',
   },
 });
 
@@ -43,21 +43,21 @@ const requiredFiles = new Set([
   'README.md',
   'CONTRIBUTING.md',
   'manifest.json',
-  'public/agentganggang-icon.svg',
-  'public/agentganggang-icon-16.png',
-  'public/agentganggang-icon-48.png',
-  'public/agentganggang-icon-128.png',
+  'public/multi-ai-panel-icon.svg',
+  'public/multi-ai-panel-icon-16.png',
+  'public/multi-ai-panel-icon-48.png',
+  'public/multi-ai-panel-icon-128.png',
   'docs/install.html',
   'docs/faq.html',
   'docs/mcp-coding-agents.html',
-  'docs/assets/agentganggang-hero.png',
-  'docs/assets/agentganggang-demo.gif',
-  'docs/assets/agentganggang-compare-detail.png',
-  'docs/assets/agentganggang-settings.png',
-  'docs/assets/agentganggang-social-preview.png',
-  'docs/assets/agentganggang-nav-icon.svg',
-  'docs/assets/agentganggang-before-after.svg',
-  'docs/assets/agentganggang-workflow.svg',
+  'docs/assets/multi-ai-panel-hero.png',
+  'docs/assets/multi-ai-panel-demo.gif',
+  'docs/assets/multi-ai-panel-compare-detail.png',
+  'docs/assets/multi-ai-panel-settings.png',
+  'docs/assets/multi-ai-panel-social-preview.png',
+  'docs/assets/multi-ai-panel-nav-icon.svg',
+  'docs/assets/multi-ai-panel-before-after.svg',
+  'docs/assets/multi-ai-panel-workflow.svg',
 ]);
 
 const collectFindings = (changelogText: string) =>

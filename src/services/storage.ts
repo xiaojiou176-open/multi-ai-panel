@@ -246,7 +246,7 @@ const KEYS = {
   SCHEMA_VERSION: 'schemaVersion',
   SELECTORS: 'selectors',
   TABS: 'tabs',
-  AGENTGANGGANG_GROUP_ID: 'agentGangGangGroupId',
+  MULTI_AI_PANEL_GROUP_ID: 'agentGangGangGroupId',
   BUFFERED_STREAM_UPDATES: 'bufferedStreamUpdates',
   WORKFLOW_RUN_SNAPSHOTS: 'workflowRunSnapshots',
 };
@@ -660,10 +660,10 @@ export const StorageService = {
     }
   },
 
-  async getAgentGangGangGroupId(): Promise<number | null> {
+  async getMultiAiPanelGroupId(): Promise<number | null> {
     try {
-      const result = await chrome.storage.session.get(KEYS.AGENTGANGGANG_GROUP_ID);
-      const raw = result[KEYS.AGENTGANGGANG_GROUP_ID];
+      const result = await chrome.storage.session.get(KEYS.MULTI_AI_PANEL_GROUP_ID);
+      const raw = result[KEYS.MULTI_AI_PANEL_GROUP_ID];
       if (raw === undefined || raw === null) return null;
 
       const parsed = z.number().safeParse(raw);
@@ -678,9 +678,9 @@ export const StorageService = {
     }
   },
 
-  async saveAgentGangGangGroupId(id: number | null): Promise<void> {
+  async saveMultiAiPanelGroupId(id: number | null): Promise<void> {
     try {
-      await chrome.storage.session.set({ [KEYS.AGENTGANGGANG_GROUP_ID]: id });
+      await chrome.storage.session.set({ [KEYS.MULTI_AI_PANEL_GROUP_ID]: id });
     } catch (error) {
       Logger.error('storage_save_group_id_failed', {
         surface: 'storage',

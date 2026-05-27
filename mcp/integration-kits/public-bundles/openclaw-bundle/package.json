@@ -1,30 +1,30 @@
 {
-  "name": "agentganggang-openclaw-bundle",
+  "name": "multi-ai-panel-openclaw-bundle",
   "version": "0.2.2",
   "license": "MIT",
-  "description": "AgentGangGang OpenClaw MCP bundle packet with registry snippets, placement hints, and compare-first smoke notes.",
+  "description": "MultiAiPanel OpenClaw MCP bundle packet with registry snippets, placement hints, and compare-first smoke notes.",
   "keywords": [
-    "agentganggang",
+    "multi-ai-panel",
     "openclaw",
     "mcp",
     "bundle",
     "compare-first",
     "local-first"
   ],
-  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle",
+  "homepage": "https://github.com/xiaojiou176-open/multi-ai-panel/tree/main/mcp/integration-kits/public-bundles/openclaw-bundle",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git",
+    "url": "git+https://github.com/xiaojiou176-open/multi-ai-panel.git",
     "directory": "mcp/integration-kits/public-bundles/openclaw-bundle"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
+    "url": "https://github.com/xiaojiou176-open/multi-ai-panel/issues"
   },
   "files": [
     ".codex-plugin",
     "manifest.json",
     "manifest.yaml",
-    "openclaw.agentganggang.json",
+    "openclaw.multi-ai-panel.json",
     "mcp.servers.json",
     "openclaw.mcp.set.sh",
     "skills",

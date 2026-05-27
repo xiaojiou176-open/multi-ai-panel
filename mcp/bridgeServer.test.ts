@@ -9,7 +9,7 @@ import {
   type BridgeCommandResult,
   createBridgeBaseUrl,
 } from '../src/bridge/protocol';
-import { AgentGangGangBridgeServer } from './bridgeServer';
+import { MultiAiPanelBridgeServer } from './bridgeServer';
 
 const httpJson = async (
   url: string,
@@ -81,7 +81,7 @@ const getFreePort = async () =>
     });
   });
 
-const activeServers: AgentGangGangBridgeServer[] = [];
+const activeServers: MultiAiPanelBridgeServer[] = [];
 
 afterEach(async () => {
   while (activeServers.length > 0) {
@@ -92,10 +92,10 @@ afterEach(async () => {
   }
 });
 
-describe('AgentGangGangBridgeServer', () => {
+describe('MultiAiPanelBridgeServer', () => {
   it('serves unauthenticated health checks for doctor flows', async () => {
     const port = await getFreePort();
-    const bridge = new AgentGangGangBridgeServer(port);
+    const bridge = new MultiAiPanelBridgeServer(port);
     activeServers.push(bridge);
     await bridge.start();
 
@@ -113,7 +113,7 @@ describe('AgentGangGangBridgeServer', () => {
 
   it('completes bootstrap, pull, and result delivery', async () => {
     const port = await getFreePort();
-    const bridge = new AgentGangGangBridgeServer(port);
+    const bridge = new MultiAiPanelBridgeServer(port);
     activeServers.push(bridge);
     await bridge.start();
 

@@ -2,7 +2,7 @@
 
 ## Project Shape
 
-This repository contains the AgentGangGang browser extension:
+This repository contains the MultiAiPanel browser extension:
 
 - side panel UI
 - background service worker
@@ -27,7 +27,7 @@ Load `dist` in `chrome://extensions` with Developer Mode enabled.
 
 ## MCP Sidecar
 
-The repository also ships a local AgentGangGang MCP sidecar.
+The repository also ships a local MultiAiPanel MCP sidecar.
 
 Use these commands:
 
@@ -41,7 +41,7 @@ Current transport model:
 
 - external MCP clients connect to the sidecar over `stdio`
 - the sidecar talks to the extension over a localhost loopback bridge on `127.0.0.1`
-- the bridge exposes AgentGangGang product actions only
+- the bridge exposes MultiAiPanel product actions only
 - start the sidecar before opening or reloading the extension runtime if you want the bridge to attach immediately
 
 This is intentionally narrower than generic browser automation and lighter-weight than Chrome Native Messaging host registration.
@@ -60,12 +60,12 @@ helper.
 - not a hosted compare service
 - not a public HTTP API
 - when the container hosts the bridge for a browser on the same machine, set
-  `AGENTGANGGANG_BRIDGE_HOST=0.0.0.0` in the container and publish
+  `MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0` in the container and publish
   `127.0.0.1:48123:48123`
 
 ## Host Safety Boundary
 
-AgentGangGang must not grow OS-level desktop automation or host-wide
+MultiAiPanel must not grow OS-level desktop automation or host-wide
 process cleanup paths as part of its supported runtime.
 
 That means this repo should not introduce:
@@ -125,11 +125,11 @@ Command boundary:
 
 - `clean:runtime:dry-run` previews the current runtime cleanup plan
 - `clean:runtime` removes disposable runtime outputs immediately, removes
-  repo-owned external cache entries under `~/.cache/AgentGangGang/`
-  (including `live-profile-clones/agentganggang-live-*`), prunes them with
+  repo-owned external cache entries under `~/.cache/MultiAiPanel/`
+  (including `live-profile-clones/multi-ai-panel-live-*`), prunes them with
   the current TTL/cap policy, and applies retention to local evidence
   directories, while preserving the repo-owned browser root under
-  `~/.cache/AgentGangGang/browser/chrome-user-data/`
+  `~/.cache/MultiAiPanel/browser/chrome-user-data/`
 - `clean:repo:light` only removes `dist`, `coverage`, and `.husky/_`
 - `clean:repo:heavy` runs the light cleanup set and also removes `node_modules`
 
@@ -140,13 +140,13 @@ Runtime classes:
 - `.runtime-cache/test_output`, `.runtime-cache/coverage-tmp`,
   `.runtime-cache/coverage-split`, and `.runtime-cache/test-results` ->
   scratch / disposable-generated
-- `~/.cache/AgentGangGang/live-profile-clones/agentganggang-live-*`
+- `~/.cache/MultiAiPanel/live-profile-clones/multi-ai-panel-live-*`
   -> repo-owned external disposable-generated temp clone created by
   login-state-sensitive live flows when profile cloning is enabled
-- `~/.cache/AgentGangGang/` -> repo-owned external cache root with
+- `~/.cache/MultiAiPanel/` -> repo-owned external cache root with
   automatic retention (`72h`) and size cap (`2 GB`) unless overridden by
   repo-owned cache env vars
-- `~/.cache/AgentGangGang/browser/chrome-user-data/` ->
+- `~/.cache/MultiAiPanel/browser/chrome-user-data/` ->
   repo-owned persistent browser state; excluded from TTL/cap pruning and
   excluded from `clean:runtime`
 - `.runtime-cache/release` -> evidence_keep with retention: keep the newest
@@ -222,7 +222,7 @@ remains the documented hook contract.
 
 ## Verification Layers
 
-Treat AgentGangGang as a five-layer verification repo:
+Treat MultiAiPanel as a five-layer verification repo:
 
 | Layer        | What it owns                                                                                                        | Default command                                                                                                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -252,7 +252,7 @@ Keep deterministic shell E2E isolated from the real Chrome login-state lane:
 - `tests/e2e/extension.spec.ts` should continue using repo-owned scratch
   profiles under `.runtime-cache/playwright-user-data/...`
 - shared Playwright browser downloads under `~/Library/Caches/ms-playwright/`
-  are visible in audits but are never auto-cleaned by AgentGangGang
+  are visible in audits but are never auto-cleaned by MultiAiPanel
 - login-state-sensitive live flows stay outside default CI because they require
   a human-seeded browser profile
 
@@ -351,9 +351,9 @@ The canonical login-state live lane now uses the repo-owned persistent browser
 root via environment-driven resolution:
 
 - default runtime root:
-  `~/.cache/AgentGangGang/browser/chrome-user-data`
+  `~/.cache/MultiAiPanel/browser/chrome-user-data`
 - default runtime profile name:
-  `AgentGangGang`
+  `MultiAiPanel`
 - default runtime profile directory:
   `Profile 1`
 
@@ -371,7 +371,7 @@ The bootstrap command:
 
 - expects all real Chrome / Chromium / Chrome for Testing processes to be
   closed first
-- copies the source `Local State` plus the source `AgentGangGang` profile
+- copies the source `Local State` plus the source `MultiAiPanel` profile
   from the default Chrome root
 - rewrites the target root to a single canonical `Profile 1`
 - removes `SingletonLock`, `SingletonCookie`, and `SingletonSocket` from the
@@ -379,17 +379,17 @@ The bootstrap command:
 
 The default bootstrap source is:
 
-- `AGENTGANGGANG_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
-- `AGENTGANGGANG_BROWSER_SOURCE_PROFILE_NAME=AgentGangGang`
+- `MULTI_AI_PANEL_BROWSER_SOURCE_USER_DATA_DIR=~/Library/Application Support/Google/Chrome`
+- `MULTI_AI_PANEL_BROWSER_SOURCE_PROFILE_NAME=MultiAiPanel`
 
 The same clone controls also apply to the repo-owned diagnosis ladder when you
 need a deterministic persistent-context troubleshooting pass without touching
 the canonical real Chrome attach lane:
 
 ```bash
-AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:probe
-AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:diagnose
-AGENTGANGGANG_LIVE=1 AGENTGANGGANG_LIVE_ATTACH_MODE=persistent AGENTGANGGANG_CLONE_PROFILE=1 npm run test:live:support-bundle
+MULTI_AI_PANEL_LIVE=1 MULTI_AI_PANEL_LIVE_ATTACH_MODE=persistent MULTI_AI_PANEL_CLONE_PROFILE=1 npm run test:live:probe
+MULTI_AI_PANEL_LIVE=1 MULTI_AI_PANEL_LIVE_ATTACH_MODE=persistent MULTI_AI_PANEL_CLONE_PROFILE=1 npm run test:live:diagnose
+MULTI_AI_PANEL_LIVE=1 MULTI_AI_PANEL_LIVE_ATTACH_MODE=persistent MULTI_AI_PANEL_CLONE_PROFILE=1 npm run test:live:support-bundle
 ```
 
 The maintainer-local live ladder is now:
@@ -413,13 +413,13 @@ available.
 The supported default login-state live-proof path is now:
 
 - repo-owned persistent browser user data dir:
-  `~/.cache/AgentGangGang/browser/chrome-user-data`
-- `AGENTGANGGANG_BROWSER_PROFILE_NAME=AgentGangGang`
-- `AGENTGANGGANG_LIVE_ATTACH_MODE=browser`
-- `AGENTGANGGANG_LIVE=1 npm run test:live:open-browser`
+  `~/.cache/MultiAiPanel/browser/chrome-user-data`
+- `MULTI_AI_PANEL_BROWSER_PROFILE_NAME=MultiAiPanel`
+- `MULTI_AI_PANEL_LIVE_ATTACH_MODE=browser`
+- `MULTI_AI_PANEL_LIVE=1 npm run test:live:open-browser`
 
 If you must override the runtime profile source, keep it on the repo-owned
-persistent browser root and use `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY`
+persistent browser root and use `MULTI_AI_PANEL_BROWSER_PROFILE_DIRECTORY`
 explicitly. The default Chrome root is bootstrap-source only, not the canonical
 live runtime root.
 
@@ -428,15 +428,15 @@ browser instance, use the attach helper instead of reopening a new persistent
 context:
 
 ```bash
-AGENTGANGGANG_LIVE=1 npm run test:live:open-browser
+MULTI_AI_PANEL_LIVE=1 npm run test:live:open-browser
 ```
 
 That helper launches or reuses one repo-owned real Google Chrome browser lane
 with:
 
 - the repo's unpacked extension side-loaded
-- `~/.cache/AgentGangGang/browser/chrome-user-data`
-- the resolved `AgentGangGang` / `Profile 1` profile
+- `~/.cache/MultiAiPanel/browser/chrome-user-data`
+- the resolved `MultiAiPanel` / `Profile 1` profile
 - a fixed CDP listener on `http://127.0.0.1:9336`
 - a generated local identity tab under
   `.runtime-cache/browser-identity/index.html` that shows the repo label, CDP
@@ -445,7 +445,7 @@ with:
 After you finish any manual login in that exact window, run:
 
 ```bash
-AGENTGANGGANG_LIVE=1 npm run test:live
+MULTI_AI_PANEL_LIVE=1 npm run test:live
 ```
 
 Use this attach path when you need to prove a real logged-in browser session
@@ -461,9 +461,9 @@ browser lane:
 
 - keep it open as the left-most tab when possible
 - pin it manually once if you want a stable visual marker in the tab strip
-- use `AGENTGANGGANG_BROWSER_IDENTITY_LABEL` to override the displayed repo
+- use `MULTI_AI_PANEL_BROWSER_IDENTITY_LABEL` to override the displayed repo
   label
-- use `AGENTGANGGANG_BROWSER_IDENTITY_ACCENT` with a hex color such as
+- use `MULTI_AI_PANEL_BROWSER_IDENTITY_ACCENT` with a hex color such as
   `#2563eb` if you want a repo-specific accent
 
 Do not script Chrome's private avatar/theme internals as part of the normal
@@ -545,14 +545,14 @@ of opening a detailed public issue.
 
 Before a public release or store submission:
 
-- confirm the product name is `AgentGangGang`
+- confirm the product name is `MultiAiPanel`
 - confirm the short tagline remains `One prompt, many AI chats, one side panel.`
 - confirm the manifest description remains `Local-first AI compare workspace for ChatGPT, Gemini, Perplexity, Qwen, and Grok in one browser side panel.`
 - confirm the extension icon assets are:
-  - `public/agentganggang-icon-16.png`
-  - `public/agentganggang-icon-48.png`
-  - `public/agentganggang-icon-128.png`
-- keep `public/agentganggang-icon.svg` for repo/web surfaces only; Chrome extension manifest icons must stay on PNG assets
+  - `public/multi-ai-panel-icon-16.png`
+  - `public/multi-ai-panel-icon-48.png`
+  - `public/multi-ai-panel-icon-128.png`
+- keep `public/multi-ai-panel-icon.svg` for repo/web surfaces only; Chrome extension manifest icons must stay on PNG assets
 - keep `npm run test:pre-push` and `npm run test:nightly` green
 - run `npm run verify:release-baseline`
 - run `npm run verify:store-readiness`

@@ -1,8 +1,8 @@
 # Privacy Policy
 
-## What AgentGangGang Does
+## What MultiAiPanel Does
 
-AgentGangGang is a browser extension that helps you send one prompt to
+MultiAiPanel is a browser extension that helps you send one prompt to
 multiple supported AI chat websites from a single side panel.
 
 The extension is **local-first** and **compare-first**:
@@ -45,7 +45,7 @@ SDKs, or a hosted analytics collector inside this repository build.
 
 ## Third-Party Services
 
-When you use AgentGangGang, your prompt and the resulting responses are
+When you use MultiAiPanel, your prompt and the resulting responses are
 handled by the third-party AI websites you selected, under those services'
 terms and privacy policies.
 
@@ -93,4 +93,4 @@ For security-sensitive issues, follow [`SECURITY.md`](./SECURITY.md).
 
 For general non-sensitive support requests, use the public issue tracker:
 
-`https://github.com/xiaojiou176-open/AgentGangGang/issues`
+`https://github.com/xiaojiou176-open/multi-ai-panel/issues`

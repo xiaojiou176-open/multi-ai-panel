@@ -1,31 +1,31 @@
 {
-  "surface": "agentganggang_consumer_support_matrix",
-  "path_placeholder": "/absolute/path/to/AgentGangGang",
+  "surface": "multi-ai-panel_consumer_support_matrix",
+  "path_placeholder": "/absolute/path/to/MultiAiPanel",
   "first_calls": [
-    "agentganggang.bridge_status",
-    "agentganggang.check_readiness",
-    "agentganggang.compare",
-    "agentganggang.analyze_compare",
-    "agentganggang.run_workflow"
+    "multi-ai-panel.bridge_status",
+    "multi-ai-panel.check_readiness",
+    "multi-ai-panel.compare",
+    "multi-ai-panel.analyze_compare",
+    "multi-ai-panel.run_workflow"
   ],
   "workflow_followthrough": [
-    "agentganggang.get_workflow_run",
-    "agentganggang.list_workflow_runs",
-    "agentganggang.resume_workflow"
+    "multi-ai-panel.get_workflow_run",
+    "multi-ai-panel.list_workflow_runs",
+    "multi-ai-panel.resume_workflow"
   ],
   "container_entry": {
     "support_tier": "repo_owned_container_helper",
     "dockerfile": "../../Dockerfile",
     "dockerignore": "../../.dockerignore",
     "doc_page": "../../docs/docker-integration.html",
-    "purpose": "Containerized local AgentGangGang MCP sidecar and operator helper for builder-facing flows.",
+    "purpose": "Containerized local MultiAiPanel MCP sidecar and operator helper for builder-facing flows.",
     "not_a": [
       "browser_extension_install_surface",
       "hosted_compare_service",
       "public_http_api",
       "glama_or_marketplace_listing"
     ],
-    "bridge_requirement": "For host-browser bridge attach, publish loopback port 48123 and set AGENTGANGGANG_BRIDGE_HOST=0.0.0.0 inside the container."
+    "bridge_requirement": "For host-browser bridge attach, publish loopback port 48123 and set MULTI_AI_PANEL_BRIDGE_HOST=0.0.0.0 inside the container."
   },
   "hosts": {
     "codex": {
@@ -37,23 +37,23 @@
       "sample_config_path": "codex.config.toml.example",
       "public_bundle_dir": "public-bundles/codex-bundle",
       "manifest_path": "public-bundles/codex-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/agentganggang-codex-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/multi-ai-panel-codex-bundle-<version>.tgz",
       "packet_page": "../../docs/codex-mcp-setup.html",
       "minimal_flow": [
-        "agentganggang.bridge_status",
-        "agentganggang.check_readiness",
-        "agentganggang.compare"
+        "multi-ai-panel.bridge_status",
+        "multi-ai-panel.check_readiness",
+        "multi-ai-panel.compare"
       ],
       "preferred_full_flow": [
-        "agentganggang.analyze_compare",
-        "agentganggang.run_workflow",
-        "agentganggang.get_workflow_run"
+        "multi-ai-panel.analyze_compare",
+        "multi-ai-panel.run_workflow",
+        "multi-ai-panel.get_workflow_run"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["codex.config.toml.example"],
-      "skill_assets": ["codex.skill.agentganggang.md.example"],
+      "skill_assets": ["codex.skill.multi-ai-panel.md.example"],
       "skill_manifest_paths": [
-        "public-bundles/codex-bundle/skills/agentganggang/manifest.yaml"
+        "public-bundles/codex-bundle/skills/multi-ai-panel/manifest.yaml"
       ]
     },
     "claude_code": {
@@ -65,46 +65,46 @@
       "sample_config_path": "claude.mcp.json.example",
       "public_bundle_dir": "public-bundles/claude-code-bundle",
       "manifest_path": "public-bundles/claude-code-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/agentganggang-claude-code-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/multi-ai-panel-claude-code-bundle-<version>.tgz",
       "packet_page": "../../docs/claude-code-mcp-setup.html",
       "minimal_flow": [
-        "agentganggang.bridge_status",
-        "agentganggang.check_readiness",
-        "agentganggang.compare"
+        "multi-ai-panel.bridge_status",
+        "multi-ai-panel.check_readiness",
+        "multi-ai-panel.compare"
       ],
       "preferred_full_flow": [
-        "agentganggang.analyze_compare",
-        "agentganggang.run_workflow",
-        "agentganggang.get_workflow_run"
+        "multi-ai-panel.analyze_compare",
+        "multi-ai-panel.run_workflow",
+        "multi-ai-panel.get_workflow_run"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["claude.mcp.json.example"],
-      "skill_assets": ["claude.skill.agentganggang.md.example"]
+      "skill_assets": ["claude.skill.multi-ai-panel.md.example"]
     },
     "opencode": {
       "label": "OpenCode",
       "support_tier": "public_bundle_ready_unverified_host_lane",
       "proof_class": "generic_mcp_client_public_bundle_ready",
       "official_docs": ["https://opencode.ai/docs/config", "https://opencode.ai/docs/cli/"],
-      "placement_hint": "Save the example as a project-root opencode.jsonc inside your AgentGangGang clone.",
+      "placement_hint": "Save the example as a project-root opencode.jsonc inside your MultiAiPanel clone.",
       "sample_config_path": "opencode.jsonc.example",
       "public_bundle_dir": "public-bundles/opencode-plugin",
       "manifest_path": "public-bundles/opencode-plugin/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/agentganggang-opencode-plugin-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/multi-ai-panel-opencode-plugin-<version>.tgz",
       "packet_page": "../../docs/opencode-mcp-setup.html",
       "minimal_flow": [
-        "agentganggang.bridge_status",
-        "agentganggang.check_readiness",
-        "agentganggang.compare"
+        "multi-ai-panel.bridge_status",
+        "multi-ai-panel.check_readiness",
+        "multi-ai-panel.compare"
       ],
       "preferred_full_flow": [
-        "agentganggang.run_workflow",
-        "agentganggang.get_workflow_run",
-        "agentganggang.resume_workflow"
+        "multi-ai-panel.run_workflow",
+        "multi-ai-panel.get_workflow_run",
+        "multi-ai-panel.resume_workflow"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": ["opencode.jsonc.example"],
-      "skill_assets": ["opencode.skill.agentganggang.md.example"]
+      "skill_assets": ["opencode.skill.multi-ai-panel.md.example"]
     },
     "openclaw": {
       "label": "OpenClaw",
@@ -116,36 +116,36 @@
         "https://docs.openclaw.ai/plugins/bundles"
       ],
       "placement_hint": "Register the JSON with openclaw mcp set or place the server definition under mcp.servers.",
-      "sample_config_path": "openclaw.agentganggang.json.example",
+      "sample_config_path": "openclaw.multi-ai-panel.json.example",
       "public_bundle_dir": "public-bundles/openclaw-bundle",
       "manifest_path": "public-bundles/openclaw-bundle/manifest.json",
-      "public_bundle_artifact": "dist/public-bundles/agentganggang-openclaw-bundle-<version>.tgz",
+      "public_bundle_artifact": "dist/public-bundles/multi-ai-panel-openclaw-bundle-<version>.tgz",
       "packet_page": "../../docs/openclaw-mcp-setup.html",
       "minimal_flow": [
-        "agentganggang.bridge_status",
-        "agentganggang.check_readiness",
-        "agentganggang.compare"
+        "multi-ai-panel.bridge_status",
+        "multi-ai-panel.check_readiness",
+        "multi-ai-panel.compare"
       ],
       "preferred_full_flow": [
-        "agentganggang.run_workflow",
-        "agentganggang.get_workflow_run",
-        "agentganggang.resume_workflow"
+        "multi-ai-panel.run_workflow",
+        "multi-ai-panel.get_workflow_run",
+        "multi-ai-panel.resume_workflow"
       ],
       "smoke_proof": "npm run mcp:operator -- smoke",
       "config_assets": [
-        "openclaw.agentganggang.json.example",
+        "openclaw.multi-ai-panel.json.example",
         "openclaw.mcp.servers.json.example",
         "openclaw.mcp.set.example.sh"
       ],
-      "skill_assets": ["openclaw.skill.agentganggang.md.example"],
+      "skill_assets": ["openclaw.skill.multi-ai-panel.md.example"],
       "skill_manifest_paths": [
-        "public-bundles/openclaw-bundle/skills/agentganggang/manifest.yaml"
+        "public-bundles/openclaw-bundle/skills/multi-ai-panel/manifest.yaml"
       ]
     }
   },
   "supported_now": [
     "local_mcp_sidecar",
-    "agentganggang_product_actions",
+    "multi-ai-panel_product_actions",
     "codex_repo_specific_host_setup",
     "claude_code_repo_specific_host_setup"
   ],

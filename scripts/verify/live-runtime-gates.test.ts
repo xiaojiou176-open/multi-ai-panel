@@ -49,7 +49,7 @@ describe('live-runtime-gates', () => {
               surface: 'probe',
               kind: 'probe_blocker',
               message:
-                'AgentGangGang did not expose a live extension runtime in the current browser lane.',
+                'MultiAiPanel did not expose a live extension runtime in the current browser lane.',
             },
           ],
         },
@@ -69,7 +69,7 @@ describe('live-runtime-gates', () => {
         surface: 'probe',
         kind: 'probe_blocker',
         message:
-          'AgentGangGang did not expose a live extension runtime in the current browser lane.',
+          'MultiAiPanel did not expose a live extension runtime in the current browser lane.',
       },
     ]);
   });

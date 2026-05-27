@@ -1,24 +1,24 @@
 {
-  "name": "agentganggang-codex-bundle",
+  "name": "multi-ai-panel-codex-bundle",
   "version": "0.2.2",
   "license": "MIT",
-  "description": "Compare-first AgentGangGang MCP bundle for Codex and compatible bundle consumers such as OpenClaw.",
+  "description": "Compare-first MultiAiPanel MCP bundle for Codex and compatible bundle consumers such as OpenClaw.",
   "keywords": [
-    "agentganggang",
+    "multi-ai-panel",
     "codex",
     "mcp",
     "bundle",
     "compare-first",
     "local-first"
   ],
-  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang/tree/main/mcp/integration-kits/public-bundles/codex-bundle",
+  "homepage": "https://github.com/xiaojiou176-open/multi-ai-panel/tree/main/mcp/integration-kits/public-bundles/codex-bundle",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaojiou176-open/AgentGangGang.git",
+    "url": "git+https://github.com/xiaojiou176-open/multi-ai-panel.git",
     "directory": "mcp/integration-kits/public-bundles/codex-bundle"
   },
   "bugs": {
-    "url": "https://github.com/xiaojiou176-open/AgentGangGang/issues"
+    "url": "https://github.com/xiaojiou176-open/multi-ai-panel/issues"
   },
   "files": [
     ".codex-plugin",

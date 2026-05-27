@@ -6,16 +6,16 @@ import {
   type SubstrateActionName,
 } from '../substrate/api/index.js';
 
-export const AGENTGANGGANG_BRIDGE_HOST = '127.0.0.1';
-export const AGENTGANGGANG_BRIDGE_PORT = 48123;
-export const AGENTGANGGANG_BRIDGE_VERSION = 1;
-export const AGENTGANGGANG_BRIDGE_HOST_ENV = 'AGENTGANGGANG_BRIDGE_HOST';
-export const AGENTGANGGANG_BRIDGE_PORT_ENV = 'AGENTGANGGANG_BRIDGE_PORT';
+export const MULTI_AI_PANEL_BRIDGE_HOST = '127.0.0.1';
+export const MULTI_AI_PANEL_BRIDGE_PORT = 48123;
+export const MULTI_AI_PANEL_BRIDGE_VERSION = 1;
+export const MULTI_AI_PANEL_BRIDGE_HOST_ENV = 'MULTI_AI_PANEL_BRIDGE_HOST';
+export const MULTI_AI_PANEL_BRIDGE_PORT_ENV = 'MULTI_AI_PANEL_BRIDGE_PORT';
 
 export type BridgeRuntimeEnv = Record<string, string | undefined>;
 
-export const BRIDGE_HEADER_EXTENSION_ID = 'x-agentganggang-extension-id';
-export const BRIDGE_HEADER_KEY = 'x-agentganggang-bridge-key';
+export const BRIDGE_HEADER_EXTENSION_ID = 'x-multi-ai-panel-extension-id';
+export const BRIDGE_HEADER_KEY = 'x-multi-ai-panel-bridge-key';
 
 export const BRIDGE_COMMAND_NAMES = SUBSTRATE_ACTION_NAMES;
 
@@ -174,21 +174,21 @@ const defaultBridgeRuntimeEnv: BridgeRuntimeEnv = (() => {
 })();
 
 export const resolveBridgeHost = (env: BridgeRuntimeEnv = defaultBridgeRuntimeEnv) =>
-  env[AGENTGANGGANG_BRIDGE_HOST_ENV]?.trim() || AGENTGANGGANG_BRIDGE_HOST;
+  env[MULTI_AI_PANEL_BRIDGE_HOST_ENV]?.trim() || MULTI_AI_PANEL_BRIDGE_HOST;
 
 export const resolveBridgePort = (env: BridgeRuntimeEnv = defaultBridgeRuntimeEnv) => {
-  const rawPort = env[AGENTGANGGANG_BRIDGE_PORT_ENV];
+  const rawPort = env[MULTI_AI_PANEL_BRIDGE_PORT_ENV];
   if (!rawPort) {
-    return AGENTGANGGANG_BRIDGE_PORT;
+    return MULTI_AI_PANEL_BRIDGE_PORT;
   }
 
   const parsedPort = Number(rawPort);
   return Number.isInteger(parsedPort) && parsedPort > 0
     ? parsedPort
-    : AGENTGANGGANG_BRIDGE_PORT;
+    : MULTI_AI_PANEL_BRIDGE_PORT;
 };
 
 export const createBridgeBaseUrl = (
-  host = AGENTGANGGANG_BRIDGE_HOST,
-  port = AGENTGANGGANG_BRIDGE_PORT
+  host = MULTI_AI_PANEL_BRIDGE_HOST,
+  port = MULTI_AI_PANEL_BRIDGE_PORT
 ) => `http://${host}:${port}`;

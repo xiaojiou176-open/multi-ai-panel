@@ -1,7 +1,7 @@
 {
-  "name": "agentganggang-codex-bundle",
+  "name": "multi-ai-panel-codex-bundle",
   "version": "0.2.2",
-  "title": "AgentGangGang for Codex",
-  "description": "Compare-first AgentGangGang MCP bundle for Codex sessions.",
-  "homepage": "https://github.com/xiaojiou176-open/AgentGangGang"
+  "title": "MultiAiPanel for Codex",
+  "description": "Compare-first MultiAiPanel MCP bundle for Codex sessions.",
+  "homepage": "https://github.com/xiaojiou176-open/multi-ai-panel"
 }

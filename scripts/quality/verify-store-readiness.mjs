@@ -12,21 +12,21 @@ const requiredFiles = [
   'README.md',
   'CONTRIBUTING.md',
   'manifest.json',
-  'public/agentganggang-icon.svg',
-  'public/agentganggang-icon-16.png',
-  'public/agentganggang-icon-48.png',
-  'public/agentganggang-icon-128.png',
+  'public/multi-ai-panel-icon.svg',
+  'public/multi-ai-panel-icon-16.png',
+  'public/multi-ai-panel-icon-48.png',
+  'public/multi-ai-panel-icon-128.png',
   'docs/install.html',
   'docs/faq.html',
   'docs/mcp-coding-agents.html',
-  'docs/assets/agentganggang-hero.png',
-  'docs/assets/agentganggang-demo.gif',
-  'docs/assets/agentganggang-compare-detail.png',
-  'docs/assets/agentganggang-settings.png',
-  'docs/assets/agentganggang-social-preview.png',
-  'docs/assets/agentganggang-nav-icon.svg',
-  'docs/assets/agentganggang-before-after.svg',
-  'docs/assets/agentganggang-workflow.svg',
+  'docs/assets/multi-ai-panel-hero.png',
+  'docs/assets/multi-ai-panel-demo.gif',
+  'docs/assets/multi-ai-panel-compare-detail.png',
+  'docs/assets/multi-ai-panel-settings.png',
+  'docs/assets/multi-ai-panel-social-preview.png',
+  'docs/assets/multi-ai-panel-nav-icon.svg',
+  'docs/assets/multi-ai-panel-before-after.svg',
+  'docs/assets/multi-ai-panel-workflow.svg',
 ];
 
 const requiredWorkflowMarkers = [
@@ -95,11 +95,11 @@ export const collectStoreReadinessFindings = ({
 
   if (
     !manifest.icons ||
-    manifest.icons['16'] !== 'public/agentganggang-icon-16.png' ||
-    manifest.icons['48'] !== 'public/agentganggang-icon-48.png' ||
-    manifest.icons['128'] !== 'public/agentganggang-icon-128.png'
+    manifest.icons['16'] !== 'public/multi-ai-panel-icon-16.png' ||
+    manifest.icons['48'] !== 'public/multi-ai-panel-icon-48.png' ||
+    manifest.icons['128'] !== 'public/multi-ai-panel-icon-128.png'
   ) {
-    findings.push('manifest icon contract must point to AgentGangGang PNG extension icons');
+    findings.push('manifest icon contract must point to MultiAiPanel PNG extension icons');
   }
 
   for (const [label, doc] of [

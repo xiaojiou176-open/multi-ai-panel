@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
-  AGENTGANGGANG_API_SUBSTRATE,
-  AGENTGANGGANG_API_VERSION,
+  MULTI_AI_PANEL_API_SUBSTRATE,
+  MULTI_AI_PANEL_API_VERSION,
   SUBSTRATE_ACTION_NAMES,
   createSubstrateApiFailure,
   createSubstrateApiSuccess,
@@ -15,8 +15,8 @@ import {
 describe('substrate api contracts', () => {
   it('parses a compare command envelope with the shared substrate/version header', () => {
     const parsed = parseSubstrateApiCommand({
-      substrate: AGENTGANGGANG_API_SUBSTRATE,
-      version: AGENTGANGGANG_API_VERSION,
+      substrate: MULTI_AI_PANEL_API_SUBSTRATE,
+      version: MULTI_AI_PANEL_API_VERSION,
       id: 'cmd-1',
       action: SUBSTRATE_ACTION_NAMES.COMPARE,
       args: {
@@ -27,8 +27,8 @@ describe('substrate api contracts', () => {
     });
 
     expect(parsed).toEqual({
-      substrate: AGENTGANGGANG_API_SUBSTRATE,
-      version: AGENTGANGGANG_API_VERSION,
+      substrate: MULTI_AI_PANEL_API_SUBSTRATE,
+      version: MULTI_AI_PANEL_API_VERSION,
       id: 'cmd-1',
       action: SUBSTRATE_ACTION_NAMES.COMPARE,
       args: {
@@ -41,7 +41,7 @@ describe('substrate api contracts', () => {
 
   it('rejects envelopes that drift away from the explicit schema version', () => {
     const parsed = safeParseSubstrateApiCommand({
-      substrate: AGENTGANGGANG_API_SUBSTRATE,
+      substrate: MULTI_AI_PANEL_API_SUBSTRATE,
       version: 'v2',
       id: 'cmd-2',
       action: SUBSTRATE_ACTION_NAMES.CHECK_READINESS,
@@ -79,8 +79,8 @@ describe('substrate api contracts', () => {
 
   it('parses a get_workflow_run result with structured steps instead of unknown payloads', () => {
     const result = parseSubstrateApiResult({
-      substrate: AGENTGANGGANG_API_SUBSTRATE,
-      version: AGENTGANGGANG_API_VERSION,
+      substrate: MULTI_AI_PANEL_API_SUBSTRATE,
+      version: MULTI_AI_PANEL_API_VERSION,
       id: 'wf-2',
       action: SUBSTRATE_ACTION_NAMES.GET_WORKFLOW_RUN,
       ok: true,
@@ -136,7 +136,7 @@ describe('substrate api contracts', () => {
       {
         kind: 'waiting_external',
         code: 'login_required',
-        message: 'Sign in to Gemini before AgentGangGang can reuse the tab.',
+        message: 'Sign in to Gemini before MultiAiPanel can reuse the tab.',
         retryable: true,
         externalAction: {
           type: 'sign_in',
@@ -177,8 +177,8 @@ describe('substrate api contracts', () => {
 
   it('parses analyze_compare success results with the typed analyst payload', () => {
     const result = parseSubstrateApiResult({
-      substrate: AGENTGANGGANG_API_SUBSTRATE,
-      version: AGENTGANGGANG_API_VERSION,
+      substrate: MULTI_AI_PANEL_API_SUBSTRATE,
+      version: MULTI_AI_PANEL_API_VERSION,
       id: 'analysis-1',
       action: SUBSTRATE_ACTION_NAMES.ANALYZE_COMPARE,
       ok: true,

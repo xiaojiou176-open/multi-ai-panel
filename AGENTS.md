@@ -94,7 +94,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
     `process.kill(...)` / `os.kill(...)` with `pid <= 0`, `osascript`,
     `System Events`, `loginwindow`, `showForceQuitPanel`, or similar
     desktop/process-wide control paths.
-- AgentGangGang live helpers must fail closed instead of trying host-wide
+- MultiAiPanel live helpers must fail closed instead of trying host-wide
   recovery.
   - Prefer repo-owned browser identity, explicit profile resolution, and CDP
     attach checks over host cleanup or desktop scripting.
@@ -112,7 +112,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 ## Browser And Resource Discipline
 
 - Treat confirmed missing login state as a blocker quickly.
-  - If one or two focused checks against the real AgentGangGang
+  - If one or two focused checks against the real MultiAiPanel
     browser/profile already show the required site is logged out or otherwise
     unavailable, record that state as a blocker instead of escalating into
     repeated browser relaunches.
@@ -136,11 +136,11 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
     window.
 - Login-state-sensitive live flows must resolve the dedicated real Google
   Chrome profile lane through:
-  - `AGENTGANGGANG_BROWSER_USER_DATA_DIR`
-  - `AGENTGANGGANG_BROWSER_PROFILE_NAME`
-  - `AGENTGANGGANG_BROWSER_PROFILE_DIRECTORY`
-  - The canonical root is `~/.cache/AgentGangGang/browser/chrome-user-data`
-    with a single repo-owned `AgentGangGang` profile.
+  - `MULTI_AI_PANEL_BROWSER_USER_DATA_DIR`
+  - `MULTI_AI_PANEL_BROWSER_PROFILE_NAME`
+  - `MULTI_AI_PANEL_BROWSER_PROFILE_DIRECTORY`
+  - The canonical root is `~/.cache/MultiAiPanel/browser/chrome-user-data`
+    with a single repo-owned `MultiAiPanel` profile.
   - Default Chrome user data under `~/Library/Application Support/Google/Chrome`
     is migration-source only, not the canonical runtime root.
   - Fail closed when that profile resolution is missing or ambiguous; do not
@@ -152,9 +152,9 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 ## Temp Clone, Cache, Disk, And Docker Hygiene
 
 - Keep repo-owned runtime scratch inside `.runtime-cache/`.
-- Keep repo-owned external cache under `~/.cache/AgentGangGang/` unless an
+- Keep repo-owned external cache under `~/.cache/MultiAiPanel/` unless an
   explicit repo-owned override is set for the current run.
-- Treat `~/.cache/AgentGangGang/browser/chrome-user-data/` as persistent
+- Treat `~/.cache/MultiAiPanel/browser/chrome-user-data/` as persistent
   browser state.
   - Exclude it from TTL / cap pruning.
   - Exclude it from `npm run clean:runtime`.
@@ -172,7 +172,7 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
 - Shared tooling caches such as `~/Library/Caches/ms-playwright/` are
   detection-only from this repo.
   - Report them during disk audits.
-  - Never auto-clean them from AgentGangGang commands.
+  - Never auto-clean them from MultiAiPanel commands.
 - Do not leave root-level noise such as `.DS_Store`, stray `test-results`, or
   other repo-owned runtime artifacts behind after verification.
 - Perform repo-scoped cleanup only.
@@ -181,11 +181,11 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
   - Inventory repo-owned containers / images / volumes before cleanup.
   - Never run broad global prune commands as a shortcut.
 - The repo-local operating manual for these rules lives under:
-  - `.agents/skills/agentganggang-resource-hygiene/`
+  - `.agents/skills/multi-ai-panel-resource-hygiene/`
 
 ## Cross-Repo Isolation
 
-- Do not mix AgentGangGang live tabs or profiles with other repos' live
+- Do not mix MultiAiPanel live tabs or profiles with other repos' live
   lanes.
 - Do not assume the user's everyday browser window is available as a disposable
   default test surface.
@@ -220,5 +220,5 @@ Use `npm run clean:runtime` if local verification leaves transient files behind.
   - only true external-only or human-only blockers outside the repo
 - Keep this tracked contract principle-level and store the execution checklist
   in:
-  - `.agents/skills/agentganggang-resource-hygiene/SKILL.md`
-  - `.agents/skills/agentganggang-consumer-host-kits/SKILL.md`
+  - `.agents/skills/multi-ai-panel-resource-hygiene/SKILL.md`
+  - `.agents/skills/multi-ai-panel-consumer-host-kits/SKILL.md`

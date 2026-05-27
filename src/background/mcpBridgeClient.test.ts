@@ -156,8 +156,8 @@ describe('mcpBridgeClient', () => {
     expect(fetchMock.mock.calls[3]?.[1]).toMatchObject({
       method: 'POST',
       headers: expect.objectContaining({
-        'x-agentganggang-extension-id': 'ext-123',
-        'x-agentganggang-bridge-key': 'bridge-key',
+        'x-multi-ai-panel-extension-id': 'ext-123',
+        'x-multi-ai-panel-bridge-key': 'bridge-key',
       }),
     });
     expect(JSON.parse((fetchMock.mock.calls[3]?.[1] as RequestInit).body as string)).toMatchObject({
